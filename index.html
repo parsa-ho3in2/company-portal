@@ -6,7 +6,10 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
 <meta name="theme-color" content="#173b7a">
-<title>سامانه سازمانی شرکت — نسخه ۲</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap">
+<title>سامانه سازمانی شرکت — نسخه ۸</title>
 <style>
 :root{
   --bg:#f4f7fb;--surface:#ffffff;--surface-2:#f7f9fc;--surface-3:#eef3f9;
@@ -490,6 +493,243 @@ body{font-family:"Vazirmatn","IRANSansX","Dana","Shabnam",Tahoma,Arial,sans-seri
 }
 </style>
 
+
+<style id="v4-upgrade">
+:root{--accent:#1977ff;--accent-2:#0e4f9f;--accent-soft:#eaf3ff;--glow:rgba(25,119,255,.18);--accent-good:#b9ff2d}
+[data-palette="violet"]{--accent:#7657ff;--accent-2:#4b35a8;--accent-soft:#f0edff;--glow:rgba(118,87,255,.18);--accent-good:#64e8d7}
+[data-palette="emerald"]{--accent:#0f9b7a;--accent-2:#08705a;--accent-soft:#e8f8f4;--glow:rgba(15,155,122,.18);--accent-good:#b9ff5d}
+[data-palette="sunset"]{--accent:#ff7a45;--accent-2:#a33d1d;--accent-soft:#fff0e9;--glow:rgba(255,122,69,.18);--accent-good:#ffd45a}
+[data-theme="dark"][data-palette="violet"]{--accent:#9a8cff;--accent-2:#d5ceff;--accent-soft:#211d42;--glow:rgba(154,140,255,.22);--accent-good:#6ff0df}
+[data-theme="dark"][data-palette="emerald"]{--accent:#55d7bb;--accent-2:#b9fff0;--accent-soft:#12362f;--glow:rgba(85,215,187,.20);--accent-good:#c6ff78}
+[data-theme="dark"][data-palette="sunset"]{--accent:#ff9b72;--accent-2:#ffd0be;--accent-soft:#3d241b;--glow:rgba(255,155,114,.21);--accent-good:#ffe07a}
+:root[data-font="noto"] body{font-family:"Noto Sans Arabic","Vazirmatn",Tahoma,Arial,sans-serif}
+:root[data-font="tajawal"] body{font-family:"Tajawal","Vazirmatn",Tahoma,Arial,sans-serif}
+:root[data-density="compact"] .panel{padding:14px}:root[data-density="compact"] .stat{padding:12px}:root[data-density="compact"] th,:root[data-density="compact"] td{padding:8px 7px}
+.content.page-enter{animation:pageEnter .34s cubic-bezier(.2,.75,.2,1)}
+@keyframes pageEnter{from{opacity:0;transform:translateY(8px) scale(.995)}to{opacity:1;transform:none}}
+.process-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.process-card{position:relative;padding:15px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,var(--surface),var(--surface-2));box-shadow:var(--shadow);transition:.18s ease;overflow:hidden}
+.process-card:before{content:"";position:absolute;inset:-55px auto auto -35px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 68%);pointer-events:none}
+.process-card:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+.process-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.process-icon{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}.process-card h4{margin:10px 0 4px;font-size:12px}.process-card p{margin:0;color:var(--muted);font-size:9px;line-height:1.9}.process-meta{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:11px}.process-meta div{padding:8px 9px;border-radius:10px;background:var(--surface-3)}.process-meta small{display:block;color:var(--muted);font-size:7px}.process-meta strong{display:block;margin-top:3px;font-size:8px}.process-actions{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
+.att-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.attendance-hero{display:flex;justify-content:space-between;gap:16px;align-items:center}.clock-face{min-width:190px;padding:16px;border-radius:16px;background:linear-gradient(135deg,var(--accent-soft),var(--surface));border:1px solid var(--line)}.clock-face strong{display:block;font-size:26px}.clock-face span{font-size:9px;color:var(--muted)}.presence-list{display:grid;gap:8px}.presence-row{display:grid;grid-template-columns:1.4fr .9fr .9fr .8fr;gap:8px;padding:11px;border-bottom:1px solid var(--line);font-size:9px;align-items:center}.presence-row:last-child{border-bottom:0}.presence-row.head{font-size:8px;color:var(--muted);background:var(--surface-2);border-radius:10px}
+.palette-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.palette-choice{border:1px solid var(--line);background:var(--surface);border-radius:13px;padding:10px;text-align:right;cursor:pointer}.palette-choice.active{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}.palette-swatch{height:28px;border-radius:9px;margin-bottom:7px}.sw-ocean{background:linear-gradient(135deg,#103b7a,#1977ff 58%,#b9ff2d)}.sw-violet{background:linear-gradient(135deg,#35256f,#7657ff 58%,#64e8d7)}.sw-emerald{background:linear-gradient(135deg,#0b4e42,#0f9b7a 58%,#b9ff5d)}.sw-sunset{background:linear-gradient(135deg,#50241a,#ff7a45 58%,#ffd45a)}.palette-choice strong{font-size:9px}.palette-choice small{display:block;color:var(--muted);font-size:7px;margin-top:2px}
+.command-backdrop{position:fixed;inset:0;background:rgba(3,10,24,.52);display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 20px;z-index:200}.command-backdrop.show{display:flex}.command-box{width:min(720px,100%);background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-lg);overflow:hidden}.command-search{padding:12px;border-bottom:1px solid var(--line)}.command-list{max-height:55vh;overflow:auto;padding:8px}.command-item{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;border:0;background:transparent;border-radius:11px;padding:11px 12px;text-align:right;color:var(--text);cursor:pointer}.command-item:hover{background:var(--surface-2)}.command-item span{font-size:10px}.command-item small{color:var(--muted);font-size:8px}.shortcut{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--surface-2);padding:3px 6px;border-radius:7px;font-size:7px;color:var(--muted)}
+.utility-strip{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.utility-pill{display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font-size:8px;color:var(--muted)}.utility-pill b{color:var(--text)}
+@media(max-width:900px){.process-grid{grid-template-columns:1fr}.att-grid{grid-template-columns:1fr 1fr}.attendance-hero{display:block}.clock-face{margin-top:12px}.palette-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.att-grid{grid-template-columns:1fr 1fr}.presence-row{grid-template-columns:1fr 1fr}.presence-row.head{display:none}.palette-grid{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){.content.page-enter{animation:none}.process-card:hover{transform:none}}
+</style>
+<style id="v5-final-visual">
+/* V5 visual system + reliable preferences */
+:root{
+  --accent:#1977ff;--accent-2:#0e4f9f;--accent-soft:#eaf3ff;--glow:rgba(25,119,255,.18);--accent-good:#b9ff2d;
+  --surface-glass:rgba(255,255,255,.74);
+  --ui-font:"Vazirmatn","IRANSansX","Dana","Shabnam",Tahoma,Arial,sans-serif;
+}
+html[data-font="noto"]{--ui-font:"Noto Sans Arabic","Vazirmatn",Tahoma,Arial,sans-serif}
+html[data-font="tajawal"]{--ui-font:"Tajawal","Vazirmatn",Tahoma,Arial,sans-serif}
+html,body,button,input,select,textarea{font-family:var(--ui-font)!important}
+
+/* Light palettes */
+:root[data-theme="light"][data-palette="ocean"]{
+  --primary:#1977ff;--primary-2:#0e4f9f;--primary-soft:#eaf3ff;--focus:#1a82ff;
+  --sidebar:#071526;--sidebar-2:#10365f;--accent:#1977ff;--accent-2:#0e4f9f;--accent-soft:#eaf3ff;--glow:rgba(25,119,255,.18);--accent-good:#b9ff2d;
+}
+:root[data-theme="light"][data-palette="violet"]{
+  --primary:#7657ff;--primary-2:#4b35a8;--primary-soft:#f0edff;--focus:#7657ff;
+  --sidebar:#131129;--sidebar-2:#2f2865;--accent:#7657ff;--accent-2:#4b35a8;--accent-soft:#f0edff;--glow:rgba(118,87,255,.18);--accent-good:#64e8d7;
+}
+:root[data-theme="light"][data-palette="emerald"]{
+  --primary:#0f9b7a;--primary-2:#08705a;--primary-soft:#e8f8f4;--focus:#0f9b7a;
+  --sidebar:#081d1a;--sidebar-2:#0e4d42;--accent:#0f9b7a;--accent-2:#08705a;--accent-soft:#e8f8f4;--glow:rgba(15,155,122,.18);--accent-good:#b9ff5d;
+}
+:root[data-theme="light"][data-palette="sunset"]{
+  --primary:#ff7a45;--primary-2:#a33d1d;--primary-soft:#fff0e9;--focus:#f06432;
+  --sidebar:#26130e;--sidebar-2:#67321f;--accent:#ff7a45;--accent-2:#a33d1d;--accent-soft:#fff0e9;--glow:rgba(255,122,69,.18);--accent-good:#ffd45a;
+}
+/* Dark palettes */
+:root[data-theme="dark"][data-palette="ocean"]{
+  --primary:#6aaaff;--primary-2:#b9d7ff;--primary-soft:#142b4d;--focus:#83b3ff;--accent:#6aaaff;--accent-2:#b9d7ff;--accent-soft:#142b4d;--glow:rgba(106,170,255,.22);--accent-good:#c7ff55;
+  --sidebar:#060d19;--sidebar-2:#102543;
+}
+:root[data-theme="dark"][data-palette="violet"]{
+  --primary:#9a8cff;--primary-2:#d5ceff;--primary-soft:#211d42;--focus:#b2a6ff;--accent:#9a8cff;--accent-2:#d5ceff;--accent-soft:#211d42;--glow:rgba(154,140,255,.24);--accent-good:#6ff0df;
+  --sidebar:#0f0b1e;--sidebar-2:#261f4b;
+}
+:root[data-theme="dark"][data-palette="emerald"]{
+  --primary:#55d7bb;--primary-2:#b9fff0;--primary-soft:#12362f;--focus:#69e4ca;--accent:#55d7bb;--accent-2:#b9fff0;--accent-soft:#12362f;--glow:rgba(85,215,187,.22);--accent-good:#c6ff78;
+  --sidebar:#061411;--sidebar-2:#0e352f;
+}
+:root[data-theme="dark"][data-palette="sunset"]{
+  --primary:#ff9b72;--primary-2:#ffd0be;--primary-soft:#3d241b;--focus:#ffb093;--accent:#ff9b72;--accent-2:#ffd0be;--accent-soft:#3d241b;--glow:rgba(255,155,114,.24);--accent-good:#ffe07a;
+  --sidebar:#1d0e09;--sidebar-2:#4b2418;
+}
+
+/* Use the active palette everywhere a primary visual appears. */
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--accent-2));box-shadow:0 8px 20px var(--glow)}
+.btn-primary:hover{box-shadow:0 11px 28px var(--glow)}
+.btn-soft{background:var(--primary-soft);color:var(--accent-2)}
+.stat-icon,.qicon,.timeline-dot{background:var(--accent-soft);color:var(--accent)}
+.nav-btn.active{background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 88%,#000 12%),color-mix(in srgb,var(--accent-2) 86%,#000 14%));box-shadow:0 10px 24px var(--glow)}
+.nav-btn.active:before{background:var(--accent-good)}
+.progress>span{background:linear-gradient(90deg,var(--accent-good),var(--primary))}
+.profile-cover{background:radial-gradient(circle at 22% 28%,rgba(255,255,255,.18),transparent 20%),linear-gradient(135deg,var(--accent-2),var(--primary) 62%,var(--accent-good));}
+.hero{background:radial-gradient(circle at 92% 10%,var(--glow),transparent 28%),linear-gradient(135deg,var(--surface),var(--accent-soft))}
+.quick-card:hover{border-color:color-mix(in srgb,var(--primary) 36%,var(--line));box-shadow:0 14px 34px var(--glow)}
+.palette-choice.active{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow),0 12px 26px var(--glow)}
+.control:focus{border-color:var(--focus);box-shadow:0 0 0 4px var(--glow)}
+
+/* More polished enterprise feel */
+.main{scrollbar-gutter:stable}
+.topbar{position:sticky;top:0;z-index:40;padding:8px 0 11px;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px)}
+.card{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.stat:hover,.panel:hover{transform:translateY(-2px);box-shadow:0 18px 40px var(--glow)}
+.hero{position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;left:-70px;top:-105px;background:var(--glow);filter:blur(10px);pointer-events:none}
+.hero>*{position:relative;z-index:1}
+.panel-head h3{letter-spacing:-.12px}
+.palette-choice{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.palette-choice:hover{transform:translateY(-2px)}
+
+/* Login OTP is always visibly ready on first render. */
+.otp-code{letter-spacing:.28em;font-variant-numeric:tabular-nums;min-width:150px;text-align:center}
+.otp-box{position:relative}
+.otp-box:focus-within{transform:translateY(-1px)}
+.login-card{animation:loginCardIn .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes loginCardIn{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
+
+/* Staggered page entrance */
+@media (prefers-reduced-motion:no-preference){
+  .content.page-enter>*{animation:pageItemIn .38s cubic-bezier(.2,.75,.2,1) both}
+  .content.page-enter>*:nth-child(2){animation-delay:.035s}
+  .content.page-enter>*:nth-child(3){animation-delay:.07s}
+  .content.page-enter>*:nth-child(4){animation-delay:.105s}
+}
+@keyframes pageItemIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+html[data-motion="reduced"] *,html[data-motion="reduced"] *:before,html[data-motion="reduced"] *:after{animation:none!important;transition:none!important}
+
+@media(max-width:760px){
+  .topbar{padding-top:4px;background:color-mix(in srgb,var(--bg) 92%,transparent)}
+  .hero{padding:16px}
+  .stat:hover,.panel:hover{transform:none}
+}
+@media(max-width:560px){
+  .palette-grid{grid-template-columns:1fr}
+  .palette-choice{display:grid;grid-template-columns:62px 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center}
+  .palette-choice .palette-swatch{grid-row:1 / span 2;margin:0;height:42px}
+}
+</style>
+
+<style id="v8-readable-persian-font">
+/* V8 — readable Persian typography pass */
+html, body, button, input, select, textarea{
+  font-family:var(--ui-font)!important;
+  font-optical-sizing:auto;
+  font-synthesis:none;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+body{
+  font-size:15px!important;
+  font-weight:550!important;
+  line-height:1.7!important;
+  letter-spacing:0!important;
+  font-variation-settings:"wght" 550;
+}
+.nav-title{font-size:11px!important;font-weight:700!important}
+.nav-btn{font-size:12.5px!important;font-weight:650!important}
+.nav-btn span:not(.nav-icon){font-size:12.5px!important;line-height:1.45!important}
+.brand strong{font-size:14px!important;font-weight:800!important}
+.brand small{font-size:10px!important}
+.mini-info strong{font-size:11.5px!important}
+.mini-info span{font-size:10px!important}
+.title h1{font-size:26px!important;font-weight:800!important;line-height:1.45!important}
+.title p{font-size:12px!important;line-height:1.8!important}
+.breadcrumb{font-size:11px!important}
+.btn{font-size:13px!important;font-weight:750!important;min-height:45px}
+.hero h2{font-size:20px!important;font-weight:800!important;line-height:1.55!important}
+.hero p{font-size:12.5px!important;line-height:1.9!important}
+.stat-label{font-size:12px!important;font-weight:650!important}
+.stat strong{font-size:31px!important;font-weight:800!important}
+.stat .note{font-size:11px!important}
+.panel-head h3,.card h3{font-size:15px!important;font-weight:750!important;line-height:1.6!important}
+.panel-link{font-size:12px!important;font-weight:700!important}
+th,td{font-size:12px!important;line-height:1.8!important}
+th{font-weight:750!important}
+.badge{font-size:10.5px!important;font-weight:750!important}
+.quick-card strong{font-size:12.5px!important;font-weight:750!important}
+.quick-card span{font-size:11px!important;line-height:1.7!important}
+.notice strong{font-size:12px!important;font-weight:700!important}
+.notice span{font-size:10.5px!important;line-height:1.7!important}
+.field label{font-size:12px!important;font-weight:750!important}
+.control{font-size:13.5px!important;font-weight:550!important;min-height:48px}
+.filters .control{font-size:12px!important}
+.sm{font-size:10.5px!important;font-weight:700!important}
+.kpi small{font-size:10.5px!important}
+.kpi strong{font-size:23px!important;font-weight:800!important}
+.detail small{font-size:10.5px!important}
+.detail strong{font-size:12.5px!important;font-weight:700!important}
+.profile-title h2{font-size:21px!important;font-weight:800!important;line-height:1.55!important}
+.profile-title p{font-size:11px!important;line-height:1.7!important}
+.timeline-item strong{font-size:12.5px!important;font-weight:700!important}
+.timeline-item p{font-size:10.5px!important;line-height:1.7!important}
+.timeline-item time{font-size:10px!important}
+.pm-item{font-size:12px!important;font-weight:600!important}
+.pm-head strong{font-size:12px!important}
+.pm-head span{font-size:10px!important}
+.empty{font-size:12px!important;line-height:1.9!important}
+.muted{font-size:inherit}
+.search-result strong{font-size:13px!important}
+.command-item span{font-size:12px!important}
+.command-item small{font-size:10.5px!important}
+.font-sample{font-size:17px!important;font-weight:750!important}
+.font-choice strong{font-size:13px!important}
+.font-choice p,.font-choice span{font-size:10.5px!important;line-height:1.7!important}
+.login-card h2{font-size:31px!important;font-weight:800!important}
+.login-showcase h1{font-size:50px!important;font-weight:800!important}
+.login-showcase p{font-size:16px!important;line-height:2!important}
+.showcase-card b{font-size:13px!important}
+.showcase-card span{font-size:11px!important;line-height:1.7!important}
+.eyebrow{font-size:12px!important;font-weight:650!important}
+.login-row label{font-size:12px!important}
+.demo-box{font-size:11.5px!important;line-height:1.9!important}
+.login-error{font-size:12px!important}
+.profile-trigger strong{font-size:11px!important}
+.profile-trigger span{font-size:9.5px!important}
+
+@media(max-width:1120px){
+  .nav-btn span:not(.nav-icon){font-size:12px!important}
+}
+@media(max-width:760px){
+  .title h1{font-size:21px!important}
+  .title p{font-size:10.5px!important}
+  .breadcrumb{font-size:10px!important}
+  .hero h2{font-size:18px!important}
+  .hero p{font-size:12px!important}
+  .btn{font-size:12px!important}
+  .stat-label{font-size:10.5px!important}
+  .stat strong{font-size:24px!important}
+  .stat .note{font-size:10px!important}
+  .panel-head h3{font-size:14px!important}
+  .panel-link{font-size:10.5px!important}
+  .quick-card strong{font-size:11.5px!important}
+  .quick-card span{font-size:10px!important}
+  .filters .control,.filters input,.filters select{font-size:12.5px!important}
+  .table-wrap td,.table-wrap th{font-size:11.5px!important}
+  .table-wrap td:before{font-size:10px!important;font-weight:750!important}
+  .profile-title h2{font-size:19px!important}
+  .profile-title p{font-size:10.5px!important}
+  .detail small{font-size:10px!important}
+  .detail strong{font-size:11.5px!important}
+  .nav-btn span:not(.nav-icon){font-size:10px!important}
+  .login-card h2{font-size:28px!important}
+  .control{font-size:13px!important}
+}
+</style>
+
 </head>
 <body>
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
@@ -545,7 +785,14 @@ function load(){const r=localStorage.getItem(KEY);if(r){try{return JSON.parse(r)
 let db=load();let session=JSON.parse(localStorage.getItem(SESSION)||sessionStorage.getItem(SESSION)||'null');let page='dashboard';let modalFocus=null;
 function save(){localStorage.setItem(KEY,JSON.stringify(db))}function current(){return session?db.users.find(x=>x.id===session.id):null}function manager(){return current()&&['manager','admin'].includes(current().u)}function esc(x){return String(x??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]))}
 function badge(s){const map={'تأیید شده':'green','در انتظار تأیید':'yellow','در حال بررسی':'blue','رد شده':'red','نیازمند اقدام':'yellow','انجام شده':'green','فعال':'green'};return '<span class="badge '+(map[s]||'gray')+'">'+esc(s)+'</span>'}
-function theme(){const t=localStorage.getItem('companyTheme')||'light';document.documentElement.dataset.theme=t;return t}
+function theme(){
+  const t=localStorage.getItem('companyTheme')||'light';
+  document.documentElement.dataset.theme=t;
+  document.documentElement.dataset.palette=localStorage.getItem('companyPalette')||'ocean';
+  document.documentElement.dataset.font=localStorage.getItem('companyFont')||'vazir';
+  document.documentElement.dataset.density=localStorage.getItem('companyDensity')||'comfortable';
+  return t;
+}
 function toggleTheme(){const t=theme()==='dark'?'light':'dark';localStorage.setItem('companyTheme',t);theme();render();toast(t==='dark'?'حالت تیره فعال شد':'حالت روشن فعال شد')}
 function toast(t){const el=document.querySelector('.toast');if(!el)return;el.textContent=t;el.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.classList.remove('show'),2100)}
 function nav(p){page=p;document.querySelector('.profile-menu')?.classList.remove('open');render();setTimeout(()=>document.getElementById('main-content')?.focus(),20)}
@@ -563,7 +810,9 @@ function decide(id,status){const r=db.req.find(x=>x.id===id);if(!r)return;r.stat
 function details(id){const r=db.req.find(x=>x.id===id),p=db.users.find(x=>x.id===r.uid);if(!r)return;openModal('جزئیات '+id,'<div class="detail-grid"><div class="detail"><small>عنوان</small><strong>'+esc(r.title)+'</strong></div><div class="detail"><small>ثبت‌کننده</small><strong>'+esc(p?.name||'')+'</strong></div><div class="detail"><small>وضعیت</small><strong>'+badge(r.status)+'</strong></div><div class="detail"><small>مرحله</small><strong>'+esc(r.stage)+'</strong></div></div><div style="height:12px"></div><div class="panel" style="background:var(--surface-2);border:1px solid var(--line);border-radius:13px"><div class="panel-head"><h3>مسیر گردش</h3></div><div class="timeline"><div class="timeline-item"><div class="timeline-dot">۱</div><div><strong>ثبت درخواست</strong><p>درخواست در سامانه ثبت شد.</p></div><time>'+r.date+'</time></div><div class="timeline-item"><div class="timeline-dot">۲</div><div><strong>بررسی و تأیید</strong><p>'+esc(r.stage)+'</p></div><time>'+ (r.status==='در انتظار تأیید'?'در انتظار':'انجام شد')+'</time></div><div class="timeline-item"><div class="timeline-dot">۳</div><div><strong>پایان فرآیند</strong><p>پس از نهایی شدن تصمیم.</p></div><time>'+ (r.status==='در انتظار تأیید'?'—':'انجام شد')+'</time></div></div></div><div class="modal-actions">'+(manager()&&r.status==='در انتظار تأیید'?'<button class="btn btn-success" onclick="closeModal();decide(\''+id+'\',\'تأیید شده\')">تأیید درخواست</button><button class="btn btn-danger" onclick="closeModal();decide(\''+id+'\',\'رد شده\')">رد درخواست</button>':'')+'<button class="btn btn-secondary" onclick="closeModal()">بستن</button></div>')}
 function openUser(){openModal('ایجاد کاربر جدید','<form class="form" onsubmit="createUser(event)"><div class="formgrid"><div class="field"><label for="nn">نام و نام خانوادگی</label><input id="nn" class="control" required></div><div class="field"><label for="nu">نام کاربری</label><input id="nu" class="control" required></div><div class="field"><label for="np">رمز عبور</label><input id="np" class="control" value="1234" required></div><div class="field"><label for="nr">سمت</label><input id="nr" class="control" required></div><div class="field full"><label for="nd">واحد سازمانی</label><input id="nd" class="control" required></div></div><div class="modal-actions"><button type="button" class="btn btn-secondary" onclick="closeModal()">انصراف</button><button class="btn btn-primary">ایجاد کاربر</button></div></form>')}
 function createUser(e){e.preventDefault();const id=Math.max(...db.users.map(x=>x.id))+1,n=document.getElementById('nn').value;db.users.push({id,u:document.getElementById('nu').value,p:document.getElementById('np').value,name:n,role:document.getElementById('nr').value,unit:document.getElementById('nd').value,employeeId:'NEW-'+id,phone:'-',email:'-',manager:'-',location:'-',join:'—',avatar:n.trim()[0]||'ک'});save();closeModal();render();setTimeout(()=>toast('کاربر جدید ایجاد شد'),40)}
-function loginView(){return '<div class="login"><section class="login-showcase"><div class="login-showcase-inner"><span class="eyebrow">● نسخه ۲ • Liquid Premium</span><h1>یک تجربه حرفه‌ای برای تمام امور شرکت</h1><p>رابطی مدرن با تمرکز روی وضوح عملیات، دسترسی سریع و نمایش سازمانی اطلاعات؛ با ترکیب آبی و سبز فسفری و انیمیشن مایع.</p><div class="showcase-grid"><div class="showcase-card"><div class="sc-icon">'+svg.inbox+'</div><b>کارتابل هوشمند</b><span>کارهای ارجاع‌شده را در یک نمای متمرکز ببینید.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.process+'</div><b>فرآیندهای سازمانی</b><span>ثبت تا تأیید و پیگیری، مرحله‌به‌مرحله.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.people+'</div><b>پروفایل کامل</b><span>اطلاعات شغلی، سازمانی و فعالیت‌های اخیر.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.shield+'</div><b>ورود امن</b><span>ورود آزمایشی با کد امنیتی یک‌بارمصرف.</span></div></div></div></section><section class="login-pane"><div class="login-card"><div class="brand-mark">ش</div><h2>ورود به سامانه</h2><div class="muted" style="font-size:11px">سامانه جامع مدیریت فرآیندهای شرکت</div><form class="form" onsubmit="event.preventDefault();login()"><div class="field"><label for="lu">نام کاربری</label><input id="lu" class="control" autocomplete="username" placeholder="نام کاربری را وارد کنید" required></div><div class="field"><label for="lp">رمز عبور</label><input id="lp" class="control" type="password" autocomplete="current-password" placeholder="رمز عبور" required></div><div class="otp-box"><div class="otp-line"><div class="otp-code" id="otpCode">در حال تولید...</div><button class="otp-refresh" type="button" onclick="refreshOtp()" aria-label="تولید کد امنیتی جدید" title="تولید کد جدید">'+svg.refresh+'</button></div><div class="otp-meta" id="otpMeta"></div><input id="loginOtp" class="control" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="کد امنیتی ۶ رقمی" required></div><div class="login-row"><label><input id="rememberMe" type="checkbox" aria-label="مرا به خاطر بسپار"> مرا به خاطر بسپار</label><button class="mini-link" type="button" onclick="refreshOtp()">کد جدید</button></div><button class="btn btn-primary btn-block" style="margin-top:12px" type="submit">ورود امن به سامانه '+svg.arrow+'</button><div id="loginError" class="login-error"></div></form><div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div><div class="security-note">کد نمایش‌داده‌شده مخصوص دموست؛ در نسخه عملیاتی OTP باید سمت سرور تولید و ارسال شود.</div></div></section></div>'}
+function loginView(){
+  if(!loginOtp || Date.now()>otpExpires) refreshOtp();
+  return '<div class="login"><section class="login-showcase"><div class="login-showcase-inner"><span class="eyebrow">● نسخه ۴ • Corporate Flow</span><h1>یک تجربه حرفه‌ای برای تمام امور شرکت</h1><p>رابطی مدرن با تمرکز روی وضوح عملیات، دسترسی سریع و نمایش سازمانی اطلاعات؛ با تجربه مایع، تم‌های قابل انتخاب و تعاملات سریع و کاربردی.</p><div class="showcase-grid"><div class="showcase-card"><div class="sc-icon">'+svg.inbox+'</div><b>کارتابل هوشمند</b><span>کارهای ارجاع‌شده را در یک نمای متمرکز ببینید.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.process+'</div><b>فرآیندهای سازمانی</b><span>ثبت تا تأیید و پیگیری، مرحله‌به‌مرحله.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.people+'</div><b>پروفایل کامل</b><span>اطلاعات شغلی، سازمانی و فعالیت‌های اخیر.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.shield+'</div><b>ورود امن</b><span>ورود آزمایشی با کد امنیتی یک‌بارمصرف.</span></div></div></div></section><section class="login-pane"><div class="login-card"><div class="brand-mark">ش</div><h2>ورود به سامانه</h2><div class="muted" style="font-size:11px">سامانه جامع مدیریت فرآیندهای شرکت</div><form class="form" onsubmit="event.preventDefault();login()"><div class="field"><label for="lu">نام کاربری</label><input id="lu" class="control" autocomplete="username" placeholder="نام کاربری را وارد کنید" required></div><div class="field"><label for="lp">رمز عبور</label><input id="lp" class="control" type="password" autocomplete="current-password" placeholder="رمز عبور" required></div><div class="otp-box"><div class="otp-line"><div class="otp-code" id="otpCode">' + (loginOtp||'------') + '</div><button class="otp-refresh" type="button" onclick="refreshOtp()" aria-label="تولید کد امنیتی جدید" title="تولید کد جدید">'+svg.refresh+'</button></div><div class="otp-meta" id="otpMeta"></div><input id="loginOtp" class="control" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="کد امنیتی ۶ رقمی" required></div><div class="login-row"><label><input id="rememberMe" type="checkbox" aria-label="مرا به خاطر بسپار"> مرا به خاطر بسپار</label><button class="mini-link" type="button" onclick="refreshOtp()">کد جدید</button></div><button class="btn btn-primary btn-block" style="margin-top:12px" type="submit">ورود امن به سامانه '+svg.arrow+'</button><div id="loginError" class="login-error"></div></form><div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div><div class="security-note">کد نمایش‌داده‌شده مخصوص دموست؛ در نسخه عملیاتی OTP باید سمت سرور تولید و ارسال شود.</div></div></section></div>'}
 refreshOtp();
 function sidebar(){const items=[['dashboard',svg.home,'داشبورد'],['inbox',svg.inbox,'کارتابل من'],['requests',svg.req,'درخواست‌ها'],...(manager()?[['approvals',svg.check,'تأییدها'],['people',svg.people,'پرسنل'],['processes',svg.process,'فرآیندها'],['reports',svg.chart,'گزارشات']]:[]),['docs',svg.doc,'اسناد و فرم‌ها'],['notifications',svg.bell,'اعلان‌ها'],['profile',svg.user,'حساب من'],['settings',svg.settings,'تنظیمات']];return '<aside class="sidebar"><div class="brand"><div class="brand-mark">ش</div><div class="brand-text"><strong>سامانه جامع سازمانی</strong><small>پرتال داخلی شرکت</small></div></div><nav class="nav"><div class="nav-title">منوی اصلی</div>'+items.map(i=>'<button class="nav-btn '+(page===i[0]?'active':'')+'" onclick="nav(\''+i[0]+'\')" aria-label="'+i[2]+'"><span class="nav-icon">'+i[1]+'</span><span>'+i[2]+'</span></button>').join('')+'</nav><div class="side-bottom"><div class="user-mini"><div class="avatar">'+esc(current().avatar)+'</div><div class="mini-info"><strong>'+esc(current().name)+'</strong><span>'+esc(current().role)+'</span></div></div><button class="logout" onclick="logout()">'+svg.logout+' خروج از حساب</button></div></aside>'}
 function topbar(){const c=current();const t=theme();return '<div class="topbar"><div class="title"><h1>'+pageTitle().h+'</h1><p>'+pageTitle().p+'</p></div><div class="top-actions"><div class="search"><span class="magnify">'+svg.search+'</span><input class="control" onkeydown="if(event.key===\'Enter\')toast(\'جستجو برای «\'+this.value+\'» آماده شد\')" placeholder="جستجو در سامانه..." aria-label="جستجوی سامانه"></div><button class="icon-btn" onclick="nav(\'notifications\')" aria-label="اعلان‌ها" title="اعلان‌ها">'+svg.bell+'<span class="notif-dot"></span></button><button class="icon-btn" onclick="toggleTheme()" aria-label="تغییر حالت نمایش" title="'+(t==='dark'?'حالت روشن':'حالت تیره')+'">'+(t==='dark'?svg.sun:svg.moon)+'</button><button class="profile-trigger" onclick="openProfileMenu()" aria-expanded="false"><span class="ptxt"><strong>'+esc(c.name)+'</strong><span>'+esc(c.role)+'</span></span><span class="avatar">'+esc(c.avatar)+'</span><span class="chev">⌄</span></button></div></div><div class="profile-menu" role="menu"><div class="pm-head"><strong>'+esc(c.name)+'</strong><span>'+esc(c.unit)+'</span></div><button class="pm-item" onclick="nav(\'profile\')">'+svg.user+' حساب من</button><button class="pm-item" onclick="nav(\'settings\')">'+svg.settings+' تنظیمات</button><button class="pm-item pm-danger" onclick="logout()">'+svg.logout+' خروج</button></div>'}
@@ -611,6 +860,582 @@ render();
       applyMobileTableLabels();
     }).observe(root, {childList:true, subtree:true});
   }
+})();
+</script>
+
+
+<script id="v4-upgrade-js">
+(function(){
+  const baseSidebar=sidebar, basePageTitle=pageTitle, baseContent=content, baseTopbar=topbar;
+  function settingsGet(k,d){try{const v=localStorage.getItem(k);return v??d}catch(e){return d}}
+  function applyPrefs(){
+    document.documentElement.dataset.palette=settingsGet('companyPalette','ocean');
+    document.documentElement.dataset.font=settingsGet('companyFont','vazir');
+    document.documentElement.dataset.density=settingsGet('companyDensity','comfortable');
+  }
+  window.applyPrefs=applyPrefs;
+  window.openProcess=function(i){
+    const p=window.__processCatalog?.[i]; if(!p) return;
+    openModal(p.name,'<div class="process-meta"><div><small>مالک فرآیند</small><strong>'+esc(p.owner)+'</strong></div><div><small>زمان هدف</small><strong>'+esc(p.sla)+'</strong></div><div><small>وضعیت</small><strong>'+badge('فعال')+'</strong></div><div><small>نوع کنترل</small><strong>'+esc(p.control)+'</strong></div></div><div style="height:12px"></div><div class="panel" style="background:var(--surface-2);border:1px solid var(--line);border-radius:13px"><div class="panel-head"><h3>گردش کار</h3><span class="badge gray">نمای نمونه</span></div><div class="timeline">'+p.steps.map((s,i)=>'<div class="timeline-item"><div class="timeline-dot">'+(i+1)+'</div><div><strong>'+esc(s[0])+'</strong><p>'+esc(s[1])+'</p></div><time>'+esc(s[2]||'')+'</time></div>').join('')+'</div></div>');
+  };
+  window.__processCatalog=[
+    {name:'درخواست مرخصی',owner:'منابع انسانی',sla:'۱ روز کاری',control:'مدیر مستقیم',steps:[['ثبت درخواست','انتخاب نوع مرخصی، بازه و شرح.','ثبت'],['بررسی مدیر','کنترل برنامه کاری و ظرفیت تیم.','در انتظار'],['ثبت نتیجه','تأیید/رد و ثبت سابقه در کارتابل.','پایان']]},
+    {name:'دورکاری',owner:'منابع انسانی / مدیر',sla:'۱ روز کاری',control:'تأیید مدیریتی',steps:[['ثبت درخواست','ثبت بازه دورکاری و توضیحات.','ثبت'],['بررسی','بررسی مدیریتی و سازمانی.','در انتظار'],['اعلام نتیجه','ثبت نتیجه و اطلاع‌رسانی به درخواست‌دهنده.','پایان']]},
+    {name:'پاسخ استعلام',owner:'بازرگانی',sla:'۲ روز کاری',control:'کارشناس + مسئول',steps:[['ثبت','ثبت متن استعلام و پیوست‌ها.','ثبت'],['بررسی کارشناس','جمع‌آوری اطلاعات و تهیه پاسخ.','در حال بررسی'],['تأیید مسئول','کنترل و تأیید نهایی پاسخ.','در انتظار'],['ارسال','ارسال پاسخ و ثبت سوابق.','پایان']]},
+    {name:'خروج کالا از انبار',owner:'انبار / برنامه‌ریزی',sla:'۱ روز کاری',control:'کنترل موجودی',steps:[['ثبت درخواست','ثبت اقلام، مقدار و مقصد.','ثبت'],['بررسی برنامه‌ریزی','کنترل نیاز و زمان خروج.','در انتظار'],['بررسی انبار','کنترل موجودی و ثبت خروج.','پایان']]},
+    {name:'قرارداد مالی',owner:'مالی / حقوقی / بازرگانی',sla:'وابسته به قرارداد',control:'تأیید چندمرحله‌ای',steps:[['بررسی مدیر بازرگانی','کنترل موضوع و درخواست.','۱'],['بررسی کارشناس بازرگانی','تکمیل اطلاعات و مستندات.','۲'],['بررسی برنامه‌ریزی','کنترل نیاز و بودجه.','۳'],['تدوین پیش‌نویس','صدور دستور و تهیه پیش‌نویس.','۴'],['ثبت و تأییدها','ثبت قرارداد و عبور از زنجیره تأیید.','۵+']]},
+    {name:'تحصیل دارایی',owner:'اموال / مدیریت',sla:'۲ روز کاری',control:'تطبیق اسناد',steps:[['ثبت درخواست','ثبت مشخصات دارایی و مستندات.','ثبت'],['بررسی مسئول دارایی ثابت','کنترل رده، دسته و اطلاعات دارایی.','در حال بررسی'],['تأیید مدیرعامل','تصمیم مدیریتی.','در انتظار'],['ثبت نهایی','ثبت دارایی در سوابق اموال.','پایان']]},
+    {name:'ابطال دارایی',owner:'اموال / انبار / مدیریت',sla:'۲ روز کاری',control:'کنترل فیزیکی و مستندی',steps:[['درخواست مدیر','ثبت درخواست ابطال و دلیل.','ثبت'],['بررسی مدیرعامل','تصمیم و تأیید مدیریتی.','در انتظار'],['بررسی مسئول انبار','کنترل فیزیکی/تحویل و ثبت نتیجه.','پایان']]}
+  ];
+  window.sidebar=function(){
+    const items=[['dashboard',svg.home,'داشبورد'],['inbox',svg.inbox,'کارتابل من'],['requests',svg.req,'درخواست‌ها'],['attendance',svg.clock||'◴','تردد و کارکرد'],...(manager()?[['approvals',svg.check,'تأییدها'],['people',svg.people,'پرسنل'],['processes',svg.process,'فرآیندها'],['reports',svg.chart,'گزارشات']]:[]),['docs',svg.doc,'اسناد و فرم‌ها'],['notifications',svg.bell,'اعلان‌ها'],['profile',svg.user,'حساب من'],['settings',svg.settings,'تنظیمات']];
+    return '<aside class="sidebar"><div class="brand"><div class="brand-mark">ش</div><div class="brand-text"><strong>سامانه جامع سازمانی</strong><small>پرتال داخلی شرکت</small></div></div><nav class="nav"><div class="nav-title">منوی اصلی</div>'+items.map(i=>'<button class="nav-btn '+(page===i[0]?'active':'')+'" onclick="nav(\''+i[0]+'\')" aria-label="'+i[2]+'"><span class="nav-icon">'+i[1]+'</span><span>'+i[2]+'</span></button>').join('')+'</nav><div class="side-bottom"><div class="user-mini"><div class="avatar">'+esc(current().avatar)+'</div><div class="mini-info"><strong>'+esc(current().name)+'</strong><span>'+esc(current().role)+'</span></div></div><button class="logout" onclick="logout()">'+svg.logout+' خروج از حساب</button></div></aside>';
+  };
+  window.topbar=function(){
+    return baseTopbar().replace('<div class="top-actions">','<div class="top-actions"><button class="icon-btn" onclick="openCommandPalette()" aria-label="فرمان‌های سریع" title="فرمان‌های سریع (Ctrl+K)">⌘</button>');
+  };
+  window.pageTitle=function(){const x=basePageTitle(); if(page==='attendance') return {h:'تردد و کارکرد',p:'ثبت حضور، ساعت‌زنی و خلاصه کارکرد ماهانه'}; return x;};
+  window.attendance=function(){
+    let st={in:null,out:null}; try{st=JSON.parse(localStorage.getItem('demoAttendanceState')||'{}')||st}catch(e){}
+    const now=new Date(), time=now.toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});
+    return '<section class="card panel"><div class="attendance-hero"><div><div class="badge blue">کنترل حضور و کارکرد</div><h2 style="margin:9px 0 3px;font-size:18px">تردد امروز</h2><p class="muted" style="font-size:10px;margin:0">ثبت آزمایشی ساعت ورود و خروج برای دمو</p><div class="utility-strip"><span class="utility-pill">وضعیت: <b>'+(st.in?'حاضر':'ثبت ورود نشده')+'</b></span><span class="utility-pill">ساعت فعلی: <b>'+time+'</b></span><span class="utility-pill">شیفت: <b>اداری</b></span></div></div><div class="clock-face"><strong>'+time+'</strong><span>'+now.toLocaleDateString('fa-IR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+'</span><div class="modal-actions"><button class="btn btn-primary" onclick="clockIn()">ثبت ورود</button><button class="btn btn-secondary" onclick="clockOut()">ثبت خروج</button></div></div></div></section><div class="att-grid"><div class="card stat"><span class="stat-label">روزهای حضور</span><strong>۱۹</strong><span class="note ok">این ماه</span></div><div class="card stat"><span class="stat-label">تأخیر ثبت‌شده</span><strong>۲</strong><span class="note warn">این ماه</span></div><div class="card stat"><span class="stat-label">مرخصی</span><strong>۱</strong><span class="note">روز</span></div><div class="card stat"><span class="stat-label">کارکرد ثبت‌شده</span><strong>۱۵۲</strong><span class="note">ساعت</span></div></div><section class="card panel"><div class="panel-head"><h3>سوابق اخیر تردد</h3><span class="badge gray">نمونه داده</span></div><div class="presence-list"><div class="presence-row head"><span>تاریخ</span><span>ورود</span><span>خروج</span><span>وضعیت</span></div>'+[['امروز','08:41','—','در محل'],['دیروز','08:37','16:54','کامل'],['۱۴۰۵/۰۷/۰۱','08:49','17:02','کامل'],['۱۴۰۵/۰۶/۳۱','09:05','17:10','تأخیر']].map(r=>'<div class="presence-row"><span>'+r[0]+'</span><span>'+r[1]+'</span><span>'+r[2]+'</span><span>'+badge(r[3]==='تأخیر'?'در حال بررسی':'انجام شده')+'</span></div>').join('')+'</div></section>';
+  };
+  window.clockIn=function(){let st={};try{st=JSON.parse(localStorage.getItem('demoAttendanceState')||'{}')||{}}catch(e){} st.in=new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});localStorage.setItem('demoAttendanceState',JSON.stringify(st));render();setTimeout(()=>toast('ساعت ورود ثبت شد'),40)};
+  window.clockOut=function(){let st={};try{st=JSON.parse(localStorage.getItem('demoAttendanceState')||'{}')||{}}catch(e){} st.out=new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});localStorage.setItem('demoAttendanceState',JSON.stringify(st));render();setTimeout(()=>toast('ساعت خروج ثبت شد'),40)};
+  window.processes=function(){
+    const cards=window.__processCatalog.map((p,i)=>'<article class="process-card"><div class="process-top"><div class="process-icon">'+svg.process+'</div>'+badge('فعال')+'</div><h4>'+esc(p.name)+'</h4><p>'+esc(p.steps.map(x=>x[0]).join(' → '))+'</p><div class="process-meta"><div><small>مالک</small><strong>'+esc(p.owner)+'</strong></div><div><small>زمان هدف</small><strong>'+esc(p.sla)+'</strong></div></div><div class="process-actions"><button class="sm primary" onclick="openProcess('+i+')">'+svg.eye+' مشاهده گردش</button><button class="sm" onclick="nav(\'requests\')">ثبت درخواست</button></div></article>').join('');
+    return '<div class="kpis"><div class="kpi"><small>فرآیندهای اصلی</small><strong>'+window.__processCatalog.length+'</strong><div class="progress"><span style="width:100%"></span></div></div><div class="kpi"><small>مسیرهای تعریف‌شده</small><strong>۲۵+</strong><div class="progress"><span style="width:78%"></span></div></div><div class="kpi"><small>کنترل‌های چندمرحله‌ای</small><strong>۴</strong><div class="progress"><span style="width:64%"></span></div></div></div><section class="card panel"><div class="panel-head"><div><h3>فرآیندهای سازمانی</h3><div class="muted" style="font-size:8px;margin-top:3px">هر کارت یک نمای خلاصه از مالک، زمان هدف و مسیر گردش است.</div></div><button class="btn btn-primary" onclick="toast(\'فرآیندساز در نسخه عملیاتی متصل می‌شود\')">'+svg.plus+' فرآیند جدید</button></div><div class="process-grid">'+cards+'</div></section>';
+  };
+  window.settings=function(){
+    const t=theme(),pal=settingsGet('companyPalette','ocean'),font=settingsGet('companyFont','vazir'),density=settingsGet('companyDensity','comfortable');
+    const choice=(id,title,sub,sw)=>'<button class="palette-choice '+(pal===id?'active':'')+'" onclick="setPalette(\''+id+'\')"><div class="palette-swatch '+sw+'"></div><strong>'+title+'</strong><small>'+sub+'</small></button>';
+    return '<section class="card panel"><div class="panel-head"><div><h3>ظاهر و تجربه کاربری</h3><div class="muted" style="font-size:8px;margin-top:3px">تنظیمات در این مرورگر ذخیره می‌شوند.</div></div><span class="badge gray">نسخه ۸</span></div><div class="field"><label>تم رنگی</label><div class="palette-grid">'+choice('ocean','اقیانوسی','آبی + سبز فسفری','sw-ocean')+choice('violet','بنفش-فیروزه‌ای','بنفش + فیروزه‌ای','sw-violet')+choice('emerald','زمردی','سبز + لاجوردی روشن','sw-emerald')+choice('sunset','غروب','نارنجی + کهربایی','sw-sunset')+'</div></div><div class="formgrid"><div class="field"><label>فونت رابط</label><div class="font-grid">'+
+'<button class="font-choice '+(font==='vazir'?'active':'')+'" onclick="setFont(\'vazir\')"><div class="font-sample font-vazir">سامانه جامع سازمانی</div><strong>Vazirmatn</strong><small>خوانا و مناسب رابط فارسی</small></button>'+
+'<button class="font-choice '+(font==='noto'?'active':'')+'" onclick="setFont(\'noto\')"><div class="font-sample font-noto">سامانه جامع سازمانی</div><strong>Noto Sans Arabic</strong><small>ظاهر ساده و مدرن</small></button>'+
+'<button class="font-choice '+(font==='tajawal'?'active':'')+'" onclick="setFont(\'tajawal\')"><div class="font-sample font-tajawal">سامانه جامع سازمانی</div><strong>Tajawal</strong><small>فرم نرم و نمای متفاوت</small></button>'+
+'</div></div><div class="field"><label for="densitySelect">تراکم رابط</label><select id="densitySelect" class="control" onchange="setDensity(this.value)"><option value="comfortable" '+(density==='comfortable'?'selected':'')+'>متعادل</option><option value="compact" '+(density==='compact'?'selected':'')+'>فشرده</option></select></div></div><div class="formgrid"><div class="field"><label>حالت نمایش</label><select class="control" onchange="localStorage.setItem(\'companyTheme\',this.value);theme();render()"><option value="light" '+(t==='light'?'selected':'')+'>روشن</option><option value="dark" '+(t==='dark'?'selected':'')+'>تیره</option></select></div><div class="field"><label>انیمیشن</label><button class="control" type="button" onclick="toggleMotionPref(this)">'+(settingsGet('companyReduceMotion','0')==='1'?'حرکت کم‌حجم فعال است':'انیمیشن استاندارد فعال است')+'</button></div></div><div class="utility-strip"><span class="utility-pill">میانبر فرمان‌ها <span class="shortcut">Ctrl + K</span></span><span class="utility-pill">موبایل <b>بهینه‌شده</b></span><span class="utility-pill">کنتراست <b>WCAG-friendly</b></span></div></section>';
+  };
+  window.setPalette=function(v){localStorage.setItem('companyPalette',v);applyPrefs();render();setTimeout(()=>toast('تم رنگی تغییر کرد'),40)};
+  window.setFont=function(v){localStorage.setItem('companyFont',v);applyPrefs();render();setTimeout(()=>toast('فونت رابط تغییر کرد'),40)};
+  window.setDensity=function(v){localStorage.setItem('companyDensity',v);applyPrefs();render();setTimeout(()=>toast('تراکم رابط تغییر کرد'),40)};
+  window.toggleMotionPref=function(btn){const v=settingsGet('companyReduceMotion','0')==='1'?'0':'1';localStorage.setItem('companyReduceMotion',v);document.documentElement.dataset.motion=v==='1'?'reduced':'full';btn.textContent=v==='1'?'حرکت کم‌حجم فعال است':'انیمیشن استاندارد فعال است';toast(v==='1'?'حرکت‌های اضافی کم شد':'انیمیشن استاندارد فعال شد')};
+  window.content=function(){if(page==='attendance') return attendance();return baseContent()};
+  window.openCommandPalette=function(){
+    let el=document.getElementById('commandPalette');
+    if(!el){el=document.createElement('div');el.id='commandPalette';el.className='command-backdrop';el.innerHTML='<div class="command-box" role="dialog" aria-modal="true" aria-label="فرمان‌های سریع"><div class="command-search"><input id="commandInput" class="control" placeholder="جستجوی صفحه، فرآیند یا اقدام..." oninput="filterCommands()" autocomplete="off"></div><div id="commandList" class="command-list"></div></div>';document.body.appendChild(el);el.addEventListener('click',e=>{if(e.target===el)closeCommandPalette()});}
+    el.classList.add('show');renderCommands();setTimeout(()=>document.getElementById('commandInput')?.focus(),30);
+  };
+  window.closeCommandPalette=function(){document.getElementById('commandPalette')?.classList.remove('show')};
+  window.renderCommands=function(){const list=[['dashboard','داشبورد','نمای کلی'],['inbox','کارتابل من','کارهای در انتظار اقدام'],['requests','درخواست‌ها','ثبت و پیگیری'],['attendance','تردد و کارکرد','حضور و ساعت‌زنی'],['processes','فرآیندها','گردش‌کارها'],['docs','اسناد و فرم‌ها','فرم‌ها و مستندات'],['profile','حساب من','پروفایل سازمانی'],['settings','تنظیمات','تم و فونت'],['__request__','ثبت درخواست جدید','اقدام سریع']];const q=(document.getElementById('commandInput')?.value||'').trim().toLowerCase();const html=list.filter(x=>!q||x[1].toLowerCase().includes(q)||x[2].toLowerCase().includes(q)).map(x=>'<button class="command-item" onclick="'+(x[0]==='__request__'?'closeCommandPalette();openRequest()':'closeCommandPalette();nav(\''+x[0]+'\')')+'"><span>'+x[1]+'</span><small>'+x[2]+'</small></button>').join('')||'<div class="empty">موردی پیدا نشد.</div>';document.getElementById('commandList').innerHTML=html};
+  window.filterCommands=renderCommands;
+  const origRender=render;
+  window.render=function(){applyPrefs();origRender();requestAnimationFrame(()=>{applyPrefs();document.querySelector('.content')?.classList.add('page-enter');document.documentElement.dataset.motion=settingsGet('companyReduceMotion','0')==='1'?'reduced':'full'})};
+  document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCommandPalette()} if(e.key==='Escape')closeCommandPalette()});
+  // Fix known typo in the original content switch safely.
+  try{content=window.content}catch(e){}
+  // First enhanced render.
+  applyPrefs();
+  render();
+})();
+</script>
+
+<script id="v5-final-fixes">
+(function(){
+  const nativeTheme=theme;
+  window.__v5ApplyPrefs=function(){
+    try{
+      const root=document.documentElement;
+      root.dataset.theme=localStorage.getItem('companyTheme')||'light';
+      root.dataset.palette=localStorage.getItem('companyPalette')||'ocean';
+      root.dataset.font=localStorage.getItem('companyFont')||'vazir';
+      root.dataset.density=localStorage.getItem('companyDensity')||'comfortable';
+      root.dataset.motion=localStorage.getItem('companyReduceMotion','0')==='1'?'reduced':'full';
+      const meta=document.querySelector('meta[name="theme-color"]');
+      if(meta){
+        const palette=root.dataset.palette, dark=root.dataset.theme==='dark';
+        const map={ocean:['#1977ff','#6aaaff'],violet:['#7657ff','#9a8cff'],emerald:['#0f9b7a','#55d7bb'],sunset:['#ff7a45','#ff9b72']};
+        meta.setAttribute('content',(map[palette]||map.ocean)[dark?1:0]);
+      }
+    }catch(e){}
+  };
+  window.theme=function(){
+    const t=nativeTheme();
+    __v5ApplyPrefs();
+    return t;
+  };
+  const baseLoginView=loginView;
+  window.loginView=function(){
+    const html=baseLoginView();
+    setTimeout(function(){
+      if(document.getElementById('otpCode')){
+        if(!loginOtp || Date.now()>otpExpires){refreshOtp();}
+        else {document.getElementById('otpCode').textContent=loginOtp;updateOtpTimer(document.getElementById('otpMeta'));}
+      }
+    },0);
+    return html;
+  };
+  window.setPalette=function(v){
+    const allowed=['ocean','violet','emerald','sunset'];
+    if(!allowed.includes(v))v='ocean';
+    localStorage.setItem('companyPalette',v);__v5ApplyPrefs();render();setTimeout(()=>toast('تم رنگی اعمال شد'),40);
+  };
+  window.setFont=function(v){
+    const allowed=['vazir','noto','tajawal'];
+    if(!allowed.includes(v))v='vazir';
+    localStorage.setItem('companyFont',v);__v5ApplyPrefs();document.body.offsetHeight;render();setTimeout(()=>toast('فونت رابط اعمال شد'),40);
+  };
+  window.setDensity=function(v){
+    localStorage.setItem('companyDensity',v==='compact'?'compact':'comfortable');__v5ApplyPrefs();render();setTimeout(()=>toast('تراکم رابط اعمال شد'),40);
+  };
+  window.toggleMotionPref=function(btn){
+    const reduced=localStorage.getItem('companyReduceMotion')==='1';
+    localStorage.setItem('companyReduceMotion',reduced?'0':'1');__v5ApplyPrefs();
+    if(btn)btn.textContent=reduced?'انیمیشن استاندارد فعال است':'حرکت کم‌حجم فعال است';
+    toast(reduced?'انیمیشن استاندارد فعال شد':'حرکت‌های اضافی کم شد');
+  };
+  // Prevent palette/font selections from being lost on repeated renders.
+  const oldRender=render;
+  window.render=function(){__v5ApplyPrefs();oldRender();requestAnimationFrame(__v5ApplyPrefs)};
+  __v5ApplyPrefs();
+  // Re-run once so the first login render uses the initialized OTP and preferences.
+  requestAnimationFrame(()=>window.render());
+})();
+</script>
+
+
+<style id="v6-ui-polish">
+/* ===== V6 visual polish ===== */
+:root{
+  --v6-ring:0 0 0 4px var(--glow,rgba(25,119,255,.14));
+  --v6-glass:rgba(255,255,255,.72);
+}
+[data-theme="dark"]{--v6-glass:rgba(17,26,44,.78)}
+.topbar{
+  position:sticky;top:10px;z-index:45;padding:8px 10px;
+  border:1px solid color-mix(in srgb,var(--line) 78%,transparent);
+  background:var(--v6-glass);backdrop-filter:blur(16px) saturate(1.1);
+  border-radius:18px;box-shadow:0 10px 28px rgba(18,52,91,.05);margin-bottom:15px;
+}
+.top-actions .icon-btn,.top-actions .profile-trigger{transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease,background .16s ease}
+.top-actions .icon-btn:hover,.top-actions .profile-trigger:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(20,73,130,.08);border-color:color-mix(in srgb,var(--accent) 30%,var(--line))}
+.card{transition:box-shadow .2s ease,border-color .2s ease}
+.card:hover{border-color:color-mix(in srgb,var(--accent) 12%,var(--line))}
+.panel-head h3{letter-spacing:-.15px}
+.badge{box-shadow:inset 0 1px 0 rgba(255,255,255,.28)}
+.btn{box-shadow:0 1px 0 rgba(255,255,255,.12) inset}
+.btn:active{transform:translateY(0)!important;box-shadow:none!important}
+.empty-state{display:grid;place-items:center;text-align:center;padding:42px 18px;color:var(--muted)}
+.empty-state .empty-icon{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary-soft),var(--accent-soft));color:var(--accent);margin-bottom:12px;box-shadow:0 10px 24px var(--glow)}
+.empty-state strong{font-size:12px;color:var(--text)}
+.empty-state p{max-width:430px;margin:5px auto 0;font-size:9px;line-height:1.9}
+.skeleton{position:relative;overflow:hidden;background:var(--surface-2)!important;border-color:var(--line)!important;color:transparent!important}
+.skeleton:after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent);animation:shimmer 1.1s infinite}
+[data-theme="dark"] .skeleton:after{background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent)}
+@keyframes shimmer{to{transform:translateX(100%)}}
+.activity-list{display:grid;gap:0}
+.activity-row{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.activity-row:last-child{border-bottom:0}
+.activity-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary-soft),var(--accent-soft));color:var(--accent);font-size:13px}
+.activity-row strong{display:block;font-size:10px}.activity-row p{margin:2px 0 0;color:var(--muted);font-size:8px}.activity-row time{font-size:8px;color:var(--muted);white-space:nowrap}
+.activity-more{display:flex;justify-content:center;margin-top:9px}
+.service-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.service-card{padding:12px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,var(--surface),var(--surface-2));display:grid;gap:7px}
+.service-top{display:flex;align-items:center;justify-content:space-between;gap:7px}.service-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary-soft),var(--accent-soft));color:var(--accent)}
+.service-name{font-size:9px;font-weight:900}.service-state{font-size:8px;color:var(--muted)}
+.service-live{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 0 4px var(--success-soft)}
+.notif-wrap{position:relative}
+.notif-panel{position:absolute;top:50px;left:0;width:min(390px,calc(100vw - 24px));background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);padding:10px;display:none;z-index:160}
+.notif-panel.show{display:block;animation:panelPop .16s ease-out}
+.notif-panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:5px 4px 9px;border-bottom:1px solid var(--line)}
+.notif-panel-head strong{font-size:11px}.notif-panel-head small{font-size:8px;color:var(--muted)}
+.notif-list{max-height:360px;overflow:auto;padding-top:4px}
+.notif-item{display:grid;grid-template-columns:34px 1fr auto;gap:8px;align-items:start;padding:10px 4px;border-radius:11px;cursor:pointer}
+.notif-item:hover{background:var(--surface-2)}.notif-item.unread{background:var(--accent-soft)}
+.notif-item .nicon{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:var(--surface-2)}
+.notif-item strong{display:block;font-size:9px}.notif-item span{display:block;color:var(--muted);font-size:7px;margin-top:2px}.notif-item .unread-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);margin:6px 3px 0}
+.notif-panel-foot{display:flex;justify-content:space-between;gap:7px;padding-top:8px;border-top:1px solid var(--line);margin-top:4px}
+.notif-panel-foot button{font-size:8px}
+.unread-count{position:absolute;left:-5px;top:-5px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--danger);color:#fff;font-size:7px;font-weight:900;display:grid;place-items:center;border:2px solid var(--surface)}
+.global-search-backdrop{position:fixed;inset:0;background:rgba(3,10,24,.56);display:none;align-items:flex-start;justify-content:center;padding:9vh 16px 20px;z-index:220}
+.global-search-backdrop.show{display:flex;animation:fadeIn .14s ease-out}.global-search-box{width:min(820px,100%);background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden}
+.global-search-head{padding:14px;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:center}.global-search-head .control{flex:1;min-height:48px}
+.global-search-meta{padding:8px 14px;color:var(--muted);font-size:8px}.global-search-results{max-height:58vh;overflow:auto;padding:8px}
+.search-group-title{padding:7px 8px;color:var(--muted);font-size:8px;font-weight:900}.search-result{width:100%;border:0;background:transparent;color:var(--text);display:grid;grid-template-columns:34px 1fr auto;gap:9px;align-items:center;padding:10px;border-radius:11px;text-align:right;cursor:pointer}.search-result:hover,.search-result:focus-visible{background:var(--surface-2)}
+.search-result .sr-icon{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary-soft),var(--accent-soft));color:var(--accent)}
+.search-result strong{display:block;font-size:9px}.search-result small{display:block;color:var(--muted);font-size:7px;margin-top:2px}.search-result .sr-type{font-size:7px;color:var(--muted);white-space:nowrap}
+.global-search-foot{padding:9px 14px;border-top:1px solid var(--line);font-size:7px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.shortcut-key{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--surface-2);padding:3px 6px;border-radius:7px;margin-right:3px}
+.section-divider{height:1px;background:var(--line);margin:4px 0 0}
+@keyframes panelPop{from{opacity:0;transform:translateY(-4px) scale(.99)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@media(max-width:1120px){.service-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.topbar{top:4px}.service-grid{grid-template-columns:repeat(2,1fr)}.notif-panel{position:fixed;top:68px;left:10px;right:10px;width:auto}.global-search-backdrop{padding-top:70px}.global-search-box{border-radius:16px}}
+@media(max-width:560px){.service-grid{grid-template-columns:1fr 1fr}.activity-row{grid-template-columns:34px 1fr}.activity-row time{display:none}.global-search-foot{display:none}}
+@media(prefers-reduced-motion:reduce){.skeleton:after{animation:none}.notif-panel.show,.global-search-backdrop.show{animation:none}}
+</style>
+
+<script id="v6-ux-suite">
+(function(){
+  const oldContent = window.content;
+  const oldDashboard = window.dashboard;
+  const oldProfile = window.profile;
+  const oldNotifications = window.notifications;
+  const oldSettings = window.settings;
+
+  function safeJSON(key, fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch(e){return fallback}}
+  function writeJSON(key, value){try{localStorage.setItem(key,JSON.stringify(value));return true}catch(e){return false}}
+  function norm(s){return String(s??'').replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/ۀ/g,'ه').toLowerCase().trim()}
+  function noticeKey(i,n){return String(i)+'|'+String(n?.[1]||'')}
+  function notificationState(){return safeJSON('companyPortalNotificationState',{})||{}}
+  function unreadNotices(){const st=notificationState();return (db.notices||[]).filter((n,i)=>!st[noticeKey(i,n)]).length}
+  function markNoticeRead(i){const st=notificationState();st[noticeKey(i,db.notices[i])]=Date.now();writeJSON('companyPortalNotificationState',st);render()}
+  function markAllNoticesRead(){const st=notificationState();(db.notices||[]).forEach((n,i)=>st[noticeKey(i,n)]=Date.now());writeJSON('companyPortalNotificationState',st);logActivity('خواندن اعلان‌ها','همه اعلان‌ها به‌عنوان خوانده‌شده علامت خوردند','✓');render();setTimeout(()=>toast('همه اعلان‌ها خوانده شدند'),30)}
+  window.markNoticeRead=markNoticeRead;
+  window.markAllNoticesRead=markAllNoticesRead;
+
+  window.logActivity=function(title,detail,time,icon){
+    if(!session||!current()) return;
+    db.activities = Array.isArray(db.activities)?db.activities:[];
+    db.activities.unshift([title,detail,time||'همین الان',icon||'•']);
+    db.activities=db.activities.slice(0,60);
+    save();
+  };
+  function logActivity(title,detail,icon){window.logActivity(title,detail,'همین الان',icon)}
+
+  window.systemStatus=function(){
+    const services=[
+      ['هسته سامانه','پردازش درخواست‌ها'],['کارتابل و گردش کار','ارجاع و تأیید'],['اسناد و فرم‌ها','دسترسی به مستندات'],['گزارشات','تولید گزارش و شاخص‌ها'],['اعلان‌ها','پیام‌ها و یادآوری‌ها']
+    ];
+    return '<section class="card panel"><div class="panel-head"><div><h3>وضعیت سرویس‌های سامانه</h3><div class="muted" style="font-size:8px;margin-top:3px">نمای عملیاتی نسخه نمایشی؛ وضعیت واقعی در نسخه متصل از سرور دریافت می‌شود.</div></div><span class="badge green">همه فعال</span></div><div class="service-grid">'+services.map((s,i)=>'<div class="service-card"><div class="service-top"><div class="service-icon">'+(svg.check||'✓')+'</div><span class="service-live" aria-hidden="true"></span></div><div class="service-name">'+s[0]+'</div><div class="service-state">'+s[1]+' · فعال</div></div>').join('')+'</div></section>';
+  };
+
+  window.activityHistory=function(){
+    const arr=Array.isArray(db.activities)?db.activities:[];
+    const shown=arr.slice(0,7);
+    return '<section class="card panel"><div class="panel-head"><div><h3>تاریخچه فعالیت</h3><div class="muted" style="font-size:8px;margin-top:3px">رویدادهای اخیر حساب کاربری شما</div></div><span class="badge gray">'+arr.length+' رویداد</span></div>'+ (shown.length?'<div class="activity-list">'+shown.map(a=>'<div class="activity-row"><div class="activity-icon">'+esc(a[3]||'•')+'</div><div><strong>'+esc(a[0])+'</strong><p>'+esc(a[1])+'</p></div><time>'+esc(a[2])+'</time></div>').join('')+'</div>':'<div class="empty-state"><div class="empty-icon">'+(svg.clock||'◷')+'</div><strong>هنوز فعالیتی ثبت نشده</strong><p>بعد از ثبت درخواست، ورود، مشاهده اعلان یا سایر اقدامات، سوابق اینجا نمایش داده می‌شوند.</p></div>')+'<div class="activity-more"><button class="btn btn-soft" onclick="openActivityHistory()">مشاهده همه فعالیت‌ها</button></div></section>';
+  };
+  window.openActivityHistory=function(){
+    const arr=Array.isArray(db.activities)?db.activities:[];
+    const body=arr.length?'<div class="activity-list">'+arr.map(a=>'<div class="activity-row"><div class="activity-icon">'+esc(a[3]||'•')+'</div><div><strong>'+esc(a[0])+'</strong><p>'+esc(a[1])+'</p></div><time>'+esc(a[2])+'</time></div>').join('')+'</div>':'<div class="empty-state"><div class="empty-icon">'+(svg.clock||'◷')+'</div><strong>سوابقی وجود ندارد</strong></div>';
+    openModal('تاریخچه کامل فعالیت‌ها',body+'<div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">بستن</button></div>');
+  };
+
+  function notificationPanel(){
+    const st=notificationState(), notes=db.notices||[], unread=unreadNotices();
+    return '<div class="notif-panel" id="notifPanel" role="dialog" aria-label="مرکز اعلان‌ها"><div class="notif-panel-head"><div><strong>مرکز اعلان‌ها</strong><small>'+unread+' اعلان خوانده‌نشده</small></div><button class="panel-link" onclick="nav(\'notifications\')">مشاهده همه</button></div><div class="notif-list">'+(notes.slice(0,5).map((n,i)=>{const isUnread=!st[noticeKey(i,n)];return '<div class="notif-item '+(isUnread?'unread':'')+'" onclick="markNoticeRead('+i+')"><div class="nicon">'+n[0]+'</div><div><strong>'+esc(n[1])+'</strong><span>'+esc(n[2])+'</span></div><span class="unread-dot" aria-hidden="true" style="opacity:'+(isUnread?1:0)+'"></span></div>'}).join('')||'<div class="empty-state"><div class="empty-icon">'+svg.bell+'</div><strong>اعلانی وجود ندارد</strong></div>')+'</div><div class="notif-panel-foot"><button class="btn btn-secondary" onclick="markAllNoticesRead()">علامت‌گذاری همه</button><button class="btn btn-soft" onclick="openGlobalSearch(\'اعلان\')">جستجوی اعلان</button></div></div>';
+  }
+
+  window.toggleNotificationPanel=function(force){
+    const p=document.getElementById('notifPanel');
+    if(!p)return;
+    const show=force===true||!p.classList.contains('show');
+    document.querySelectorAll('.notif-panel.show').forEach(x=>x.classList.remove('show'));
+    if(show){p.classList.add('show');setTimeout(()=>p.querySelector('.notif-item')?.focus?.(),20)}
+  };
+
+  window.topbar=function(){
+    const c=current(),t=theme(),unread=unreadNotices();
+    return '<div class="topbar"><div class="title"><h1>'+pageTitle().h+'</h1><p>'+pageTitle().p+'</p></div><div class="top-actions"><div class="search"><span class="magnify">'+svg.search+'</span><input id="globalTopSearch" class="control" onkeydown="if(event.key===\'Enter\')openGlobalSearch(this.value)" placeholder="جستجو در سامانه..." aria-label="جستجوی سامانه" autocomplete="off"></div><div class="notif-wrap"><button class="icon-btn" onclick="toggleNotificationPanel()" aria-label="اعلان‌ها" title="مرکز اعلان‌ها" aria-haspopup="dialog" aria-expanded="false">'+svg.bell+(unread?'<span class="unread-count">'+(unread>99?'۹۹+':unread)+'</span>':'')+'</button>'+notificationPanel()+'</div><button class="icon-btn" onclick="toggleTheme()" aria-label="تغییر حالت نمایش" title="'+(t==='dark'?'حالت روشن':'حالت تیره')+'">'+(t==='dark'?svg.sun:svg.moon)+'</button><button class="icon-btn" onclick="openCommandPalette()" aria-label="فرمان‌های سریع" title="فرمان‌های سریع (Ctrl+K)">⌘</button><button class="profile-trigger" onclick="openProfileMenu()" aria-expanded="false"><span class="ptxt"><strong>'+esc(c.name)+'</strong><span>'+esc(c.role)+'</span></span><span class="avatar">'+esc(c.avatar)+'</span><span class="chev">⌄</span></button></div></div><div class="profile-menu" role="menu"><div class="pm-head"><strong>'+esc(c.name)+'</strong><span>'+esc(c.unit)+'</span></div><button class="pm-item" onclick="nav(\'profile\')">'+svg.user+' حساب من</button><button class="pm-item" onclick="nav(\'settings\')">'+svg.settings+' تنظیمات</button><button class="pm-item pm-danger" onclick="logout()">'+svg.logout+' خروج</button></div>';
+  };
+
+  window.notifications=function(){
+    const st=notificationState(),notes=db.notices||[],unread=unreadNotices();
+    return '<section class="card panel"><div class="panel-head"><div><h3>مرکز اعلان‌ها</h3><div class="muted" style="font-size:8px;margin-top:3px">اعلان‌ها، یادآوری‌ها و پیام‌های مرتبط با کارهای شما</div></div><div class="action-row"><span class="badge '+(unread?'yellow':'green')+'">'+unread+' خوانده‌نشده</span><button class="btn btn-secondary" onclick="markAllNoticesRead()">همه خوانده شد</button></div></div><div class="filters"><button class="sm primary" onclick="renderNotificationsPage(\'all\')">همه</button><button class="sm" onclick="renderNotificationsPage(\'unread\')">خوانده‌نشده</button></div><div id="notificationsPageList">'+renderNotificationRows('all',st,notes)+'</div></section>';
+  };
+  function renderNotificationRows(mode,st,notes){
+    const rows=(notes||[]).map((n,i)=>({n,i,unread:!st[noticeKey(i,n)]})).filter(x=>mode==='unread'?x.unread:true);
+    if(!rows.length)return '<div class="empty-state"><div class="empty-icon">'+svg.bell+'</div><strong>اعلان جدیدی نیست</strong><p>وقتی رویداد تازه‌ای برای حساب شما ایجاد شود، اینجا نمایش داده خواهد شد.</p></div>';
+    return '<div class="notif-list">'+rows.map(x=>'<div class="notif-item '+(x.unread?'unread':'')+'" onclick="markNoticeRead('+x.i+')"><div class="nicon">'+x.n[0]+'</div><div><strong>'+esc(x.n[1])+'</strong><span>'+esc(x.n[2])+'</span></div><span class="unread-dot" style="opacity:'+(x.unread?1:0)+'"></span></div>').join('')+'</div>';
+  }
+  window.renderNotificationsPage=function(mode){
+    const el=document.getElementById('notificationsPageList');if(!el)return;el.innerHTML='<div class="skeleton" style="height:150px;border-radius:14px"></div>';setTimeout(()=>{el.innerHTML=renderNotificationRows(mode,notificationState(),db.notices||[])},120)
+  };
+
+  window.openGlobalSearch=function(initial){
+    let el=document.getElementById('globalSearchBackdrop');
+    if(!el){
+      el=document.createElement('div');el.id='globalSearchBackdrop';el.className='global-search-backdrop';el.innerHTML='<div class="global-search-box" role="dialog" aria-modal="true" aria-label="جستجوی سراسری"><div class="global-search-head"><span style="color:var(--accent)">'+svg.search+'</span><input id="globalSearchInput" class="control" placeholder="نام، شناسه، فرآیند یا سند را جستجو کنید..." autocomplete="off" oninput="runGlobalSearch()"><button class="icon-btn" onclick="closeGlobalSearch()" aria-label="بستن">'+svg.close+'</button></div><div id="globalSearchMeta" class="global-search-meta"></div><div id="globalSearchResults" class="global-search-results"></div><div class="global-search-foot"><span>برای جستجوی سریع‌تر چند حرف کلیدی کافی است.</span><span><span class="shortcut-key">Esc</span> بستن</span></div></div>';
+      document.body.appendChild(el);el.addEventListener('click',e=>{if(e.target===el)closeGlobalSearch()});
+    }
+    el.classList.add('show');const input=document.getElementById('globalSearchInput');input.value=initial||'';runGlobalSearch();setTimeout(()=>input.focus(),20);
+  };
+  window.closeGlobalSearch=function(){document.getElementById('globalSearchBackdrop')?.classList.remove('show')};
+  window.runGlobalSearch=function(){
+    const q=norm(document.getElementById('globalSearchInput')?.value||'');
+    const rows=[];
+    const pages=[['dashboard','داشبورد','نمای کلی سامانه'],['inbox','کارتابل من','موارد نیازمند اقدام'],['requests','درخواست‌ها','ثبت و پیگیری درخواست‌ها'],['attendance','تردد و کارکرد','حضور و ساعت‌زنی'],['processes','فرآیندها','گردش کارهای سازمانی'],['reports','گزارشات','شاخص‌ها و آمار'],['docs','اسناد و فرم‌ها','فرم‌ها و مستندات'],['notifications','اعلان‌ها','اطلاعیه و یادآوری'],['profile','حساب من','اطلاعات پرسنلی'],['settings','تنظیمات','تم، فونت و تجربه کاربری']];
+    pages.forEach(x=>{if(!q||norm(x[1]+' '+x[2]).includes(q))rows.push({kind:'page',label:x[1],sub:x[2],icon:svg.arrow,type:'صفحه',action:'nav("'+x[0]+'")'});});
+    (window.__processCatalog||[]).forEach((p,i)=>{const text=p.name+' '+p.owner+' '+p.steps.map(s=>s[0]).join(' ');if(!q||norm(text).includes(q))rows.push({kind:'process',label:p.name,sub:'مالک: '+p.owner,type:'فرآیند',icon:svg.process,action:'closeGlobalSearch();openProcess('+i+')'});});
+    (db.req||[]).forEach(r=>{const u=db.users.find(x=>x.id===r.uid);const text=r.id+' '+r.title+' '+r.type+' '+(u?.name||'');if(!q||norm(text).includes(q))rows.push({kind:'request',label:r.id+' — '+r.title,sub:(u?.name||'')+' · '+r.status,type:'درخواست',icon:svg.req,action:'closeGlobalSearch();details("'+r.id+'")'});});
+    (db.users||[]).forEach(u=>{const text=u.name+' '+u.role+' '+u.unit+' '+u.employeeId;if(!q||norm(text).includes(q))rows.push({kind:'user',label:u.name,sub:u.role+' · '+u.unit,type:'پرسنل',icon:svg.user,action:'closeGlobalSearch();nav("people")'});});
+    ['فرم درخواست مرخصی','فرم درخواست دورکاری','فرم ماموریت اداری','فرم پاسخ استعلام','فرم قرارداد مالی','فرم تحصیل دارایی','فرم ابطال دارایی','فرم خروج کالا'].forEach(d=>{if(!q||norm(d).includes(q))rows.push({kind:'doc',label:d,sub:'مشاهده، چاپ یا دانلود',type:'سند/فرم',icon:svg.doc,action:'closeGlobalSearch();nav("docs")'});});
+    const meta=document.getElementById('globalSearchMeta'),list=document.getElementById('globalSearchResults');
+    meta.textContent=q?(rows.length+' نتیجه برای «'+q+'»'):'پیشنهادهای سریع و جستجوی سراسری';
+    if(!rows.length){list.innerHTML='<div class="empty-state"><div class="empty-icon">'+svg.search+'</div><strong>نتیجه‌ای پیدا نشد</strong><p>عبارت جستجو را کوتاه‌تر کنید یا بخشی از نام، شناسه یا عنوان را وارد کنید.</p></div>';return}
+    const groups={page:'دسترسی‌ها',process:'فرآیندها',request:'درخواست‌ها',user:'پرسنل',doc:'اسناد و فرم‌ها'};let html='';let currentGroup='';
+    rows.slice(0,30).forEach(r=>{if(groups[r.kind]!==currentGroup){currentGroup=groups[r.kind];html+='<div class="search-group-title">'+currentGroup+'</div>'}html+='<button class="search-result" onclick="'+r.action+'"><span class="sr-icon">'+r.icon+'</span><span><strong>'+esc(r.label)+'</strong><small>'+esc(r.sub)+'</small></span><span class="sr-type">'+r.type+'</span></button>'});
+    list.innerHTML=html;
+  };
+
+  window.dashboard=function(){return oldDashboard()+window.systemStatus();};
+  window.profile=function(){return oldProfile()+window.activityHistory();};
+  window.content=function(){
+    if(page==='dashboard')return window.dashboard();
+    if(page==='profile')return window.profile();
+    if(page==='notifications')return window.notifications();
+    return oldContent();
+  };
+
+  // Search all major surfaces from the top search and add a real activity trail.
+  const oldNav=window.nav||nav;
+  window.nav=function(p){
+    const labels={dashboard:'داشبورد',inbox:'کارتابل',requests:'درخواست‌ها',attendance:'تردد و کارکرد',approvals:'تأییدها',people:'پرسنل',processes:'فرآیندها',reports:'گزارشات',docs:'اسناد و فرم‌ها',notifications:'اعلان‌ها',profile:'حساب من',settings:'تنظیمات'};
+    if(session&&page!==p) logActivity('مشاهده بخش سامانه','ورود به '+(labels[p]||p),'◉');
+    oldNav(p);
+  };
+
+  const oldLogin=window.login||login;
+  window.login=function(){
+    const before=session?.id;
+    oldLogin();
+    if(!before&&session?.id){logActivity('ورود موفق به سامانه','نشست کاربری جدید ایجاد شد','✓');render();}
+  };
+  const oldLogout=window.logout||logout;
+  window.logout=function(){
+    if(session&&current())logActivity('خروج از سامانه','نشست کاربری پایان یافت','→');
+    oldLogout();
+  };
+  const oldSubmit=window.submitRequest||submitRequest;
+  window.submitRequest=function(e){oldSubmit(e)};
+  const oldDecide=window.decide||decide;
+  window.decide=function(id,status){oldDecide(id,status);logActivity('تغییر وضعیت درخواست',id+' · '+status,status==='تأیید شده'?'✓':'!');render();};
+
+  document.addEventListener('click',function(e){
+    const panel=document.getElementById('notifPanel'), wrap=e.target.closest('.notif-wrap');
+    if(panel&&panel.classList.contains('show')&&!wrap){panel.classList.remove('show')}
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){closeGlobalSearch();document.getElementById('notifPanel')?.classList.remove('show')}
+  });
+
+  const originalRender=window.render;
+  window.render=function(){
+    window.applyPrefs?.();
+    document.documentElement.dataset.motion=(localStorage.getItem('companyReduceMotion')||'0')==='1'?'reduced':'full';
+    document.getElementById('app').innerHTML=session&&current()?window.shell():loginView();
+    bindOutside();
+    requestAnimationFrame(()=>{window.applyPrefs?.();document.querySelector('.content')?.classList.add('page-enter');});
+  };
+  window.render();
+})();
+</script>
+
+
+<style id="v7-final-polish">
+/* Clearer Persian typography */
+html,body,button,input,select,textarea{font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-weight:500}
+.nav-btn,.btn,.field label,.panel-head h3,.title h1,.hero h2,.stat strong,.card h3,.process-card h4,.detail strong,.command-item span,.search-result strong{font-weight:700}
+th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-weight:700}
+.profile-title h2{letter-spacing:-.25px}
+.muted,.detail small,.notice span,.timeline-item p,.activity-row p{font-weight:500}
+.font-sample{font-weight:700!important;font-size:14px!important;letter-spacing:-.15px}
+.font-choice{min-height:94px!important}
+.control{font-weight:500}
+::placeholder{opacity:.72}
+
+/* Profile editing / avatar */
+.profile-actions{align-items:center;flex-wrap:wrap}
+.profile-actions .btn{min-height:40px}
+.avatar-photo{background-position:center;background-size:cover;background-repeat:no-repeat;color:transparent!important;background-color:var(--surface-3)!important}
+.profile-photo-editor{display:grid;grid-template-columns:90px 1fr;gap:15px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:14px;background:var(--surface-2)}
+.profile-photo-preview{width:78px;height:78px;border-radius:22px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,var(--accent-soft),var(--surface));color:var(--accent);font-size:27px;font-weight:800;border:1px solid var(--line)}
+.profile-photo-preview img{width:100%;height:100%;object-fit:cover;display:block}
+.profile-photo-actions{display:flex;gap:8px;flex-wrap:wrap}
+.profile-edit-note{font-size:8px;color:var(--muted);line-height:1.9;margin-top:7px}
+
+/* Request catalog */
+.request-catalog{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.request-shortcut{border:1px solid var(--line);background:linear-gradient(145deg,var(--surface),var(--surface-2));border-radius:14px;padding:12px;text-align:right;cursor:pointer;transition:.18s ease;position:relative;overflow:hidden}
+.request-shortcut:after{content:"";position:absolute;width:90px;height:90px;left:-35px;bottom:-45px;border-radius:50%;background:var(--glow);pointer-events:none}
+.request-shortcut:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 35%,var(--line));box-shadow:0 12px 28px var(--glow)}
+.request-shortcut .rs-icon{width:34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-bottom:8px}
+.request-shortcut strong{display:block;font-size:10px;font-weight:700}
+.request-shortcut span{display:block;margin-top:3px;font-size:8px;color:var(--muted);line-height:1.7}
+.request-form-note{margin-top:6px;font-size:8px;color:var(--muted)}
+@media(max-width:900px){.request-catalog{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.request-catalog{grid-template-columns:1fr}.profile-photo-editor{grid-template-columns:1fr;text-align:center}.profile-photo-actions{justify-content:center}}
+</style>
+
+<script id="v7-final-patch">
+(function(){
+  const __v7OldSidebar=window.sidebar;
+  const __v7OldTopbar=window.topbar;
+  const __v7OldProfile=window.profile;
+
+  function safePhoto(u){
+    return (u && typeof u.avatarImage==='string' && u.avatarImage.indexOf('data:image/')===0) ? u.avatarImage : '';
+  }
+  function avatarMarkup(u, tag){
+    const t=tag||'div', photo=safePhoto(u);
+    const attrs=photo ? ' class="avatar avatar-photo" style="background-image:url(\''+photo.replace(/'/g,'%27')+'\')" aria-label="تصویر پروفایل"' : ' class="avatar"';
+    return '<'+t+attrs+'>'+(photo?'':esc(u?.avatar||'ک'))+'</'+t+'>';
+  }
+  function editValue(id, fallback){const el=document.getElementById(id);return el?el.value.trim():fallback}
+  function profileSnapshot(){
+    const u=current();
+    if(!u) return null;
+    return u;
+  }
+
+  /* Only the useful activity types remain visible/stored in the profile trail. */
+  function isUsefulActivity(title){
+    return /^(ورود موفق به سامانه|خروج از سامانه|ثبت درخواست(?: جدید)?)/.test(String(title||''));
+  }
+  window.logActivity=function(title,detail,time,icon){
+    if(!session||!current()||!isUsefulActivity(title)) return;
+    db.activities=Array.isArray(db.activities)?db.activities:[];
+    db.activities.unshift([title,detail,time||'همین الان',icon||'•']);
+    db.activities=db.activities.filter(a=>isUsefulActivity(a?.[0])).slice(0,60);
+    save();
+  };
+  db.activities=Array.isArray(db.activities)?db.activities.filter(a=>isUsefulActivity(a?.[0])).slice(0,60):[];
+  save();
+
+  window.activityHistory=function(){
+    const arr=Array.isArray(db.activities)?db.activities.filter(a=>isUsefulActivity(a?.[0])):[];
+    const shown=arr.slice(0,6);
+    return '<section class="card panel"><div class="panel-head"><div><h3>فعالیت‌های اخیر</h3><div class="muted" style="font-size:8px;margin-top:3px">ورود، خروج و ثبت درخواست</div></div><span class="badge gray">'+arr.length+' رویداد</span></div>'+
+      (shown.length?'<div class="activity-list">'+shown.map(a=>'<div class="activity-row"><div class="activity-icon">'+esc(a[3]||'•')+'</div><div><strong>'+esc(a[0])+'</strong><p>'+esc(a[1])+'</p></div><time>'+esc(a[2])+'</time></div>').join('')+'</div>':'<div class="empty-state"><div class="empty-icon">'+(svg.clock||'◷')+'</div><strong>هنوز فعالیتی ثبت نشده</strong><p>سوابق ورود، خروج و ثبت درخواست‌ها اینجا نمایش داده می‌شوند.</p></div>')+'</section>';
+  };
+  window.openActivityHistory=function(){
+    const arr=Array.isArray(db.activities)?db.activities.filter(a=>isUsefulActivity(a?.[0])):[];
+    const body=arr.length?'<div class="activity-list">'+arr.map(a=>'<div class="activity-row"><div class="activity-icon">'+esc(a[3]||'•')+'</div><div><strong>'+esc(a[0])+'</strong><p>'+esc(a[1])+'</p></div><time>'+esc(a[2])+'</time></div>').join('')+'</div>':'<div class="empty-state"><div class="empty-icon">'+(svg.clock||'◷')+'</div><strong>سوابقی وجود ندارد</strong></div>';
+    openModal('سوابق ورود، خروج و ثبت درخواست',body+'<div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">بستن</button></div>');
+  };
+
+  /* Replace default avatar initials with uploaded profile photos where available. */
+  if(typeof __v7OldSidebar==='function'){
+    window.sidebar=function(){
+      const c=current(), html=__v7OldSidebar();
+      if(c && safePhoto(c)) return html.replace('<div class="avatar">'+esc(c.avatar)+'</div>',avatarMarkup(c,'div'));
+      return html;
+    };
+  }
+  if(typeof __v7OldTopbar==='function'){
+    window.topbar=function(){
+      const c=current(), html=__v7OldTopbar();
+      if(c && safePhoto(c)) return html.replace('<span class="avatar">'+esc(c.avatar)+'</span>',avatarMarkup(c,'span'));
+      return html;
+    };
+  }
+
+  function profilePhotoPreview(u){
+    const photo=safePhoto(u);
+    return photo?'<img src="'+photo+'" alt="پیش‌نمایش تصویر پروفایل">':esc(u?.avatar||'ک');
+  }
+  window.previewProfilePhoto=function(ev){
+    const file=ev?.target?.files?.[0]; if(!file) return;
+    if(!file.type.startsWith('image/')){toast('فقط فایل تصویری انتخاب کنید');return}
+    const reader=new FileReader();
+    reader.onload=function(e){
+      const img=new Image();
+      img.onload=function(){
+        const max=320, scale=Math.min(1,max/Math.max(img.width,img.height));
+        const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale));
+        const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);
+        window.__pendingProfilePhoto=canvas.toDataURL('image/jpeg',.82);
+        const prev=document.getElementById('profilePhotoPreview');if(prev)prev.innerHTML='<img src="'+window.__pendingProfilePhoto+'" alt="پیش‌نمایش تصویر پروفایل">';
+      };
+      img.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+  window.clearProfilePhoto=function(){window.__pendingProfilePhoto='';const u=current();if(!u)return;const prev=document.getElementById('profilePhotoPreview');if(prev)prev.innerHTML=esc(u.avatar||'ک');toast('تصویر انتخاب‌شده حذف شد')};
+  window.saveProfileSettings=function(ev){
+    ev?.preventDefault?.();const u=profileSnapshot();if(!u)return;
+    if(window.__pendingProfilePhoto)u.avatarImage=window.__pendingProfilePhoto;else if(window.__pendingProfilePhoto==='')delete u.avatarImage;
+    save();window.__pendingProfilePhoto=null;closeModal();render();setTimeout(()=>toast('تنظیمات پروفایل ذخیره شد'),40);
+  };
+  window.openProfileSettings=function(){
+    const u=profileSnapshot();if(!u)return;window.__pendingProfilePhoto=null;
+    openModal('تنظیم پروفایل','<form class="form" onsubmit="saveProfileSettings(event)"><div class="profile-photo-editor"><div id="profilePhotoPreview" class="profile-photo-preview">'+profilePhotoPreview(u)+'</div><div><strong style="font-size:11px">تصویر پروفایل</strong><div class="profile-edit-note">یک تصویر واضح انتخاب کنید. تصویر در این نسخه دمو فقط در همین مرورگر ذخیره می‌شود.</div><div class="profile-photo-actions"><label class="btn btn-soft" for="profilePhotoInput">'+svg.download+' انتخاب تصویر</label><input id="profilePhotoInput" type="file" accept="image/*" hidden onchange="previewProfilePhoto(event)"><button type="button" class="btn btn-secondary" onclick="clearProfilePhoto()">حذف تصویر</button></div></div></div><div class="modal-actions"><button type="button" class="btn btn-secondary" onclick="closeModal()">انصراف</button><button class="btn btn-primary">ذخیره تنظیمات</button></div></form>');
+  };
+
+  window.saveProfileEditor=function(ev){
+    ev?.preventDefault?.();const u=profileSnapshot();if(!u)return;
+    u.name=editValue('peName',u.name)||u.name;
+    u.phone=editValue('pePhone',u.phone);
+    u.email=editValue('peEmail',u.email);
+    u.location=editValue('peLocation',u.location);
+    save();closeModal();render();setTimeout(()=>toast('اطلاعات پروفایل ذخیره شد'),40);
+  };
+  window.openProfileEditor=function(){
+    const u=profileSnapshot();if(!u)return;
+    openModal('ویرایش اطلاعات شخصی','<form class="form" onsubmit="saveProfileEditor(event)"><div class="formgrid"><div class="field full"><label for="peName">نام و نام خانوادگی</label><input id="peName" class="control" value="'+esc(u.name)+'" required></div><div class="field"><label for="pePhone">شماره تماس</label><input id="pePhone" class="control" value="'+esc(u.phone||'')+'" inputmode="tel"></div><div class="field"><label for="peEmail">ایمیل سازمانی</label><input id="peEmail" class="control" value="'+esc(u.email||'')+'" type="email"></div><div class="field full"><label for="peLocation">محل خدمت</label><input id="peLocation" class="control" value="'+esc(u.location||'')+'"></div></div><div class="profile-edit-note">اطلاعات هویتی و سطح دسترسی در نسخه عملیاتی باید از سمت مدیریت سیستم کنترل شود.</div><div class="modal-actions"><button type="button" class="btn btn-secondary" onclick="closeModal()">انصراف</button><button class="btn btn-primary">ذخیره تغییرات</button></div></form>');
+  };
+
+  /* Richer request catalog based on common corporate portal workflows. */
+  const requestCatalog=[
+    ['مرخصی','ثبت مرخصی روزانه، ساعتی یا استعلاجی','درخواست مرخصی'],
+    ['دورکاری','ثبت روز و بازه دورکاری','درخواست دورکاری'],
+    ['ماموریت اداری','ثبت مأموریت خارج از محل خدمت','درخواست مأموریت اداری'],
+    ['اضافه‌کاری','ثبت کارکرد اضافه بر ساعات موظف','درخواست اضافه‌کاری'],
+    ['مساعده','درخواست مساعده یا علی‌الحساب حقوق','درخواست مساعده'],
+    ['تنخواه','درخواست یا تسویه تنخواه سازمانی','درخواست تنخواه'],
+    ['خرید تجهیزات','ثبت نیاز خرید کالا یا تجهیزات','درخواست خرید تجهیزات'],
+    ['پشتیبانی فناوری اطلاعات','ثبت مشکل نرم‌افزاری یا سخت‌افزاری','درخواست پشتیبانی فناوری اطلاعات'],
+    ['دسترسی سامانه','درخواست ایجاد یا تغییر دسترسی','درخواست دسترسی سامانه'],
+    ['تعمیر و نگهداری','ثبت درخواست تعمیر، سرویس یا نگهداری','درخواست تعمیر و نگهداری'],
+    ['گواهی اشتغال','درخواست گواهی اشتغال یا سمت سازمانی','درخواست گواهی اشتغال'],
+    ['معرفی‌نامه اداری','درخواست معرفی‌نامه سازمانی','درخواست معرفی‌نامه اداری'],
+    ['آموزش','ثبت نیاز یا درخواست دوره آموزشی','درخواست آموزش'],
+    ['کارت و تردد','پیگیری کارت، تردد یا اصلاح کارکرد','درخواست اصلاح تردد'],
+    ['پاسخ استعلام','ثبت و پیگیری پاسخ استعلام','درخواست پاسخ استعلام'],
+    ['قرارداد مالی','شروع گردش قرارداد و بررسی‌های مالی','درخواست قرارداد مالی'],
+    ['تحصیل دارایی','ثبت و پیگیری تحصیل دارایی','درخواست تحصیل دارایی'],
+    ['ابطال دارایی','ثبت درخواست ابطال یا خروج دارایی','درخواست ابطال دارایی'],
+    ['خروج کالا','ثبت خروج کالا از انبار','درخواست خروج کالا از انبار']
+  ];
+  window.__requestCatalog=requestCatalog;
+  window.suggestRequestTitle=function(){
+    const type=document.getElementById('rt')?.value||'';const row=requestCatalog.find(x=>x[0]===type);const input=document.getElementById('rtitle');if(input&&row&&!input.value)input.value=row[2];
+  };
+  window.openRequest=function(preselect){
+    const selected=preselect||'مرخصی';
+    const options=requestCatalog.map(x=>'<option value="'+esc(x[0])+'" '+(x[0]===selected?'selected':'')+'>'+esc(x[0])+'</option>').join('');
+    openModal('ثبت درخواست جدید','<form class="form" onsubmit="submitRequest(event)"><div class="formgrid"><div class="field"><label for="rt">نوع درخواست</label><select id="rt" class="control" onchange="suggestRequestTitle()">'+options+'</select></div><div class="field"><label for="rtitle">عنوان درخواست</label><input id="rtitle" class="control" value="'+esc(requestCatalog.find(x=>x[0]===selected)?.[2]||'')+'" required></div><div class="field full"><label for="rd">شرح درخواست</label><textarea id="rd" class="control" required placeholder="موضوع، بازه یا جزئیات موردنیاز را روشن و دقیق بنویسید"></textarea><div class="request-form-note">پیوست مدارک در نسخه عملیاتی کنار همین فرم فعال می‌شود.</div></div></div><div class="modal-actions"><button type="button" class="btn btn-secondary" onclick="closeModal()">انصراف</button><button class="btn btn-primary" type="submit">ثبت درخواست</button></div></form>');
+  };
+  function quickRequestCard(x,icon){return '<button class="request-shortcut" onclick="openRequest(\''+x[0].replace(/'/g,"\\'")+ '\')"><span class="rs-icon">'+icon+'</span><strong>'+esc(x[0])+'</strong><span>'+esc(x[1])+'</span></button>'}
+
+  window.requests=function(){
+    const mine=manager()?db.req:db.req.filter(r=>r.uid===current().id);
+    const quick=requestCatalog.slice(0,8).map((x,i)=>quickRequestCard(x,[svg.req,svg.clock||'◴',svg.people,svg.chart,svg.settings,svg.doc,svg.shield,svg.process][i]||svg.req)).join('');
+    const opts=requestCatalog.map(x=>'<option>'+esc(x[0])+'</option>').join('');
+    const rows=mine.length?mine.map(r=>'<tr><td>'+esc(r.id)+'</td><td>'+esc(r.type)+'</td><td>'+esc(r.title)+'</td><td>'+esc(db.users.find(u=>u.id===r.uid)?.name||'')+'</td><td>'+esc(r.date)+'</td><td>'+esc(r.stage)+'</td><td>'+badge(r.status)+'</td><td><button class="sm primary" onclick="details(\''+esc(r.id).replace(/'/g,"\\'")+'\')">'+svg.eye+' جزئیات</button></td></tr>').join(''):'<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">'+svg.req+'</div><strong>هنوز درخواستی ثبت نشده</strong><p>یکی از درخواست‌های پرکاربرد را انتخاب کنید و اولین درخواست خود را ثبت کنید.</p></div></td></tr>';
+    return '<section class="card panel"><div class="panel-head"><div><h3>درخواست‌ها</h3><div class="muted" style="font-size:8px;margin-top:3px">فرآیندهای پرکاربرد و سوابق ثبت‌شده شما</div></div><button class="btn btn-primary" onclick="openRequest()">'+svg.plus+' ثبت درخواست جدید</button></div><div class="request-catalog">'+quick+'</div><div class="filters"><select class="control"><option>همه انواع</option>'+opts+'</select><select class="control"><option>همه وضعیت‌ها</option><option>در انتظار تأیید</option><option>تأیید شده</option><option>در حال بررسی</option><option>رد شده</option></select><input class="control wide" placeholder="جستجوی عنوان یا شناسه..." aria-label="جستجوی درخواست‌ها"></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>نوع</th><th>عنوان</th><th>ثبت‌کننده</th><th>تاریخ</th><th>مرحله</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>';
+  };
+
+  window.profile=function(){
+    const u=current();if(!u)return __v7OldProfile?__v7OldProfile():'';
+    return '<section class="card" style="overflow:hidden"><div class="profile-cover"></div><div class="profile-main"><div class="profile-id">'+avatarMarkup(u,'div')+'<div class="profile-title"><h2>'+esc(u.name)+'</h2><p>'+esc(u.role)+' • '+esc(u.unit)+'</p></div><div class="profile-actions"><button class="btn btn-secondary" onclick="openProfileEditor()">'+svg.settings+' ویرایش اطلاعات</button><button class="btn btn-soft" onclick="openProfileSettings()">'+svg.user+' تنظیم پروفایل</button><button class="btn btn-soft" onclick="toggleTheme()">'+(theme()==='dark'?svg.sun:svg.moon)+' '+(theme()==='dark'?'حالت روشن':'حالت تیره')+'</button></div></div><div class="detail-grid"><div class="detail"><small>شماره پرسنلی</small><strong>'+esc(u.employeeId)+'</strong></div><div class="detail"><small>سمت سازمانی</small><strong>'+esc(u.role)+'</strong></div><div class="detail"><small>واحد سازمانی</small><strong>'+esc(u.unit)+'</strong></div><div class="detail"><small>مدیر مستقیم</small><strong>'+esc(u.manager)+'</strong></div><div class="detail"><small>شماره تماس</small><strong>'+esc(u.phone)+'</strong></div><div class="detail"><small>ایمیل سازمانی</small><strong>'+esc(u.email)+'</strong></div><div class="detail"><small>محل خدمت</small><strong>'+esc(u.location)+'</strong></div><div class="detail"><small>تاریخ استخدام</small><strong>'+esc(u.join)+'</strong></div><div class="detail"><small>آخرین ورود</small><strong>'+esc(u.lastLogin||'—')+'</strong></div><div class="detail"><small>وضعیت حساب</small><strong>'+badge('فعال')+'</strong></div><div class="detail"><small>سطح دسترسی</small><strong>'+esc(manager()?'مدیریتی':'کاربری')+'</strong></div><div class="detail"><small>امنیت حساب</small><strong style="color:var(--success)">احراز هویت دومرحله‌ای فعال</strong></div></div></div></section><div class="grid2">'+window.activityHistory()+'<section class="card panel"><div class="panel-head"><h3>خلاصه عملکرد</h3></div><div class="kpis"><div class="kpi"><small>مرخصی باقی‌مانده</small><strong>۱۸</strong><div class="progress"><span style="width:72%"></span></div></div><div class="kpi"><small>درخواست‌های باز</small><strong>'+db.req.filter(r=>r.uid===u.id&&r.status==='در انتظار تأیید').length+'</strong><div class="progress"><span style="width:38%"></span></div></div><div class="kpi"><small>روزهای حضور این ماه</small><strong>۱۹</strong><div class="progress"><span style="width:86%"></span></div></div></div></section></div>';
+  };
+
+  /* Keep the profile uploaded image in the account menu on rerenders. */
+  window.render=(function(prev){return function(){prev();setTimeout(function(){
+    const u=current();if(!u)return;
+    if(safePhoto(u)){
+      document.querySelectorAll('.profile-trigger .avatar').forEach(el=>{el.classList.add('avatar-photo');el.style.backgroundImage='url("'+safePhoto(u)+'")';el.textContent=''});
+      document.querySelectorAll('.side-bottom .avatar').forEach(el=>{el.classList.add('avatar-photo');el.style.backgroundImage='url("'+safePhoto(u)+'")';el.textContent=''});
+    }
+  },0)}})(window.render);
+
+  /* Fix the V6 navigation logger by making its existing logActivity calls harmless for other events. */
+  document.addEventListener('click',function(e){
+    const btn=e.target.closest('.request-shortcut');
+    if(btn){setTimeout(()=>suggestRequestTitle(),35)}
+  });
 })();
 </script>
 
