@@ -730,6 +730,39 @@ th{font-weight:750!important}
 }
 </style>
 
+
+<style id="support-final">
+.support-hero{display:grid;grid-template-columns:1.4fr .6fr;gap:14px;align-items:stretch}
+.support-callout{padding:20px;border-radius:18px;background:linear-gradient(135deg,var(--surface),var(--primary-soft));border:1px solid var(--line);box-shadow:var(--shadow)}
+.support-callout h2{margin:0;font-size:18px}.support-callout p{margin:7px 0 0;color:var(--muted);font-size:10px;max-width:700px;line-height:2}
+.support-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.service-status{display:grid;gap:9px;padding:15px;border-radius:18px;border:1px solid var(--line);background:var(--surface)}
+.service-status h3{margin:0;font-size:12px}.service-line{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 10px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);font-size:9px}.service-dot{width:8px;height:8px;border-radius:50%;background:var(--success);display:inline-block;margin-left:6px;box-shadow:0 0 0 4px var(--success-soft)}
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.faq-card{padding:14px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2);margin-bottom:9px}.faq-card:last-child{margin-bottom:0}.faq-card strong{display:block;font-size:10px}.faq-card p{margin:4px 0 0;color:var(--muted);font-size:9px;line-height:1.9}
+.ticket-row{display:grid;grid-template-columns:120px 1fr 100px 95px;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:9px}.ticket-row:last-child{border-bottom:0}.ticket-row strong{font-size:9px}.ticket-meta{color:var(--muted);font-size:8px}
+@media(max-width:760px){.support-hero,.support-grid{grid-template-columns:1fr}.ticket-row{grid-template-columns:1fr 1fr}.ticket-row>:nth-child(2){grid-column:1/-1}}
+</style>
+
+<style id="final-ui-polish">
+/* Final daily polish: crisp hover/ripple and smoother focus states without adding visual noise. */
+@media (prefers-reduced-motion:no-preference){
+  .btn,.icon-btn,.nav-btn,.quick-card,.request-shortcut,.profile-trigger,.pm-item,.search-result,.sm{position:relative;overflow:hidden}
+  .btn:after,.icon-btn:after,.quick-card:after,.request-shortcut:after,.profile-trigger:after,.sm:after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at var(--rx,50%) var(--ry,50%),rgba(255,255,255,.22),transparent 34%);opacity:0;transform:scale(.7);transition:opacity .18s ease,transform .28s ease;pointer-events:none}
+  .btn:active:after,.icon-btn:active:after,.quick-card:active:after,.request-shortcut:active:after,.profile-trigger:active:after,.sm:active:after{opacity:1;transform:scale(1)}
+}
+.control:focus{transform:translateY(-.5px)}
+</style>
+<script id="final-ui-polish-script">
+(function(){
+  document.addEventListener('pointerdown',function(e){
+    const el=e.target.closest('.btn,.icon-btn,.quick-card,.request-shortcut,.profile-trigger,.sm');
+    if(!el)return;
+    const r=el.getBoundingClientRect();
+    el.style.setProperty('--rx',((e.clientX-r.left)/r.width*100)+'%');
+    el.style.setProperty('--ry',((e.clientY-r.top)/r.height*100)+'%');
+  },{passive:true});
+})();
+</script>
 </head>
 <body>
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
@@ -756,7 +789,8 @@ const svg={
  close:'<svg class="icon sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>',
  eye:'<svg class="icon sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>',
  download:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>',
- shield:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 20 6v5c0 5-3 8-8 10-5-2-8-5-8-10V6l8-3Z"/><path d="m9 12 2 2 4-4"/></svg>'
+ shield:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 20 6v5c0 5-3 8-8 10-5-2-8-5-8-10V6l8-3Z"/><path d="m9 12 2 2 4-4"/></svg>',
+ support:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8.5 10.5a3.5 3.5 0 1 1 6.1 2.4c-1.2 1.2-2.6 1.5-2.6 3.1"/><path d="M12 19h.01"/></svg>'
 };
 const seed={
  users:[
@@ -799,7 +833,7 @@ function nav(p){page=p;document.querySelector('.profile-menu')?.classList.remove
 let loginOtp=""; let otpExpires=Date.now()+90000;
 function refreshOtp(){loginOtp=String(Math.floor(100000+Math.random()*900000));otpExpires=Date.now()+90000;const c=document.getElementById('otpCode'),m=document.getElementById('otpMeta');if(c)c.textContent=loginOtp;if(m)updateOtpTimer(m)}
 function updateOtpTimer(el){clearInterval(window.__otp);const tick=()=>{const s=Math.max(0,Math.ceil((otpExpires-Date.now())/1000));el.textContent=s?('اعتبار کد: '+s+' ثانیه'):'کد منقضی شد — کد جدید بسازید';if(s===0)clearInterval(window.__otp)};tick();window.__otp=setInterval(tick,1000)}
-function login(){const u=document.getElementById('lu')?.value.trim(),p=document.getElementById('lp')?.value,code=document.getElementById('loginOtp')?.value.trim(),remember=!!document.getElementById('rememberMe')?.checked,found=db.users.find(x=>x.u===u&&x.p===p);if(Date.now()>otpExpires){document.getElementById('loginError').textContent='کد امنیتی منقضی شده؛ یک کد جدید بسازید.';return}if(code!==loginOtp){document.getElementById('loginError').textContent='کد امنیتی صحیح نیست.';document.getElementById('loginOtp').focus();return}if(!found){document.getElementById('loginError').textContent='نام کاربری یا رمز عبور صحیح نیست.';document.getElementById('lp').focus();return}session={id:found.id};if(remember){localStorage.setItem(SESSION,JSON.stringify(session));sessionStorage.removeItem(SESSION)}else{sessionStorage.setItem(SESSION,JSON.stringify(session));localStorage.removeItem(SESSION)}page='dashboard';render()}
+function login(){const u=document.getElementById('lu')?.value.trim(),p=document.getElementById('lp')?.value,code=document.getElementById('loginOtp')?.value.trim(),remember=!!document.getElementById('rememberMe')?.checked,found=db.users.find(x=>x.u===u&&x.p===p);if(Date.now()>otpExpires){document.getElementById('loginError').textContent='کد امنیتی منقضی شده؛ یک کد جدید بسازید.';return}if(code!==loginOtp){document.getElementById('loginError').textContent='کد امنیتی صحیح نیست.';document.getElementById('loginOtp').focus();return}if(!found){document.getElementById('loginError').textContent='نام کاربری یا رمز عبور صحیح نیست.';document.getElementById('lp').focus();return}session={id:found.id};if(remember){localStorage.setItem(SESSION,JSON.stringify(session));sessionStorage.removeItem(SESSION)}else{sessionStorage.setItem(SESSION,JSON.stringify(session));localStorage.removeItem(SESSION)}page='dashboard';if(typeof window.showLoginLoader==='function'){window.showLoginLoader();setTimeout(function(){render();window.hideLoginLoader?.()},1000)}else{render()}}
 function logout(){session=null;localStorage.removeItem(SESSION);sessionStorage.removeItem(SESSION);page='dashboard';render()}
 function openProfileMenu(){document.querySelector('.profile-menu')?.classList.toggle('open')}
 function closeModal(){const m=document.getElementById('modal');if(m){m.classList.remove('show');m.innerHTML=''}modalFocus?.focus?.()}
@@ -814,9 +848,9 @@ function loginView(){
   if(!loginOtp || Date.now()>otpExpires) refreshOtp();
   return '<div class="login"><section class="login-showcase"><div class="login-showcase-inner"><span class="eyebrow">● نسخه ۴ • Corporate Flow</span><h1>یک تجربه حرفه‌ای برای تمام امور شرکت</h1><p>رابطی مدرن با تمرکز روی وضوح عملیات، دسترسی سریع و نمایش سازمانی اطلاعات؛ با تجربه مایع، تم‌های قابل انتخاب و تعاملات سریع و کاربردی.</p><div class="showcase-grid"><div class="showcase-card"><div class="sc-icon">'+svg.inbox+'</div><b>کارتابل هوشمند</b><span>کارهای ارجاع‌شده را در یک نمای متمرکز ببینید.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.process+'</div><b>فرآیندهای سازمانی</b><span>ثبت تا تأیید و پیگیری، مرحله‌به‌مرحله.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.people+'</div><b>پروفایل کامل</b><span>اطلاعات شغلی، سازمانی و فعالیت‌های اخیر.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.shield+'</div><b>ورود امن</b><span>ورود آزمایشی با کد امنیتی یک‌بارمصرف.</span></div></div></div></section><section class="login-pane"><div class="login-card"><div class="brand-mark">ش</div><h2>ورود به سامانه</h2><div class="muted" style="font-size:11px">سامانه جامع مدیریت فرآیندهای شرکت</div><form class="form" onsubmit="event.preventDefault();login()"><div class="field"><label for="lu">نام کاربری</label><input id="lu" class="control" autocomplete="username" placeholder="نام کاربری را وارد کنید" required></div><div class="field"><label for="lp">رمز عبور</label><input id="lp" class="control" type="password" autocomplete="current-password" placeholder="رمز عبور" required></div><div class="otp-box"><div class="otp-line"><div class="otp-code" id="otpCode">' + (loginOtp||'------') + '</div><button class="otp-refresh" type="button" onclick="refreshOtp()" aria-label="تولید کد امنیتی جدید" title="تولید کد جدید">'+svg.refresh+'</button></div><div class="otp-meta" id="otpMeta"></div><input id="loginOtp" class="control" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="کد امنیتی ۶ رقمی" required></div><div class="login-row"><label><input id="rememberMe" type="checkbox" aria-label="مرا به خاطر بسپار"> مرا به خاطر بسپار</label><button class="mini-link" type="button" onclick="refreshOtp()">کد جدید</button></div><button class="btn btn-primary btn-block" style="margin-top:12px" type="submit">ورود امن به سامانه '+svg.arrow+'</button><div id="loginError" class="login-error"></div></form><div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div><div class="security-note">کد نمایش‌داده‌شده مخصوص دموست؛ در نسخه عملیاتی OTP باید سمت سرور تولید و ارسال شود.</div></div></section></div>'}
 refreshOtp();
-function sidebar(){const items=[['dashboard',svg.home,'داشبورد'],['inbox',svg.inbox,'کارتابل من'],['requests',svg.req,'درخواست‌ها'],...(manager()?[['approvals',svg.check,'تأییدها'],['people',svg.people,'پرسنل'],['processes',svg.process,'فرآیندها'],['reports',svg.chart,'گزارشات']]:[]),['docs',svg.doc,'اسناد و فرم‌ها'],['notifications',svg.bell,'اعلان‌ها'],['profile',svg.user,'حساب من'],['settings',svg.settings,'تنظیمات']];return '<aside class="sidebar"><div class="brand"><div class="brand-mark">ش</div><div class="brand-text"><strong>سامانه جامع سازمانی</strong><small>پرتال داخلی شرکت</small></div></div><nav class="nav"><div class="nav-title">منوی اصلی</div>'+items.map(i=>'<button class="nav-btn '+(page===i[0]?'active':'')+'" onclick="nav(\''+i[0]+'\')" aria-label="'+i[2]+'"><span class="nav-icon">'+i[1]+'</span><span>'+i[2]+'</span></button>').join('')+'</nav><div class="side-bottom"><div class="user-mini"><div class="avatar">'+esc(current().avatar)+'</div><div class="mini-info"><strong>'+esc(current().name)+'</strong><span>'+esc(current().role)+'</span></div></div><button class="logout" onclick="logout()">'+svg.logout+' خروج از حساب</button></div></aside>'}
+function sidebar(){const items=[['dashboard',svg.home,'داشبورد'],['inbox',svg.inbox,'کارتابل من'],['requests',svg.req,'درخواست‌ها'],...(manager()?[['approvals',svg.check,'تأییدها'],['people',svg.people,'پرسنل'],['processes',svg.process,'فرآیندها'],['reports',svg.chart,'گزارشات']]:[]),['docs',svg.doc,'اسناد و فرم‌ها'],['support',svg.support,'راهنما و پشتیبانی'],['notifications',svg.bell,'اعلان‌ها'],['profile',svg.user,'حساب من'],['settings',svg.settings,'تنظیمات']];return '<aside class="sidebar"><div class="brand"><div class="brand-mark">ش</div><div class="brand-text"><strong>سامانه جامع سازمانی</strong><small>پرتال داخلی شرکت</small></div></div><nav class="nav"><div class="nav-title">منوی اصلی</div>'+items.map(i=>'<button class="nav-btn '+(page===i[0]?'active':'')+'" onclick="nav(\''+i[0]+'\')" aria-label="'+i[2]+'"><span class="nav-icon">'+i[1]+'</span><span>'+i[2]+'</span></button>').join('')+'</nav><div class="side-bottom"><div class="user-mini"><div class="avatar">'+esc(current().avatar)+'</div><div class="mini-info"><strong>'+esc(current().name)+'</strong><span>'+esc(current().role)+'</span></div></div><button class="logout" onclick="logout()">'+svg.logout+' خروج از حساب</button></div></aside>'}
 function topbar(){const c=current();const t=theme();return '<div class="topbar"><div class="title"><h1>'+pageTitle().h+'</h1><p>'+pageTitle().p+'</p></div><div class="top-actions"><div class="search"><span class="magnify">'+svg.search+'</span><input class="control" onkeydown="if(event.key===\'Enter\')toast(\'جستجو برای «\'+this.value+\'» آماده شد\')" placeholder="جستجو در سامانه..." aria-label="جستجوی سامانه"></div><button class="icon-btn" onclick="nav(\'notifications\')" aria-label="اعلان‌ها" title="اعلان‌ها">'+svg.bell+'<span class="notif-dot"></span></button><button class="icon-btn" onclick="toggleTheme()" aria-label="تغییر حالت نمایش" title="'+(t==='dark'?'حالت روشن':'حالت تیره')+'">'+(t==='dark'?svg.sun:svg.moon)+'</button><button class="profile-trigger" onclick="openProfileMenu()" aria-expanded="false"><span class="ptxt"><strong>'+esc(c.name)+'</strong><span>'+esc(c.role)+'</span></span><span class="avatar">'+esc(c.avatar)+'</span><span class="chev">⌄</span></button></div></div><div class="profile-menu" role="menu"><div class="pm-head"><strong>'+esc(c.name)+'</strong><span>'+esc(c.unit)+'</span></div><button class="pm-item" onclick="nav(\'profile\')">'+svg.user+' حساب من</button><button class="pm-item" onclick="nav(\'settings\')">'+svg.settings+' تنظیمات</button><button class="pm-item pm-danger" onclick="logout()">'+svg.logout+' خروج</button></div>'}
-function pageTitle(){const m={dashboard:['داشبورد','نمای کلی وضعیت و فعالیت‌های امروز'],inbox:['کارتابل من','موارد ارجاع‌شده و نیازمند اقدام'],requests:['درخواست‌ها','ثبت، پیگیری و مشاهده سوابق درخواست‌ها'],approvals:['تأییدها','مدیریت و تصمیم‌گیری روی درخواست‌های کارکنان'],people:['پرسنل','اطلاعات کارکنان و ساختار سازمانی'],processes:['فرآیندها','فرآیندهای فعال و مسیر گردش کار'],reports:['گزارشات','آمار و شاخص‌های عملیاتی سامانه'],docs:['اسناد و فرم‌ها','دسترسی سریع به اسناد سازمانی'],notifications:['اعلان‌ها','اطلاعیه‌ها و پیام‌های جدید'],profile:['حساب من','پروفایل سازمانی و اطلاعات شخصی'],settings:['تنظیمات','شخصی‌سازی تجربه کاربری']};const x=m[page]||m.dashboard;return {h:x[0],p:x[1]}}
+function pageTitle(){const m={dashboard:['داشبورد','نمای کلی وضعیت و فعالیت‌های امروز'],inbox:['کارتابل من','موارد ارجاع‌شده و نیازمند اقدام'],requests:['درخواست‌ها','ثبت، پیگیری و مشاهده سوابق درخواست‌ها'],approvals:['تأییدها','مدیریت و تصمیم‌گیری روی درخواست‌های کارکنان'],people:['پرسنل','اطلاعات کارکنان و ساختار سازمانی'],processes:['فرآیندها','فرآیندهای فعال و مسیر گردش کار'],reports:['گزارشات','آمار و شاخص‌های عملیاتی سامانه'],docs:['اسناد و فرم‌ها','دسترسی سریع به اسناد سازمانی'],support:['راهنما و پشتیبانی','راهنمای سامانه، خدمات فناوری اطلاعات و ثبت تیکت'],notifications:['اعلان‌ها','اطلاعیه‌ها و پیام‌های جدید'],profile:['حساب من','پروفایل سازمانی و اطلاعات شخصی'],settings:['تنظیمات','شخصی‌سازی تجربه کاربری']};const x=m[page]||m.dashboard;return {h:x[0],p:x[1]}}
 function dashboard(){const c=current(),mine=db.req.filter(r=>r.uid===c.id);const open=manager()?db.req.filter(r=>r.status==='در انتظار تأیید').length:db.tasks.filter(t=>t.status==='نیازمند اقدام').length;return '<section class="hero liquid-surface"><div><h2>سلام '+esc(c.name.split(' ')[0])+' 👋</h2><p>امروز '+open+' مورد برای پیگیری در سامانه دارید. از اینجا می‌توانید سریع به کارهای مهم دسترسی پیدا کنید.</p></div><div class="hero-actions"><button class="btn btn-primary" onclick="openRequest()">'+svg.plus+' ثبت درخواست</button><button class="btn btn-secondary" onclick="nav(\'inbox\')">'+svg.inbox+' مشاهده کارتابل</button></div></section><div class="cards"><div class="card stat"><div class="stat-top"><span class="stat-label">کارتابل باز</span><span class="stat-icon">'+svg.inbox+'</span></div><strong>'+open+'</strong><span class="note warn">نیازمند اقدام</span></div><div class="card stat"><div class="stat-top"><span class="stat-label">درخواست‌های من</span><span class="stat-icon">'+svg.req+'</span></div><strong>'+mine.length+'</strong><span class="note ok">ثبت و پیگیری شده</span></div><div class="card stat"><div class="stat-top"><span class="stat-label">مرخصی باقی‌مانده</span><span class="stat-icon">◷</span></div><strong>۱۸</strong><span class="note">روز کاری</span></div><div class="card stat"><div class="stat-top"><span class="stat-label">اعلان‌های جدید</span><span class="stat-icon">'+svg.bell+'</span></div><strong>'+db.notices.length+'</strong><span class="note">آخرین اطلاعیه‌ها</span></div></div><div class="grid2"><section class="card panel"><div class="panel-head"><h3>آخرین درخواست‌ها</h3><button class="panel-link" onclick="nav(\'requests\')">مشاهده همه</button></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>موضوع</th><th>ثبت‌کننده</th><th>تاریخ</th><th>وضعیت</th></tr></thead><tbody>'+db.req.slice(0,5).map(r=>'<tr><td>'+r.id+'</td><td>'+esc(r.title)+'</td><td>'+esc(db.users.find(u=>u.id===r.uid)?.name||'')+'</td><td>'+r.date+'</td><td>'+badge(r.status)+'</td></tr>').join('')+'</tbody></table></div></section><section class="card panel"><div class="panel-head"><h3>دسترسی سریع</h3></div><div class="quick-grid"><div class="quick-card" onclick="openRequest()"><div class="qicon">'+svg.plus+'</div><strong>ثبت درخواست</strong><span>مرخصی، دورکاری، مأموریت و...</span></div><div class="quick-card" onclick="nav(\'inbox\')"><div class="qicon">'+svg.inbox+'</div><strong>کارتابل</strong><span>کارهای در انتظار اقدام</span></div><div class="quick-card" onclick="toast(\'ماژول تردد در فاز بعدی متصل می‌شود\')"><div class="qicon">◴</div><strong>تردد و کارکرد</strong><span>حضور و غیاب و ساعت‌زنی</span></div><div class="quick-card" onclick="nav(\'docs\')"><div class="qicon">'+svg.doc+'</div><strong>اسناد و فرم‌ها</strong><span>مشاهده و دریافت فرم‌ها</span></div></div></section></div><section class="card panel"><div class="panel-head"><h3>آخرین اطلاعیه‌ها</h3><button class="panel-link" onclick="nav(\'notifications\')">مشاهده همه</button></div>'+db.notices.map(n=>'<div class="notice"><div class="nicon">'+n[0]+'</div><div><strong>'+esc(n[1])+'</strong><span>'+esc(n[2])+'</span></div></div>').join('')+'</section>'}
 function inbox(){const rows=manager()?db.tasks:db.tasks.filter(t=>t.id==='TSK-298');return '<section class="card panel"><div class="panel-head"><h3>کارتابل من</h3>'+badge('نیازمند اقدام')+'</div><div class="filters"><select class="control"><option>همه وضعیت‌ها</option><option>نیازمند اقدام</option><option>انجام شده</option></select><select class="control"><option>همه انواع</option><option>درخواست</option><option>نامه</option><option>فرآیند</option></select><input class="control wide" placeholder="جستجوی عنوان یا شناسه..."></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>شرح کار</th><th>شناسه درخواست</th><th>موعد</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>'+rows.map(t=>'<tr><td>'+t.id+'</td><td>'+esc(t.title)+'</td><td>'+t.req+'</td><td>'+t.due+'</td><td>'+badge(t.status)+'</td><td><button class="sm primary" onclick="toast(\'جزئیات کار باز شد\')">'+svg.eye+' مشاهده</button></td></tr>').join('')+'</tbody></table></div></section>'}
 function requests(){const mine=manager()?db.req:db.req.filter(r=>r.uid===current().id);return '<section class="card panel"><div class="panel-head"><h3>درخواست‌ها</h3><button class="btn btn-primary" onclick="openRequest()">'+svg.plus+' ثبت درخواست جدید</button></div><div class="filters"><select class="control"><option>همه انواع</option><option>مرخصی</option><option>دورکاری</option><option>ماموریت</option><option>خرید</option><option>پاسخ استعلام</option></select><select class="control"><option>همه وضعیت‌ها</option><option>در انتظار تأیید</option><option>تأیید شده</option><option>در حال بررسی</option><option>رد شده</option></select><input class="control wide" placeholder="جستجوی عنوان یا شناسه..."></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>نوع</th><th>عنوان</th><th>ثبت‌کننده</th><th>تاریخ</th><th>مرحله</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>'+mine.map(r=>'<tr><td>'+r.id+'</td><td>'+esc(r.type)+'</td><td>'+esc(r.title)+'</td><td>'+esc(db.users.find(u=>u.id===r.uid)?.name||'')+'</td><td>'+r.date+'</td><td>'+esc(r.stage)+'</td><td>'+badge(r.status)+'</td><td><button class="sm primary" onclick="details(\''+r.id+'\')">'+svg.eye+' جزئیات</button></td></tr>').join('')+'</tbody></table></div></section>'}
@@ -827,8 +861,20 @@ function reports(){return '<div class="cards"><div class="card stat"><span class
 function docs(){const arr=['فرم درخواست مرخصی','فرم درخواست دورکاری','فرم ماموریت اداری','فرم پاسخ استعلام','فرم قرارداد مالی','فرم تحصیل دارایی','فرم ابطال دارایی','فرم خروج کالا'];return '<section class="card panel"><div class="panel-head"><h3>اسناد و فرم‌ها</h3><button class="btn btn-secondary" onclick="toast(\'جستجوی اسناد فعال شد\')">'+svg.search+' جستجو</button></div><div class="quick-grid">'+arr.map(x=>'<div class="quick-card" onclick="toast(\''+x+' برای مشاهده و دانلود آماده است\')"><div class="qicon">'+svg.doc+'</div><strong>'+x+'</strong><span>مشاهده، چاپ یا دانلود</span></div>').join('')+'</div></section>'}
 function notifications(){return '<section class="card panel"><div class="panel-head"><h3>اعلان‌ها</h3><button class="btn btn-secondary" onclick="toast(\'همه اعلان‌ها خوانده‌شده علامت خوردند\')">علامت‌گذاری همه</button></div>'+db.notices.map(n=>'<div class="notice"><div class="nicon">'+n[0]+'</div><div><strong>'+esc(n[1])+'</strong><span>'+esc(n[2])+'</span></div></div>').join('')+'</section>'}
 function profile(){const u=current();return `<section class="card" style="overflow:hidden"><div class="profile-cover"></div><div class="profile-main"><div class="profile-id"><div class="avatar">${esc(u.avatar)}</div><div class="profile-title"><h2>${esc(u.name)}</h2><p>${esc(u.role)} • ${esc(u.unit)}</p></div><div class="profile-actions"><button class="btn btn-secondary" onclick="toast('ویرایش اطلاعات در نسخه عملیاتی فعال می‌شود')">ویرایش اطلاعات</button><button class="btn btn-soft" onclick="toggleTheme()">${theme()==='dark'?svg.sun:svg.moon} ${theme()==='dark'?'حالت روشن':'حالت تیره'}</button></div></div><div class="detail-grid"><div class="detail"><small>شماره پرسنلی</small><strong>${esc(u.employeeId)}</strong></div><div class="detail"><small>سمت سازمانی</small><strong>${esc(u.role)}</strong></div><div class="detail"><small>واحد سازمانی</small><strong>${esc(u.unit)}</strong></div><div class="detail"><small>مدیر مستقیم</small><strong>${esc(u.manager)}</strong></div><div class="detail"><small>شماره تماس</small><strong>${esc(u.phone)}</strong></div><div class="detail"><small>ایمیل سازمانی</small><strong>${esc(u.email)}</strong></div><div class="detail"><small>محل خدمت</small><strong>${esc(u.location)}</strong></div><div class="detail"><small>تاریخ استخدام</small><strong>${esc(u.join)}</strong></div><div class="detail"><small>آخرین ورود</small><strong>${esc(u.lastLogin)}</strong></div><div class="detail"><small>وضعیت حساب</small><strong>${badge('فعال')}</strong></div><div class="detail"><small>سطح دسترسی</small><strong>${esc(manager()?'مدیریتی':'کاربری')}</strong></div><div class="detail"><small>امنیت حساب</small><strong style="color:var(--success)">احراز هویت دومرحله‌ای فعال</strong></div></div></div></section><div class="grid2"><section class="card panel"><div class="panel-head"><h3>فعالیت‌های اخیر</h3><span class="muted" style="font-size:9px">آخرین رویدادها</span></div><div class="timeline">${db.activities.map(a=>`<div class="timeline-item"><div class="timeline-dot">${a[3]}</div><div><strong>${esc(a[0])}</strong><p>${esc(a[1])}</p></div><time>${esc(a[2])}</time></div>`).join('')}</div></section><section class="card panel"><div class="panel-head"><h3>خلاصه عملکرد</h3></div><div class="kpis"><div class="kpi"><small>مرخصی باقی‌مانده</small><strong>۱۸</strong><div class="progress"><span style="width:72%"></span></div></div><div class="kpi"><small>درخواست‌های باز</small><strong>${db.req.filter(r=>r.uid===u.id&&r.status==='در انتظار تأیید').length}</strong><div class="progress"><span style="width:38%"></span></div></div><div class="kpi"><small>روزهای حضور این ماه</small><strong>۱۹</strong><div class="progress"><span style="width:86%"></span></div></div></div></section></div>`}
+function support(){
+  let tickets=[];
+  try{tickets=JSON.parse(localStorage.getItem('companySupportTickets')||'[]')||[]}catch(e){tickets=[]}
+  if(!tickets.length){tickets=[
+    {id:'TKT-204',title:'اتصال به چاپگر واحد بازرگانی',category:'سخت‌افزار',date:'۱۴۰۵/۰۷/۰۲',status:'در حال بررسی'},
+    {id:'TKT-198',title:'درخواست دسترسی به پوشه مشترک',category:'دسترسی',date:'۱۴۰۵/۰۶/۳۰',status:'انجام شده'}
+  ]}
+  const rows=tickets.map(t=>'<div class="ticket-row"><strong>'+esc(t.id)+'</strong><div><strong>'+esc(t.title)+'</strong><div class="ticket-meta">'+esc(t.category)+' • '+esc(t.date)+'</div></div><span>'+badge(t.status)+'</span><button class="sm primary" onclick="toast(\'جزئیات '+esc(t.id)+' آماده نمایش است\')">'+svg.eye+' جزئیات</button></div>').join('');
+  return '<div class="support-hero"><section class="support-callout"><div class="badge blue">مرکز خدمات سازمانی</div><h2>راهنما و پشتیبانی</h2><p>برای خطاهای سامانه، دسترسی‌ها، مشکلات تجهیزات و درخواست‌های فناوری اطلاعات، یک تیکت ثبت کنید. راهنماهای کوتاه هم برای کارهای پرتکرار در همین صفحه در دسترس هستند.</p><div class="support-actions"><button class="btn btn-primary" onclick="openSupportTicket()">'+svg.plus+' ثبت تیکت جدید</button><button class="btn btn-secondary" onclick="toast(\'راهنمای کامل در نسخه عملیاتی متصل می‌شود\')">'+svg.doc+' راهنمای کامل</button></div></section><aside class="service-status"><h3>وضعیت سرویس‌ها</h3><div class="service-line"><span><i class="service-dot"></i>کارتابل و درخواست‌ها</span>'+badge('فعال')+'</div><div class="service-line"><span><i class="service-dot"></i>اسناد و فرم‌ها</span>'+badge('فعال')+'</div><div class="service-line"><span><i class="service-dot"></i>گزارشات</span>'+badge('فعال')+'</div></aside></div><div class="support-grid"><section class="card panel"><div class="panel-head"><div><h3>راهنمای سریع</h3><div class="muted" style="font-size:8px;margin-top:3px">پاسخ چند مورد پرتکرار</div></div></div><div class="faq-card"><strong>چطور رمز عبور را تغییر بدهم؟</strong><p>از «حساب من» وارد تنظیمات امنیتی شوید. در نسخه عملیاتی، تغییر رمز با احراز هویت و سیاست‌های امنیتی سازمان انجام می‌شود.</p></div><div class="faq-card"><strong>برای خطای سامانه چه اطلاعاتی ثبت کنم؟</strong><p>عنوان خطا، زمان رخداد، بخش مربوط و توضیح کوتاه را وارد کنید و در صورت نیاز تصویر خطا را پیوست کنید.</p></div><div class="faq-card"><strong>درخواست دسترسی به یک سامانه چطور ثبت می‌شود؟</strong><p>یک تیکت با دسته «دسترسی» ثبت کنید و نام سامانه، سطح دسترسی موردنیاز و تأیید مدیر مربوط را مشخص کنید.</p></div></section><section class="card panel"><div class="panel-head"><div><h3>تیکت‌های اخیر</h3><div class="muted" style="font-size:8px;margin-top:3px">سوابق خدمات پشتیبانی</div></div><span class="badge gray">نمونه دمو</span></div>'+rows+'</section></div>'
+}
+window.openSupportTicket=function(){openModal('ثبت تیکت پشتیبانی','<form class="form" onsubmit="submitSupportTicket(event)"><div class="formgrid"><div class="field"><label for="stc">دسته</label><select id="stc" class="control"><option>سامانه</option><option>دسترسی</option><option>نرم‌افزار</option><option>سخت‌افزار</option><option>شبکه</option><option>سایر</option></select></div><div class="field"><label for="stp">اولویت</label><select id="stp" class="control"><option>عادی</option><option>مهم</option><option>فوری</option></select></div><div class="field full"><label for="stt">عنوان مشکل</label><input id="stt" class="control" required placeholder="مثلاً خطا هنگام ثبت درخواست"></div><div class="field full"><label for="std">شرح</label><textarea id="std" class="control" required placeholder="زمان رخداد، بخش مربوط و شرح مشکل را بنویسید"></textarea></div></div><div class="modal-actions"><button type="button" class="btn btn-secondary" onclick="closeModal()">انصراف</button><button type="submit" class="btn btn-primary">ثبت تیکت</button></div></form>')}
+window.submitSupportTicket=function(e){e.preventDefault();let arr=[];try{arr=JSON.parse(localStorage.getItem('companySupportTickets')||'[]')||[]}catch(err){arr=[]}const id='TKT-'+(205+arr.length);arr.unshift({id,title:document.getElementById('stt').value,category:document.getElementById('stc').value,date:'امروز',status:'در حال بررسی'});localStorage.setItem('companySupportTickets',JSON.stringify(arr));db.activities.unshift(['ثبت تیکت پشتیبانی',id,'همین الان','＋']);save();closeModal();render();setTimeout(()=>toast('تیکت '+id+' ثبت شد'),40)}
 function settings(){const t=theme();return '<section class="card panel"><div class="panel-head"><h3>تنظیمات تجربه کاربری</h3><span class="badge gray">محلی روی این مرورگر</span></div><div class="formgrid"><div class="field"><label for="themeSelect">حالت نمایش</label><select id="themeSelect" class="control" onchange="localStorage.setItem(\'companyTheme\',this.value);theme();render()"><option value="light" '+(t==='light'?'selected':'')+'>روشن</option><option value="dark" '+(t==='dark'?'selected':'')+'>تیره</option></select></div><div class="field"><label for="density">تراکم نمایش</label><select id="density" class="control"><option>متعادل</option><option>فشرده</option></select></div></div><div class="modal-actions"><button class="btn btn-primary" onclick="toast(\'تنظیمات ذخیره شد\')">ذخیره تنظیمات</button><button class="btn btn-secondary" onclick="document.body.classList.toggle(\'high-contrast\');toast(\'نمای کنتراست بالا فعال شد\')">کنتراست بالا</button></div></section>'}
-function content(){switch(page){case'inbox':return inbox();case'requests':return requests();case' approvals':return approvals();case'approvals':return approvals();case'people':return people();case'processes':return processes();case'reports':return reports();case'docs':return docs();case'notifications':return notifications();case'profile':return profile();case'settings':return settings();default:return dashboard()}}
+function content(){switch(page){case'inbox':return inbox();case'requests':return requests();case' approvals':return approvals();case'approvals':return approvals();case'people':return people();case'processes':return processes();case'reports':return reports();case'docs':return docs();case'support':return support();case'notifications':return notifications();case'profile':return profile();case'settings':return settings();default:return dashboard()}}
 function shell(){return '<div class="app">'+sidebar()+'<main id="main-content" class="main" tabindex="-1">'+topbar()+'<div class="breadcrumb"><span>سامانه</span><span>/</span><span aria-current="page">'+pageTitle().h+'</span></div><div class="content">'+content()+'</div><div id="modal" class="modal-backdrop"></div><div class="toast"></div></main></div>'}
 function bindOutside(){document.addEventListener('click',e=>{const menu=document.querySelector('.profile-menu'),tr=e.target.closest('.profile-trigger');if(menu&&!tr&&!e.target.closest('.profile-menu'))menu.classList.remove('open')},{once:true});document.getElementById('modal')?.addEventListener('click',e=>{if(e.target.id==='modal')closeModal()})}
 function render(){theme();document.getElementById('app').innerHTML=session&&current()?shell():loginView();bindOutside()}
@@ -909,7 +955,7 @@ render();
   window.settings=function(){
     const t=theme(),pal=settingsGet('companyPalette','ocean'),font=settingsGet('companyFont','vazir'),density=settingsGet('companyDensity','comfortable');
     const choice=(id,title,sub,sw)=>'<button class="palette-choice '+(pal===id?'active':'')+'" onclick="setPalette(\''+id+'\')"><div class="palette-swatch '+sw+'"></div><strong>'+title+'</strong><small>'+sub+'</small></button>';
-    return '<section class="card panel"><div class="panel-head"><div><h3>ظاهر و تجربه کاربری</h3><div class="muted" style="font-size:8px;margin-top:3px">تنظیمات در این مرورگر ذخیره می‌شوند.</div></div><span class="badge gray">نسخه ۸</span></div><div class="field"><label>تم رنگی</label><div class="palette-grid">'+choice('ocean','اقیانوسی','آبی + سبز فسفری','sw-ocean')+choice('violet','بنفش-فیروزه‌ای','بنفش + فیروزه‌ای','sw-violet')+choice('emerald','زمردی','سبز + لاجوردی روشن','sw-emerald')+choice('sunset','غروب','نارنجی + کهربایی','sw-sunset')+'</div></div><div class="formgrid"><div class="field"><label>فونت رابط</label><div class="font-grid">'+
+    return '<section class="card panel"><div class="panel-head"><div><h3>ظاهر و تجربه کاربری</h3><div class="muted" style="font-size:8px;margin-top:3px">تنظیمات در این مرورگر ذخیره می‌شوند.</div></div><span class="badge gray">نسخه ۹</span></div><div class="field"><label>تم رنگی</label><div class="palette-grid">'+choice('ocean','اقیانوسی','آبی + سبز فسفری','sw-ocean')+choice('violet','بنفش-فیروزه‌ای','بنفش + فیروزه‌ای','sw-violet')+choice('emerald','زمردی','سبز + لاجوردی روشن','sw-emerald')+choice('sunset','غروب','نارنجی + کهربایی','sw-sunset')+'</div></div><div class="formgrid"><div class="field"><label>فونت رابط</label><div class="font-grid">'+
 '<button class="font-choice '+(font==='vazir'?'active':'')+'" onclick="setFont(\'vazir\')"><div class="font-sample font-vazir">سامانه جامع سازمانی</div><strong>Vazirmatn</strong><small>خوانا و مناسب رابط فارسی</small></button>'+
 '<button class="font-choice '+(font==='noto'?'active':'')+'" onclick="setFont(\'noto\')"><div class="font-sample font-noto">سامانه جامع سازمانی</div><strong>Noto Sans Arabic</strong><small>ظاهر ساده و مدرن</small></button>'+
 '<button class="font-choice '+(font==='tajawal'?'active':'')+'" onclick="setFont(\'tajawal\')"><div class="font-sample font-tajawal">سامانه جامع سازمانی</div><strong>Tajawal</strong><small>فرم نرم و نمای متفاوت</small></button>'+
@@ -926,7 +972,7 @@ render();
     el.classList.add('show');renderCommands();setTimeout(()=>document.getElementById('commandInput')?.focus(),30);
   };
   window.closeCommandPalette=function(){document.getElementById('commandPalette')?.classList.remove('show')};
-  window.renderCommands=function(){const list=[['dashboard','داشبورد','نمای کلی'],['inbox','کارتابل من','کارهای در انتظار اقدام'],['requests','درخواست‌ها','ثبت و پیگیری'],['attendance','تردد و کارکرد','حضور و ساعت‌زنی'],['processes','فرآیندها','گردش‌کارها'],['docs','اسناد و فرم‌ها','فرم‌ها و مستندات'],['profile','حساب من','پروفایل سازمانی'],['settings','تنظیمات','تم و فونت'],['__request__','ثبت درخواست جدید','اقدام سریع']];const q=(document.getElementById('commandInput')?.value||'').trim().toLowerCase();const html=list.filter(x=>!q||x[1].toLowerCase().includes(q)||x[2].toLowerCase().includes(q)).map(x=>'<button class="command-item" onclick="'+(x[0]==='__request__'?'closeCommandPalette();openRequest()':'closeCommandPalette();nav(\''+x[0]+'\')')+'"><span>'+x[1]+'</span><small>'+x[2]+'</small></button>').join('')||'<div class="empty">موردی پیدا نشد.</div>';document.getElementById('commandList').innerHTML=html};
+  window.renderCommands=function(){const list=[['dashboard','داشبورد','نمای کلی'],['inbox','کارتابل من','کارهای در انتظار اقدام'],['requests','درخواست‌ها','ثبت و پیگیری'],['attendance','تردد و کارکرد','حضور و ساعت‌زنی'],['processes','فرآیندها','گردش‌کارها'],['docs','اسناد و فرم‌ها','فرم‌ها و مستندات'],['support','راهنما و پشتیبانی','ثبت و پیگیری تیکت'],['profile','حساب من','پروفایل سازمانی'],['settings','تنظیمات','تم و فونت'],['__request__','ثبت درخواست جدید','اقدام سریع']];const q=(document.getElementById('commandInput')?.value||'').trim().toLowerCase();const html=list.filter(x=>!q||x[1].toLowerCase().includes(q)||x[2].toLowerCase().includes(q)).map(x=>'<button class="command-item" onclick="'+(x[0]==='__request__'?'closeCommandPalette();openRequest()':'closeCommandPalette();nav(\''+x[0]+'\')')+'"><span>'+x[1]+'</span><small>'+x[2]+'</small></button>').join('')||'<div class="empty">موردی پیدا نشد.</div>';document.getElementById('commandList').innerHTML=html};
   window.filterCommands=renderCommands;
   const origRender=render;
   window.render=function(){applyPrefs();origRender();requestAnimationFrame(()=>{applyPrefs();document.querySelector('.content')?.classList.add('page-enter');document.documentElement.dataset.motion=settingsGet('companyReduceMotion','0')==='1'?'reduced':'full'})};
@@ -1439,5 +1485,108 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
 })();
 </script>
 
+
+
+<style id="v10-page-loader">
+.page-loader{position:fixed;inset:0;display:grid;place-items:center;padding:20px;background:rgba(4,12,28,.34);backdrop-filter:blur(9px) saturate(1.06);-webkit-backdrop-filter:blur(9px) saturate(1.06);opacity:0;visibility:hidden;pointer-events:none;z-index:9998;transition:opacity .16s ease,visibility .16s ease}
+.page-loader.show{opacity:1;visibility:visible;pointer-events:auto}
+.page-loader-card{width:min(330px,calc(100vw - 36px));padding:24px 22px 20px;border:1px solid color-mix(in srgb,var(--line) 72%,transparent);border-radius:22px;background:color-mix(in srgb,var(--surface) 90%,transparent);box-shadow:0 28px 85px rgba(5,18,44,.22);text-align:center;transform:translateY(8px) scale(.985);opacity:.94;transition:transform .22s ease,opacity .22s ease}
+.page-loader.show .page-loader-card{transform:translateY(0) scale(1);opacity:1}
+.page-loader-orbit{width:64px;height:64px;margin:0 auto 14px;position:relative;border-radius:50%;background:radial-gradient(circle,var(--surface) 43%,transparent 44%),conic-gradient(from 0deg,var(--accent),var(--primary),var(--lime),var(--accent));animation:pageSpin .72s linear infinite;box-shadow:0 10px 30px var(--glow)}
+.page-loader-orbit:before{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.page-loader-orbit:after{content:"";position:absolute;width:9px;height:9px;top:4px;right:50%;margin-right:-4.5px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 18%,transparent),0 0 20px color-mix(in srgb,var(--accent) 55%,transparent)}
+.page-loader-title{font-size:12px;font-weight:900;color:var(--text)}
+.page-loader-sub{margin-top:4px;font-size:8px;color:var(--muted);min-height:15px}
+.page-loader-track{height:4px;margin-top:15px;border-radius:99px;overflow:hidden;background:var(--surface-3)}
+.page-loader-track span{display:block;width:0;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--primary),var(--accent),var(--lime));box-shadow:0 0 14px var(--glow);animation:pageProgress .2s cubic-bezier(.22,.61,.36,1) forwards}
+.page-loader-dots{display:flex;justify-content:center;gap:5px;margin-top:10px}
+.page-loader-dots i{width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.25;animation:pageDot .55s ease-in-out infinite}
+.page-loader-dots i:nth-child(2){animation-delay:.05s}.page-loader-dots i:nth-child(3){animation-delay:.10s}
+@keyframes pageSpin{to{transform:rotate(360deg)}}
+@keyframes pageProgress{to{width:100%}}
+@keyframes pageDot{0%,100%{transform:translateY(0);opacity:.24}50%{transform:translateY(-3px);opacity:1}}
+[data-theme="dark"] .page-loader{background:rgba(2,6,18,.48)}
+@media(max-width:560px){.page-loader-card{padding:20px 18px 18px}.page-loader-orbit{width:58px;height:58px}}
+@media(prefers-reduced-motion:reduce){.page-loader,.page-loader-card{transition:none}.page-loader-orbit,.page-loader-track span,.page-loader-dots i{animation:none}.page-loader-track span{width:100%}}
+</style>
+
+<div id="pageLoader" class="page-loader" aria-hidden="true">
+  <div class="page-loader-card" role="status" aria-live="polite" aria-label="در حال بارگذاری صفحه">
+    <div class="page-loader-orbit" aria-hidden="true"></div>
+    <div id="pageLoaderTitle" class="page-loader-title">در حال بارگذاری</div>
+    <div id="pageLoaderSub" class="page-loader-sub">در حال آماده‌سازی صفحه</div>
+    <div class="page-loader-track" aria-hidden="true"><span></span></div>
+    <div class="page-loader-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+  </div>
+</div>
+
+<script id="v10-page-loader-script">
+(function(){
+  const originalNav=window.nav;
+  if(typeof originalNav!=='function') return;
+  const labels={
+    dashboard:'داشبورد',inbox:'کارتابل من',requests:'درخواست‌ها',attendance:'تردد و کارکرد',approvals:'تأییدها',
+    people:'پرسنل',processes:'فرآیندها',reports:'گزارشات',docs:'اسناد و فرم‌ها',notifications:'اعلان‌ها',
+    profile:'حساب من',settings:'تنظیمات',support:'راهنما و پشتیبانی'
+  };
+  let timer=null, sequence=0;
+  function ensureLoader(){return document.getElementById('pageLoader')}
+  function showLoader(target){
+    const el=ensureLoader();
+    if(!el) return;
+    document.getElementById('pageLoaderTitle').textContent='در حال ورود به '+(labels[target]||'صفحه');
+    document.getElementById('pageLoaderSub').textContent='لطفاً لحظه‌ای صبر کنید…';
+    const track=el.querySelector('.page-loader-track span');
+    if(track){track.style.animation='none';void track.offsetWidth;track.style.animation='pageProgress .5s cubic-bezier(.22,.61,.36,1) forwards'}
+    el.classList.add('show');el.setAttribute('aria-hidden','false');
+  }
+  function hideLoader(){
+    const el=ensureLoader();
+    if(!el) return;
+    el.classList.remove('show');el.setAttribute('aria-hidden','true');
+  }
+  window.nav=function(target){
+    if(!target || typeof target!=='string' || target===page){return originalNav(target)}
+    const my=++sequence;
+    if(timer) clearTimeout(timer);
+    showLoader(target);
+    timer=setTimeout(function(){
+      if(my!==sequence) return;
+      originalNav(target);
+      setTimeout(hideLoader,20);
+    },200);
+  };
+  window.addEventListener('beforeunload',function(){if(timer) clearTimeout(timer)});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && document.getElementById('pageLoader')?.classList.contains('show')){
+      e.preventDefault();
+    }
+  },true);
+})();
+</script>
+
+
+<script id="v11-login-loader-script">
+(function(){
+  window.showLoginLoader=function(){
+    const el=document.getElementById('pageLoader');
+    if(!el)return;
+    const title=document.getElementById('pageLoaderTitle');
+    const sub=document.getElementById('pageLoaderSub');
+    const track=el.querySelector('.page-loader-track span');
+    if(title)title.textContent='در حال ورود به سامانه';
+    if(sub)sub.textContent='در حال آماده‌سازی محیط کاری شما…';
+    if(track){track.style.animation='none';void track.offsetWidth;track.style.animation='pageProgress 1s cubic-bezier(.22,.61,.36,1) forwards';}
+    el.classList.add('show');
+    el.setAttribute('aria-hidden','false');
+  };
+  window.hideLoginLoader=function(){
+    const el=document.getElementById('pageLoader');
+    if(!el)return;
+    el.classList.remove('show');
+    el.setAttribute('aria-hidden','true');
+  };
+})();
+</script>
 </body>
 </html>
