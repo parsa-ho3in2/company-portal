@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap">
-<title>سامانه سازمانی شرکت — نسخه ۸</title>
+<title>سامانه سازمانی شرکت — نسخه ۲۴</title>
 <style>
 :root{
   --bg:#f4f7fb;--surface:#ffffff;--surface-2:#f7f9fc;--surface-3:#eef3f9;
@@ -763,6 +763,46 @@ th{font-weight:750!important}
   },{passive:true});
 })();
 </script>
+
+<style id="pink-night-palette-v24">
+/* V24 — Pink Night palette: neon pink + deep night purple, tuned for both modes. */
+.palette-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.sw-pinknight{background:linear-gradient(135deg,#1a0826 0%,#5a1b70 48%,#ff4fb8 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+:root[data-theme="light"][data-palette="pinknight"]{
+  --bg:#faf5fb;--surface:#ffffff;--surface-2:#fbf7fd;--surface-3:#f2e9f5;
+  --text:#24162d;--muted:#76617f;--line:#eadceb;--line-strong:#d8c5dc;
+  --primary:#d92d9d;--primary-2:#72225f;--primary-soft:#fde7f6;--focus:#c51b8c;
+  --accent:#e13aa8;--accent-2:#74255f;--accent-soft:#fde7f6;--glow:rgba(225,58,168,.18);--accent-good:#8e63ff;
+  --sidebar:#160a21;--sidebar-2:#3a1550;--sidebar-text:#f8ecfb;--sidebar-muted:#c6a8ce;
+  --lime:#ff8dd3;--lime-soft:#fff0f9;--electric:#ad7cff;
+  --shadow:0 18px 42px rgba(96,35,94,.10);--shadow-lg:0 30px 85px rgba(78,22,72,.18);
+}
+:root[data-theme="dark"][data-palette="pinknight"]{
+  --bg:#0b0610;--surface:#15101c;--surface-2:#1b1325;--surface-3:#24182f;
+  --text:#f8effb;--muted:#b8a4c0;--line:#34253d;--line-strong:#4a3655;
+  --primary:#ff68c3;--primary-2:#f0b5e3;--primary-soft:#32172d;--focus:#ff8bd2;
+  --accent:#ff68c3;--accent-2:#f3b9e6;--accent-soft:#32172d;--glow:rgba(255,104,195,.21);--accent-good:#a58aff;
+  --sidebar:#08040d;--sidebar-2:#1e0c2b;--sidebar-text:#fff2fc;--sidebar-muted:#a98eaf;
+  --lime:#ff9fdb;--lime-soft:#32172d;--electric:#a983ff;
+  --shadow:0 20px 55px rgba(0,0,0,.28);--shadow-lg:0 34px 92px rgba(0,0,0,.40);
+}
+:root[data-palette="pinknight"] .btn-primary{background:linear-gradient(135deg,var(--primary),var(--accent-good));box-shadow:0 8px 24px var(--glow)}
+:root[data-palette="pinknight"] .brand-mark{background:linear-gradient(135deg,var(--primary),var(--accent-good))!important;color:#fff!important}
+:root[data-palette="pinknight"] .profile-cover{background:radial-gradient(circle at 24% 24%,rgba(255,255,255,.16),transparent 18%),linear-gradient(135deg,#1a0826,#6d217a 52%,#f54aad)!important}
+:root[data-palette="pinknight"] .profile-cover:before{background:linear-gradient(135deg,rgba(255,90,190,.65),rgba(164,120,255,.46))!important}
+:root[data-palette="pinknight"] .profile-cover:after{background:linear-gradient(135deg,rgba(165,125,255,.52),rgba(255,102,202,.58))!important}
+:root[data-palette="pinknight"] .login-showcase{background:radial-gradient(circle at 75% 28%,rgba(255,91,190,.24),transparent 26%),linear-gradient(135deg,#09040f 0%,#24103a 52%,#8d2e7e 100%)!important}
+:root[data-palette="pinknight"] .showcase-card .sc-icon{background:linear-gradient(135deg,rgba(255,92,190,.68),rgba(168,126,255,.44))!important}
+:root[data-palette="pinknight"] .hero:before{background:linear-gradient(135deg,var(--primary),var(--accent-good))!important}
+:root[data-palette="pinknight"] .hero:after{background:linear-gradient(135deg,var(--accent-good),var(--primary))!important}
+:root[data-palette="pinknight"] .quick-card .qicon{background:linear-gradient(135deg,var(--primary-soft),rgba(165,138,255,.16))!important}
+:root[data-palette="pinknight"] .progress>span,.progress span,.bar{background:linear-gradient(90deg,var(--primary),var(--accent-good))!important}
+:root[data-palette="pinknight"] .page-loader-orbit{background:radial-gradient(circle,var(--surface) 43%,transparent 44%),conic-gradient(from 0deg,var(--accent),var(--accent-good),var(--primary),var(--accent))!important}
+:root[data-palette="pinknight"] .page-loader-track span{background:linear-gradient(90deg,var(--accent-good),var(--primary),var(--accent))!important}
+:root[data-palette="pinknight"] .page-loader-dots i{background:var(--accent)!important}
+@media(max-width:900px){.palette-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+
 </head>
 <body>
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
@@ -833,7 +873,8 @@ function nav(p){page=p;document.querySelector('.profile-menu')?.classList.remove
 let loginOtp=""; let otpExpires=Date.now()+90000;
 function refreshOtp(){loginOtp=String(Math.floor(100000+Math.random()*900000));otpExpires=Date.now()+90000;const c=document.getElementById('otpCode'),m=document.getElementById('otpMeta');if(c)c.textContent=loginOtp;if(m)updateOtpTimer(m)}
 function updateOtpTimer(el){clearInterval(window.__otp);const tick=()=>{const s=Math.max(0,Math.ceil((otpExpires-Date.now())/1000));el.textContent=s?('اعتبار کد: '+s+' ثانیه'):'کد منقضی شد — کد جدید بسازید';if(s===0)clearInterval(window.__otp)};tick();window.__otp=setInterval(tick,1000)}
-function login(){const u=document.getElementById('lu')?.value.trim(),p=document.getElementById('lp')?.value,code=document.getElementById('loginOtp')?.value.trim(),remember=!!document.getElementById('rememberMe')?.checked,found=db.users.find(x=>x.u===u&&x.p===p);if(Date.now()>otpExpires){document.getElementById('loginError').textContent='کد امنیتی منقضی شده؛ یک کد جدید بسازید.';return}if(code!==loginOtp){document.getElementById('loginError').textContent='کد امنیتی صحیح نیست.';document.getElementById('loginOtp').focus();return}if(!found){document.getElementById('loginError').textContent='نام کاربری یا رمز عبور صحیح نیست.';document.getElementById('lp').focus();return}session={id:found.id};if(remember){localStorage.setItem(SESSION,JSON.stringify(session));sessionStorage.removeItem(SESSION)}else{sessionStorage.setItem(SESSION,JSON.stringify(session));localStorage.removeItem(SESSION)}page='dashboard';if(typeof window.showLoginLoader==='function'){window.showLoginLoader();setTimeout(function(){render();window.hideLoginLoader?.()},1000)}else{render()}}
+function login(){const u=document.getElementById('lu')?.value.trim(),p=document.getElementById('lp')?.value,code=document.getElementById('loginOtp')?.value.trim(),remember=!!document.getElementById('rememberMe')?.checked,found=db.users.find(x=>x.u===u&&x.p===p);if(Date.now()>otpExpires){document.getElementById('loginError').textContent='کد امنیتی منقضی شده؛ یک کد جدید بسازید.';return}if(code!==loginOtp){document.getElementById('loginError').textContent='کد امنیتی صحیح نیست.';document.getElementById('loginOtp').focus();return}if(!found){document.getElementById('loginError').textContent='نام کاربری یا رمز عبور صحیح نیست.';document.getElementById('lp').focus();return}session={id:found.id};storeBrowserCredential(u,p);if(remember){localStorage.setItem(SESSION,JSON.stringify(session));sessionStorage.removeItem(SESSION)}else{sessionStorage.setItem(SESSION,JSON.stringify(session));localStorage.removeItem(SESSION)}page='dashboard';if(typeof window.showLoginLoader==='function'){window.showLoginLoader();setTimeout(function(){render();window.hideLoginLoader?.()},1000)}else{render()}}
+async function storeBrowserCredential(username,password){try{if(window.isSecureContext&&window.PasswordCredential&&navigator.credentials?.store){const credential=new PasswordCredential({id:username,password:password,name:username});await navigator.credentials.store(credential)}}catch(err){/* Browser password manager may choose not to store */}}
 function logout(){session=null;localStorage.removeItem(SESSION);sessionStorage.removeItem(SESSION);page='dashboard';render()}
 function openProfileMenu(){document.querySelector('.profile-menu')?.classList.toggle('open')}
 function closeModal(){const m=document.getElementById('modal');if(m){m.classList.remove('show');m.innerHTML=''}modalFocus?.focus?.()}
@@ -846,7 +887,7 @@ function openUser(){openModal('ایجاد کاربر جدید','<form class="for
 function createUser(e){e.preventDefault();const id=Math.max(...db.users.map(x=>x.id))+1,n=document.getElementById('nn').value;db.users.push({id,u:document.getElementById('nu').value,p:document.getElementById('np').value,name:n,role:document.getElementById('nr').value,unit:document.getElementById('nd').value,employeeId:'NEW-'+id,phone:'-',email:'-',manager:'-',location:'-',join:'—',avatar:n.trim()[0]||'ک'});save();closeModal();render();setTimeout(()=>toast('کاربر جدید ایجاد شد'),40)}
 function loginView(){
   if(!loginOtp || Date.now()>otpExpires) refreshOtp();
-  return '<div class="login"><section class="login-showcase"><div class="login-showcase-inner"><span class="eyebrow">● نسخه ۴ • Corporate Flow</span><h1>یک تجربه حرفه‌ای برای تمام امور شرکت</h1><p>رابطی مدرن با تمرکز روی وضوح عملیات، دسترسی سریع و نمایش سازمانی اطلاعات؛ با تجربه مایع، تم‌های قابل انتخاب و تعاملات سریع و کاربردی.</p><div class="showcase-grid"><div class="showcase-card"><div class="sc-icon">'+svg.inbox+'</div><b>کارتابل هوشمند</b><span>کارهای ارجاع‌شده را در یک نمای متمرکز ببینید.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.process+'</div><b>فرآیندهای سازمانی</b><span>ثبت تا تأیید و پیگیری، مرحله‌به‌مرحله.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.people+'</div><b>پروفایل کامل</b><span>اطلاعات شغلی، سازمانی و فعالیت‌های اخیر.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.shield+'</div><b>ورود امن</b><span>ورود آزمایشی با کد امنیتی یک‌بارمصرف.</span></div></div></div></section><section class="login-pane"><div class="login-card"><div class="brand-mark">ش</div><h2>ورود به سامانه</h2><div class="muted" style="font-size:11px">سامانه جامع مدیریت فرآیندهای شرکت</div><form class="form" onsubmit="event.preventDefault();login()"><div class="field"><label for="lu">نام کاربری</label><input id="lu" class="control" autocomplete="username" placeholder="نام کاربری را وارد کنید" required></div><div class="field"><label for="lp">رمز عبور</label><input id="lp" class="control" type="password" autocomplete="current-password" placeholder="رمز عبور" required></div><div class="otp-box"><div class="otp-line"><div class="otp-code" id="otpCode">' + (loginOtp||'------') + '</div><button class="otp-refresh" type="button" onclick="refreshOtp()" aria-label="تولید کد امنیتی جدید" title="تولید کد جدید">'+svg.refresh+'</button></div><div class="otp-meta" id="otpMeta"></div><input id="loginOtp" class="control" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="کد امنیتی ۶ رقمی" required></div><div class="login-row"><label><input id="rememberMe" type="checkbox" aria-label="مرا به خاطر بسپار"> مرا به خاطر بسپار</label><button class="mini-link" type="button" onclick="refreshOtp()">کد جدید</button></div><button class="btn btn-primary btn-block" style="margin-top:12px" type="submit">ورود امن به سامانه '+svg.arrow+'</button><div id="loginError" class="login-error"></div></form><div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div><div class="security-note">کد نمایش‌داده‌شده مخصوص دموست؛ در نسخه عملیاتی OTP باید سمت سرور تولید و ارسال شود.</div></div></section></div>'}
+  return '<div class="login"><section class="login-showcase"><div class="login-showcase-inner"><span class="eyebrow">● نسخه ۴ • Corporate Flow</span><h1>یک تجربه حرفه‌ای برای تمام امور شرکت</h1><p>رابطی مدرن با تمرکز روی وضوح عملیات، دسترسی سریع و نمایش سازمانی اطلاعات؛ با تجربه مایع، تم‌های قابل انتخاب و تعاملات سریع و کاربردی.</p><div class="showcase-grid"><div class="showcase-card"><div class="sc-icon">'+svg.inbox+'</div><b>کارتابل هوشمند</b><span>کارهای ارجاع‌شده را در یک نمای متمرکز ببینید.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.process+'</div><b>فرآیندهای سازمانی</b><span>ثبت تا تأیید و پیگیری، مرحله‌به‌مرحله.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.people+'</div><b>پروفایل کامل</b><span>اطلاعات شغلی، سازمانی و فعالیت‌های اخیر.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.shield+'</div><b>ورود امن</b><span>ورود آزمایشی با کد امنیتی یک‌بارمصرف.</span></div></div></div></section><section class="login-pane"><div class="login-card"><div class="brand-mark">ش</div><h2>ورود به سامانه</h2><div class="muted" style="font-size:11px">سامانه جامع مدیریت فرآیندهای شرکت</div><form id="loginForm" name="loginForm" class="form" method="post" action="/login" autocomplete="on" onsubmit="event.preventDefault();login()"><div class="field"><label for="lu">نام کاربری</label><input id="lu" name="username" class="control" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="نام کاربری را وارد کنید" required></div><div class="field"><label for="lp">رمز عبور</label><input id="lp" name="password" class="control" type="password" autocomplete="current-password" placeholder="رمز عبور" required></div><div class="otp-box"><div class="otp-line"><div class="otp-code" id="otpCode">' + (loginOtp||'------') + '</div><button class="otp-refresh" type="button" onclick="refreshOtp()" aria-label="تولید کد امنیتی جدید" title="تولید کد جدید">'+svg.refresh+'</button></div><div class="otp-meta" id="otpMeta"></div><input id="loginOtp" class="control" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="کد امنیتی ۶ رقمی" required></div><div class="login-row"><label><input id="rememberMe" type="checkbox" aria-label="مرا به خاطر بسپار"> مرا به خاطر بسپار</label><button class="mini-link" type="button" onclick="refreshOtp()">کد جدید</button></div><button class="btn btn-primary btn-block" style="margin-top:12px" type="submit">ورود امن به سامانه '+svg.arrow+'</button><div id="loginError" class="login-error"></div></form><div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div><div class="security-note">کد نمایش‌داده‌شده مخصوص دموست؛ در نسخه عملیاتی OTP باید سمت سرور تولید و ارسال شود. مرورگر می‌تواند نام کاربری و رمز عبور را در Google Password Manager ذخیره و برای ورود بعدی پیشنهاد کند.</div></div></section></div>'}
 refreshOtp();
 function sidebar(){const items=[['dashboard',svg.home,'داشبورد'],['inbox',svg.inbox,'کارتابل من'],['requests',svg.req,'درخواست‌ها'],...(manager()?[['approvals',svg.check,'تأییدها'],['people',svg.people,'پرسنل'],['processes',svg.process,'فرآیندها'],['reports',svg.chart,'گزارشات']]:[]),['docs',svg.doc,'اسناد و فرم‌ها'],['support',svg.support,'راهنما و پشتیبانی'],['notifications',svg.bell,'اعلان‌ها'],['profile',svg.user,'حساب من'],['settings',svg.settings,'تنظیمات']];return '<aside class="sidebar"><div class="brand"><div class="brand-mark">ش</div><div class="brand-text"><strong>سامانه جامع سازمانی</strong><small>پرتال داخلی شرکت</small></div></div><nav class="nav"><div class="nav-title">منوی اصلی</div>'+items.map(i=>'<button class="nav-btn '+(page===i[0]?'active':'')+'" onclick="nav(\''+i[0]+'\')" aria-label="'+i[2]+'"><span class="nav-icon">'+i[1]+'</span><span>'+i[2]+'</span></button>').join('')+'</nav><div class="side-bottom"><div class="user-mini"><div class="avatar">'+esc(current().avatar)+'</div><div class="mini-info"><strong>'+esc(current().name)+'</strong><span>'+esc(current().role)+'</span></div></div><button class="logout" onclick="logout()">'+svg.logout+' خروج از حساب</button></div></aside>'}
 function topbar(){const c=current();const t=theme();return '<div class="topbar"><div class="title"><h1>'+pageTitle().h+'</h1><p>'+pageTitle().p+'</p></div><div class="top-actions"><div class="search"><span class="magnify">'+svg.search+'</span><input class="control" onkeydown="if(event.key===\'Enter\')toast(\'جستجو برای «\'+this.value+\'» آماده شد\')" placeholder="جستجو در سامانه..." aria-label="جستجوی سامانه"></div><button class="icon-btn" onclick="nav(\'notifications\')" aria-label="اعلان‌ها" title="اعلان‌ها">'+svg.bell+'<span class="notif-dot"></span></button><button class="icon-btn" onclick="toggleTheme()" aria-label="تغییر حالت نمایش" title="'+(t==='dark'?'حالت روشن':'حالت تیره')+'">'+(t==='dark'?svg.sun:svg.moon)+'</button><button class="profile-trigger" onclick="openProfileMenu()" aria-expanded="false"><span class="ptxt"><strong>'+esc(c.name)+'</strong><span>'+esc(c.role)+'</span></span><span class="avatar">'+esc(c.avatar)+'</span><span class="chev">⌄</span></button></div></div><div class="profile-menu" role="menu"><div class="pm-head"><strong>'+esc(c.name)+'</strong><span>'+esc(c.unit)+'</span></div><button class="pm-item" onclick="nav(\'profile\')">'+svg.user+' حساب من</button><button class="pm-item" onclick="nav(\'settings\')">'+svg.settings+' تنظیمات</button><button class="pm-item pm-danger" onclick="logout()">'+svg.logout+' خروج</button></div>'}
@@ -955,7 +996,7 @@ render();
   window.settings=function(){
     const t=theme(),pal=settingsGet('companyPalette','ocean'),font=settingsGet('companyFont','vazir'),density=settingsGet('companyDensity','comfortable');
     const choice=(id,title,sub,sw)=>'<button class="palette-choice '+(pal===id?'active':'')+'" onclick="setPalette(\''+id+'\')"><div class="palette-swatch '+sw+'"></div><strong>'+title+'</strong><small>'+sub+'</small></button>';
-    return '<section class="card panel"><div class="panel-head"><div><h3>ظاهر و تجربه کاربری</h3><div class="muted" style="font-size:8px;margin-top:3px">تنظیمات در این مرورگر ذخیره می‌شوند.</div></div><span class="badge gray">نسخه ۹</span></div><div class="field"><label>تم رنگی</label><div class="palette-grid">'+choice('ocean','اقیانوسی','آبی + سبز فسفری','sw-ocean')+choice('violet','بنفش-فیروزه‌ای','بنفش + فیروزه‌ای','sw-violet')+choice('emerald','زمردی','سبز + لاجوردی روشن','sw-emerald')+choice('sunset','غروب','نارنجی + کهربایی','sw-sunset')+'</div></div><div class="formgrid"><div class="field"><label>فونت رابط</label><div class="font-grid">'+
+    return '<section class="card panel"><div class="panel-head"><div><h3>ظاهر و تجربه کاربری</h3><div class="muted" style="font-size:8px;margin-top:3px">تنظیمات در این مرورگر ذخیره می‌شوند.</div></div><span class="badge gray">نسخه ۹</span></div><div class="field"><label>تم رنگی</label><div class="palette-grid">'+choice('ocean','اقیانوسی','آبی + سبز فسفری','sw-ocean')+choice('violet','بنفش-فیروزه‌ای','بنفش + فیروزه‌ای','sw-violet')+choice('emerald','زمردی','سبز + لاجوردی روشن','sw-emerald')+choice('sunset','غروب','نارنجی + کهربایی','sw-sunset')+choice('pinknight','صورتی شب','صورتی نئون + بنفش شب','sw-pinknight')+'</div></div><div class="formgrid"><div class="field"><label>فونت رابط</label><div class="font-grid">'+
 '<button class="font-choice '+(font==='vazir'?'active':'')+'" onclick="setFont(\'vazir\')"><div class="font-sample font-vazir">سامانه جامع سازمانی</div><strong>Vazirmatn</strong><small>خوانا و مناسب رابط فارسی</small></button>'+
 '<button class="font-choice '+(font==='noto'?'active':'')+'" onclick="setFont(\'noto\')"><div class="font-sample font-noto">سامانه جامع سازمانی</div><strong>Noto Sans Arabic</strong><small>ظاهر ساده و مدرن</small></button>'+
 '<button class="font-choice '+(font==='tajawal'?'active':'')+'" onclick="setFont(\'tajawal\')"><div class="font-sample font-tajawal">سامانه جامع سازمانی</div><strong>Tajawal</strong><small>فرم نرم و نمای متفاوت</small></button>'+
@@ -966,13 +1007,29 @@ render();
   window.setDensity=function(v){localStorage.setItem('companyDensity',v);applyPrefs();render();setTimeout(()=>toast('تراکم رابط تغییر کرد'),40)};
   window.toggleMotionPref=function(btn){const v=settingsGet('companyReduceMotion','0')==='1'?'0':'1';localStorage.setItem('companyReduceMotion',v);document.documentElement.dataset.motion=v==='1'?'reduced':'full';btn.textContent=v==='1'?'حرکت کم‌حجم فعال است':'انیمیشن استاندارد فعال است';toast(v==='1'?'حرکت‌های اضافی کم شد':'انیمیشن استاندارد فعال شد')};
   window.content=function(){if(page==='attendance') return attendance();return baseContent()};
+  const COMMAND_HISTORY_KEY='companyCommandHistory';
+  const commandCatalog=[['dashboard','داشبورد','نمای کلی'],['inbox','کارتابل من','کارهای در انتظار اقدام'],['requests','درخواست‌ها','ثبت و پیگیری'],['attendance','تردد و کارکرد','حضور و ساعت‌زنی'],['processes','فرآیندها','گردش‌کارها'],['docs','اسناد و فرم‌ها','فرم‌ها و مستندات'],['support','راهنما و پشتیبانی','ثبت و پیگیری تیکت'],['profile','حساب من','پروفایل سازمانی'],['settings','تنظیمات','تم و فونت'],['__request__','ثبت درخواست جدید','اقدام سریع']];
+  const readCommandHistory=()=>{try{const v=JSON.parse(localStorage.getItem(COMMAND_HISTORY_KEY)||'[]');return Array.isArray(v)?v.filter(Boolean).slice(0,6):[]}catch(e){return []}};
+  const writeCommandHistory=(arr)=>localStorage.setItem(COMMAND_HISTORY_KEY,JSON.stringify(arr.slice(0,6)));
+  window.rememberCommand=function(id){const item=commandCatalog.find(x=>x[0]===id);if(!item)return;writeCommandHistory([id,...readCommandHistory().filter(x=>x!==id)]);};
+  window.clearCommandHistory=function(){localStorage.removeItem(COMMAND_HISTORY_KEY);renderCommandSuggestions();toast('تاریخچه فرمان‌ها پاک شد')};
+  window.runCommand=function(id){rememberCommand(id);closeCommandPalette();if(id==='__request__'){openRequest();return;}nav(id)};
+  function renderCommandSuggestions(){
+    const box=document.getElementById('commandSuggestions');
+    if(!box)return;
+    const q=(document.getElementById('commandInput')?.value||'').trim().toLowerCase();
+    const history=readCommandHistory();
+    const source=history.length?history:commandCatalog.slice(0,5).map(x=>x[0]);
+    const items=source.map(id=>commandCatalog.find(x=>x[0]===id)).filter(Boolean).filter(x=>!q||x[1].toLowerCase().includes(q)||x[2].toLowerCase().includes(q));
+    box.innerHTML=(items.length?'<div class="command-suggest-head"><span>'+ (history.length?'آخرین فرمان‌ها':'پیشنهادهای سریع') +'</span>'+(history.length?'<button type="button" class="command-history-clear" onclick="clearCommandHistory()">پاک کردن</button>':'')+'</div><div class="command-suggest-scroll">'+items.map(x=>'<button type="button" class="command-suggest" onclick="runCommand(\''+x[0]+'\')"><strong>'+x[1]+'</strong><small>'+x[2]+'</small></button>').join('')+'</div>':'');
+  }
   window.openCommandPalette=function(){
     let el=document.getElementById('commandPalette');
-    if(!el){el=document.createElement('div');el.id='commandPalette';el.className='command-backdrop';el.innerHTML='<div class="command-box" role="dialog" aria-modal="true" aria-label="فرمان‌های سریع"><div class="command-search"><input id="commandInput" class="control" placeholder="جستجوی صفحه، فرآیند یا اقدام..." oninput="filterCommands()" autocomplete="off"></div><div id="commandList" class="command-list"></div></div>';document.body.appendChild(el);el.addEventListener('click',e=>{if(e.target===el)closeCommandPalette()});}
-    el.classList.add('show');renderCommands();setTimeout(()=>document.getElementById('commandInput')?.focus(),30);
+    if(!el){el=document.createElement('div');el.id='commandPalette';el.className='command-backdrop';el.innerHTML='<div class="command-box" role="dialog" aria-modal="true" aria-label="فرمان‌های سریع"><div class="command-search"><input id="commandInput" class="control" placeholder="جستجوی صفحه، فرآیند یا اقدام..." oninput="filterCommands()" autocomplete="off"></div><div id="commandSuggestions" class="command-suggestions" aria-label="پیشنهادهای فرمان"></div><div id="commandList" class="command-list"></div></div>';document.body.appendChild(el);el.addEventListener('click',e=>{if(e.target===el)closeCommandPalette()});}
+    el.classList.add('show');renderCommands();renderCommandSuggestions();setTimeout(()=>document.getElementById('commandInput')?.focus(),30);
   };
   window.closeCommandPalette=function(){document.getElementById('commandPalette')?.classList.remove('show')};
-  window.renderCommands=function(){const list=[['dashboard','داشبورد','نمای کلی'],['inbox','کارتابل من','کارهای در انتظار اقدام'],['requests','درخواست‌ها','ثبت و پیگیری'],['attendance','تردد و کارکرد','حضور و ساعت‌زنی'],['processes','فرآیندها','گردش‌کارها'],['docs','اسناد و فرم‌ها','فرم‌ها و مستندات'],['support','راهنما و پشتیبانی','ثبت و پیگیری تیکت'],['profile','حساب من','پروفایل سازمانی'],['settings','تنظیمات','تم و فونت'],['__request__','ثبت درخواست جدید','اقدام سریع']];const q=(document.getElementById('commandInput')?.value||'').trim().toLowerCase();const html=list.filter(x=>!q||x[1].toLowerCase().includes(q)||x[2].toLowerCase().includes(q)).map(x=>'<button class="command-item" onclick="'+(x[0]==='__request__'?'closeCommandPalette();openRequest()':'closeCommandPalette();nav(\''+x[0]+'\')')+'"><span>'+x[1]+'</span><small>'+x[2]+'</small></button>').join('')||'<div class="empty">موردی پیدا نشد.</div>';document.getElementById('commandList').innerHTML=html};
+  window.renderCommands=function(){const q=(document.getElementById('commandInput')?.value||'').trim().toLowerCase();const html=commandCatalog.filter(x=>!q||x[1].toLowerCase().includes(q)||x[2].toLowerCase().includes(q)).map(x=>'<button class="command-item" onclick="runCommand(\''+x[0]+'\')"><span>'+x[1]+'</span><small>'+x[2]+'</small></button>').join('')||'<div class="empty">موردی پیدا نشد.</div>';document.getElementById('commandList').innerHTML=html;renderCommandSuggestions()};
   window.filterCommands=renderCommands;
   const origRender=render;
   window.render=function(){applyPrefs();origRender();requestAnimationFrame(()=>{applyPrefs();document.querySelector('.content')?.classList.add('page-enter');document.documentElement.dataset.motion=settingsGet('companyReduceMotion','0')==='1'?'reduced':'full'})};
@@ -999,7 +1056,7 @@ render();
       const meta=document.querySelector('meta[name="theme-color"]');
       if(meta){
         const palette=root.dataset.palette, dark=root.dataset.theme==='dark';
-        const map={ocean:['#1977ff','#6aaaff'],violet:['#7657ff','#9a8cff'],emerald:['#0f9b7a','#55d7bb'],sunset:['#ff7a45','#ff9b72']};
+        const map={ocean:['#1977ff','#6aaaff'],violet:['#7657ff','#9a8cff'],emerald:['#0f9b7a','#55d7bb'],sunset:['#ff7a45','#ff9b72'],pinknight:['#ff4fb8','#ff8bd4']};
         meta.setAttribute('content',(map[palette]||map.ocean)[dark?1:0]);
       }
     }catch(e){}
@@ -1021,7 +1078,7 @@ render();
     return html;
   };
   window.setPalette=function(v){
-    const allowed=['ocean','violet','emerald','sunset'];
+    const allowed=['ocean','violet','emerald','sunset','pinknight'];
     if(!allowed.includes(v))v='ocean';
     localStorage.setItem('companyPalette',v);__v5ApplyPrefs();render();setTimeout(()=>toast('تم رنگی اعمال شد'),40);
   };
@@ -1120,6 +1177,7 @@ render();
 @media(prefers-reduced-motion:reduce){.skeleton:after{animation:none}.notif-panel.show,.global-search-backdrop.show{animation:none}}
 </style>
 
+<!-- V6 UX suite preserved and re-layered on V12 -->
 <script id="v6-ux-suite">
 (function(){
   const oldContent = window.content;
@@ -1588,5 +1646,570 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
   };
 })();
 </script>
+
+<style id="v17-lighting-dim-pass">
+/* V18: reduce both ambient and click lightning glow by 25% while preserving geometry. */
+</style>
+<style id="v14-lightning-touch-style">
+#lightningTouchCanvas{
+  position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none;
+}
+/* Depth effect: the app sits above the lightning so the UI naturally occludes it. */
+#app{position:relative;z-index:1}
+.sidebar,.main,.topbar,.content,.card,.panel,.hero,.profile-menu{position:relative}
+.sidebar{z-index:2}
+.main{z-index:1}
+.profile-menu,.modal-backdrop,.toast,.page-loader{z-index:60}
+@media (prefers-reduced-motion:reduce){
+  #lightningTouchCanvas{display:none}
+}
+</style>
+<canvas id="lightningTouchCanvas" aria-hidden="true"></canvas>
+<script id="v14-lightning-touch-script">
+(function(){
+  'use strict';
+  const canvas=document.getElementById('lightningTouchCanvas');
+  if(!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const ctx=canvas.getContext('2d');
+  if(!ctx) return;
+
+  let dpr=1,w=0,h=0;
+  const active=[];
+  const net=[];
+  let lastSpawn=0;
+  let pointer={x:-9999,y:-9999,active:false,pressure:0};
+  let targetPointer={x:-9999,y:-9999,active:false,pressure:0};
+  let lastPointerBurst={time:0,x:-9999,y:-9999};
+  const MAX_ACTIVE=4;
+  const duration=720;
+
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    w=window.innerWidth; h=window.innerHeight;
+    canvas.width=Math.max(1,Math.floor(w*dpr));
+    canvas.height=Math.max(1,Math.floor(h*dpr));
+    canvas.style.width=w+'px'; canvas.style.height=h+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    buildAmbientNetwork();
+  }
+  window.addEventListener('resize',resize,{passive:true});
+
+  function cssVar(name,fallback){
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+  }
+  function rand(a,b){return a+Math.random()*(b-a)}
+  function clamp(n,a,b){return Math.max(a,Math.min(b,n))}
+  function easeOut(t){return 1-Math.pow(1-t,3)}
+
+  function uiOccluderAt(x,y){
+    const el=document.elementFromPoint(x,y);
+    if(!el || el===canvas) return null;
+    return el.closest('.sidebar,.main,.card,.panel,.hero,.table-wrap,.profile-cover,.profile-main,.quick-card,.kpi,.detail,.support-hero,.support-grid');
+  }
+
+  // Controls should keep their normal click behavior. Structural UI containers may still
+  // trigger a burst so the original click interaction is not lost when the web is underneath them.
+  function isLightningTarget(target){
+    if(!document.querySelector('.app')) return false;
+    if(!target) return true;
+    if(target.closest('.page-loader,.modal-backdrop,button,a,input,select,textarea,[role="button"],[contenteditable="true"],.profile-trigger,.profile-menu,.control,.sm,.icon-btn,.otp-refresh')) return false;
+    return !!target.closest('#app,.app,.sidebar,.main,.content,.hero,.card,.panel,.table-wrap,.quick-card,.kpi,.detail,.profile-cover,.profile-main,.support-hero,.support-grid');
+  }
+
+  function makeBranch(cx,cy,angle,len,depth){
+    const perp={x:-Math.sin(angle),y:Math.cos(angle)};
+    const points=[{x:cx,y:cy}];
+    let x=cx,y=cy;
+    const steps=depth?rand(5,7):rand(6,10);
+    for(let i=1;i<=steps;i++){
+      const p=i/steps;
+      const stepLen=len/steps;
+      x += Math.cos(angle + rand(-0.13,0.13))*stepLen;
+      y += Math.sin(angle + rand(-0.13,0.13))*stepLen;
+      const jitter=Math.sin(p*Math.PI)*rand(-1,1)*(depth?8:13);
+      x += perp.x*jitter; y += perp.y*jitter;
+      points.push({x,y});
+    }
+    return points;
+  }
+
+  function createBurst(x,y){
+    const now=performance.now();
+    if(now-lastSpawn<45 && active.length>=MAX_ACTIVE) return;
+    lastSpawn=now;
+    const roots=[];
+    const rootCount=Math.floor(rand(8,13));
+    const baseRadius=Math.min(w,h);
+    for(let i=0;i<rootCount;i++){
+      const angle=(Math.PI*2/rootCount)*i+rand(-0.22,0.22);
+      const len=baseRadius*rand(.10,.19);
+      const points=makeBranch(x,y,angle,len,0);
+      const children=[];
+      const childCount=Math.random()<.8?Math.floor(rand(1,3)):0;
+      for(let c=0;c<childCount;c++){
+        const idx=Math.floor(rand(2,points.length-2));
+        const p=points[idx];
+        const dir=(Math.atan2(points[idx+1].y-p.y,points[idx+1].x-p.x)) + (Math.random()<.5?-1:1)*rand(.45,.95);
+        children.push({points:makeBranch(p.x,p.y,dir,len*rand(.18,.34),1),start:idx});
+      }
+      roots.push({points,children});
+    }
+    const sparks=[];
+    roots.forEach(r=>r.points.slice(-2,-1).forEach(p=>{
+      if(Math.random()<.85) sparks.push({x:p.x,y:p.y,dx:rand(-.7,.7),dy:rand(-.7,.7),r:rand(.7,1.8)});
+    }));
+    const occluder=uiOccluderAt(x,y);
+    active.push({x,y,roots,sparks,start:now,occluder});
+    while(active.length>MAX_ACTIVE) active.shift();
+  }
+
+  function drawBranch(points,progress,width,alpha){
+    const total=points.length-1;
+    if(total<=0 || progress<=0) return;
+    const scaled=progress*total;
+    const full=Math.floor(scaled);
+    const frac=scaled-full;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x,points[0].y);
+    for(let i=1;i<=full && i<points.length;i++) ctx.lineTo(points[i].x,points[i].y);
+    if(full<total){
+      const a=points[full],b=points[full+1];
+      ctx.lineTo(a.x+(b.x-a.x)*frac,a.y+(b.y-a.y)*frac);
+    }
+    ctx.lineWidth=width;
+    ctx.globalAlpha=alpha;
+    ctx.stroke();
+  }
+
+  function buildAmbientNetwork(){
+    net.length=0;
+    const cols=Math.max(7,Math.min(12,Math.round(w/150)));
+    const rows=Math.max(5,Math.min(9,Math.round(h/145)));
+    const dx=cols>1?w/(cols-1):w, dy=rows>1?h/(rows-1):h;
+    const pts=[];
+    for(let y0=0;y0<rows;y0++){
+      for(let x0=0;x0<cols;x0++){
+        const edge=x0===0||x0===cols-1||y0===0||y0===rows-1;
+        pts.push({
+          x:x0*dx+rand(-dx*.11,dx*.11),
+          y:y0*dy+rand(-dy*.11,dy*.11),
+          phase:rand(0,Math.PI*2),
+          weight:edge?rand(.72,1):rand(.55,.9)
+        });
+      }
+    }
+    const idx=(x0,y0)=>y0*cols+x0;
+    for(let y0=0;y0<rows;y0++){
+      for(let x0=0;x0<cols;x0++){
+        const p=pts[idx(x0,y0)];
+        if(x0<cols-1) net.push(makeAmbientLine(p,pts[idx(x0+1,y0)]));
+        if(y0<rows-1) net.push(makeAmbientLine(p,pts[idx(x0,y0+1)]));
+        if(x0<cols-1&&y0<rows-1&&Math.random()<.55) net.push(makeAmbientLine(p,pts[idx(x0+1,y0+1)]));
+        if(x0>0&&y0<rows-1&&Math.random()<.35) net.push(makeAmbientLine(p,pts[idx(x0-1,y0+1)]));
+      }
+    }
+  }
+
+  function makeAmbientLine(a,b){
+    const vx=b.x-a.x, vy=b.y-a.y, len=Math.hypot(vx,vy)||1;
+    const nx=-vy/len, ny=vx/len;
+    const steps=Math.max(4,Math.min(8,Math.round(len/95)));
+    const points=[{x:a.x,y:a.y}];
+    for(let i=1;i<steps;i++){
+      const t=i/steps;
+      const jitter=Math.sin(t*Math.PI)*rand(-10,10);
+      points.push({x:a.x+vx*t+nx*jitter,y:a.y+vy*t+ny*jitter});
+    }
+    points.push({x:b.x,y:b.y});
+    return {points,phase:rand(0,Math.PI*2),speed:rand(.55,1.15),alpha:rand(.10,.18)};
+  }
+
+  function deformPoint(p,now,phase){
+    if(!pointer.active) return {x:p.x,y:p.y,boost:0};
+    const dx=p.x-pointer.x,dy=p.y-pointer.y,dist=Math.hypot(dx,dy)||1;
+    const radius=Math.min(w,h)*.27;
+    if(dist>radius) return {x:p.x,y:p.y,boost:0};
+    const q=1-dist/radius;
+    const push=q*q*(18+42*pointer.pressure);
+    const curl=q*q*14;
+    const nx=dx/dist,ny=dy/dist,tx=-ny,ty=nx;
+    return {
+      x:p.x+nx*push+tx*Math.sin(now*.004+(phase||0))*curl,
+      y:p.y+ny*push+ty*Math.sin(now*.004+(phase||0))*curl,
+      boost:q
+    };
+  }
+
+  function drawAmbient(now){
+    if(!net.length) return;
+    const primary=cssVar('--accent','#1977ff');
+    const good=cssVar('--accent-good','#b9ff2d');
+    const bg=cssVar('--bg','#f4f7fb');
+    const dark=document.documentElement.dataset.theme==='dark'||bg.startsWith('#0');
+    ctx.save();
+    ctx.globalCompositeOperation='screen';
+    const pulse=.88+.12*Math.sin(now*.0017);
+    net.forEach(line=>{
+      const path=[]; let boost=0;
+      line.points.forEach(p=>{const d=deformPoint(p,now,line.phase);path.push(d);boost=Math.max(boost,d.boost)});
+      ctx.beginPath();ctx.moveTo(path[0].x,path[0].y);for(let i=1;i<path.length;i++)ctx.lineTo(path[i].x,path[i].y);
+      const gradient=ctx.createLinearGradient(path[0].x,path[0].y,path[path.length-1].x,path[path.length-1].y);
+      gradient.addColorStop(0,good);gradient.addColorStop(.5,primary);gradient.addColorStop(1,good);
+      ctx.strokeStyle=gradient;
+      ctx.lineWidth=.78+boost*1.18;
+      ctx.globalAlpha=(dark?.05625:.02625)*(1+boost*2.4)*pulse*line.weight;
+      ctx.shadowColor=primary;
+      ctx.shadowBlur=boost>0?.5+boost*2.5:0;
+      ctx.stroke();
+      if(boost>.22){
+        const idx=1+Math.floor((path.length-2)*(0.35+0.3*Math.abs(Math.sin(now*.002+line.phase))));
+        const sp=path[Math.min(path.length-2,idx)];
+        ctx.fillStyle=good;ctx.globalAlpha=(dark?.075:.03375)*boost;
+        ctx.beginPath();ctx.arc(sp.x,sp.y,.7+boost*1.7,0,Math.PI*2);ctx.fill();
+      }
+    });
+    if(pointer.active){
+      const r=Math.min(w,h)*.17*(.72+pointer.pressure*.35);
+      const g=ctx.createRadialGradient(pointer.x,pointer.y,0,pointer.x,pointer.y,r);
+      g.addColorStop(0,good);g.addColorStop(.07,primary);g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.globalAlpha=dark?.024:.009;ctx.beginPath();ctx.arc(pointer.x,pointer.y,r,0,Math.PI*2);ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function draw(now){
+    ctx.clearRect(0,0,w,h);
+    pointer.x += (targetPointer.x-pointer.x)*.18;
+    pointer.y += (targetPointer.y-pointer.y)*.18;
+    pointer.pressure += (targetPointer.pressure-pointer.pressure)*.18;
+    pointer.active=targetPointer.active;
+    drawAmbient(now);
+
+    const primary=cssVar('--accent','#1977ff');
+    const good=cssVar('--accent-good','#b9ff2d');
+    const bg=cssVar('--bg','#f4f7fb');
+    const isDark=document.documentElement.dataset.theme==='dark'||bg.startsWith('#0');
+    for(let i=active.length-1;i>=0;i--) if(now-active[i].start>=duration+70) active.splice(i,1);
+
+    active.forEach(burst=>{
+      const t=clamp((now-burst.start)/duration,0,1);
+      const appear=easeOut(clamp(t/.46,0,1));
+      const fade=1-clamp((t-.46)/.54,0,1);
+      const strength=(isDark?.735:.57)*fade;
+      ctx.save();ctx.globalCompositeOperation='screen';
+      const grad=ctx.createLinearGradient(burst.x-20,burst.y-20,burst.x+20,burst.y+20);
+      grad.addColorStop(0,good);grad.addColorStop(.52,primary);grad.addColorStop(1,good);
+      ctx.strokeStyle=grad;ctx.shadowColor=primary;ctx.shadowBlur=13.5;
+      burst.roots.forEach(root=>{
+        drawBranch(root.points,appear,1.55,strength);
+        root.children.forEach(ch=>drawBranch(ch.points,clamp((appear-.15)*1.28,0,1),1.08,strength*.78));
+      });
+      ctx.shadowBlur=5;ctx.fillStyle=good;ctx.globalAlpha=strength*.9;
+      ctx.beginPath();ctx.arc(burst.x,burst.y,3+5*(1-t),0,Math.PI*2);ctx.fill();
+      burst.sparks.forEach((sp,i)=>{
+        const pulse=.5+.5*Math.sin((now-burst.start)*.018+i*1.7);
+        ctx.globalAlpha=strength*pulse;
+        ctx.beginPath();ctx.arc(sp.x,sp.y,sp.r*(.8+pulse*.5),0,Math.PI*2);ctx.fill();
+      });
+      // A restrained edge glow lets a burst clicked on top of a card feel like it is underneath it.
+      if(burst.occluder){
+        const rect=burst.occluder.getBoundingClientRect();
+        if(rect.width>0&&rect.height>0){
+          const px=clamp((burst.x-rect.left)/rect.width,0,1),py=clamp((burst.y-rect.top)/rect.height,0,1);
+          const edge=Math.min(Math.min(px,1-px)*2,Math.min(py,1-py)*2);
+          if(edge<.42){
+            ctx.save();ctx.globalCompositeOperation='screen';ctx.globalAlpha=strength*(.135*(1-edge/.42));
+            ctx.strokeStyle=good;ctx.shadowColor=primary;ctx.shadowBlur=9;ctx.lineWidth=2;
+            const m=3;ctx.strokeRect(rect.left-m,rect.top-m,rect.width+2*m,rect.height+2*m);ctx.restore();
+          }
+        }
+      }
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  function updatePointer(e,pressure){
+    targetPointer.x=e.clientX;targetPointer.y=e.clientY;targetPointer.active=true;targetPointer.pressure=pressure;
+  }
+
+  function handleBurstEvent(e){
+    if(e.button!==undefined && e.button>0) return;
+    if(!isLightningTarget(e.target)) return;
+    const now=performance.now();
+    if(now-lastPointerBurst.time<350 && Math.hypot(e.clientX-lastPointerBurst.x,e.clientY-lastPointerBurst.y)<6) return;
+    lastPointerBurst={time:now,x:e.clientX,y:e.clientY};
+    updatePointer(e,.95);
+    createBurst(e.clientX,e.clientY);
+  }
+
+  resize();
+  requestAnimationFrame(draw);
+
+  document.addEventListener('pointermove',function(e){
+    if(e.pointerType==='mouse'||e.pointerType==='pen') updatePointer(e,clamp(e.pressure||.35,.15,1));
+  },{passive:true});
+  document.addEventListener('pointerdown',handleBurstEvent,{passive:true});
+  // Click fallback keeps the burst interaction reliable in browsers where pointer events are altered.
+  document.addEventListener('click',function(e){handleBurstEvent(e)},{passive:true});
+  document.addEventListener('pointerup',function(e){if(e.pointerType!=='touch') targetPointer.active=false;},{passive:true});
+  document.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse') targetPointer.active=false;},{passive:true});
+  document.addEventListener('touchmove',function(e){const t=e.touches[0];if(t) updatePointer(t,.55);},{passive:true});
+  document.addEventListener('touchend',function(){targetPointer.active=false;},{passive:true});
+})();
+</script>
+
+
+
+<style id="v19-accessibility-ui">
+/* V19 accessibility + usability layer. Intentionally separate so visual/effects layers stay intact. */
+:root{
+  --a11y-focus:#0b63f6;
+  --a11y-focus-dark:#9fc4ff;
+}
+:focus-visible{
+  outline:2px solid var(--focus)!important;
+  outline-offset:2px!important;
+}
+html[data-a11y-focus="1"] :focus-visible{
+  outline:3px solid var(--a11y-focus)!important;
+  outline-offset:3px!important;
+  box-shadow:0 0 0 2px var(--surface),0 0 0 5px color-mix(in srgb,var(--a11y-focus) 48%,transparent)!important;
+}
+button,.btn,.nav-btn,.icon-btn,.profile-trigger,.quick-card,.request-shortcut,.sm,.palette-choice,.font-choice,.command-item{
+  -webkit-tap-highlight-color:transparent;
+}
+.btn,.icon-btn,.nav-btn,.profile-trigger,.sm{min-height:44px}
+.control{min-height:48px}
+.nav-btn{padding-top:10px;padding-bottom:10px}
+.topbar{
+  position:sticky;top:0;z-index:25;
+  padding-top:8px;padding-bottom:8px;
+  background:color-mix(in srgb,var(--bg) 84%,transparent);
+  backdrop-filter:blur(14px) saturate(1.08);
+  -webkit-backdrop-filter:blur(14px) saturate(1.08);
+}
+.main>.content{padding-bottom:8px}
+.card.panel,.quick-card,.stat,.kpi,.detail,.faq-card,.support-callout,.service-status{
+  transition:box-shadow .18s ease,border-color .18s ease,transform .18s ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .card.panel:hover,.quick-card:hover,.stat:hover,.kpi:hover,.detail:hover{
+    border-color:color-mix(in srgb,var(--primary) 22%,var(--line));
+  }
+}
+/* Keyboard users get a clearer active-navigation cue. */
+.sidebar .nav-btn:focus-visible{box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--a11y-focus) 70%,#fff),0 0 0 2px var(--sidebar)!important}
+/* Accessibility launcher */
+#a11yLauncher{
+  position:fixed;left:18px;bottom:18px;z-index:84;width:48px;height:48px;border-radius:15px;
+  border:1px solid color-mix(in srgb,var(--line) 78%,transparent);background:color-mix(in srgb,var(--surface) 92%,transparent);
+  color:var(--text);box-shadow:var(--shadow-lg);display:grid;place-items:center;font-size:20px;font-weight:900;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+#a11yLauncher:hover{transform:translateY(-1px)}
+#a11yPanel{
+  position:fixed;left:18px;bottom:76px;z-index:86;width:min(360px,calc(100vw - 28px));
+  padding:15px;border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--surface) 96%,transparent);
+  box-shadow:var(--shadow-lg);display:none;direction:rtl;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)
+}
+#a11yPanel.show{display:block;animation:a11yPop .16s ease-out}
+.a11y-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.a11y-head h3{margin:0;font-size:13px}.a11y-close{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text)}
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.a11y-btn{min-height:46px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--text);padding:9px 10px;text-align:right;font-weight:800;font-size:10px}
+.a11y-btn small{display:block;color:var(--muted);font-size:8px;font-weight:600;margin-top:2px}
+.a11y-btn.active{border-color:color-mix(in srgb,var(--a11y-focus) 52%,var(--line));background:var(--primary-soft);color:var(--primary-2)}
+.a11y-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+.a11y-row-label strong{display:block;font-size:10px}.a11y-row-label span{display:block;color:var(--muted);font-size:8px;margin-top:2px}
+.a11y-stepper{display:flex;align-items:center;gap:6px}.a11y-stepper button{width:38px;height:38px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);font-size:17px;font-weight:900}
+.a11y-stepper output{min-width:48px;text-align:center;font-size:9px;font-weight:900}
+.a11y-hint{margin-top:10px;font-size:8px;color:var(--muted);line-height:1.9}
+.a11y-key{display:inline-block;padding:2px 6px;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;background:var(--surface);color:var(--text);font-weight:900}
+body.a11y-high-contrast{
+  --line:#aebbd0;--line-strong:#8fa0bb;
+}
+/* V23: accessibility text scaling stays text-only; icon geometry remains fixed. */
+.icon,.nav-icon,.stat-icon,.qicon,.sc-icon,.process-icon,.timeline-dot,.avatar,.brand-mark,.notif-dot,.service-dot,.otp-refresh{
+  flex:none!important;
+  transform:none!important;
+}
+[data-a11y-text]{font-variant-numeric:tabular-nums;}
+[data-theme="dark"] body.a11y-high-contrast{--line:#7083a0;--line-strong:#95a9c7}
+html[data-a11y-scale="large"] .title h1{font-size:28px!important}
+html[data-a11y-scale="large"] .title p,html[data-a11y-scale="large"] .breadcrumb{font-size:11px!important}
+html[data-a11y-scale="large"] .panel-head h3,html[data-a11y-scale="large"] .quick-card strong,html[data-a11y-scale="large"] .notice strong{font-size:12px!important}
+html[data-a11y-scale="large"] th,html[data-a11y-scale="large"] td{font-size:10px!important}
+html[data-a11y-scale="xlarge"] .title h1{font-size:31px!important}
+html[data-a11y-scale="xlarge"] .title p,html[data-a11y-scale="xlarge"] .breadcrumb{font-size:12px!important}
+html[data-a11y-scale="xlarge"] .panel-head h3,html[data-a11y-scale="xlarge"] .quick-card strong,html[data-a11y-scale="xlarge"] .notice strong{font-size:13px!important}
+html[data-a11y-scale="xlarge"] th,html[data-a11y-scale="xlarge"] td{font-size:11px!important}
+@keyframes a11yPop{from{opacity:0;transform:translateY(5px) scale(.985)}to{opacity:1;transform:none}}
+@media(max-width:760px){
+  #a11yLauncher{left:12px;bottom:74px;width:46px;height:46px;border-radius:14px}
+  #a11yPanel{left:12px;bottom:128px}
+  .topbar{padding-bottom:7px}
+}
+@media(prefers-reduced-motion:reduce){#a11yPanel.show{animation:none}#a11yLauncher:hover{transform:none}}
+
+</style>
+
+<button id="a11yLauncher" type="button" aria-label="باز کردن تنظیمات دسترسی" aria-expanded="false" aria-controls="a11yPanel" title="تنظیمات دسترسی">♿</button>
+<section id="a11yPanel" aria-label="تنظیمات دسترسی" aria-hidden="true">
+  <div class="a11y-head"><h3>راحتی و دسترسی</h3><button class="a11y-close" type="button" id="a11yClose" aria-label="بستن تنظیمات دسترسی">×</button></div>
+  <div class="a11y-grid">
+    <button class="a11y-btn" type="button" id="a11yContrast"><span>کنتراست بیشتر</span><small>خوانایی بهتر مرزها</small></button>
+    <button class="a11y-btn" type="button" id="a11yMotion"><span>حرکت کمتر</span><small>انیمیشن‌های غیرضروری کمتر</small></button>
+    <button class="a11y-btn" type="button" id="a11yFocus"><span>تمرکز واضح</span><small>حلقه فوکوس پررنگ‌تر</small></button>
+    <button class="a11y-btn" type="button" id="a11yReset"><span>بازنشانی</span><small>تنظیمات دسترسی این مرورگر</small></button>
+  </div>
+  <div class="a11y-row">
+    <div class="a11y-row-label"><strong>اندازه متن</strong><span id="a11yScaleText">متعادل</span></div>
+    <div class="a11y-stepper"><button type="button" id="a11yMinus" aria-label="کوچک‌تر کردن متن">−</button><output id="a11yScaleValue">100٪</output><button type="button" id="a11yPlus" aria-label="بزرگ‌تر کردن متن">+</button></div>
+  </div>
+  <div class="a11y-hint">میانبر بازکردن این پنل: <span class="a11y-key">Alt</span> + <span class="a11y-key">A</span> · برای پیمایش کامل سامانه از <span class="a11y-key">Tab</span> استفاده کنید.</div>
+</section>
+
+<script id="v19-accessibility-script">
+(function(){
+  'use strict';
+  const root=document.documentElement, body=document.body;
+  const key={contrast:'companyA11yContrast',focus:'companyA11yFocus',scale:'companyA11yScale'};
+  const panel=document.getElementById('a11yPanel'), launcher=document.getElementById('a11yLauncher');
+  const close=document.getElementById('a11yClose');
+  const btnContrast=document.getElementById('a11yContrast'),btnMotion=document.getElementById('a11yMotion'),btnFocus=document.getElementById('a11yFocus'),btnReset=document.getElementById('a11yReset');
+  const minus=document.getElementById('a11yMinus'),plus=document.getElementById('a11yPlus'),scaleValue=document.getElementById('a11yScaleValue'),scaleText=document.getElementById('a11yScaleText');
+  const motionKey='companyReduceMotion';
+  function get(k,d){try{return localStorage.getItem(k)??d}catch(e){return d}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function isExcludedTextParent(el){
+    if(!el || el.nodeType!==1) return true;
+    if(el===panel || panel.contains(el) || el===launcher) return true;
+    if(el.closest('#a11yPanel,#a11yLauncher')) return true;
+    if(el.matches('script,style,noscript,svg,svg *,path,circle,rect,ellipse,line,polyline,polygon,select,option,textarea')) return true;
+    if(el.matches('.icon,.nav-icon,.stat-icon,.qicon,.sc-icon,.process-icon,.timeline-dot,.avatar,.brand-mark,.notif-dot,.service-dot,.otp-code,.otp-refresh,.close,.a11y-close')) return true;
+    if(el.getAttribute('aria-hidden')==='true') return true;
+    return false;
+  }
+  function unwrapScaledText(){
+    document.querySelectorAll('span[data-a11y-text]').forEach(function(span){
+      const parent=span.parentNode;
+      if(!parent) return;
+      while(span.firstChild) parent.insertBefore(span.firstChild,span);
+      parent.removeChild(span);
+    });
+  }
+  function wrapTextNodes(rootNode){
+    if(!rootNode) return;
+    const walker=document.createTreeWalker(rootNode,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(node){
+        if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const p=node.parentElement;
+        return isExcludedTextParent(p) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes=[];
+    let n;
+    while((n=walker.nextNode())) nodes.push(n);
+    nodes.forEach(function(node){
+      const p=node.parentElement;
+      if(!p || isExcludedTextParent(p)) return;
+      const span=document.createElement('span');
+      span.setAttribute('data-a11y-text','1');
+      span.style.display='inline';
+      const base=parseFloat(getComputedStyle(p).fontSize);
+      span.dataset.a11yBaseFont=String(Number.isFinite(base)&&base>0?base:16);
+      node.parentNode.insertBefore(span,node);
+      span.appendChild(node);
+    });
+  }
+  function applyTextScale(){
+    const raw=get(key.scale,'100');
+    const scale=Math.max(100,Math.min(120,Number(raw)||100))/100;
+    unwrapScaledText();
+    wrapTextNodes(document.body);
+    document.querySelectorAll('span[data-a11y-text]').forEach(function(span){
+      const base=parseFloat(span.dataset.a11yBaseFont||'');
+      if(Number.isFinite(base) && base>0){
+        span.style.fontSize=(base*scale).toFixed(2)+'px';
+      }
+    });
+  }
+  function resetTextScaleInline(){
+    unwrapScaledText();
+  }
+  function apply(){
+    root.dataset.a11yScale=get(key.scale,'100');
+    root.dataset.a11yFocus=get(key.focus,'1');
+    body.classList.toggle('a11y-high-contrast',get(key.contrast,'0')==='1');
+    root.dataset.motion=get(motionKey,'0')==='1'?'reduced':'full';
+    const scale=get(key.scale,'100');
+    scaleValue.textContent=scale+'٪';
+    scaleText.textContent=scale==='120'?'خیلی بزرگ':(scale==='110'?'بزرگ':'متعادل');
+    btnContrast.classList.toggle('active',get(key.contrast,'0')==='1');
+    btnFocus.classList.toggle('active',get(key.focus,'1')==='1');
+    btnMotion.classList.toggle('active',get(motionKey,'0')==='1');
+    document.querySelectorAll('.toast').forEach(function(t){t.setAttribute('role','status');t.setAttribute('aria-live','polite')});
+    document.querySelectorAll('.sidebar .nav-btn').forEach(function(b){b.removeAttribute('aria-current')});
+    document.querySelectorAll('.sidebar .nav-btn.active').forEach(function(b){b.setAttribute('aria-current','page')});
+    requestAnimationFrame(applyTextScale);
+  }
+  function openPanel(){panel.classList.add('show');panel.setAttribute('aria-hidden','false');launcher.setAttribute('aria-expanded','true');setTimeout(function(){close.focus()},20)}
+  function closePanel(){panel.classList.remove('show');panel.setAttribute('aria-hidden','true');launcher.setAttribute('aria-expanded','false');launcher.focus()}
+  launcher.addEventListener('click',function(){panel.classList.contains('show')?closePanel():openPanel()});
+  close.addEventListener('click',closePanel);
+  btnContrast.addEventListener('click',function(){const v=get(key.contrast,'0')==='1'?'0':'1';set(key.contrast,v);apply();toast(v==='1'?'کنتراست بیشتر فعال شد':'کنتراست استاندارد فعال شد')});
+  btnFocus.addEventListener('click',function(){const v=get(key.focus,'1')==='1'?'0':'1';set(key.focus,v);root.dataset.a11yFocus=v;apply();toast(v==='1'?'فوکوس واضح فعال شد':'فوکوس استاندارد فعال شد')});
+  btnMotion.addEventListener('click',function(){const v=get(motionKey,'0')==='1'?'0':'1';set(motionKey,v);root.dataset.motion=v==='1'?'reduced':'full';apply();toast(v==='1'?'حرکت‌های اضافی کم شد':'حرکت استاندارد فعال شد')});
+  function changeScale(v){const n=Math.max(100,Math.min(120,v));set(key.scale,String(n));apply();toast('اندازه متن: '+n+'٪')}
+  minus.addEventListener('click',function(){changeScale(Number(get(key.scale,'100'))-10)});
+  plus.addEventListener('click',function(){changeScale(Number(get(key.scale,'100'))+10)});
+  btnReset.addEventListener('click',function(){set(key.contrast,'0');set(key.focus,'1');set(key.scale,'100');set(motionKey,'0');resetTextScaleInline();document.querySelectorAll('[data-a11y-base-font]').forEach(function(el){delete el.dataset.a11yBaseFont;el.style.removeProperty('font-size')});apply();toast('تنظیمات دسترسی بازنشانی شد')});
+  document.addEventListener('keydown',function(e){
+    if(e.altKey && e.key.toLowerCase()==='a'){e.preventDefault();panel.classList.contains('show')?closePanel():openPanel();return}
+    if(e.key==='Escape' && panel.classList.contains('show')){e.preventDefault();closePanel();return}
+    if(e.key==='Tab' && panel.classList.contains('show')){
+      const focusable=Array.from(panel.querySelectorAll('button,input,select,textarea,[tabindex]:not([tabindex="-1"])')).filter(function(el){return !el.disabled && el.offsetParent!==null});
+      if(!focusable.length)return;
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus()}
+      else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus()}
+    }
+  },true);
+  const oldRender=window.render;
+  if(typeof oldRender==='function'){
+    window.render=function(){const r=oldRender.apply(this,arguments);requestAnimationFrame(apply);return r};
+  }
+  apply();
+})();
+</script>
+
+<script id="v23-icon-scale-guard">
+(function(){
+  function guard(){
+    document.querySelectorAll('.icon,.nav-icon,.stat-icon,.qicon,.sc-icon,.process-icon,.timeline-dot,.avatar,.brand-mark,.notif-dot,.service-dot,.otp-refresh').forEach(function(el){
+      el.style.removeProperty('font-size');
+    });
+  }
+  guard();
+  const root=document.getElementById('app');
+  if(root)new MutationObserver(guard).observe(root,{childList:true,subtree:true});
+})();
+</script>
+
+<style id="v20-command-history">
+.command-suggestions{padding:0 18px 10px}
+.command-suggest-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 7px;color:var(--muted);font-size:8px;font-weight:800}
+.command-history-clear{border:0;background:transparent;color:var(--primary);font:inherit;font-weight:800;cursor:pointer;padding:2px 4px}
+.command-suggest-scroll{display:flex;gap:7px;overflow-x:auto;padding-bottom:3px;scrollbar-width:thin}
+.command-suggest{flex:0 0 auto;min-width:122px;max-width:170px;text-align:right;border:1px solid var(--line);border-radius:11px;padding:8px 10px;background:var(--surface-2);color:var(--text);cursor:pointer;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.command-suggest:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--primary) 28%,var(--line));box-shadow:0 8px 20px var(--glow)}
+.command-suggest strong{display:block;font-size:9px;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.command-suggest small{display:block;margin-top:2px;color:var(--muted);font-size:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.command-history-clear:focus-visible,.command-suggest:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+@media(max-width:560px){.command-suggestions{padding-left:12px;padding-right:12px}.command-suggest{min-width:112px}}
+@media(prefers-reduced-motion:reduce){.command-suggest{transition:none}.command-suggest:hover{transform:none}}
+</style>
+
 </body>
 </html>
