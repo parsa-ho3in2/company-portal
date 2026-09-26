@@ -1,165 +1,125 @@
-const USERS = {
-  employee: { username: 'employee', password: '1234', name: 'پارسا احمدی', role: 'کارمند', department: 'واحد بازرگانی', avatar: 'پ' },
-  manager: { username: 'manager', password: '1234', name: 'مریم رضایی', role: 'مدیر بازرگانی', department: 'مدیریت بازرگانی', avatar: 'م' },
-  admin: { username: 'admin', password: '1234', name: 'مدیر سیستم', role: 'مدیر سامانه', department: 'فناوری اطلاعات', avatar: 'س' }
+
+const USERS={
+ employee:{username:'employee',password:'1234',name:'پارسا احمدی',role:'کارمند',department:'واحد بازرگانی',avatar:'پ'},
+ manager:{username:'manager',password:'1234',name:'مریم رضایی',role:'مدیر بازرگانی',department:'مدیریت بازرگانی',avatar:'م'},
+ admin:{username:'admin',password:'1234',name:'مدیر سیستم',role:'مدیر سامانه',department:'فناوری اطلاعات',avatar:'س'}
 };
-
-const requests = [
-  {id:'REQ-1042', title:'درخواست مرخصی', person:'پارسا احمدی', unit:'بازرگانی', date:'1405/07/02', status:'در انتظار تأیید', tone:'yellow'},
-  {id:'REQ-1039', title:'درخواست دورکاری', person:'سارا محمدی', unit:'منابع انسانی', date:'1405/07/01', status:'تأیید شده', tone:'green'},
-  {id:'REQ-1035', title:'درخواست خرید تجهیزات', person:'علی کریمی', unit:'فناوری اطلاعات', date:'1405/06/31', status:'در حال بررسی', tone:'blue'},
-  {id:'REQ-1028', title:'ماموریت اداری', person:'نگار حسینی', unit:'مالی', date:'1405/06/29', status:'رد شده', tone:'red'}
+const requests=[
+ {id:'REQ-1042',type:'مرخصی',title:'درخواست مرخصی',person:'پارسا احمدی',unit:'بازرگانی',date:'۱۴۰۵/۰۷/۰۲',status:'در انتظار تأیید',tone:'yellow',stage:'تأیید مدیر'},
+ {id:'REQ-1039',type:'دورکاری',title:'درخواست دورکاری',person:'سارا محمدی',unit:'منابع انسانی',date:'۱۴۰۵/۰۷/۰۱',status:'تأیید شده',tone:'green',stage:'پایان فرآیند'},
+ {id:'REQ-1035',type:'خرید تجهیزات',title:'درخواست خرید تجهیزات',person:'علی کریمی',unit:'فناوری اطلاعات',date:'۱۴۰۵/۰۶/۳۱',status:'در حال بررسی',tone:'blue',stage:'بررسی مالی'},
+ {id:'REQ-1028',type:'ماموریت اداری',title:'ماموریت اداری',person:'نگار حسینی',unit:'مالی',date:'۱۴۰۵/۰۶/۲۹',status:'رد شده',tone:'red',stage:'پایان فرآیند'}
 ];
-
-const notices = [
-  ['📢','اطلاعیه بروزرسانی سامانه','امروز ساعت 10:30'],
-  ['📅','تقویم تعطیلات نیمه دوم سال','دیروز'],
-  ['🔔','یادآوری ثبت کارکرد ماهانه','2 روز پیش'],
-  ['📄','نسخه جدید فرم درخواست خرید','3 روز پیش']
+const notices=[['📢','اطلاعیه بروزرسانی سامانه','امروز ساعت 10:30'],['📅','تقویم تعطیلات نیمه دوم سال','دیروز'],['🔔','یادآوری ثبت کارکرد ماهانه','2 روز پیش'],['📄','نسخه جدید فرم درخواست خرید','3 روز پیش']];
+const catalog=[
+ ['مرخصی','ثبت مرخصی روزانه یا ساعتی','◷','منابع انسانی'],
+ ['دورکاری','ثبت بازه دورکاری','⌁','منابع انسانی'],
+ ['ماموریت','ثبت ماموریت اداری','✦','منابع انسانی'],
+ ['اضافه‌کاری','ثبت درخواست اضافه‌کاری','＋','منابع انسانی'],
+ ['تنخواه','درخواست تنخواه','₿','مالی'],
+ ['خرید تجهیزات','درخواست خرید تجهیزات','▣','تدارکات'],
+ ['پاسخ استعلام','ثبت و پیگیری پاسخ استعلام','?','اداری'],
+ ['قرارداد مالی','گردش قرارداد مالی','▤','مالی'],
+ ['تحصیل دارایی','شروع فرآیند تحصیل دارایی','◆','اموال و انبار'],
+ ['ابطال دارایی','ثبت ابطال دارایی','⌫','اموال و انبار'],
+ ['خروج کالا','درخواست خروج کالا از انبار','▰','اموال و انبار']
 ];
-
-let state = { user: null, page: 'dashboard' };
-
-function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));}
-function currentUser(){ return state.user; }
-function icon(type){ const m={home:'⌂',inbox:'▣',requests:'◫',people:'♙',reports:'▤',settings:'⚙',leave:'◷',remote:'⌁',attendance:'◴'}; return m[type]||'•'; }
-
+const processes=[
+ ['درخواست مرخصی','ثبت درخواست → بررسی مدیر → ثبت نتیجه','منابع انسانی'],
+ ['دورکاری','ثبت بازه → بررسی مدیر → اعلام نتیجه','منابع انسانی'],
+ ['پاسخ استعلام','ثبت → بررسی کارشناس → تأیید مسئول → ارسال','اداری'],
+ ['قرارداد مالی','بررسی بازرگانی → برنامه‌ریزی → پیش‌نویس → ثبت → تأییدهای مالی/حقوقی','مالی/حقوقی'],
+ ['خروج کالا از انبار','ثبت اقلام → برنامه‌ریزی → کنترل موجودی → خروج','انبار'],
+ ['تحصیل دارایی','ثبت → مسئول دارایی ثابت → مدیرعامل → ثبت نهایی','اموال'],
+ ['ابطال دارایی','درخواست مدیر → مدیرعامل → بررسی انبار → نهایی‌سازی','اموال/انبار']
+];
+const PEOPLE=[['پارسا احمدی','بازرگانی','کارمند','فعال'],['سارا محمدی','منابع انسانی','کارشناس','فعال'],['علی کریمی','فناوری اطلاعات','کارشناس','فعال'],['نگار حسینی','مالی','کارشناس','مرخصی']];
+let state={user:null,page:'dashboard',theme:localStorage.getItem('companyPortalTheme')||'light',otp:''};
+const root=()=>document.getElementById('app');
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function current(){return state.user}
+function isManager(){return !!current() && (current().role.includes('مدیر')||current().username==='admin')}
+function setTheme(t){state.theme=t;localStorage.setItem('companyPortalTheme',t);document.documentElement.dataset.theme=t}
+function badge(status){const c={ 'تأیید شده':'green','در انتظار تأیید':'yellow','در حال بررسی':'blue','رد شده':'red','نیازمند اقدام':'yellow'}[status]||'gray';return `<span class="badge badge-${c}">${esc(status)}</span>`}
+function toast(msg){let el=document.getElementById('toast');if(!el){el=document.createElement('div');el.id='toast';el.className='toast';el.setAttribute('role','status');el.setAttribute('aria-live','polite');document.body.appendChild(el)}el.textContent=msg;el.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.classList.remove('show'),2200)}
+function nextOtp(){state.otp=String(Math.floor(100000+Math.random()*900000));const e=document.getElementById('otp');if(e)e.textContent=state.otp}
+function login(e){e.preventDefault();const u=document.getElementById('username').value.trim(),p=document.getElementById('password').value,c=document.getElementById('securityCode').value.trim();const found=Object.values(USERS).find(x=>x.username===u&&x.password===p);if(c!==state.otp){document.getElementById('loginError').textContent='کد امنیتی صحیح نیست.';return}if(!found){document.getElementById('loginError').textContent='نام کاربری یا رمز عبور صحیح نیست.';return}state.user={...found};state.page='dashboard';sessionStorage.setItem('companyPortalUser',JSON.stringify(state.user));render()}
+function logout(){state.user=null;sessionStorage.removeItem('companyPortalUser');render()}
+function themeIcon(){return state.theme==='dark'?'☀':state.theme==='pink'?'◐':'☾'}
 function loginView(){
-  return `<div class="login-shell">
-    <section class="login-art">
-      <div class="login-art-inner">
-        <div class="login-badge">● نسخه اول سامانه سازمانی</div>
-        <h1>یک پنجره برای تمام امور شرکت</h1>
-        <p>کارتابل، درخواست‌ها، تأییدها، اطلاعیه‌ها و فرآیندهای سازمانی را از یک داشبورد یکپارچه مدیریت کنید.</p>
-        <div class="feature-grid">
-          <div class="feature"><strong>کارتابل هوشمند</strong><span>دریافت و پیگیری کارهای ارجاع‌شده</span></div>
-          <div class="feature"><strong>فرآیندهای سازمانی</strong><span>ثبت، بررسی و تأیید مرحله‌ای درخواست‌ها</span></div>
-          <div class="feature"><strong>داشبورد مدیریتی</strong><span>نمایش سریع وضعیت و آمار عملکرد</span></div>
-          <div class="feature"><strong>سطوح دسترسی</strong><span>نمایش امکانات متناسب با نقش کاربر</span></div>
-        </div>
-      </div>
-    </section>
-    <section class="login-panel">
-      <div class="login-card">
-        <div class="logo">ش</div>
-        <h2>ورود به سامانه</h2>
-        <div class="sub">سامانه جامع مدیریت فرآیندهای شرکت</div>
-        <form id="loginForm">
-          <div class="form-group"><label>نام کاربری</label><input id="username" autocomplete="username" placeholder="نام کاربری خود را وارد کنید" /></div>
-          <div class="form-group"><label>رمز عبور</label><input id="password" type="password" autocomplete="current-password" placeholder="رمز عبور" /></div>
-          <button class="btn btn-primary" type="submit">ورود به سامانه</button>
-          <div id="loginError" class="login-error"></div>
-        </form>
-        <div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div>
-      </div>
-    </section>
-  </div>`;
+ nextOtp();
+ return `<div class="login-shell">
+  <section class="login-art"><div class="login-art-inner">
+   <div class="login-badge">● نسخه ۲۸ · Enterprise Upgrade</div>
+   <h1>یک پنجره برای تمام امور شرکت</h1>
+   <p>کارتابل، درخواست‌ها، تأییدها، تردد، فرآیندها و اطلاعات سازمانی در یک تجربه یکپارچه، سریع و واکنش‌گرا.</p>
+   <div class="feature-grid">
+    <div class="feature"><strong>کارتابل هوشمند</strong><span>کارهای نیازمند اقدام، اولویت و مسیر تصمیم را یک‌جا ببینید.</span></div>
+    <div class="feature"><strong>فرآیندهای سازمانی</strong><span>گردش کار از ثبت تا تأیید و پایان، قابل مشاهده و قابل پیگیری است.</span></div>
+    <div class="feature"><strong>چند تم حرفه‌ای</strong><span>روشن، تیره و Pink Night با ذخیره‌سازی تنظیمات در مرورگر.</span></div>
+    <div class="feature"><strong>Mobile First</strong><span>چیدمان تطبیقی برای دسکتاپ، تبلت و تلفن همراه.</span></div>
+   </div>
+  </div></section>
+  <section class="login-panel"><div class="login-card">
+   <div class="logo">ش</div><h2>ورود به سامانه</h2><div class="sub">سامانه جامع مدیریت فرآیندهای شرکت · نسخه ۲۸</div>
+   <form onsubmit="login(event)" class="form" autocomplete="on">
+    <div class="form-group"><label for="username">نام کاربری</label><input id="username" autocomplete="username" required placeholder="نام کاربری"></div>
+    <div class="form-group"><label for="password">رمز عبور</label><input id="password" type="password" autocomplete="current-password" required placeholder="رمز عبور"></div>
+    <div class="otp-box"><div class="otp-line"><strong id="otp" class="otp-code">${state.otp}</strong><button class="otp-refresh" type="button" onclick="nextOtp()" aria-label="کد جدید">↻</button></div><div class="security-note">کد امنیتی نمونه برای محیط دمو</div></div>
+    <div class="form-group"><label for="securityCode">کد امنیتی</label><input id="securityCode" inputmode="numeric" maxlength="6" required placeholder="کد شش رقمی"></div>
+    <button class="btn btn-primary btn-block">ورود امن</button><div id="loginError" class="login-error"></div>
+   </form>
+   <div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div>
+  </div></section></div>`
 }
-
-function appView(){
-  const u=currentUser();
-  const manager = u.role.includes('مدیر');
-  const pageTitles={dashboard:['داشبورد','نمای کلی وضعیت فعالیت‌های شما'],inbox:['کارتابل من','کارهای ارجاع‌شده و موارد نیازمند اقدام'],requests:['درخواست‌های من','ثبت و پیگیری درخواست‌های سازمانی'],approvals:['تأییدها','مدیریت درخواست‌های کارکنان'],people:['پرسنل','نمایش اطلاعات و وضعیت کارکنان'],reports:['گزارشات','گزارش‌های خلاصه از عملکرد سامانه']};
-  const title=pageTitles[state.page]||pageTitles.dashboard;
-  return `<div class="app-shell">
-    ${sidebar(manager)}
-    <main class="main">
-      <div class="topbar">
-        <div class="page-title"><h1>${title[0]}</h1><p>${title[1]}</p></div>
-        <div class="topbar-actions"><div class="search"><span>⌕</span><input placeholder="جستجو در سامانه..." /></div><button class="icon-btn" onclick="toast('3 اعلان جدید دارید')">🔔<span class="dot"></span></button><div class="avatar">${esc(u.avatar)}</div></div>
-      </div>
-      <div class="content">${renderPage()}</div>
-    </main>
-    <div id="toast" class="toast"></div>
-  </div>`;
+function sidebar(){
+ const items=[['dashboard','⌂','داشبورد'],['inbox','▣','کارتابل'],['requests','◫','درخواست‌ها'],['attendance','◴','تردد'],...(isManager()?[['approvals','✓','تأییدها'],['people','♙','پرسنل'],['processes','◇','فرآیندها'],['reports','▤','گزارشات']]:[]),['profile','◉','حساب من'],['settings','⚙','تنظیمات']];
+ return `<aside class="sidebar"><div class="brand"><div class="logo">ش</div><div class="brand-text"><strong>سامانه سازمانی</strong><small>نسخه ۲۸ · Enterprise Portal</small></div></div><nav class="nav"><div class="nav-title">منوی اصلی</div>${items.map(i=>`<button class="nav-item ${state.page===i[0]?'active':''}" onclick="navigate('${i[0]}')"><span class="nav-icon">${i[1]}</span><span class="label">${i[2]}</span></button>`).join('')}</nav><div class="sidebar-footer"><div class="user-mini"><div class="avatar">${esc(current().avatar)}</div><div class="mini-info"><strong>${esc(current().name)}</strong><span>${esc(current().role)}</span></div></div><button class="logout" onclick="logout()">خروج از حساب</button></div></aside>`
 }
-
-function sidebar(manager){
-  const items=[
-    ['dashboard','home','داشبورد'],
-    ['inbox','inbox','کارتابل من'],
-    ['requests','requests','درخواست‌های من'],
-    ...(manager?[['approvals','leave','تأییدها'],['people','people','پرسنل'],['reports','reports','گزارشات']]:[]),
-    ['settings','settings','تنظیمات']
-  ];
-  return `<aside class="sidebar"><div class="brand"><div class="logo">ش</div><div class="brand-text"><strong>سامانه سازمانی</strong><span>نسخه اول</span></div></div><nav class="nav"><div class="nav-title">منوی اصلی</div>${items.map(i=>`<button class="nav-item ${state.page===i[0]?'active':''}" onclick="navigate('${i[0]}')"><span class="nav-icon">${icon(i[1])}</span><span class="label">${i[2]}</span></button>`).join('')}</nav><div class="sidebar-footer"><div class="user-mini"><div class="avatar">${esc(currentUser().avatar)}</div><div><strong>${esc(currentUser().name)}</strong><span>${esc(currentUser().role)}</span></div></div><button class="logout" onclick="logout()">خروج از حساب</button></div></aside>`;
+function topbar(){
+ const titles={dashboard:['داشبورد','نمای کلی وضعیت و فعالیت‌های شما'],inbox:['کارتابل من','موارد ارجاع‌شده و نیازمند اقدام'],requests:['درخواست‌ها','ثبت و پیگیری خدمات سازمانی'],attendance:['تردد و کارکرد','حضور، ساعت‌زنی و خلاصه کارکرد'],approvals:['تأییدها','تصمیم‌گیری روی درخواست‌های نیازمند تأیید'],people:['پرسنل','اطلاعات کارکنان و ساختار سازمانی'],processes:['فرآیندها','گردش کار فرآیندهای سازمانی'],reports:['گزارشات','شاخص‌ها و آمار عملیاتی'],profile:['حساب من','پروفایل و اطلاعات سازمانی'],settings:['تنظیمات','شخصی‌سازی تجربه کاربری']};const t=titles[state.page]||titles.dashboard;
+ return `<header class="topbar"><div class="title"><h1>${t[0]}</h1><p>${t[1]}</p></div><div class="top-actions"><div class="search"><span class="magnify">⌕</span><input class="control" placeholder="جستجو در سامانه..." onkeydown="if(event.key==='Enter')openCommand(this.value)"></div><button class="icon-btn" onclick="openCommand()" aria-label="فرمان سریع">⌘</button><button class="icon-btn" onclick="toast('۳ اعلان جدید دارید')" aria-label="اعلان‌ها">🔔<span class="notif-dot"></span></button><button class="profile-trigger" onclick="toggleProfileMenu()"><div class="ptxt"><strong>${esc(current().name)}</strong><span>${esc(current().role)}</span></div><span class="avatar">${esc(current().avatar)}</span><span class="chev">⌄</span></button></div></header>`
 }
-
-function renderPage(){
-  switch(state.page){
-    case 'inbox': return inboxPage();
-    case 'requests': return requestsPage();
-    case 'approvals': return approvalsPage();
-    case 'people': return peoplePage();
-    case 'reports': return reportsPage();
-    case 'settings': return settingsPage();
-    default: return dashboardPage();
-  }
+function shell(){return `<div class="app-shell">${sidebar()}<main class="main" id="app-main">${topbar()}<div class="content">${pageContent()}</div></main></div><div id="profileMenu" class="profile-menu"><div class="pm-head"><strong>${esc(current().name)}</strong><span>${esc(current().department)}</span></div><button class="pm-item" onclick="navigate('profile');toggleProfileMenu()">◉ حساب من</button><button class="pm-item" onclick="navigate('settings');toggleProfileMenu()">⚙ تنظیمات</button><button class="pm-item" onclick="logout()">↪ خروج</button></div>${commandModal()}${modalMarkup()}`
 }
-
+function pageContent(){switch(state.page){case'inbox':return inboxPage();case'requests':return requestsPage();case'attendance':return attendancePage();case'approvals':return approvalsPage();case'people':return peoplePage();case'processes':return processesPage();case'reports':return reportsPage();case'profile':return profilePage();case'settings':return settingsPage();default:return dashboardPage()}}
 function dashboardPage(){
-  const u=currentUser();
-  const manager=u.role.includes('مدیر');
-  return `<div class="cards">
-    <div class="card stat-card"><div class="stat-top"><span class="stat-label">کارتابل باز</span><span class="stat-icon">▣</span></div><div class="stat-value">${manager?8:4}</div><div class="stat-help warn">نیازمند اقدام</div></div>
-    <div class="card stat-card"><div class="stat-top"><span class="stat-label">درخواست‌های من</span><span class="stat-icon">◫</span></div><div class="stat-value">7</div><div class="stat-help up">2 مورد جدید</div></div>
-    <div class="card stat-card"><div class="stat-top"><span class="stat-label">مرخصی باقی‌مانده</span><span class="stat-icon">◷</span></div><div class="stat-value">18</div><div class="stat-help">روز کاری</div></div>
-    <div class="card stat-card"><div class="stat-top"><span class="stat-label">اعلان‌های خوانده‌نشده</span><span class="stat-icon">🔔</span></div><div class="stat-value">3</div><div class="stat-help">از آخرین ورود</div></div>
-  </div>
-  <div class="grid-2">
-    <section class="card panel"><div class="panel-head"><h3>آخرین درخواست‌ها</h3><a onclick="navigate('requests')">مشاهده همه</a></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>عنوان</th><th>تاریخ</th><th>وضعیت</th></tr></thead><tbody>${requests.map(r=>`<tr><td>${r.id}</td><td>${r.title}</td><td>${r.date}</td><td><span class="badge badge-${r.tone}">${r.status}</span></td></tr>`).join('')}</tbody></table></div></section>
-    <section class="card panel"><div class="panel-head"><h3>دسترسی سریع</h3></div><div class="quick-grid"><div class="quick" onclick="navigate('requests')"><div class="q-icon">＋</div><strong>ثبت درخواست</strong><span>مرخصی، ماموریت، دورکاری و...</span></div><div class="quick" onclick="navigate('inbox')"><div class="q-icon">▣</div><strong>کارتابل</strong><span>مشاهده کارهای در انتظار</span></div><div class="quick" onclick="toast('فرم حضور و غیاب در نسخه بعدی فعال می‌شود')"><div class="q-icon">◴</div><strong>تردد</strong><span>ثبت و مشاهده کارکرد</span></div><div class="quick" onclick="toast('ماژول اسناد در نسخه بعدی فعال می‌شود')"><div class="q-icon">▤</div><strong>اسناد</strong><span>دریافت فرم‌ها و فایل‌ها</span></div></div></section>
-  </div>
-  <section class="card panel"><div class="panel-head"><h3>اطلاعیه‌های شرکت</h3><a onclick="toast('همه اطلاعیه‌ها نمایش داده شد')">مشاهده همه</a></div><div class="notice-list">${notices.map(n=>`<div class="notice"><div class="n-icon">${n[0]}</div><div><strong>${n[1]}</strong><span>${n[2]}</span></div></div>`).join('')}</div></section>`;
+ const open=isManager()?8:4;
+ const attention=requests.filter(r=>r.status==='در انتظار تأیید');
+ return `<section class="hero"><div><h2>سلام ${esc(current().name.split(' ')[0])} 👋</h2><p>نسخه ۲۸ روی همان تجربه سازمانی، با کارتابل متمرکز و ریزتعامل‌های سبک طراحی شده است.</p></div><div class="hero-actions"><button class="btn btn-primary" onclick="openRequest()">＋ ثبت درخواست</button><button class="btn btn-secondary" onclick="navigate('inbox')">کارتابل</button><button class="btn btn-soft" onclick="openCommand()">فرمان سریع</button></div></section>
+ <div class="cards"><div class="card stat-card"><div class="stat-top"><span class="stat-label">کارتابل باز</span><span class="stat-icon">▣</span></div><div class="stat-value">${open}</div><div class="stat-help warn">نیازمند اقدام</div></div><div class="card stat-card"><div class="stat-top"><span class="stat-label">درخواست‌های من</span><span class="stat-icon">◫</span></div><div class="stat-value">7</div><div class="stat-help up">۲ مورد جدید</div></div><div class="card stat-card"><div class="stat-top"><span class="stat-label">مرخصی باقی‌مانده</span><span class="stat-icon">◷</span></div><div class="stat-value">18</div><div class="stat-help">روز کاری</div></div><div class="card stat-card"><div class="stat-top"><span class="stat-label">اعلان خوانده‌نشده</span><span class="stat-icon">🔔</span></div><div class="stat-value">3</div><div class="stat-help">از آخرین ورود</div></div></div>
+ <section class="card panel attention-panel"><div><div class="panel-head"><div><h3>مرکز توجه</h3><div class="muted" style="font-size:8px;margin-top:3px">مهم‌ترین کارهای امروز</div></div>${badge(attention.length?'نیازمند اقدام':'تأیید شده')}</div><div class="attention-list">${attention.slice(0,4).map(r=>`<div class="attention-item"><div class="attention-icon">!</div><div><strong>${esc(r.title)}</strong><small>${r.id} · ${esc(r.stage)}</small></div>${badge(r.status)}</div>`).join('')}</div></div><aside class="attention-side"><h3>تمرکز امروز</h3><p>اول مواردی را بررسی کنید که به تصمیم مدیریتی یا اقدام واحد مربوطه نیاز دارند.</p><div class="attention-number">${attention.length}</div><div class="muted" style="font-size:8px">مورد باز</div><button class="btn btn-primary btn-block" style="margin-top:12px" onclick="navigate('inbox')">باز کردن کارتابل</button></aside></section>
+ <div class="grid-2"><section class="card panel"><div class="panel-head"><h3>آخرین درخواست‌ها</h3><button class="panel-link" onclick="navigate('requests')">مشاهده همه</button></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>عنوان</th><th>تاریخ</th><th>وضعیت</th></tr></thead><tbody>${requests.map(r=>`<tr><td>${r.id}</td><td>${esc(r.title)}</td><td>${r.date}</td><td>${badge(r.status)}</td></tr>`).join('')}</tbody></table></div></section><section class="card panel"><div class="panel-head"><h3>دسترسی سریع</h3></div><div class="quick-grid">${catalog.slice(0,6).map(x=>`<div class="quick" onclick="openRequest('${esc(x[0])}')"><div class="q-icon">${x[2]}</div><strong>${esc(x[0])}</strong><span>${esc(x[1])}</span></div>`).join('')}</div></section></div>
+ <section class="card panel"><div class="panel-head"><h3>اطلاعیه‌های شرکت</h3><button class="panel-link" onclick="toast('همه اطلاعیه‌ها مشاهده شد')">مشاهده همه</button></div><div class="notice-list">${notices.map(n=>`<div class="notice"><div class="n-icon">${n[0]}</div><div><strong>${n[1]}</strong><span>${n[2]}</span></div></div>`).join('')}</div></section>`
 }
-
-function inboxPage(){
-  const manager=currentUser().role.includes('مدیر');
-  const rows=manager?requests:requests.filter(x=>x.person==='پارسا احمدی');
-  return `<section class="card section-card"><div class="panel-head"><h3>کارتابل من</h3><span class="badge badge-yellow">${manager?8:4} مورد در انتظار اقدام</span></div><div class="filters"><select><option>همه وضعیت‌ها</option><option>در انتظار اقدام</option><option>انجام شده</option></select><select><option>همه انواع</option><option>درخواست</option><option>نامه</option><option>فرآیند</option></select><input placeholder="جستجوی عنوان یا شناسه..." /></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>موضوع</th><th>ارجاع‌دهنده</th><th>تاریخ</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.id}</td><td>${r.title}</td><td>${r.person}</td><td>${r.date}</td><td><span class="badge badge-${r.tone}">${r.status}</span></td><td><div class="action-row"><button class="small-btn" onclick="toast('جزئیات ${r.id} باز شد')">مشاهده</button>${manager&&r.status==='در انتظار تأیید'?'<button class="small-btn approve" onclick="approveReq(\''+r.id+'\')">تأیید</button>':''}</div></td></tr>`).join('')}</tbody></table></div></section>`;
-}
-
-function requestsPage(){
- return `<section class="card section-card"><div class="panel-head"><h3>درخواست‌های من</h3><button class="btn" style="background:#2563eb;color:#fff" onclick="toast('فرم ثبت درخواست در این نسخه نمایشی آماده است')">＋ ثبت درخواست جدید</button></div><div class="filters"><select><option>همه</option><option>در انتظار تأیید</option><option>تأیید شده</option><option>رد شده</option></select><input placeholder="جستجو..." /></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>نوع درخواست</th><th>تاریخ ثبت</th><th>آخرین مرحله</th><th>وضعیت</th></tr></thead><tbody>${requests.filter(r=>r.person===currentUser().name || currentUser().role.includes('مدیر')).map(r=>`<tr><td>${r.id}</td><td>${r.title}</td><td>${r.date}</td><td>بررسی واحد مربوطه</td><td><span class="badge badge-${r.tone}">${r.status}</span></td></tr>`).join('')}</tbody></table></div></section>`;
-}
-
-function approvalsPage(){
- if(!currentUser().role.includes('مدیر')) return `<section class="card section-card"><div class="empty">این بخش فقط برای مدیران قابل دسترسی است.</div></section>`;
- return `<section class="card section-card"><div class="panel-head"><h3>درخواست‌های نیازمند تأیید</h3><span class="badge badge-yellow">2 مورد جدید</span></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>کارمند</th><th>موضوع</th><th>واحد</th><th>تاریخ</th><th>عملیات</th></tr></thead><tbody>${requests.filter(r=>r.status==='در انتظار تأیید').map(r=>`<tr id="row-${r.id}"><td>${r.id}</td><td>${r.person}</td><td>${r.title}</td><td>${r.unit}</td><td>${r.date}</td><td><div class="action-row"><button class="small-btn approve" onclick="approveReq('${r.id}')">تأیید</button><button class="small-btn reject" onclick="rejectReq('${r.id}')">رد</button></div></td></tr>`).join('')}</tbody></table></div></section>`;
-}
-
-function peoplePage(){
- const people=[['پارسا احمدی','بازرگانی','کارمند','فعال'],['سارا محمدی','منابع انسانی','کارشناس','فعال'],['علی کریمی','فناوری اطلاعات','کارشناس','فعال'],['نگار حسینی','مالی','کارشناس','مرخصی']];
- return `<section class="card section-card"><div class="panel-head"><h3>فهرست پرسنل</h3><input style="border:1px solid var(--border);border-radius:9px;padding:8px 10px" placeholder="جستجوی پرسنل..." /></div><div class="table-wrap"><table><thead><tr><th>نام</th><th>واحد</th><th>سمت</th><th>وضعیت</th></tr></thead><tbody>${people.map(p=>`<tr><td>${p[0]}</td><td>${p[1]}</td><td>${p[2]}</td><td><span class="badge ${p[3]==='فعال'?'badge-green':'badge-yellow'}">${p[3]}</span></td></tr>`).join('')}</tbody></table></div></section><section class="card section-card"><div class="panel-head"><h3>اطلاعات کاربر جاری</h3></div><div class="profile-grid"><div class="info-box"><div class="label">نام و نام خانوادگی</div><div class="value">${esc(currentUser().name)}</div></div><div class="info-box"><div class="label">سمت</div><div class="value">${esc(currentUser().role)}</div></div><div class="info-box"><div class="label">واحد</div><div class="value">${esc(currentUser().department)}</div></div><div class="info-box"><div class="label">وضعیت حساب</div><div class="value">فعال</div></div></div></section>`;
-}
-
-function reportsPage(){
- return `<div class="cards"><div class="card stat-card"><div class="stat-label">کل درخواست‌ها</div><div class="stat-value">128</div><div class="stat-help">این ماه</div></div><div class="card stat-card"><div class="stat-label">تکمیل شده</div><div class="stat-value">96</div><div class="stat-help up">75٪</div></div><div class="card stat-card"><div class="stat-label">در انتظار بررسی</div><div class="stat-value">21</div><div class="stat-help warn">نیازمند پیگیری</div></div><div class="card stat-card"><div class="stat-label">رد شده</div><div class="stat-value">11</div><div class="stat-help">این ماه</div></div></div><section class="card section-card"><div class="panel-head"><h3>گزارش وضعیت فرآیندها</h3></div><div class="empty">نمودارهای تحلیلی در مرحله بعدی به داشبورد متصل می‌شوند.</div></section>`;
-}
-
-function settingsPage(){
- return `<section class="card section-card"><div class="panel-head"><h3>تنظیمات حساب</h3></div><div class="profile-grid"><div class="info-box"><div class="label">نام کاربری</div><div class="value">${esc(currentUser().username)}</div></div><div class="info-box"><div class="label">نقش</div><div class="value">${esc(currentUser().role)}</div></div></div><button class="btn" style="margin-top:18px;background:#eef4ff;color:#1d4ed8" onclick="toast('تنظیمات در نسخه بعدی کامل می‌شود')">ذخیره تغییرات</button></section>`;
-}
-
-function navigate(page){ state.page=page; render(); }
-function toast(msg){ const el=document.getElementById('toast'); if(!el) return; el.textContent=msg; el.classList.add('show'); clearTimeout(window.__toast); window.__toast=setTimeout(()=>el.classList.remove('show'),2200); }
-function approveReq(id){ const el=document.getElementById('row-'+id); if(el){el.remove(); toast(id+' تأیید شد');} }
-function rejectReq(id){ const el=document.getElementById('row-'+id); if(el){el.remove(); toast(id+' رد شد');} }
-function logout(){state.user=null;state.page='dashboard';render();}
-function render(){ document.getElementById('app').innerHTML=state.user?appView():loginView(); }
-
-function bind(){
- const form=document.getElementById('loginForm');
- if(form){
-  form.addEventListener('submit',e=>{
-   e.preventDefault();
-   const u=document.getElementById('username').value.trim();
-   const p=document.getElementById('password').value;
-   const found=Object.values(USERS).find(x=>x.username===u && x.password===p);
-   if(!found){document.getElementById('loginError').textContent='نام کاربری یا رمز عبور صحیح نیست.';return;}
-   state.user={...found}; state.page='dashboard'; render();
-  });
- }
-}
-const oldRender=render; render=()=>{oldRender();bind();};
+function inboxPage(){const rows=isManager()?requests:requests.filter(r=>r.person===current().name);return `<section class="card section-card"><div class="panel-head"><div><h3>کارتابل من</h3><div class="muted" style="font-size:8px;margin-top:3px">موارد ارجاع‌شده، تصمیم‌ها و کارهای نیازمند اقدام</div></div>${badge('نیازمند اقدام')}</div><div class="filters"><select class="control"><option>همه وضعیت‌ها</option><option>نیازمند اقدام</option><option>انجام شده</option></select><select class="control"><option>همه انواع</option><option>درخواست</option><option>نامه</option><option>فرآیند</option></select><input class="control wide" placeholder="جستجوی عنوان یا شناسه..." onkeydown="if(event.key==='Enter')toast('جستجو در کارتابل نمونه اجرا شد')"></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>موضوع</th><th>ارجاع‌دهنده</th><th>تاریخ</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.id}</td><td>${esc(r.title)}</td><td>${esc(r.person)}</td><td>${r.date}</td><td>${badge(r.status)}</td><td><div class="action-row"><button class="small-btn" onclick="openRequestDetails('${r.id}')">مشاهده</button>${isManager()&&r.status==='در انتظار تأیید'?`<button class="small-btn approve" onclick="decide('${r.id}','تأیید شده')">تأیید</button>`:''}</div></td></tr>`).join('')}</tbody></table></div></section>`}
+function requestCategories(active='همه'){const cats=['همه','منابع انسانی','مالی','فناوری','تدارکات','اداری','اموال و انبار'];return `<div class="request-categories">${cats.map(c=>`<button class="request-category ${active===c?'active':''}" onclick="filterCategory('${c}')">${c}</button>`).join('')}</div>`}
+let activeCategory='همه';
+function filterCategory(c){activeCategory=c;render()}
+function categoryOf(type){return catalog.find(x=>x[0]===type)?.[3]||'اداری'}
+function requestsPage(){const data=(isManager()?requests:requests.filter(r=>r.person===current().name)).filter(r=>activeCategory==='همه'||categoryOf(r.type)===activeCategory);return `<section class="card section-card"><div class="panel-head"><div><h3>درخواست‌ها</h3><div class="muted" style="font-size:8px;margin-top:3px">خدمات منابع انسانی، مالی، فناوری، اداری، اموال و انبار</div></div><button class="btn btn-primary" onclick="openRequest()">＋ ثبت درخواست جدید</button></div>${requestCategories(activeCategory)}<div class="filters"><select class="control"><option>همه وضعیت‌ها</option><option>در انتظار تأیید</option><option>تأیید شده</option><option>در حال بررسی</option><option>رد شده</option></select><input class="control wide" placeholder="جستجو..." /></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>نوع</th><th>عنوان</th><th>ثبت‌کننده</th><th>تاریخ</th><th>مرحله</th><th>وضعیت</th><th></th></tr></thead><tbody>${data.map(r=>`<tr><td>${r.id}</td><td>${esc(r.type)}</td><td>${esc(r.title)}</td><td>${esc(r.person)}</td><td>${r.date}</td><td>${esc(r.stage)}</td><td>${badge(r.status)}</td><td><button class="small-btn" onclick="openRequestDetails('${r.id}')">جزئیات</button></td></tr>`).join('')}</tbody></table></div></section>`}
+function attendancePage(){return `<section class="hero"><div><h2>تردد و کارکرد امروز</h2><p>ثبت ورود و خروج در این نسخه نمایشی محلی است و در نسخه عملیاتی باید به سرویس تردد متصل شود.</p></div><div class="hero-actions"><button class="btn btn-primary" onclick="toast('ورود ثبت شد · 08:31')">ثبت ورود</button><button class="btn btn-secondary" onclick="toast('خروج ثبت شد · 17:05')">ثبت خروج</button></div></section><div class="cards"><div class="card stat-card"><div class="stat-label">روزهای حضور</div><div class="stat-value">۱۹</div><div class="stat-help">از ماه جاری</div></div><div class="card stat-card"><div class="stat-label">تأخیر</div><div class="stat-value">۲</div><div class="stat-help warn">نیازمند بررسی</div></div><div class="card stat-card"><div class="stat-label">کارکرد</div><div class="stat-value">۱۵۲</div><div class="stat-help up">۹۴٪ برنامه</div></div><div class="card stat-card"><div class="stat-label">مرخصی</div><div class="stat-value">۱</div><div class="stat-help">روز استفاده‌شده</div></div></div><section class="card panel"><div class="panel-head"><h3>خط زمانی امروز</h3></div><div class="timeline"><div class="timeline-item"><div class="timeline-dot">۱</div><div><strong>ورود</strong><p>اولین ثبت تردد روز</p></div><time>08:31</time></div><div class="timeline-item"><div class="timeline-dot">۲</div><div><strong>شروع کار</strong><p>آغاز کار رسمی</p></div><time>08:40</time></div><div class="timeline-item"><div class="timeline-dot">۳</div><div><strong>پایان کار</strong><p>زمان خروج پیش‌بینی‌شده</p></div><time>17:05</time></div></div></section>`}
+function approvalsPage(){if(!isManager())return `<section class="card section-card"><div class="empty">این بخش فقط برای مدیران قابل دسترسی است.</div></section>`;return `<section class="card section-card"><div class="panel-head"><h3>تأییدهای در انتظار</h3>${badge('نیازمند اقدام')}</div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>کارمند</th><th>موضوع</th><th>واحد</th><th>تاریخ</th><th>عملیات</th></tr></thead><tbody>${requests.filter(r=>r.status==='در انتظار تأیید').map(r=>`<tr id="row-${r.id}"><td>${r.id}</td><td>${esc(r.person)}</td><td>${esc(r.title)}</td><td>${esc(r.unit)}</td><td>${r.date}</td><td><div class="action-row"><button class="small-btn approve" onclick="decide('${r.id}','تأیید شده')">تأیید</button><button class="small-btn reject" onclick="decide('${r.id}','رد شده')">رد</button></div></td></tr>`).join('')}</tbody></table></div></section>`}
+function peoplePage(){return `<section class="card section-card"><div class="panel-head"><h3>فهرست پرسنل</h3><button class="btn btn-primary" onclick="toast('فرم ایجاد پرسنل در نسخه عملیاتی متصل می‌شود')">＋ کاربر جدید</button></div><div class="table-wrap"><table><thead><tr><th>نام</th><th>واحد</th><th>سمت</th><th>وضعیت</th></tr></thead><tbody>${PEOPLE.map(p=>`<tr><td>${p[0]}</td><td>${p[1]}</td><td>${p[2]}</td><td>${p[3]==='فعال'?badge('تأیید شده'):badge('نیازمند اقدام')}</td></tr>`).join('')}</tbody></table></div></section>`}
+function processesPage(){return `<section class="card section-card"><div class="panel-head"><h3>فرآیندهای سازمانی</h3><span class="muted" style="font-size:8px">الگوی نمونه گردش کار</span></div><div class="quick-grid">${processes.map((p,i)=>`<div class="quick" onclick="openProcess(${i})"><div class="q-icon">◇</div><strong>${esc(p[0])}</strong><span>${esc(p[1])}</span></div>`).join('')}</div></section>`}
+function reportsPage(){return `<div class="cards"><div class="card stat-card"><div class="stat-label">کل درخواست‌ها</div><div class="stat-value">۱۲۸</div><div class="stat-help">این ماه</div></div><div class="card stat-card"><div class="stat-label">تکمیل‌شده</div><div class="stat-value">۹۶</div><div class="stat-help up">۷۵٪</div></div><div class="card stat-card"><div class="stat-label">در انتظار</div><div class="stat-value">۲۱</div><div class="stat-help warn">نیازمند پیگیری</div></div><div class="card stat-card"><div class="stat-label">رد شده</div><div class="stat-value">۱۱</div><div class="stat-help">این ماه</div></div></div><section class="card panel"><div class="panel-head"><h3>روند نمونه فعالیت</h3></div><div class="kpis"><div class="kpi"><small>تکمیل فرآیند</small><strong>75٪</strong><div class="progress"><span style="width:75%"></span></div></div><div class="kpi"><small>SLA رعایت‌شده</small><strong>88٪</strong><div class="progress"><span style="width:88%"></span></div></div><div class="kpi"><small>تأیید بدون برگشت</small><strong>91٪</strong><div class="progress"><span style="width:91%"></span></div></div></div></section>`}
+function profilePage(){return `<section class="card"><div class="profile-cover"></div><div class="profile-main"><div class="profile-id"><div class="avatar">${esc(current().avatar)}</div><div class="profile-title"><h2>${esc(current().name)}</h2><p>${esc(current().role)} · ${esc(current().department)}</p></div><div class="profile-actions"><button class="btn btn-secondary" onclick="toast('ویرایش پروفایل در نسخه عملیاتی فعال می‌شود')">ویرایش</button></div></div><div class="detail-grid"><div class="detail"><small>نام کاربری</small><strong>${esc(current().username)}</strong></div><div class="detail"><small>نقش</small><strong>${esc(current().role)}</strong></div><div class="detail"><small>واحد</small><strong>${esc(current().department)}</strong></div><div class="detail"><small>وضعیت حساب</small><strong>${badge('تأیید شده')}</strong></div></div></div></section>`}
+function settingsPage(){return `<section class="card section-card"><div class="panel-head"><div><h3>تنظیمات تجربه کاربری</h3><div class="muted" style="font-size:8px;margin-top:3px">تم انتخابی در مرورگر ذخیره می‌شود.</div></div></div><div class="field"><label style="font-size:10px;font-weight:800;display:block;margin-bottom:7px">تم سامانه</label><div class="theme-row"><button class="theme-btn ${state.theme==='light'?'active':''}" onclick="setTheme('light');render()">روشن</button><button class="theme-btn ${state.theme==='dark'?'active':''}" onclick="setTheme('dark');render()">تیره</button><button class="theme-btn ${state.theme==='pink'?'active':''}" onclick="setTheme('pink');render()">Pink Night</button></div></div><div class="kpis" style="margin-top:15px"><div class="kpi"><small>فونت فارسی</small><strong>Vazirmatn</strong></div><div class="kpi"><small>حرکت رابط</small><strong>ظریف</strong></div><div class="kpi"><small>واکنش‌گرایی</small><strong>Mobile</strong></div></div></section>`}
+function openModal(title,body){const el=document.getElementById('modalBackdrop');el.innerHTML=`<div class="modal"><div class="modal-head"><h3>${title}</h3><button class="close" onclick="closeModal()">×</button></div>${body}</div>`;el.classList.add('show')}
+function closeModal(){document.getElementById('modalBackdrop').classList.remove('show')}
+function openRequest(pre='مرخصی'){openModal('ثبت درخواست جدید',`<form onsubmit="submitRequest(event)"><div class="formgrid"><div class="form-group"><label>نوع درخواست</label><select id="rtype" class="control">${catalog.map(x=>`<option ${x[0]===pre?'selected':''}>${x[0]}</option>`).join('')}</select></div><div class="form-group"><label>عنوان</label><input id="rtitle" class="control" value="درخواست ${esc(pre)}" required></div><div class="form-group full"><label>شرح درخواست</label><textarea id="rdesc" class="control" style="min-height:120px" required placeholder="شرح دقیق، بازه زمانی، علت یا مستندات مورد نیاز"></textarea></div></div><div class="modal-actions"><button type="button" class="btn btn-secondary" onclick="closeModal()">انصراف</button><button class="btn btn-primary">ثبت درخواست</button></div></form>`)}
+function submitRequest(e){e.preventDefault();const r={id:'REQ-'+(1043+requests.length),type:document.getElementById('rtype').value,title:document.getElementById('rtitle').value,person:current().name,unit:current().department,date:'۱۴۰۵/۰۷/۰۳',status:'در انتظار تأیید',tone:'yellow',stage:'تأیید مدیر'};requests.unshift(r);closeModal();render();toast('درخواست '+r.id+' ثبت شد')}
+function decide(id,status){const r=requests.find(x=>x.id===id);if(!r)return;r.status=status;r.tone=status==='تأیید شده'?'green':status==='رد شده'?'red':'blue';r.stage='پایان فرآیند';closeModal();render();toast(id+' '+status)}
+function openRequestDetails(id){const r=requests.find(x=>x.id===id);if(!r)return;openModal('جزئیات '+id,`<div class="detail-grid"><div class="detail"><small>عنوان</small><strong>${esc(r.title)}</strong></div><div class="detail"><small>ثبت‌کننده</small><strong>${esc(r.person)}</strong></div><div class="detail"><small>وضعیت</small><strong>${badge(r.status)}</strong></div><div class="detail"><small>مرحله</small><strong>${esc(r.stage)}</strong></div></div><div style="height:14px"></div><div class="timeline"><div class="timeline-item"><div class="timeline-dot">✓</div><div><strong>ثبت درخواست</strong><p>درخواست در سامانه ثبت شده است.</p></div><time>${r.date}</time></div><div class="timeline-item"><div class="timeline-dot">2</div><div><strong>بررسی و تصمیم</strong><p>${esc(r.stage)}</p></div><time>${r.status}</time></div><div class="timeline-item"><div class="timeline-dot">3</div><div><strong>پایان فرآیند</strong><p>پس از تکمیل اقدام نهایی بسته می‌شود.</p></div><time>${r.status==='در انتظار تأیید'?'—':'انجام شد'}</time></div></div><div class="modal-actions">${isManager()&&r.status==='در انتظار تأیید'?`<button class="btn btn-success" onclick="decide('${id}','تأیید شده')">تأیید</button><button class="btn btn-danger" onclick="decide('${id}','رد شده')">رد</button>`:''}<button class="btn btn-secondary" onclick="closeModal()">بستن</button></div>`)}
+function openProcess(i){const p=processes[i];openModal(p[0],`<p class="muted" style="font-size:9px">مالک فرآیند: ${esc(p[2])}</p><div class="timeline">${p[1].split(' → ').map((x,j)=>`<div class="timeline-item"><div class="timeline-dot">${j+1}</div><div><strong>${esc(x)}</strong><p>مرحله نمونه گردش کار؛ در نسخه عملیاتی وضعیت از موتور فرآیند دریافت می‌شود.</p></div><time>${j?'گام '+(j+1):'ثبت'}</time></div>`).join('')}</div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">بستن</button></div>`)}
+function toggleProfileMenu(){document.getElementById('profileMenu')?.classList.toggle('open')}
+function commandModal(){return `<div id="commandBackdrop" class="command-backdrop" onclick="if(event.target===this)closeCommand()"><div class="command"><input id="commandInput" placeholder="جستجوی فرمان یا صفحه..." oninput="renderCommands(this.value)" onkeydown="if(event.key==='Escape')closeCommand()"><div id="commandList" class="command-list"></div></div></div>`}
+function renderCommands(q=''){const items=[['dashboard','داشبورد'],['inbox','کارتابل'],['requests','درخواست‌ها'],['attendance','تردد'],['processes','فرآیندها'],['reports','گزارشات'],['profile','حساب من'],['settings','تنظیمات']].filter(x=>!q||x[1].includes(q));const el=document.getElementById('commandList');if(el)el.innerHTML=items.map(x=>`<button class="command-item" onclick="navigate('${x[0]}');closeCommand()"><strong>${x[1]}</strong><span>باز کردن</span></button>`).join('')}
+function openCommand(q=''){const b=document.getElementById('commandBackdrop');if(!b)return;b.classList.add('show');const i=document.getElementById('commandInput');if(i){i.value=q;i.focus();renderCommands(q)}}
+function closeCommand(){document.getElementById('commandBackdrop')?.classList.remove('show')}
+function modalMarkup(){return `<div id="modalBackdrop" class="modal-backdrop"></div>`}
+function navigate(p){state.page=p;render()}
+function render(){setTheme(state.theme);if(!state.user){root().innerHTML=loginView()}else{root().innerHTML=shell();renderCommands();if(!document.getElementById('toast')){const t=document.createElement('div');t.id='toast';t.className='toast';t.setAttribute('role','status');t.setAttribute('aria-live','polite');document.body.appendChild(t)}}document.querySelectorAll('tbody tr').forEach(tr=>[...tr.children].forEach((td,i)=>{const th=td.closest('table')?.querySelectorAll('thead th')[i];if(th)td.dataset.label=th.textContent.trim()}))}
+document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.key.toLowerCase()==='k'){e.preventDefault();openCommand()}if(e.key==='Escape'){closeCommand();document.getElementById('modalBackdrop')?.classList.remove('show')}})
+try{const saved=sessionStorage.getItem('companyPortalUser');if(saved)state.user=JSON.parse(saved)}catch{}
 render();
