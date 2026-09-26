@@ -1,1 +1,11 @@
-V26: business workflow UX update on V25. Added dashboard attention center, request categories, and richer request detail timeline. Removed click/touch lightning burst for performance; retained ambient lightning network and pointer deformation. Existing login/page loaders and prior effects/features are preserved. Frontend demo only.
+# سامانه شرکتی — نسخه ۲۷
+
+نسخه ۲۷ بر پایه V26 ساخته شده و تم/ظاهر اصلی را تغییر نمی‌دهد.
+
+بهبودهای کاربردی:
+- فیلتر و جستجوی واقعی در جدول درخواست‌ها و کارتابل
+- پیش‌نویس خودکار فرم درخواست و ذخیره موقت با Ctrl+S
+- کپی سریع شناسه درخواست در جزئیات
+- میانبرهای صفحه‌کلید برای جستجو، ثبت درخواست و جابه‌جایی سریع
+
+تمام قابلیت‌های قبلی V26 از جمله تم‌ها، فونت‌ها، دسترسی‌پذیری، لودینگ‌ها، مرکز پشتیبانی و افکت شبکه رعدوبرق حفظ شده‌اند.

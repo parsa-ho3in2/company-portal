@@ -2300,5 +2300,170 @@ html[data-a11y-scale="xlarge"] th,html[data-a11y-scale="xlarge"] td{font-size:11
   };
 })();
 </script>
+
+
+<style id="v27-usability-patch">
+/* V27 usability-only layer: preserves the existing visual system/theme. */
+.request-draft-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0 2px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);font-size:8px;color:var(--muted)}
+.request-draft-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.request-draft-actions .sm{min-height:28px}
+.filter-count{font-size:8px;color:var(--muted)}
+.row-hidden{display:none!important}
+.keyboard-hint{font-size:7px;color:var(--muted);opacity:.9}
+@media(max-width:560px){.request-draft-bar{align-items:flex-start;flex-direction:column}.request-draft-actions{width:100%}}
+</style>
+
+<script id="v27-usability-script">
+(function(){
+  'use strict';
+  const DRAFT_KEY='companyPortalRequestDraft';
+
+  function isTypingTarget(el){
+    return !!el && (el.matches('input,textarea,select,[contenteditable="true"]') || el.closest('.modal-backdrop,.command-backdrop,.global-search-backdrop'));
+  }
+  function showDraftBar(form){
+    if(!form || form.querySelector('.request-draft-bar')) return;
+    const bar=document.createElement('div');
+    bar.className='request-draft-bar';
+    bar.innerHTML='<span id="requestDraftStatus">پیش‌نویس به‌صورت خودکار در همین مرورگر ذخیره می‌شود.</span><span class="request-draft-actions"><button type="button" class="sm" id="clearRequestDraft">پاک‌کردن پیش‌نویس</button><span class="keyboard-hint">Ctrl+S ذخیره موقت</span></span>';
+    form.appendChild(bar);
+    const clear=bar.querySelector('#clearRequestDraft');
+    clear?.addEventListener('click',function(){localStorage.removeItem(DRAFT_KEY);const rt=document.getElementById('rt'),t=document.getElementById('rtitle'),d=document.getElementById('rd');if(t)t.value='';if(d)d.value='';const st=document.getElementById('requestDraftStatus');if(st)st.textContent='پیش‌نویس پاک شد.';});
+  }
+  function restoreDraft(){
+    let draft=null;try{draft=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null')}catch(e){draft=null}
+    if(!draft) return;
+    const rt=document.getElementById('rt'),t=document.getElementById('rtitle'),d=document.getElementById('rd');
+    if(rt && draft.type && Array.from(rt.options).some(o=>o.value===draft.type)) rt.value=draft.type;
+    if(t && draft.title) t.value=draft.title;
+    if(d && draft.description) d.value=draft.description;
+    const st=document.getElementById('requestDraftStatus');if(st)st.textContent='پیش‌نویس قبلی بازیابی شد.';
+  }
+  function wireRequestDraft(){
+    const form=document.querySelector('#modal form.form');
+    if(!form || !document.getElementById('rt') || !document.getElementById('rtitle') || !document.getElementById('rd')) return;
+    showDraftBar(form);
+    restoreDraft();
+    let timer=null;
+    const saveDraft=()=>{
+      const draft={type:document.getElementById('rt')?.value||'',title:document.getElementById('rtitle')?.value||'',description:document.getElementById('rd')?.value||'',savedAt:Date.now()};
+      if(!draft.type && !draft.title && !draft.description){localStorage.removeItem(DRAFT_KEY);return}
+      localStorage.setItem(DRAFT_KEY,JSON.stringify(draft));
+      const st=document.getElementById('requestDraftStatus');if(st)st.textContent='پیش‌نویس ذخیره شد · '+new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});
+    };
+    form.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(saveDraft,280)}, {passive:true});
+    form.addEventListener('change',saveDraft,{passive:true});
+    form.addEventListener('submit',()=>localStorage.removeItem(DRAFT_KEY),{once:true});
+    window.__saveRequestDraft=saveDraft;
+  }
+
+  const oldOpenRequest=window.openRequest;
+  window.openRequest=function(preselect){
+    if(typeof oldOpenRequest==='function') oldOpenRequest(preselect);
+    setTimeout(wireRequestDraft,20);
+  };
+
+  // Search/filter the rendered request and inbox tables without re-rendering the page.
+  function wireTableFilters(){
+    const requestTable=document.querySelector('.content table');
+    if(page==='requests' && requestTable){
+      const wrap=requestTable.closest('.card.panel');
+      const controls=wrap?.querySelectorAll('.filters .control');
+      if(controls?.length){
+        const selects=Array.from(controls).filter(x=>x.tagName==='SELECT');
+        const input=Array.from(controls).find(x=>x.tagName==='INPUT');
+        if(selects[0]) selects[0].id='requestStatusFilter';
+        if(input) input.id='requestSearchFilter';
+        const count=document.createElement('span');count.className='filter-count';count.id='requestFilterCount';
+        const head=wrap.querySelector('.request-group-note');head?.appendChild(count);
+        const apply=()=>{
+          const status=selects[0]?.value||'همه وضعیت‌ها';
+          const q=(input?.value||'').trim().toLowerCase();
+          let visible=0;
+          requestTable.querySelectorAll('tbody tr').forEach(row=>{
+            if(row.classList.contains('empty-filter-row')) return;
+            const txt=row.textContent.toLowerCase();
+            const statusCell=row.children[6]?.textContent.trim()||'';
+            const okStatus=!status||status==='همه وضعیت‌ها'||statusCell.includes(status);
+            const okQuery=!q||txt.includes(q);
+            row.classList.toggle('row-hidden',!(okStatus&&okQuery));
+            if(okStatus&&okQuery) visible++;
+          });
+          if(count) count.textContent=visible+' مورد نمایش داده شد';
+        };
+        selects.forEach(s=>s.addEventListener('change',apply));
+        input?.addEventListener('input',apply);
+        apply();
+      }
+    }
+    if(page==='inbox'){
+      const table=document.querySelector('.content table');
+      const wrap=table?.closest('.card.panel');
+      const controls=wrap?.querySelectorAll('.filters .control');
+      if(table&&controls?.length){
+        const selects=Array.from(controls).filter(x=>x.tagName==='SELECT');
+        const input=Array.from(controls).find(x=>x.tagName==='INPUT');
+        const apply=()=>{
+          const status=selects[0]?.value||'همه وضعیت‌ها', type=selects[1]?.value||'همه انواع', q=(input?.value||'').trim().toLowerCase();
+          table.querySelectorAll('tbody tr').forEach(row=>{
+            const txt=row.textContent.toLowerCase();
+            const cells=Array.from(row.children).map(c=>c.textContent.trim());
+            const okStatus=status==='همه وضعیت‌ها'||cells[4]?.includes(status);
+            const okType=type==='همه انواع'||txt.includes(type.toLowerCase());
+            const okQ=!q||txt.includes(q);
+            row.classList.toggle('row-hidden',!(okStatus&&okType&&okQ));
+          });
+        };
+        selects.forEach(s=>s.addEventListener('change',apply));
+        input?.addEventListener('input',apply);
+        apply();
+      }
+    }
+  }
+
+  // Add a copy-ID action to request details without changing the existing detail layout.
+  const oldDetails=window.details;
+  window.details=function(id){
+    if(typeof oldDetails!=='function') return;
+    oldDetails(id);
+    setTimeout(()=>{
+      const modal=document.querySelector('#modal .modal');
+      if(!modal || modal.querySelector('#copyRequestId')) return;
+      const actions=modal.querySelector('.modal-actions');
+      if(!actions) return;
+      const b=document.createElement('button');
+      b.type='button';b.id='copyRequestId';b.className='btn btn-secondary';b.textContent='کپی شناسه';
+      b.addEventListener('click',async()=>{
+        try{await navigator.clipboard.writeText(String(id));toast('شناسه '+id+' کپی شد')}catch(e){toast('کپی خودکار در این مرورگر در دسترس نیست')}});
+      actions.insertBefore(b,actions.firstChild);
+    },20);
+  };
+
+  // Small keyboard layer for common actions; never hijacks text entry.
+  let gPending=false;
+  document.addEventListener('keydown',function(e){
+    if(isTypingTarget(e.target)){
+      if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'&&document.getElementById('requestDraftStatus')){e.preventDefault();window.__saveRequestDraft?.();}
+      return;
+    }
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k') return; // existing command palette owns this.
+    if(e.key==='/'){e.preventDefault();window.openGlobalSearch?.('');return;}
+    if(e.key.toLowerCase()==='g'){gPending=true;setTimeout(()=>gPending=false,900);return;}
+    if(gPending){
+      gPending=false;
+      const map={d:'dashboard',i:'inbox',r:'requests',a:'approvals',p:'profile',s:'settings'};
+      if(map[e.key.toLowerCase()]){e.preventDefault();window.nav?.(map[e.key.toLowerCase()]);}
+    }
+    if(e.key.toLowerCase()==='n'&&!e.ctrlKey&&!e.metaKey){e.preventDefault();window.openRequest?.();}
+  });
+
+  const originalRender=window.render;
+  window.render=function(){
+    if(typeof originalRender==='function') originalRender();
+    setTimeout(wireTableFilters,30);
+  };
+  window.addEventListener('load',()=>setTimeout(wireTableFilters,50));
+  setTimeout(wireTableFilters,50);
+})();
+</script>
 </body>
 </html>
