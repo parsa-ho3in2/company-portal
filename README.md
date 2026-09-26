@@ -1,1 +1,1 @@
-نسخه ۲۵ — اصلاح اعمال واقعی تم صورتی شب. مشکل override شدن setPalette قدیمی برطرف شد و pinknight به فهرست مجاز و meta theme-color اضافه شد. سایر قابلیت‌های V24 حفظ شده‌اند.
+V26: business workflow UX update on V25. Added dashboard attention center, request categories, and richer request detail timeline. Removed click/touch lightning burst for performance; retained ambient lightning network and pointer deformation. Existing login/page loaders and prior effects/features are preserved. Frontend demo only.

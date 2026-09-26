@@ -1877,7 +1877,11 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
     ctx.restore();
   }
 
+  let lastDrawTime=0;
   function draw(now){
+    if(document.hidden){requestAnimationFrame(draw);return;}
+    if(now-lastDrawTime<22){requestAnimationFrame(draw);return;}
+    lastDrawTime=now;
     ctx.clearRect(0,0,w,h);
     pointer.x += (targetPointer.x-pointer.x)*.18;
     pointer.y += (targetPointer.y-pointer.y)*.18;
@@ -1932,16 +1936,9 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
   function updatePointer(e,pressure){
     targetPointer.x=e.clientX;targetPointer.y=e.clientY;targetPointer.active=true;targetPointer.pressure=pressure;
   }
-
-  function handleBurstEvent(e){
-    if(e.button!==undefined && e.button>0) return;
-    if(!isLightningTarget(e.target)) return;
-    const now=performance.now();
-    if(now-lastPointerBurst.time<350 && Math.hypot(e.clientX-lastPointerBurst.x,e.clientY-lastPointerBurst.y)<6) return;
-    lastPointerBurst={time:now,x:e.clientX,y:e.clientY};
-    updatePointer(e,.95);
-    createBurst(e.clientX,e.clientY);
-  }
+  // V26 performance pass: click/touch burst lightning is intentionally disabled.
+  // Ambient network + pointer deformation remain active.
+  function handleBurstEvent(){ return; }
 
   resize();
   requestAnimationFrame(draw);
@@ -1949,9 +1946,6 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
   document.addEventListener('pointermove',function(e){
     if(e.pointerType==='mouse'||e.pointerType==='pen') updatePointer(e,clamp(e.pressure||.35,.15,1));
   },{passive:true});
-  document.addEventListener('pointerdown',handleBurstEvent,{passive:true});
-  // Click fallback keeps the burst interaction reliable in browsers where pointer events are altered.
-  document.addEventListener('click',function(e){handleBurstEvent(e)},{passive:true});
   document.addEventListener('pointerup',function(e){if(e.pointerType!=='touch') targetPointer.active=false;},{passive:true});
   document.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse') targetPointer.active=false;},{passive:true});
   document.addEventListener('touchmove',function(e){const t=e.touches[0];if(t) updatePointer(t,.55);},{passive:true});
@@ -2211,5 +2205,100 @@ html[data-a11y-scale="xlarge"] th,html[data-a11y-scale="xlarge"] td{font-size:11
 @media(prefers-reduced-motion:reduce){.command-suggest{transition:none}.command-suggest:hover{transform:none}}
 </style>
 
+
+<style id="v26-business-ux">
+/* V26: business workflow UX — attention center, categorized requests, richer request details. */
+.attention-panel{display:grid;grid-template-columns:1.25fr .75fr;gap:14px;align-items:stretch}
+.attention-list{display:grid;gap:8px}
+.attention-item{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2)}
+.attention-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-weight:900}
+.attention-item strong{display:block;font-size:10px;font-weight:800}
+.attention-item small{display:block;margin-top:2px;color:var(--muted);font-size:8px}
+.attention-side{padding:15px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,var(--surface),var(--surface-2))}
+.attention-side h3{margin:0;font-size:12px}
+.attention-side p{margin:5px 0 0;color:var(--muted);font-size:8px;line-height:1.8}
+.attention-number{font-size:30px;font-weight:900;line-height:1;margin:14px 0 5px;color:var(--accent)}
+.request-categories{display:flex;gap:7px;overflow:auto;padding:2px 1px 8px;margin-bottom:8px;scrollbar-width:thin}
+.request-category{flex:0 0 auto;border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:999px;padding:7px 11px;font-size:8px;font-weight:800;cursor:pointer;transition:.15s}
+.request-category.active{background:var(--accent-soft);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 28%,var(--line))}
+.request-group-note{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 9px;color:var(--muted);font-size:8px}
+.detail-status-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:13px}
+.detail-status{padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+.detail-status small{display:block;color:var(--muted);font-size:7px}.detail-status strong{display:block;margin-top:4px;font-size:9px}
+.workflow-timeline{display:grid;gap:0;margin-top:10px}
+.workflow-step{display:grid;grid-template-columns:28px 1fr auto;gap:9px;align-items:start;position:relative;padding:5px 0 12px}
+.workflow-step:not(:last-child):before{content:"";position:absolute;right:13px;top:32px;bottom:-2px;width:1px;background:var(--line-strong)}
+.workflow-dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--surface-3);color:var(--muted);font-size:9px;font-weight:900;position:relative;z-index:1}
+.workflow-step.done .workflow-dot{background:var(--success-soft);color:var(--success)}
+.workflow-step.current .workflow-dot{background:var(--accent-soft);color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 10%,transparent)}
+.workflow-step strong{font-size:9px}.workflow-step p{margin:2px 0 0;color:var(--muted);font-size:8px;line-height:1.7}.workflow-step time{font-size:7px;color:var(--muted);white-space:nowrap}
+@media(max-width:900px){.attention-panel{grid-template-columns:1fr}.detail-status-strip{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.attention-item{grid-template-columns:30px 1fr}.attention-item .badge{grid-column:2;justify-self:start}.detail-status-strip{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){.request-category{transition:none}}
+</style>
+<script id="v26-business-ux-script">
+(function(){
+  'use strict';
+  const oldDashboard=window.dashboard;
+  const oldRequests=window.requests;
+  const oldDetails=window.details;
+  const categoryKey='companyRequestCategory';
+  const categoryMap={
+    'مرخصی':'منابع انسانی','دورکاری':'منابع انسانی','ماموریت اداری':'منابع انسانی','اضافه‌کاری':'منابع انسانی','مساعده':'مالی','تنخواه':'مالی',
+    'خرید تجهیزات':'تدارکات','پشتیبانی فناوری اطلاعات':'فناوری','دسترسی سامانه':'فناوری','تعمیر و نگهداری':'خدمات و نگهداری',
+    'گواهی اشتغال':'منابع انسانی','معرفی‌نامه اداری':'منابع انسانی','آموزش':'منابع انسانی','کارت و تردد':'منابع انسانی',
+    'پاسخ استعلام':'اداری','قرارداد مالی':'مالی','تحصیل دارایی':'اموال و انبار','ابطال دارایی':'اموال و انبار','خروج کالا':'اموال و انبار'
+  };
+  const categoryList=['همه','منابع انسانی','مالی','فناوری','تدارکات','اداری','اموال و انبار','خدمات و نگهداری'];
+  function safe(s){return typeof esc==='function'?esc(s):String(s??'')}
+  function currentCategory(){return localStorage.getItem(categoryKey)||'همه'}
+  function attentionPanel(){
+    const u=current();
+    const tasks=(db.tasks||[]).filter(t=>t.status==='نیازمند اقدام');
+    const mine=manager()?tasks:tasks.filter(t=>t.uid===u?.id || t.id==='TSK-298');
+    const rows=mine.slice(0,4).map(t=>'<div class="attention-item"><div class="attention-icon">!</div><div><strong>'+safe(t.title)+'</strong><small>'+safe(t.req||t.id)+' · موعد '+safe(t.due||'—')+'</small></div>'+badge(t.status)+'</div>').join('');
+    const count=mine.length;
+    return '<section class="card panel attention-panel"><div><div class="panel-head"><div><h3>کارهای من</h3><div class="muted" style="font-size:8px;margin-top:3px">مواردی که همین حالا نیاز به اقدام دارند</div></div><span class="badge '+(count?'yellow':'green')+'">'+count+' مورد</span></div><div class="attention-list">'+(rows||'<div class="empty-state"><div class="empty-icon">✓</div><strong>کار معوقی ندارید</strong><p>در حال حاضر موردی برای اقدام فوری در کارتابل شما نیست.</p></div>')+'</div></div><aside class="attention-side"><h3>تمرکز امروز</h3><p>اول مواردی را انجام دهید که موعد نزدیک‌تر یا تأیید مدیریتی دارند.</p><div class="attention-number">'+count+'</div><div class="muted" style="font-size:8px">مورد نیازمند اقدام</div><div class="modal-actions"><button class="btn btn-primary" onclick="nav(\'inbox\')">باز کردن کارتابل</button></div></aside></section>';
+  }
+  window.dashboard=function(){
+    const base=typeof oldDashboard==='function'?oldDashboard():'';
+    const marker='</section><div class="cards">';
+    return base.includes(marker)?base.replace(marker,'</section>'+attentionPanel()+'<div class="cards">'):base+attentionPanel();
+  };
+  function requestCategoryBar(){
+    const active=currentCategory();
+    return '<div class="request-categories" role="tablist" aria-label="دسته‌بندی درخواست‌ها">'+categoryList.map(c=>'<button type="button" class="request-category '+(active===c?'active':'')+'" onclick="setRequestCategory(\''+safe(c).replace(/'/g,"\\'")+'\')" role="tab" aria-selected="'+(active===c)+'">'+safe(c)+'</button>').join('')+'</div>';
+  }
+  window.setRequestCategory=function(cat){localStorage.setItem(categoryKey,cat||'همه');render()};
+  window.requests=function(){
+    const mine=manager()?(db.req||[]):(db.req||[]).filter(r=>r.uid===current()?.id);
+    const active=currentCategory();
+    const filtered=active==='همه'?mine:mine.filter(r=>(categoryMap[r.type]||'اداری')===active);
+    const catalog=(typeof window.__requestCatalog!=='undefined'?window.__requestCatalog:[]);
+    const quickPool=active==='همه'?catalog.slice(0,8):catalog.filter(x=>(categoryMap[x[0]]||'اداری')===active).slice(0,8);
+    const icons=[svg.req,svg.clock||'◴',svg.people,svg.chart,svg.settings,svg.doc,svg.shield,svg.process];
+    const quick=quickPool.map((x,i)=>'<button class="request-shortcut" onclick="openRequest(\''+String(x[0]).replace(/'/g,"\\'")+'\')"><span class="rs-icon">'+(icons[i]||svg.req)+'</span><strong>'+safe(x[0])+'</strong><span>'+safe(x[1])+'</span></button>').join('');
+    const rows=filtered.length?filtered.map(r=>'<tr><td>'+safe(r.id)+'</td><td>'+safe(r.type)+'</td><td>'+safe(r.title)+'</td><td>'+safe(db.users.find(u=>u.id===r.uid)?.name||'')+'</td><td>'+safe(r.date)+'</td><td>'+safe(r.stage)+'</td><td>'+badge(r.status)+'</td><td><button class="sm primary" onclick="details(\''+safe(r.id).replace(/'/g,"\\'")+'\')">'+svg.eye+' جزئیات</button></td></tr>').join(''):'<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">'+svg.req+'</div><strong>در این دسته درخواستی وجود ندارد</strong><p>برای ثبت یک مورد جدید، از دسترسی‌های بالا استفاده کنید.</p></div></td></tr>';
+    return '<section class="card panel"><div class="panel-head"><div><h3>درخواست‌ها</h3><div class="muted" style="font-size:8px;margin-top:3px">انتخاب خدمت از دسته مرتبط و پیگیری سوابق ثبت‌شده</div></div><button class="btn btn-primary" onclick="openRequest()">'+svg.plus+' ثبت درخواست جدید</button></div>'+requestCategoryBar()+'<div class="request-group-note"><span>'+safe(active==='همه'?'همه خدمات سازمانی':active)+'</span><span>'+quickPool.length+' خدمت سریع</span></div>'+(quick?'<div class="request-catalog">'+quick+'</div>':'')+'<div class="filters"><select class="control"><option>همه وضعیت‌ها</option><option>در انتظار تأیید</option><option>تأیید شده</option><option>در حال بررسی</option><option>رد شده</option></select><input class="control wide" placeholder="جستجوی عنوان یا شناسه..." aria-label="جستجوی درخواست‌ها"></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>نوع</th><th>عنوان</th><th>ثبت‌کننده</th><th>تاریخ</th><th>مرحله</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>';
+  };
+  function workflow(r){
+    const stages=['ثبت درخواست','بررسی و تأیید','اجرا / اقدام نهایی','پایان فرآیند'];
+    const idx=r.status==='رد شده'?1:(r.status==='تأیید شده'?3:2);
+    return '<div class="workflow-timeline">'+stages.map((s,i)=>{
+      const done=i<idx,cur=i===idx&&!done;
+      const time=i===0?r.date:(done?'انجام شد':(cur?'در حال بررسی':'—'));
+      const desc=i===0?'درخواست در سامانه ثبت شده است.':i===1?safe(r.stage||'بررسی توسط مسئول مربوط'):i===2?'پس از تأیید، اقدام اجرایی انجام می‌شود.':'پس از تکمیل مراحل، درخواست بسته می‌شود.';
+      return '<div class="workflow-step '+(done?'done ':'')+(cur?'current':'')+'"><div class="workflow-dot">'+(done?'✓':(i+1))+'</div><div><strong>'+s+'</strong><p>'+desc+'</p></div><time>'+time+'</time></div>';
+    }).join('')+'</div>';
+  }
+  window.details=function(id){
+    const r=(db.req||[]).find(x=>x.id===id); if(!r)return;
+    const p=(db.users||[]).find(x=>x.id===r.uid);
+    const currentOwner=manager()?safe(p?.name||'کارشناس مسئول'):safe(r.stage||'در حال بررسی');
+    const html='<div class="detail-grid"><div class="detail"><small>عنوان</small><strong>'+safe(r.title)+'</strong></div><div class="detail"><small>ثبت‌کننده</small><strong>'+safe(p?.name||'')+'</strong></div><div class="detail"><small>وضعیت</small><strong>'+badge(r.status)+'</strong></div><div class="detail"><small>مرحله فعلی</small><strong>'+safe(r.stage||'—')+'</strong></div></div><div class="detail-status-strip"><div class="detail-status"><small>مالک فعلی</small><strong>'+currentOwner+'</strong></div><div class="detail-status"><small>شناسه</small><strong>'+safe(r.id)+'</strong></div><div class="detail-status"><small>تاریخ ثبت</small><strong>'+safe(r.date)+'</strong></div><div class="detail-status"><small>اقدام بعدی</small><strong>'+safe(r.status==='تأیید شده'?'تکمیل / بستن':r.status==='رد شده'?'اصلاح و ثبت مجدد':'بررسی و تصمیم')+'</strong></div></div><div style="height:12px"></div><div class="panel" style="background:var(--surface-2);border:1px solid var(--line);border-radius:13px"><div class="panel-head"><div><h3>گردش کار درخواست</h3><div class="muted" style="font-size:8px;margin-top:3px">وضعیت هر مرحله و اقدام بعدی</div></div></div>'+workflow(r)+'</div><div class="modal-actions">'+(manager()&&r.status==='در انتظار تأیید'?'<button class="btn btn-success" onclick="closeModal();decide(\''+safe(id).replace(/'/g,"\\'")+'\',\'تأیید شده\')">تأیید درخواست</button><button class="btn btn-danger" onclick="closeModal();decide(\''+safe(id).replace(/'/g,"\\'")+'\',\'رد شده\')">رد درخواست</button>':'')+'<button class="btn btn-secondary" onclick="closeModal()">بستن</button></div>';
+    openModal('جزئیات '+safe(id),html);
+  };
+})();
+</script>
 </body>
 </html>
