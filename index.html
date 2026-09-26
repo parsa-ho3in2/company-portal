@@ -803,6 +803,14 @@ th{font-weight:750!important}
 @media(max-width:900px){.palette-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 
+
+<style id="v28-mobile-performance-style">
+/* V28 — mobile performance: keep the same visual design while reducing offscreen work. */
+@media (max-width:760px) and (pointer:coarse){
+  .content > *{content-visibility:auto;contain-intrinsic-size:180px;}
+}
+</style>
+
 </head>
 <body>
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
@@ -1668,6 +1676,8 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
 <script id="v14-lightning-touch-script">
 (function(){
   'use strict';
+  const mobileQuery=window.matchMedia('(max-width:760px) and (pointer:coarse)');
+  const isMobile=mobileQuery.matches;
   const canvas=document.getElementById('lightningTouchCanvas');
   if(!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const ctx=canvas.getContext('2d');
@@ -1684,7 +1694,7 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
   const duration=720;
 
   function resize(){
-    dpr=Math.min(window.devicePixelRatio||1,2);
+    dpr=Math.min(window.devicePixelRatio||1,isMobile?1.25:2);
     w=window.innerWidth; h=window.innerHeight;
     canvas.width=Math.max(1,Math.floor(w*dpr));
     canvas.height=Math.max(1,Math.floor(h*dpr));
@@ -1783,8 +1793,8 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
 
   function buildAmbientNetwork(){
     net.length=0;
-    const cols=Math.max(7,Math.min(12,Math.round(w/150)));
-    const rows=Math.max(5,Math.min(9,Math.round(h/145)));
+    const cols=isMobile?Math.max(5,Math.min(8,Math.round(w/170))):Math.max(7,Math.min(12,Math.round(w/150)));
+    const rows=isMobile?Math.max(4,Math.min(6,Math.round(h/165))):Math.max(5,Math.min(9,Math.round(h/145)));
     const dx=cols>1?w/(cols-1):w, dy=rows>1?h/(rows-1):h;
     const pts=[];
     for(let y0=0;y0<rows;y0++){
@@ -1825,7 +1835,7 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
   }
 
   function deformPoint(p,now,phase){
-    if(!pointer.active) return {x:p.x,y:p.y,boost:0};
+    if(!pointer.active) return p;
     const dx=p.x-pointer.x,dy=p.y-pointer.y,dist=Math.hypot(dx,dy)||1;
     const radius=Math.min(w,h)*.27;
     if(dist>radius) return {x:p.x,y:p.y,boost:0};
@@ -1850,8 +1860,15 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
     ctx.globalCompositeOperation='screen';
     const pulse=.88+.12*Math.sin(now*.0017);
     net.forEach(line=>{
-      const path=[]; let boost=0;
-      line.points.forEach(p=>{const d=deformPoint(p,now,line.phase);path.push(d);boost=Math.max(boost,d.boost)});
+      let path=line.points,boost=0;
+      if(pointer.active){
+        path=[];
+        for(let i=0;i<line.points.length;i++){
+          const d=deformPoint(line.points[i],now,line.phase);
+          path.push(d);
+          boost=Math.max(boost,d.boost||0);
+        }
+      }
       ctx.beginPath();ctx.moveTo(path[0].x,path[0].y);for(let i=1;i<path.length;i++)ctx.lineTo(path[i].x,path[i].y);
       const gradient=ctx.createLinearGradient(path[0].x,path[0].y,path[path.length-1].x,path[path.length-1].y);
       gradient.addColorStop(0,good);gradient.addColorStop(.5,primary);gradient.addColorStop(1,good);
@@ -1861,7 +1878,7 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
       ctx.shadowColor=primary;
       ctx.shadowBlur=boost>0?.5+boost*2.5:0;
       ctx.stroke();
-      if(boost>.22){
+      if(pointer.active && boost>.22){
         const idx=1+Math.floor((path.length-2)*(0.35+0.3*Math.abs(Math.sin(now*.002+line.phase))));
         const sp=path[Math.min(path.length-2,idx)];
         ctx.fillStyle=good;ctx.globalAlpha=(dark?.075:.03375)*boost;
@@ -1878,9 +1895,10 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
   }
 
   let lastDrawTime=0;
+  const frameInterval=isMobile?33:22;
   function draw(now){
-    if(document.hidden){requestAnimationFrame(draw);return;}
-    if(now-lastDrawTime<22){requestAnimationFrame(draw);return;}
+    if(document.hidden){setTimeout(()=>requestAnimationFrame(draw),180);return;}
+    if(now-lastDrawTime<frameInterval){requestAnimationFrame(draw);return;}
     lastDrawTime=now;
     ctx.clearRect(0,0,w,h);
     pointer.x += (targetPointer.x-pointer.x)*.18;
@@ -1948,8 +1966,19 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
   },{passive:true});
   document.addEventListener('pointerup',function(e){if(e.pointerType!=='touch') targetPointer.active=false;},{passive:true});
   document.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse') targetPointer.active=false;},{passive:true});
-  document.addEventListener('touchmove',function(e){const t=e.touches[0];if(t) updatePointer(t,.55);},{passive:true});
-  document.addEventListener('touchend',function(){targetPointer.active=false;},{passive:true});
+  let touchFrame=0;
+  let pendingTouch=null;
+  document.addEventListener('touchmove',function(e){
+    const t=e.touches[0];
+    if(!t) return;
+    pendingTouch={clientX:t.clientX,clientY:t.clientY};
+    if(touchFrame) return;
+    touchFrame=requestAnimationFrame(function(){
+      if(pendingTouch){updatePointer(pendingTouch,.55);pendingTouch=null;}
+      touchFrame=0;
+    });
+  },{passive:true});
+  document.addEventListener('touchend',function(){pendingTouch=null;targetPointer.active=false;},{passive:true});
 })();
 </script>
 
