@@ -811,8 +811,54 @@ th{font-weight:750!important}
 }
 </style>
 
+
+<style id="red-black-palette-v30">
+/* V30 — Red Black palette: vivid red accents with deep charcoal/black surfaces, tuned for clarity. */
+.sw-redblack{background:linear-gradient(135deg,#07080d 0%,#131722 52%,#ff3657 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+:root[data-theme="light"][data-palette="redblack"]{
+  --accent:#e5163d;--accent-2:#8d0f28;--accent-soft:#fff0f3;--glow:rgba(229,22,61,.14);--accent-good:#ff3657;
+  --primary:#d9163c;--primary-2:#8d0f28;--primary-soft:#fff1f4;--focus:#d9163c;
+}
+:root[data-theme="dark"][data-palette="redblack"]{
+  --accent:#ff3657;--accent-2:#ff9aaa;--accent-soft:#32141b;--glow:rgba(255,54,87,.16);--accent-good:#ff7083;
+  --primary:#ff3657;--primary-2:#ffd0d7;--primary-soft:#2b1118;--focus:#ff6078;
+  --surface:#111318;--surface-2:#171a21;--surface-3:#1d212a;--line:#2e3340;--line-strong:#414754;
+  --bg:#090a0e;--text:#f4f5f7;--muted:#a5aab7;--sidebar:#06070a;--sidebar-2:#0f1117;
+}
+:root[data-palette="redblack"] .btn-primary{background:linear-gradient(135deg,var(--primary),var(--accent-good));box-shadow:0 8px 24px var(--glow)}
+:root[data-palette="redblack"] .brand-mark{background:linear-gradient(135deg,#8d0f28,#ff3657)!important;color:#fff!important}
+:root[data-palette="redblack"] .profile-cover{background:radial-gradient(circle at 24% 24%,rgba(255,255,255,.12),transparent 18%),linear-gradient(135deg,#08090d,#241016 52%,#c31234)!important}
+:root[data-palette="redblack"] .profile-cover:before{background:linear-gradient(135deg,rgba(255,54,87,.52),rgba(255,130,150,.16))!important}
+:root[data-palette="redblack"] .profile-cover:after{background:linear-gradient(135deg,rgba(120,10,35,.35),rgba(255,84,106,.24))!important}
+:root[data-palette="redblack"] .login-showcase{background:radial-gradient(circle at 75% 28%,rgba(255,54,87,.14),transparent 25%),linear-gradient(135deg,#050609 0%,#13151d 55%,#7f1029 100%)!important}
+:root[data-palette="redblack"] .showcase-card .sc-icon{background:linear-gradient(135deg,rgba(255,54,87,.48),rgba(90,12,28,.38))!important}
+:root[data-palette="redblack"] .hero:before{background:linear-gradient(135deg,#9f102c,var(--accent))!important}
+:root[data-palette="redblack"] .hero:after{background:linear-gradient(135deg,var(--accent-good),#8d0f28)!important}
+:root[data-palette="redblack"] .quick-card .qicon{background:linear-gradient(135deg,var(--primary-soft),rgba(255,54,87,.11))!important}
+:root[data-palette="redblack"] .progress>span,.bar{background:linear-gradient(90deg,var(--primary),var(--accent-good))!important}
+:root[data-palette="redblack"] .page-loader-orbit{background:radial-gradient(circle,var(--surface) 43%,transparent 44%),conic-gradient(from 0deg,#8d0f28,var(--accent-good),var(--primary),#8d0f28)!important}
+:root[data-palette="redblack"] .page-loader-track span{background:linear-gradient(90deg,#8d0f28,var(--accent),var(--accent-good))!important}
+:root[data-palette="redblack"] .page-loader-dots i{background:var(--accent)!important}
+:root[data-palette="redblack"] .service-dot{background:var(--accent)!important;box-shadow:0 0 0 4px var(--accent-soft)}
+@media(max-width:900px){.palette-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+
+
+<style id="v30-mobile-performance">
+/* V30 mobile performance: preserve visuals while reducing expensive paint/compositing work. */
+@media (max-width:760px) and (pointer:coarse){
+  #lightningTouchCanvas{will-change:transform;transform:translateZ(0)}
+  .topbar{backdrop-filter:blur(10px) saturate(1.03);-webkit-backdrop-filter:blur(10px) saturate(1.03)}
+  .card,.panel,.hero,.quick-card,.process-card{contain:layout paint style}
+  .content > *{content-visibility:auto;contain-intrinsic-size:160px}
+}
+@media (max-width:480px) and (pointer:coarse){
+  .topbar{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+}
+</style>
+
 </head>
-<body>
+<body data-v30-build="redblack-mobile-perf">
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
 <div id="app"></div>
 <script>
@@ -1004,7 +1050,7 @@ render();
   window.settings=function(){
     const t=theme(),pal=settingsGet('companyPalette','ocean'),font=settingsGet('companyFont','vazir'),density=settingsGet('companyDensity','comfortable');
     const choice=(id,title,sub,sw)=>'<button class="palette-choice '+(pal===id?'active':'')+'" onclick="setPalette(\''+id+'\')"><div class="palette-swatch '+sw+'"></div><strong>'+title+'</strong><small>'+sub+'</small></button>';
-    return '<section class="card panel"><div class="panel-head"><div><h3>ظاهر و تجربه کاربری</h3><div class="muted" style="font-size:8px;margin-top:3px">تنظیمات در این مرورگر ذخیره می‌شوند.</div></div><span class="badge gray">نسخه ۹</span></div><div class="field"><label>تم رنگی</label><div class="palette-grid">'+choice('ocean','اقیانوسی','آبی + سبز فسفری','sw-ocean')+choice('violet','بنفش-فیروزه‌ای','بنفش + فیروزه‌ای','sw-violet')+choice('emerald','زمردی','سبز + لاجوردی روشن','sw-emerald')+choice('sunset','غروب','نارنجی + کهربایی','sw-sunset')+choice('pinknight','صورتی شب','صورتی نئون + بنفش شب','sw-pinknight')+'</div></div><div class="formgrid"><div class="field"><label>فونت رابط</label><div class="font-grid">'+
+    return '<section class="card panel"><div class="panel-head"><div><h3>ظاهر و تجربه کاربری</h3><div class="muted" style="font-size:8px;margin-top:3px">تنظیمات در این مرورگر ذخیره می‌شوند.</div></div><span class="badge gray">نسخه ۳۰</span></div><div class="field"><label>تم رنگی</label><div class="palette-grid">'+choice('ocean','اقیانوسی','آبی + سبز فسفری','sw-ocean')+choice('violet','بنفش-فیروزه‌ای','بنفش + فیروزه‌ای','sw-violet')+choice('emerald','زمردی','سبز + لاجوردی روشن','sw-emerald')+choice('sunset','غروب','نارنجی + کهربایی','sw-sunset')+choice('pinknight','صورتی شب','صورتی نئون + بنفش شب','sw-pinknight')+choice('redblack','قرمز شب','مشکی عمیق + قرمز زنده','sw-redblack')+'</div></div><div class="formgrid"><div class="field"><label>فونت رابط</label><div class="font-grid">'+
 '<button class="font-choice '+(font==='vazir'?'active':'')+'" onclick="setFont(\'vazir\')"><div class="font-sample font-vazir">سامانه جامع سازمانی</div><strong>Vazirmatn</strong><small>خوانا و مناسب رابط فارسی</small></button>'+
 '<button class="font-choice '+(font==='noto'?'active':'')+'" onclick="setFont(\'noto\')"><div class="font-sample font-noto">سامانه جامع سازمانی</div><strong>Noto Sans Arabic</strong><small>ظاهر ساده و مدرن</small></button>'+
 '<button class="font-choice '+(font==='tajawal'?'active':'')+'" onclick="setFont(\'tajawal\')"><div class="font-sample font-tajawal">سامانه جامع سازمانی</div><strong>Tajawal</strong><small>فرم نرم و نمای متفاوت</small></button>'+
@@ -1064,7 +1110,7 @@ render();
       const meta=document.querySelector('meta[name="theme-color"]');
       if(meta){
         const palette=root.dataset.palette, dark=root.dataset.theme==='dark';
-        const map={ocean:['#1977ff','#6aaaff'],violet:['#7657ff','#9a8cff'],emerald:['#0f9b7a','#55d7bb'],sunset:['#ff7a45','#ff9b72'],pinknight:['#ff4fb8','#ff8bd4']};
+        const map={ocean:['#1977ff','#6aaaff'],violet:['#7657ff','#9a8cff'],emerald:['#0f9b7a','#55d7bb'],sunset:['#ff7a45','#ff9b72'],pinknight:['#ff4fb8','#ff8bd4'],redblack:['#ff3657','#ff7083']};
         meta.setAttribute('content',(map[palette]||map.ocean)[dark?1:0]);
       }
     }catch(e){}
@@ -1086,7 +1132,7 @@ render();
     return html;
   };
   window.setPalette=function(v){
-    const allowed=['ocean','violet','emerald','sunset','pinknight'];
+    const allowed=['ocean','violet','emerald','sunset','pinknight','redblack'];
     if(!allowed.includes(v))v='ocean';
     localStorage.setItem('companyPalette',v);__v5ApplyPrefs();render();setTimeout(()=>toast('تم رنگی اعمال شد'),40);
   };
@@ -1694,7 +1740,7 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
   const duration=720;
 
   function resize(){
-    dpr=Math.min(window.devicePixelRatio||1,isMobile?1.25:2);
+    dpr=Math.min(window.devicePixelRatio||1,isMobile?1:2);
     w=window.innerWidth; h=window.innerHeight;
     canvas.width=Math.max(1,Math.floor(w*dpr));
     canvas.height=Math.max(1,Math.floor(h*dpr));
@@ -1793,8 +1839,8 @@ th,.badge,.sm,.palette-choice strong,.font-choice strong,.profile-title h2{font-
 
   function buildAmbientNetwork(){
     net.length=0;
-    const cols=isMobile?Math.max(5,Math.min(8,Math.round(w/170))):Math.max(7,Math.min(12,Math.round(w/150)));
-    const rows=isMobile?Math.max(4,Math.min(6,Math.round(h/165))):Math.max(5,Math.min(9,Math.round(h/145)));
+    const cols=isMobile?Math.max(4,Math.min(7,Math.round(w/190))):Math.max(7,Math.min(12,Math.round(w/150)));
+    const rows=isMobile?Math.max(3,Math.min(5,Math.round(h/190))):Math.max(5,Math.min(9,Math.round(h/145)));
     const dx=cols>1?w/(cols-1):w, dy=rows>1?h/(rows-1):h;
     const pts=[];
     for(let y0=0;y0<rows;y0++){
@@ -2494,5 +2540,170 @@ html[data-a11y-scale="xlarge"] th,html[data-a11y-scale="xlarge"] td{font-size:11
   setTimeout(wireTableFilters,50);
 })();
 </script>
+
+
+<style id="v29-workflow-personal-dashboard">
+/* V29 — workflow & personal dashboard: keeps the existing visual language. */
+.personal-dashboard{display:grid;gap:16px}
+.today-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}
+.today-list{display:grid;gap:9px}
+.today-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2)}
+.today-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--primary-soft);color:var(--primary);font-weight:900}
+.today-item strong{display:block;font-size:10px}.today-item p{margin:2px 0 0;color:var(--muted);font-size:8px}.today-meta{text-align:left;white-space:nowrap}
+.personal-focus{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.personal-focus .quick-card{min-height:92px}
+.request-timeline{position:relative;display:grid;gap:0;padding-right:8px}
+.request-timeline:before{content:"";position:absolute;right:19px;top:13px;bottom:13px;width:2px;background:var(--line)}
+.request-step{position:relative;display:grid;grid-template-columns:27px 1fr auto;gap:10px;align-items:start;padding:8px 0}
+.request-step .timeline-dot{position:relative;z-index:1}.request-step.done .timeline-dot{background:var(--success-soft);color:var(--success)}.request-step.current .timeline-dot{background:var(--primary-soft);color:var(--primary);box-shadow:0 0 0 4px var(--surface)}.request-step.returned .timeline-dot{background:var(--warning-soft);color:var(--warning)}
+.request-step strong{font-size:10px;display:block}.request-step p{margin:3px 0 0;color:var(--muted);font-size:8px;line-height:1.8}.request-step time{font-size:8px;color:var(--muted);white-space:nowrap}
+.request-detail-head{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}.request-detail-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-start}
+.return-note{padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--warning-soft);margin-top:12px}.return-note strong{display:block;font-size:9px;color:var(--warning)}.return-note p{margin:4px 0 0;font-size:9px;line-height:1.8}
+@media(max-width:760px){.today-grid{grid-template-columns:1fr}.personal-focus{grid-template-columns:1fr 1fr}.request-detail-head{grid-template-columns:1fr}.request-step{grid-template-columns:27px 1fr}.request-step time{grid-column:2;justify-self:start}.today-item{grid-template-columns:auto 1fr}.today-meta{grid-column:2;text-align:right}}
+@media(max-width:390px){.personal-focus{grid-template-columns:1fr}.today-item{grid-template-columns:auto 1fr}.request-actions{grid-template-columns:1fr!important}}
+</style>
+
+<script id="v29-workflow-personal-dashboard-script">
+(function(){
+  const statusText=r=>r?.status||'';
+  const isDone=r=>['تأیید شده','رد شده','انجام شده'].includes(statusText(r));
+  const isReturned=r=>statusText(r)==='برگشت برای اصلاح';
+  const stageLabel=r=>r?.stage||'در انتظار اقدام';
+  const roleLabel=u=>manager()?'مدیریتی':(u?.role||'کاربری');
+
+  function ensureHistory(r){
+    if(!r) return [];
+    if(!Array.isArray(r.timeline)) r.timeline=[];
+    if(r.timeline.length===0){
+      r.timeline=[
+        {title:'ثبت درخواست',text:'درخواست در سامانه ثبت شد.',state:'done',date:r.date||'ثبت شده'},
+        {title:r.stage||'بررسی و اقدام',text:r.status==='در انتظار تأیید'?'منتظر اقدام مرحله بعد است.':'مرحله جاری فرآیند.',state:isReturned(r)?'returned':(isDone(r)?'done':'current'),date:r.status==='در انتظار تأیید'?'در انتظار':(r.status||'')},
+        {title:'پایان فرآیند',text:'پس از نهایی شدن گردش کار تکمیل می‌شود.',state:isDone(r)?'done':'future',date:isDone(r)?'انجام شد':'—'}
+      ];
+    }
+    return r.timeline;
+  }
+
+  function pushHistory(r,title,text,state,date){
+    ensureHistory(r);
+    r.timeline.forEach(x=>{if(x.state==='current')x.state='done'});
+    r.timeline.push({title,text,state:state||'current',date:date||'همین الان'});
+  }
+
+  function currentTodayTasks(){
+    const u=current();
+    if(!u) return [];
+    const today=db.tasks.filter(t=>{
+      if(manager()) return t.status==='نیازمند اقدام' || t.due==='امروز';
+      return t.status==='نیازمند اقدام' || (db.req.some(r=>r.uid===u.id && r.id===t.req && isReturned(r)));
+    });
+    const ownReq=db.req.filter(r=>r.uid===u.id && (r.status==='برگشت برای اصلاح' || r.status==='در حال بررسی'));
+    const mapped=ownReq.map(r=>({id:r.id,title:r.status==='برگشت برای اصلاح'?'اصلاح و ارسال مجدد درخواست':r.title,req:r.id,due:r.status==='برگشت برای اصلاح'?'امروز':'پیگیری',status:r.status,kind:'request'}));
+    const seen=new Set();
+    return [...today.map(t=>({...t,kind:'task'})),...mapped].filter(x=>{const k=x.kind+':'+(x.id||x.req);if(seen.has(k))return false;seen.add(k);return true}).slice(0,6);
+  }
+
+  function focusCards(u){
+    const employee=[
+      ['openRequest()',svg.plus,'ثبت درخواست','مرخصی، دورکاری، مأموریت و خدمات'],
+      ['nav(\'requests\')',svg.req,'پیگیری درخواست‌ها','وضعیت و مسیر گردش درخواست‌ها'],
+      ['nav(\'attendance\')','◴','تردد و کارکرد','ثبت و بررسی کارکرد ماهانه'],
+      ['nav(\'support\')',svg.support,'پشتیبانی','ثبت و پیگیری تیکت‌های سامانه']
+    ];
+    const managerial=[
+      ['nav(\'approvals\')',svg.check,'تأییدهای من','موارد منتظر تصمیم'],
+      ['nav(\'inbox\')',svg.inbox,'کارتابل','کارهای ارجاع‌شده'],
+      ['nav(\'requests\')',svg.req,'درخواست‌ها','مشاهده و پیگیری گردش‌ها'],
+      ['nav(\'reports\')',svg.chart,'گزارشات','شاخص‌های عملیاتی']
+    ];
+    const arr=manager()?managerial:employee;
+    return arr.map(x=>'<div class="quick-card" onclick="'+x[0]+'"><div class="qicon">'+x[1]+'</div><strong>'+x[2]+'</strong><span>'+x[3]+'</span></div>').join('');
+  }
+
+  function personalDashboard(){
+    const u=current(), mine=db.req.filter(r=>r.uid===u.id), today=currentTodayTasks();
+    const pendingMine=mine.filter(r=>!isDone(r) && !isReturned(r)).length;
+    const correctionMine=mine.filter(isReturned).length;
+    const managerWaiting=db.req.filter(r=>r.status==='در انتظار تأیید').length;
+    const primaryCount=manager()?managerWaiting:today.length;
+    const todayRows=today.length?today.map(t=>{
+      const req=t.req?db.req.find(r=>r.id===t.req):null;
+      const returned=req&&isReturned(req);
+      return '<button class="today-item" onclick="'+(req?'details(\''+req.id+'\')':'nav(\'inbox\')')+'"><span class="today-icon">'+(returned?'↻':(t.kind==='task'?svg.check:svg.req))+'</span><span><strong>'+esc(t.title)+'</strong><p>'+(req?esc(req.type)+' • '+esc(req.stage):'ارجاع‌شده در کارتابل')+'</p></span><span class="today-meta">'+badge(returned?'برگشت برای اصلاح':(t.status||'نیازمند اقدام'))+'</span></button>';
+    }).join(''):'<div class="empty">برای امروز مورد فوری ندارید. ✅</div>';
+
+    return '<section class="personal-dashboard">'+
+      '<div class="today-grid">'+
+        '<section class="card panel"><div class="panel-head"><div><h3>کارهای امروز من</h3><div class="muted" style="font-size:8px;margin-top:3px">تمرکز بر اقدام‌هایی که واقعاً نیاز به توجه دارند</div></div><span class="badge '+(primaryCount?'yellow':'green')+'">'+primaryCount+' مورد</span></div><div class="today-list">'+todayRows+'</div></section>'+ 
+        '<section class="card panel"><div class="panel-head"><div><h3>نمای شخصی '+(manager()?'مدیر':'کاربر')+'</h3><div class="muted" style="font-size:8px;margin-top:3px">خلاصه بر اساس نقش و وضعیت کارهای شما</div></div></div><div class="kpis"><div class="kpi"><small>نیازمند اقدام</small><strong>'+primaryCount+'</strong><div class="progress"><span style="width:'+(primaryCount?Math.min(100,primaryCount*22):0)+'%"></span></div></div><div class="kpi"><small>درخواست‌های باز من</small><strong>'+pendingMine+'</strong><div class="progress"><span style="width:'+(pendingMine?55:0)+'%"></span></div></div><div class="kpi"><small>برگشت برای اصلاح</small><strong>'+correctionMine+'</strong><div class="progress"><span style="width:'+(correctionMine?72:0)+'%"></span></div></div></div></section>'+ 
+      '</div>'+ 
+      '<section class="card panel"><div class="panel-head"><div><h3>دسترسی‌های شخصی</h3><div class="muted" style="font-size:8px;margin-top:3px">میانبرهایی که با نقش شما مرتبط‌ترند</div></div></div><div class="personal-focus">'+focusCards(u)+'</div></section>'+ 
+    '</section>';
+  }
+
+  window.dashboard=function(){
+    const c=current(),mine=db.req.filter(r=>r.uid===c.id);const open=manager()?db.req.filter(r=>r.status==='در انتظار تأیید').length:db.tasks.filter(t=>t.status==='نیازمند اقدام').length;
+    return '<section class="hero liquid-surface"><div><h2>سلام '+esc(c.name.split(' ')[0])+' 👋</h2><p>امروز '+open+' مورد برای پیگیری در سامانه دارید. از اینجا می‌توانید سریع به کارهای مهم دسترسی پیدا کنید.</p></div><div class="hero-actions"><button class="btn btn-primary" onclick="openRequest()">'+svg.plus+' ثبت درخواست</button><button class="btn btn-secondary" onclick="nav(\'inbox\')">'+svg.inbox+' مشاهده کارتابل</button></div></section>'+ 
+      '<div class="cards"><div class="card stat"><div class="stat-top"><span class="stat-label">کارتابل باز</span><span class="stat-icon">'+svg.inbox+'</span></div><strong>'+open+'</strong><span class="note warn">نیازمند اقدام</span></div><div class="card stat"><div class="stat-top"><span class="stat-label">درخواست‌های من</span><span class="stat-icon">'+svg.req+'</span></div><strong>'+mine.length+'</strong><span class="note ok">ثبت و پیگیری شده</span></div><div class="card stat"><div class="stat-top"><span class="stat-label">مرخصی باقی‌مانده</span><span class="stat-icon">◷</span></div><strong>۱۸</strong><span class="note">روز کاری</span></div><div class="card stat"><div class="stat-top"><span class="stat-label">اعلان‌های جدید</span><span class="stat-icon">'+svg.bell+'</span></div><strong>'+db.notices.length+'</strong><span class="note">آخرین اطلاعیه‌ها</span></div></div>'+ 
+      personalDashboard()+ 
+      '<div class="grid2"><section class="card panel"><div class="panel-head"><h3>آخرین درخواست‌ها</h3><button class="panel-link" onclick="nav(\'requests\')">مشاهده همه</button></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>موضوع</th><th>ثبت‌کننده</th><th>تاریخ</th><th>وضعیت</th></tr></thead><tbody>'+db.req.slice(0,5).map(r=>'<tr><td>'+r.id+'</td><td>'+esc(r.title)+'</td><td>'+esc(db.users.find(u=>u.id===r.uid)?.name||'')+'</td><td>'+r.date+'</td><td>'+badge(r.status)+'</td></tr>').join('')+'</tbody></table></div></section><section class="card panel"><div class="panel-head"><h3>دسترسی سریع عمومی</h3></div><div class="quick-grid"><div class="quick-card" onclick="openRequest()"><div class="qicon">'+svg.plus+'</div><strong>ثبت درخواست</strong><span>مرخصی، دورکاری، مأموریت و...</span></div><div class="quick-card" onclick="nav(\'inbox\')"><div class="qicon">'+svg.inbox+'</div><strong>کارتابل</strong><span>کارهای در انتظار اقدام</span></div><div class="quick-card" onclick="nav(\'attendance\')"><div class="qicon">◴</div><strong>تردد و کارکرد</strong><span>حضور و غیاب و ساعت‌زنی</span></div><div class="quick-card" onclick="nav(\'docs\')"><div class="qicon">'+svg.doc+'</div><strong>اسناد و فرم‌ها</strong><span>مشاهده و دریافت فرم‌ها</span></div></div></section></div>'+ 
+      '<section class="card panel"><div class="panel-head"><h3>آخرین اطلاعیه‌ها</h3><button class="panel-link" onclick="nav(\'notifications\')">مشاهده همه</button></div>'+db.notices.map(n=>'<div class="notice"><div class="nicon">'+n[0]+'</div><div><strong>'+esc(n[1])+'</strong><span>'+esc(n[2])+'</span></div></div>').join('')+'</section>';
+  };
+
+  window.decide=function(id,status){
+    const r=db.req.find(x=>x.id===id);if(!r)return;
+    if(!['تأیید شده','رد شده'].includes(status)) return;
+    r.status=status;r.stage='پایان فرآیند';
+    pushHistory(r,status,status==='تأیید شده'?'درخواست توسط تصمیم‌گیرنده تأیید شد.':'درخواست در این مرحله رد شد.',status==='تأیید شده'?'done':'done','همین الان');
+    const last=r.timeline[r.timeline.length-2];if(last)last.state='done';
+    save();render();setTimeout(()=>toast(id+' '+status),40);
+  };
+
+  window.returnForCorrection=function(id){
+    const r=db.req.find(x=>x.id===id);if(!r)return;
+    openModal('برگشت درخواست برای اصلاح','<form class="form" onsubmit="submitReturnForCorrection(event,\''+id+'\')"><div class="field"><label for="returnReason">دلیل برگشت برای اصلاح</label><textarea id="returnReason" class="control" required placeholder="مثلاً: فایل پیوست ناقص است یا تاریخ درخواست نیاز به اصلاح دارد."></textarea></div><div class="modal-actions"><button type="button" class="btn btn-secondary" onclick="closeModal()">انصراف</button><button class="btn btn-primary" type="submit">برگشت برای اصلاح</button></div></form>');
+  };
+
+  window.submitReturnForCorrection=function(e,id){
+    e.preventDefault();
+    const r=db.req.find(x=>x.id===id),reason=document.getElementById('returnReason')?.value.trim();
+    if(!r||!reason)return;
+    r.status='برگشت برای اصلاح';r.stage='اصلاح توسط ثبت‌کننده';r.returnReason=reason;
+    pushHistory(r,'برگشت برای اصلاح',reason,'returned','همین الان');
+    save();closeModal();render();setTimeout(()=>toast(id+' برای اصلاح برگشت داده شد'),40);
+  };
+
+  window.resubmitRequest=function(id){
+    const r=db.req.find(x=>x.id===id);if(!r)return;
+    if(r.uid!==current()?.id || !isReturned(r)) return;
+    r.status='در انتظار تأیید';r.stage='تأیید مدیر';delete r.returnReason;
+    ensureHistory(r);r.timeline=r.timeline.map(x=>x.state==='returned'?{...x,state:'done'}:x);
+    pushHistory(r,'ارسال مجدد','درخواست پس از اصلاح دوباره برای بررسی ارسال شد.','current','همین الان');
+    save();render();setTimeout(()=>toast(id+' دوباره ارسال شد'),40);
+  };
+
+  window.details=function(id){
+    const r=db.req.find(x=>x.id===id),p=db.users.find(u=>u.id===r?.uid);if(!r)return;
+    const canApprove=manager()&&r.status==='در انتظار تأیید';
+    const canReturn=manager()&&r.status==='در انتظار تأیید';
+    const canResubmit=r.uid===current()?.id&&isReturned(r);
+    const timeline=ensureHistory(r);
+    save();
+    const steps=timeline.map((t,i)=>'<div class="request-step '+esc(t.state||'future')+'"><div class="timeline-dot">'+(t.state==='done'?'✓':(t.state==='returned'?'↻':(i+1)))+'</div><div><strong>'+esc(t.title)+'</strong><p>'+esc(t.text)+'</p></div><time>'+esc(t.date||'—')+'</time></div>').join('');
+    const returnBlock=isReturned(r)?'<div class="return-note"><strong>نیاز به اصلاح</strong><p>'+esc(r.returnReason||'این درخواست برای اصلاح به ثبت‌کننده برگشت داده شده است.')+'</p></div>':'';
+    openModal('جزئیات '+id,'<div class="request-detail-head"><div><div class="muted" style="font-size:8px">'+esc(r.type)+' • '+esc(r.date)+'</div><h3 style="margin:4px 0 3px;font-size:16px">'+esc(r.title)+'</h3><div class="muted" style="font-size:9px">ثبت‌کننده: '+esc(p?.name||'')+' • مرحله: '+esc(stageLabel(r))+'</div></div><div>'+badge(r.status)+'</div></div>'+returnBlock+'<div style="height:12px"></div><div class="panel" style="background:var(--surface-2);border:1px solid var(--line);border-radius:13px"><div class="panel-head"><div><h3>Timeline گردش درخواست</h3><div class="muted" style="font-size:8px;margin-top:3px">تاریخچه واقعی اقدامات این درخواست</div></div></div><div class="request-timeline">'+steps+'</div></div><div class="request-detail-actions" style="margin-top:13px">'+
+      (canApprove?'<button class="btn btn-success" onclick="closeModal();decide(\''+id+'\',\'تأیید شده\')">✓ تأیید درخواست</button>':'')+
+      (canReturn?'<button class="btn btn-secondary" onclick="returnForCorrection(\''+id+'\')">↩ برگشت برای اصلاح</button>':'')+
+      (canApprove?'<button class="btn btn-danger" onclick="closeModal();decide(\''+id+'\',\'رد شده\')">× رد درخواست</button>':'')+
+      (canResubmit?'<button class="btn btn-primary" onclick="resubmitRequest(\''+id+'\')">ارسال مجدد پس از اصلاح</button>':'')+
+      '<button class="btn btn-secondary" onclick="closeModal()">بستن</button></div>');
+  };
+
+  // Ensure existing data gets workflow history lazily without changing stored appearance.
+  if(Array.isArray(db.req)) db.req.forEach(ensureHistory);
+  save();
+})();
+</script>
+
 </body>
 </html>
