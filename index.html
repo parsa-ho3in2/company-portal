@@ -2705,5 +2705,287 @@ html[data-a11y-scale="xlarge"] th,html[data-a11y-scale="xlarge"] td{font-size:11
 })();
 </script>
 
+
+<style id="v31-enterprise-ux-css">
+/* V31 enterprise UX layer — intentionally reuses existing theme variables; no palette/layout restyle. */
+.v31-dashboard-tools{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+.v31-dashboard-tools small{font-size:8px;color:var(--muted)}
+.v31-tools-actions{display:flex;gap:6px;flex-wrap:wrap}
+.v31-active-panel{margin-bottom:16px}
+.v31-active-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.v31-active-card{border:1px solid var(--line);border-radius:13px;background:var(--surface-2);padding:11px;display:grid;grid-template-columns:34px 1fr auto;gap:9px;align-items:center;cursor:pointer}
+.v31-active-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--primary-soft);color:var(--primary);font-weight:900}
+.v31-active-card strong{display:block;font-size:10px}.v31-active-card small{display:block;margin-top:2px;color:var(--muted);font-size:8px}.v31-active-num{font-size:20px;font-weight:900}
+.v31-approval-head{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:stretch}
+.v31-approval-intro{padding:15px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(135deg,var(--surface),var(--primary-soft))}
+.v31-approval-intro h3{margin:0;font-size:15px}.v31-approval-intro p{margin:5px 0 0;color:var(--muted);font-size:9px;line-height:1.9}
+.v31-approval-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.v31-approval-kpi{padding:11px;border:1px solid var(--line);border-radius:13px;background:var(--surface)}.v31-approval-kpi small{display:block;color:var(--muted);font-size:7px}.v31-approval-kpi strong{display:block;font-size:21px;margin-top:4px}
+.v31-queue-tabs{display:flex;gap:7px;overflow:auto;padding:1px 1px 9px;margin-top:13px}.v31-queue-tab{flex:0 0 auto;border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:999px;padding:7px 10px;font-size:8px;font-weight:800;cursor:pointer}.v31-queue-tab.active{background:var(--primary-soft);color:var(--primary);border-color:color-mix(in srgb,var(--primary) 28%,var(--line))}
+.v31-sla{display:inline-flex;align-items:center;gap:5px;padding:4px 7px;border-radius:999px;background:var(--surface-3);color:var(--muted);font-size:7px;font-weight:850;white-space:nowrap}.v31-sla.warn{background:var(--warning-soft);color:var(--warning)}.v31-sla.danger{background:var(--danger-soft);color:var(--danger)}.v31-sla.good{background:var(--success-soft);color:var(--success)}
+.v31-request-extra{grid-column:1/-1;padding:11px;border:1px dashed var(--line-strong);border-radius:12px;background:var(--surface-2)}.v31-request-extra-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:6px}.v31-request-extra-head strong{font-size:9px}.v31-request-extra-head small{font-size:7px;color:var(--muted)}
+.v31-field-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.v31-field-grid .field{margin:6px 0}
+.v31-detail-sla{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.v31-detail-sla-card{padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}.v31-detail-sla-card small{display:block;color:var(--muted);font-size:7px}.v31-detail-sla-card strong{display:block;margin-top:4px;font-size:10px}
+.v31-knowledge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.v31-knowledge-card{padding:13px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2)}.v31-knowledge-card strong{display:block;font-size:10px}.v31-knowledge-card p{margin:4px 0 8px;color:var(--muted);font-size:8px;line-height:1.9}.v31-knowledge-meta{display:flex;justify-content:space-between;gap:8px;align-items:center}.v31-feedback{display:flex;gap:5px}.v31-feedback button{min-height:29px;padding:5px 8px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:8px;cursor:pointer}.v31-feedback button.active{background:var(--primary-soft);color:var(--primary);border-color:transparent}
+.v31-launcher-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.v31-launcher-item{display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2);cursor:pointer;text-align:right}.v31-launcher-item:hover{border-color:color-mix(in srgb,var(--primary) 28%,var(--line));box-shadow:0 8px 22px var(--glow)}.v31-launcher-item .qicon{margin:0}.v31-launcher-item strong{font-size:9px}.v31-launcher-item small{font-size:7px;color:var(--muted)}
+.v31-notice-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.v31-notice-chip{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:999px;padding:6px 9px;font-size:8px;font-weight:800;cursor:pointer}.v31-notice-chip.active{background:var(--primary-soft);color:var(--primary)}
+.v31-command-section{margin-top:8px;padding-top:7px;border-top:1px solid var(--line)}.v31-command-title{font-size:8px;font-weight:900;color:var(--muted);margin-bottom:4px}
+@media(max-width:900px){.v31-approval-head{grid-template-columns:1fr}.v31-active-grid{grid-template-columns:1fr}.v31-knowledge-grid{grid-template-columns:1fr}.v31-launcher-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.v31-field-grid{grid-template-columns:1fr}.v31-detail-sla{grid-template-columns:1fr}.v31-approval-kpis{grid-template-columns:1fr 1fr}.v31-launcher-grid{grid-template-columns:1fr}.v31-dashboard-tools{align-items:flex-start;flex-direction:column}.v31-active-card{grid-template-columns:30px 1fr auto}}
+</style>
+
+
+<script id="v31-enterprise-ux-script">
+(function(){
+  'use strict';
+  const originalOpenRequest=window.openRequest;
+  const originalSubmitRequest=window.submitRequest;
+  const originalApprovals=window.approvals;
+  const originalSupport=window.support;
+  const originalNotifications=window.notifications;
+  const originalRunGlobalSearch=window.runGlobalSearch;
+  const originalDetails=window.details;
+  const SLA_HOURS={
+    'مرخصی':24,'دورکاری':24,'ماموریت اداری':24,'خرید':72,'خرید تجهیزات':72,'پاسخ استعلام':48,'قرارداد مالی':120,
+    'تحصیل دارایی':48,'ابطال دارایی':48,'اضافه‌کاری':24,'مساعده':48,'تنخواه':48,'پشتیبانی فناوری اطلاعات':8,
+    'دسترسی سامانه':8,'تعمیر و نگهداری':48,'گواهی اشتغال':24,'معرفی‌نامه اداری':24,'آموزش':72,'کارت و تردد':24,'اصلاح تردد':24,'خروج کالا':24
+  };
+  const CATEGORY={
+    'مرخصی':'منابع انسانی','دورکاری':'منابع انسانی','ماموریت اداری':'منابع انسانی','اضافه‌کاری':'منابع انسانی','گواهی اشتغال':'منابع انسانی','معرفی‌نامه اداری':'منابع انسانی','آموزش':'منابع انسانی','کارت و تردد':'منابع انسانی','اصلاح تردد':'منابع انسانی',
+    'مساعده':'مالی','تنخواه':'مالی','قرارداد مالی':'مالی',
+    'پشتیبانی فناوری اطلاعات':'فناوری','دسترسی سامانه':'فناوری',
+    'خرید':'تدارکات','خرید تجهیزات':'تدارکات',
+    'پاسخ استعلام':'اداری','تحصیل دارایی':'اموال و انبار','ابطال دارایی':'اموال و انبار','خروج کالا':'اموال و انبار','تعمیر و نگهداری':'خدمات و نگهداری'
+  };
+  const REQUEST_PROFILES={
+    'مرخصی':{help:'بازه مرخصی و نوع آن را مشخص کنید.',fields:[['نوع مرخصی','leaveType','select',['استحقاقی','استعلاجی','بدون حقوق']],['از تاریخ','fromDate','date'],['تا تاریخ','toDate','date']]},
+    'دورکاری':{help:'بازه و محل انجام دورکاری را ثبت کنید.',fields:[['از تاریخ','fromDate','date'],['تا تاریخ','toDate','date'],['محل دورکاری','remoteLocation','text','مثلاً منزل یا شعبه'],['دلیل','reason','text']]},
+    'ماموریت اداری':{help:'مقصد، بازه زمانی و هدف مأموریت را ثبت کنید.',fields:[['مقصد','destination','text','شهر/استان/سازمان'],['از تاریخ','fromDate','date'],['تا تاریخ','toDate','date'],['وسیله رفت‌وآمد','transport','select',['خودرو سازمانی','خودرو شخصی','هواپیما','قطار','سایر']]]},
+    'مساعده':{help:'مبلغ و علت درخواست مساعده را ثبت کنید.',fields:[['مبلغ درخواستی','amount','number','مثلاً 50000000'],['علت درخواست','reason','text']]},
+    'تنخواه':{help:'جزئیات هزینه و مرکز هزینه را مشخص کنید.',fields:[['مبلغ','amount','number'],['مرکز هزینه','costCenter','text'],['شرح هزینه','reason','text']]},
+    'دسترسی سامانه':{help:'سامانه، سطح دسترسی و دلیل نیاز را وارد کنید.',fields:[['نام سامانه','systemName','text'],['سطح دسترسی','accessLevel','select',['مشاهده','ثبت و ویرایش','مدیریتی']],['علت نیاز','reason','text']]},
+    'خرید تجهیزات':{help:'اقلام موردنیاز و مشخصات خرید را ثبت کنید.',fields:[['شرح تجهیز','item','text'],['تعداد','quantity','number'],['برآورد هزینه','amount','number'],['دلیل خرید','reason','text']]},
+    'خروج کالا':{help:'اقلام، مقدار و مقصد خروج را مشخص کنید.',fields:[['شرح کالا','item','text'],['مقدار','quantity','number'],['مقصد','destination','text'],['شماره پروژه/مرکز هزینه','costCenter','text']]},
+    'پاسخ استعلام':{help:'مرجع استعلام و موعد پاسخ را ثبت کنید.',fields:[['مرجع استعلام','reference','text'],['موعد پاسخ','dueDate','date'],['موضوع','subject','text']]},
+    'تحصیل دارایی':{help:'مشخصات دارایی و ارزش آن را وارد کنید.',fields:[['نام دارایی','assetName','text'],['رده/دسته','assetCategory','text'],['بهای خرید','amount','number'],['شماره سند','documentNo','text']]},
+    'ابطال دارایی':{help:'دارایی، دلیل ابطال و وضعیت فیزیکی را مشخص کنید.',fields:[['شماره دارایی','assetId','text'],['دلیل ابطال','reason','text'],['وضعیت فیزیکی','physicalState','select',['قابل استفاده','معیوب','اسقاطی','مفقود']]]},
+    'اصلاح تردد':{help:'تاریخ و ساعت صحیح تردد را ثبت کنید.',fields:[['تاریخ','attendanceDate','date'],['ورود صحیح','entry','time'],['خروج صحیح','exit','time'],['دلیل اصلاح','reason','text']]},
+    'گواهی اشتغال':{help:'هدف دریافت گواهی را مشخص کنید.',fields:[['هدف دریافت','purpose','text'],['تعداد نسخه','quantity','number']]},
+    'آموزش':{help:'دوره آموزشی و زمان موردنظر را ثبت کنید.',fields:[['نام دوره','course','text'],['ارائه‌دهنده','provider','text'],['تاریخ پیشنهادی','courseDate','date'],['دلیل نیاز','reason','text']]}
+  };
+  const NOTICE_LEVELS={فوری:'danger',مهم:'warn',عادی:'good'};
+  function safeJSON(k,d){try{const x=JSON.parse(localStorage.getItem(k)||'');return x??d}catch(e){return d}}
+  function putJSON(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+  function text(x){return String(x??'')}
+  function cat(r){return r?.category||CATEGORY[r?.type]||'سایر'}
+  function slaHoursFor(r){return Number(r?.slaHours)||SLA_HOURS[r?.type]||48}
+  function ensureSla(r){
+    if(!r)return;
+    if(!r.slaHours)r.slaHours=slaHoursFor(r);
+    if(!r.createdAt)r.createdAt=Date.now();
+    if(!r.dueAt && !['تأیید شده','رد شده'].includes(r.status))r.dueAt=r.createdAt+r.slaHours*3600000;
+  }
+  function persian(n){return Number(n).toLocaleString('fa-IR')}
+  function remainingText(r){
+    ensureSla(r); if(!r.dueAt || ['تأیید شده','رد شده'].includes(r.status))return 'بدون مهلت فعال';
+    const diff=r.dueAt-Date.now(), abs=Math.abs(diff), m=Math.ceil(abs/60000), h=Math.floor(m/60), mins=m%60;
+    if(diff<=0)return 'مهلت گذشته · '+(h?persian(h)+' ساعت ':'')+(mins?persian(mins)+' دقیقه':'');
+    if(h>=24){const d=Math.floor(h/24),hh=h%24;return persian(d)+' روز '+(hh?persian(hh)+' ساعت ':'')+'باقی‌مانده'}
+    return (h?persian(h)+' ساعت ':'')+persian(Math.max(1,mins))+' دقیقه باقی‌مانده';
+  }
+  function slaHTML(r){ensureSla(r);if(['تأیید شده','رد شده'].includes(r.status))return '<span class="v31-sla good">✓ زمان‌بندی بسته</span>';const diff=(r.dueAt||0)-Date.now();const cls=diff<=0?'danger':diff<6*3600000?'warn':'good';return '<span class="v31-sla '+cls+'" data-sla-due="'+r.dueAt+'">⏱ '+remainingText(r)+'</span>'}
+  function startSlaTicker(){
+    if(window.__v31SlaTimer)clearInterval(window.__v31SlaTimer);
+    window.__v31SlaTimer=setInterval(()=>{document.querySelectorAll('[data-sla-due]').forEach(el=>{const due=Number(el.dataset.slaDue);if(!due)return;const r={dueAt:due,status:''};el.textContent='⏱ '+remainingText(r);el.className='v31-sla '+(due-Date.now()<=0?'danger':due-Date.now()<6*3600000?'warn':'good')})},30000);
+  }
+  function priority(r){return r?.priority||'عادی'}
+  function isOpen(r){return !['تأیید شده','رد شده','برگشت برای اصلاح'].includes(r?.status||'')}
+  function reqActiveForUser(){
+    const u=current(); if(!u)return [];
+    const tickets=safeJSON('companySupportTickets',[]);
+    const reqs=(db.req||[]).filter(r=>r.uid===u.id&&isOpen(r));
+    const tasks=(db.tasks||[]).filter(t=>t.status==='نیازمند اقدام');
+    return {reqs,tasks,tickets:Array.isArray(tickets)?tickets.filter(t=>t.status!=='انجام شده'):[]};
+  }
+  function insertAfter(el,node){if(el?.parentNode)el.parentNode.insertBefore(node,el.nextSibling)}
+
+  // 1) Dashboard: active items + dashboard personalization.
+  window.openDashboardCustomizer=function(){
+    const p=safeJSON('companyDashboardPrefs',{today:true,focus:true,active:true,latest:true,notice:true,quick:true});
+    const item=(key,label)=>'<label style="display:flex;align-items:center;gap:8px;padding:10px;border:1px solid var(--line);border-radius:11px;background:var(--surface-2);font-size:9px"><input type="checkbox" data-dash-key="'+key+'" '+(p[key]!==false?'checked':'')+'> '+label+'</label>';
+    openModal('شخصی‌سازی داشبورد','<div class="formgrid"><div class="field full"><label>بخش‌های قابل نمایش</label><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'+item('today','کارهای امروز من')+item('focus','دسترسی‌های شخصی')+item('active','موارد فعال من')+item('latest','آخرین درخواست‌ها')+item('notice','آخرین اطلاعیه‌ها')+item('quick','دسترسی سریع عمومی')+'</div></div></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">انصراف</button><button class="btn btn-primary" onclick="saveDashboardCustomizer()">ذخیره تنظیمات</button></div>');
+  };
+  window.saveDashboardCustomizer=function(){
+    const p=safeJSON('companyDashboardPrefs',{today:true,focus:true,active:true,latest:true,notice:true,quick:true});
+    document.querySelectorAll('[data-dash-key]').forEach(x=>p[x.dataset.dashKey]=x.checked);
+    putJSON('companyDashboardPrefs',p);closeModal();render();setTimeout(()=>toast('تنظیمات داشبورد ذخیره شد'),30);
+  };
+  function applyDashboardPrefs(){
+    if(page!=='dashboard')return;
+    const p=safeJSON('companyDashboardPrefs',{today:true,focus:true,active:true,latest:true,notice:true,quick:true});
+    const cards=Array.from(document.querySelectorAll('.content .card.panel'));
+    cards.forEach(c=>{const h=c.querySelector('h3')?.textContent.trim()||''; if(h==='کارهای امروز من')c.hidden=p.today===false; else if(h==='دسترسی‌های شخصی')c.hidden=p.focus===false; else if(h==='آخرین درخواست‌ها')c.hidden=p.latest===false; else if(h==='آخرین اطلاعیه‌ها')c.hidden=p.notice===false; else if(h==='دسترسی سریع عمومی')c.hidden=p.quick===false;});
+    const active=document.querySelector('[data-v31-section="active"]');if(active)active.hidden=p.active===false;
+  }
+  function injectDashboard(){
+    if(page!=='dashboard')return;
+    const content=document.querySelector('.content'); if(!content)return;
+    const hero=content.querySelector('.hero');
+    if(hero&&!document.querySelector('.v31-dashboard-tools')){
+      const tools=document.createElement('div');tools.className='v31-dashboard-tools';tools.innerHTML='<small>داشبورد شخصی شما بر اساس کارهای فعال و نیازهای روزمره تنظیم می‌شود.</small><div class="v31-tools-actions"><button class="sm primary" onclick="openDashboardCustomizer()">⚙ شخصی‌سازی داشبورد</button><button class="sm" onclick="openAppLauncher()">▦ میانبر برنامه‌ها</button></div>';insertAfter(hero,tools);
+    }
+    if(!document.querySelector('[data-v31-section="active"]')){
+      const data=reqActiveForUser();
+      const allActive=(data.reqs.length+data.tasks.length+data.tickets.length);
+      const panel=document.createElement('section');panel.className='card panel v31-active-panel';panel.dataset.v31Section='active';
+      panel.innerHTML='<div class="panel-head"><div><h3>موارد فعال من</h3><div class="muted" style="font-size:8px;margin-top:3px">درخواست‌ها، کارها و خدماتی که هنوز بسته نشده‌اند</div></div><span class="badge '+(allActive?'yellow':'green')+'">'+allActive+' مورد</span></div><div class="v31-active-grid">'+
+        '<div class="v31-active-card" onclick="nav(\'requests\')"><div class="v31-active-icon">'+svg.req+'</div><div><strong>درخواست‌های باز</strong><small>در انتظار بررسی یا اجرا</small></div><span class="v31-active-num">'+data.reqs.length+'</span></div>'+ 
+        '<div class="v31-active-card" onclick="nav(\'inbox\')"><div class="v31-active-icon">'+svg.inbox+'</div><div><strong>کارهای کارتابل</strong><small>نیازمند اقدام شما</small></div><span class="v31-active-num">'+data.tasks.length+'</span></div>'+ 
+        '<div class="v31-active-card" onclick="nav(\'support\')"><div class="v31-active-icon">'+svg.support+'</div><div><strong>تیکت‌های باز</strong><small>پشتیبانی و خدمات</small></div><span class="v31-active-num">'+data.tickets.length+'</span></div>'+ 
+      '</div>';
+      const pd=content.querySelector('.personal-dashboard'); if(pd)insertAfter(pd,panel); else insertAfter(hero,panel);
+    }
+    applyDashboardPrefs();
+  }
+
+  // 2) Approval center with queues, priorities and SLA.
+  window.approvals=function(){
+    if(!manager())return '<section class="card panel"><div class="empty">این بخش فقط برای مدیران قابل دسترسی است.</div></section>';
+    const queue=localStorage.getItem('v31ApprovalQueue')||'همه';
+    const list=(db.req||[]).filter(r=>r.status==='در انتظار تأیید' && (queue==='همه'||cat(r)===queue));
+    const all=(db.req||[]).filter(r=>r.status==='در انتظار تأیید');
+    const overdue=all.filter(r=>{ensureSla(r);return r.dueAt<Date.now()}).length;
+    const urgent=all.filter(r=>priority(r)==='فوری').length;
+    const queues=['همه','منابع انسانی','مالی','فناوری','تدارکات','اداری','اموال و انبار','خدمات و نگهداری'];
+    const tabs=queues.map(q=>'<button class="v31-queue-tab '+(queue===q?'active':'')+'" onclick="setApprovalQueue(\''+q+'\')">'+q+' <span style="opacity:.65">'+(q==='همه'?all.length:all.filter(r=>cat(r)===q).length)+'</span></button>').join('');
+    const rows=list.map(r=>{const u=db.users.find(x=>x.id===r.uid);return '<tr><td>'+esc(r.id)+'</td><td><b>'+esc(u?.name||'')+'</b><div style="color:var(--muted);font-size:7px">'+esc(cat(r))+'</div></td><td>'+esc(r.title)+'</td><td>'+badge(priority(r))+'</td><td>'+slaHTML(r)+'</td><td><div class="action-row"><button class="sm ok" onclick="decide(\''+r.id+'\',\'تأیید شده\')">✓ تأیید</button><button class="sm primary" onclick="details(\''+r.id+'\')">'+svg.eye+' جزئیات</button><button class="sm" onclick="returnForCorrection(\''+r.id+'\')">↩ اصلاح</button><button class="sm no" onclick="decide(\''+r.id+'\',\'رد شده\')">× رد</button></div></td></tr>'}).join('');
+    return '<section class="v31-approval-head"><section class="v31-approval-intro"><span class="badge blue">مرکز تأیید مدیر</span><h3>همه تصمیم‌های موردنیاز در یک صف</h3><p>ابتدا موارد فوری یا نزدیک به موعد را بررسی کنید؛ هر مورد را می‌توانید مستقیم تأیید، رد یا برای اصلاح برگردانید.</p><div class="v31-queue-tabs">'+tabs+'</div></section><section class="v31-approval-kpis"><div class="v31-approval-kpi"><small>در انتظار تأیید</small><strong>'+all.length+'</strong></div><div class="v31-approval-kpi"><small>فوری</small><strong>'+urgent+'</strong></div><div class="v31-approval-kpi"><small>موعد گذشته</small><strong>'+overdue+'</strong></div></section></section><section class="card panel" style="margin-top:14px"><div class="panel-head"><div><h3>صف '+esc(queue)+'</h3><div class="muted" style="font-size:8px;margin-top:3px">اقدام سریع مدیر</div></div><span class="badge '+(list.length?'yellow':'green')+'">'+list.length+' مورد</span></div><div class="table-wrap"><table><thead><tr><th>شناسه</th><th>کارمند</th><th>درخواست</th><th>اولویت</th><th>SLA</th><th>عملیات</th></tr></thead><tbody>'+(rows||'<tr><td colspan="6"><div class="empty">در این صف موردی برای بررسی وجود ندارد. ✅</div></td></tr>')+'</tbody></table></div></section>';
+  };
+  window.setApprovalQueue=function(q){localStorage.setItem('v31ApprovalQueue',q||'همه');render()};
+
+  // 3) Smart forms + SLA metadata on creation.
+  function requestOptions(){return Object.keys(REQUEST_PROFILES).concat(['خرید','قرارداد مالی','ابطال دارایی','تحصیل دارایی','دورکاری','ماموریت اداری','پشتیبانی فناوری اطلاعات']).filter((v,i,a)=>a.indexOf(v)===i)}
+  function fieldHTML(def){
+    const label=def[0],name=def[1],type=def[2],extra=def[3];
+    if(type==='select')return '<div class="field"><label for="smart_'+name+'">'+label+'</label><select id="smart_'+name+'" class="control">'+(extra||[]).map(x=>'<option>'+x+'</option>').join('')+'</select></div>';
+    return '<div class="field"><label for="smart_'+name+'">'+label+'</label><input id="smart_'+name+'" class="control" type="'+type+'" placeholder="'+esc(extra||'')+'"></div>';
+  }
+  function renderSmartFields(){
+    const type=document.getElementById('rt')?.value,wrap=document.getElementById('v31SmartFields');if(!wrap)return;
+    const profile=REQUEST_PROFILES[type]; if(!profile){wrap.innerHTML='';wrap.style.display='none';return}
+    wrap.style.display='block';wrap.innerHTML='<div class="v31-request-extra-head"><strong>اطلاعات تخصصی درخواست</strong><small>'+esc(profile.help)+'</small></div><div class="v31-field-grid">'+profile.fields.map(fieldHTML).join('')+'</div><div style="margin-top:6px"><span class="v31-sla good">⏱ مهلت هدف: '+persian(slaHoursFor({type}))+' ساعت</span></div>';
+  }
+  window.openRequest=function(preselect){
+    if(typeof originalOpenRequest==='function')originalOpenRequest(preselect);
+    setTimeout(()=>{
+      const form=document.querySelector('#modal form.form');const rt=document.getElementById('rt');if(!form||!rt)return;
+      const opts=requestOptions();rt.innerHTML=opts.map(x=>'<option>'+x+'</option>').join('');
+      if(preselect && opts.includes(preselect))rt.value=preselect;
+      let wrap=document.getElementById('v31SmartFields');if(!wrap){wrap=document.createElement('div');wrap.id='v31SmartFields';wrap.className='v31-request-extra';const title=document.getElementById('rtitle')?.closest('.field');if(title?.parentNode)title.parentNode.appendChild(wrap);else form.appendChild(wrap)}
+      renderSmartFields();rt.onchange=renderSmartFields;
+      startSlaTicker();
+    },40);
+  };
+  window.submitRequest=function(e){
+    e.preventDefault();
+    const type=document.getElementById('rt')?.value||'مرخصی',title=document.getElementById('rtitle')?.value.trim()||'',description=document.getElementById('rd')?.value.trim()||'';
+    if(!title||!description)return;
+    const formData={};document.querySelectorAll('#v31SmartFields [id^="smart_"]').forEach(el=>formData[el.id.replace(/^smart_/,'')]=el.value);
+    const id='REQ-'+String(Date.now()).slice(-7),createdAt=Date.now(),hours=slaHoursFor({type});
+    const r={id,type,title,uid:current().id,date:'امروز',stage:'تأیید مدیر',status:'در انتظار تأیید',category:cat({type}),priority:(type==='دسترسی سامانه'||type==='پشتیبانی فناوری اطلاعات')?'مهم':'عادی',description,formData,slaHours:hours,createdAt,dueAt:createdAt+hours*3600000,timeline:[{title:'ثبت درخواست',text:'درخواست در سامانه ثبت شد.',state:'done',date:'همین الان'},{title:'بررسی و تأیید',text:'منتظر بررسی تصمیم‌گیرنده است.',state:'current',date:'در انتظار'},{title:'پایان فرآیند',text:'پس از تکمیل گردش کار انجام می‌شود.',state:'future',date:'—'}]};
+    db.req.unshift(r);if(typeof logActivity==='function')logActivity('ثبت درخواست جدید',id,'＋');if(typeof save==='function')save();closeModal();render();setTimeout(()=>toast('درخواست '+id+' با موفقیت ثبت شد'),40);
+  };
+
+  // 4/5) Request SLA + queue information on normal request list.
+  const nativeRequests=window.requests;
+  window.requests=function(){
+    const html=typeof nativeRequests==='function'?nativeRequests():'';setTimeout(()=>{
+      if(page!=='requests')return;
+      document.querySelectorAll('.content table tbody tr').forEach(row=>{
+        if(row.querySelector('.v31-sla'))return;
+        const id=row.children[0]?.textContent.trim(),r=(db.req||[]).find(x=>x.id===id);if(!r)return;
+        const table=row.closest('table'),head=table?.querySelector('thead tr');
+        if(head && !Array.from(head.children).some(th=>th.textContent.trim()==='SLA')) head.insertAdjacentHTML('beforeend','<th>SLA</th>');
+        const cell=document.createElement('td');cell.innerHTML=slaHTML(r);row.appendChild(cell);
+      });
+    },25);return html;
+  };
+
+  // 6) Knowledge center replaces only the content of existing support page, keeping ticket actions.
+  const KB=[
+    {id:'leave',title:'ثبت و پیگیری مرخصی',cat:'منابع انسانی',text:'نوع مرخصی، بازه زمانی و شرح را دقیق وارد کنید. پس از ثبت، وضعیت درخواست از کارتابل قابل پیگیری است.',action:'openRequest(\'مرخصی\')'},
+    {id:'attendance',title:'اصلاح تردد و ساعت‌زنی',cat:'منابع انسانی',text:'برای اصلاح، تاریخ و ساعت صحیح ورود/خروج را همراه با علت درج کنید تا برای بررسی مدیر ارسال شود.',action:'openRequest(\'اصلاح تردد\')'},
+    {id:'remote',title:'ثبت دورکاری',cat:'منابع انسانی',text:'بازه دورکاری و محل انجام کار را ثبت کنید. تأیید نهایی بر اساس گردش سازمانی انجام می‌شود.',action:'openRequest(\'دورکاری\')'},
+    {id:'asset',title:'تحصیل و ابطال دارایی',cat:'اموال و انبار',text:'مشخصات دارایی، اسناد و وضعیت فیزیکی باید با اطلاعات ثبت‌شده در سوابق اموال تطبیق داشته باشد.',action:'nav(\'processes\')'},
+    {id:'warehouse',title:'خروج کالا از انبار',cat:'اموال و انبار',text:'اقلام، مقدار، مقصد و مرجع مصرف را مشخص کنید تا برنامه‌ریزی و کنترل موجودی انجام شود.',action:'openRequest(\'خروج کالا\')'},
+    {id:'access',title:'درخواست دسترسی سامانه',cat:'فناوری',text:'نام سامانه، سطح دسترسی و دلیل نیاز را مشخص کنید؛ سطح دسترسی باید با نقش سازمانی همخوان باشد.',action:'openRequest(\'دسترسی سامانه\')'}
+  ];
+  function kbFeedback(id,v){const data=safeJSON('companyKBRatings',{});data[id]=v;putJSON('companyKBRatings',data);toast('بازخورد شما ثبت شد');renderSupportKnowledge()}
+  window.renderSupportKnowledge=function(){
+    const root=document.getElementById('v31KnowledgeList');if(!root)return;const q=(document.getElementById('v31KbSearch')?.value||'').toLowerCase().trim();const catf=localStorage.getItem('v31KBCategory')||'همه';const ratings=safeJSON('companyKBRatings',{});
+    const rows=KB.filter(a=>(catf==='همه'||a.cat===catf)&&(!q||(a.title+' '+a.text).toLowerCase().includes(q))).map(a=>'<article class="v31-knowledge-card"><strong>'+a.title+'</strong><p>'+a.text+'</p><div class="v31-knowledge-meta"><span class="badge gray">'+a.cat+'</span><div class="v31-feedback"><button class="'+(ratings[a.id]===1?'active':'')+'" onclick="kbFeedback(\''+a.id+'\',1)">👍 مفید</button><button class="'+(ratings[a.id]===-1?'active':'')+'" onclick="kbFeedback(\''+a.id+'\',-1)">👎</button><button class="sm primary" onclick="'+a.action+'">اقدام مرتبط</button></div></div></article>').join('');root.innerHTML=rows||'<div class="empty-state"><strong>راهنمایی پیدا نشد</strong><p>عبارت دیگری را امتحان کنید.</p></div>';
+  };
+  window.support=function(){
+    let tickets=safeJSON('companySupportTickets',[]);if(!Array.isArray(tickets))tickets=[];if(!tickets.length)tickets=[{id:'TKT-204',title:'اتصال به چاپگر واحد بازرگانی',category:'سخت‌افزار',date:'۱۴۰۵/۰۷/۰۲',status:'در حال بررسی'},{id:'TKT-198',title:'درخواست دسترسی به پوشه مشترک',category:'دسترسی',date:'۱۴۰۵/۰۶/۳۰',status:'انجام شده'}];
+    const rows=tickets.slice(0,6).map(t=>'<div class="ticket-row"><strong>'+esc(t.id)+'</strong><div><strong>'+esc(t.title)+'</strong><div class="ticket-meta">'+esc(t.category)+' • '+esc(t.date)+'</div></div><span>'+badge(t.status)+'</span><button class="sm primary" onclick="toast(\'جزئیات '+esc(t.id)+' آماده نمایش است\')">'+svg.eye+' جزئیات</button></div>').join('');
+    const cats=['همه','منابع انسانی','اموال و انبار','فناوری'];const chips=cats.map(c=>'<button class="v31-notice-chip '+((localStorage.getItem('v31KBCategory')||'همه')===c?'active':'')+'" onclick="localStorage.setItem(\'v31KBCategory\',\''+c+'\');render();">'+c+'</button>').join('');
+    return '<div class="support-hero"><section class="support-callout"><div class="badge blue">مرکز خدمات سازمانی</div><h2>راهنما و پشتیبانی</h2><p>راهنما را پیدا کنید یا در صورت نیاز تیکت ثبت کنید. هر مقاله می‌تواند مستقیم شما را به اقدام مرتبط هدایت کند.</p><div class="support-actions"><button class="btn btn-primary" onclick="openSupportTicket()">'+svg.plus+' ثبت تیکت جدید</button><button class="btn btn-secondary" onclick="openAppLauncher()">▦ میانبرهای سازمانی</button></div></section><aside class="service-status"><h3>وضعیت سرویس‌ها</h3><div class="service-line"><span><i class="service-dot"></i>کارتابل و درخواست‌ها</span>'+badge('فعال')+'</div><div class="service-line"><span><i class="service-dot"></i>اسناد و فرم‌ها</span>'+badge('فعال')+'</div><div class="service-line"><span><i class="service-dot"></i>گزارشات</span>'+badge('فعال')+'</div></aside></div><section class="card panel"><div class="panel-head"><div><h3>دانش سازمانی</h3><div class="muted" style="font-size:8px;margin-top:3px">راهنمای کوتاه + اقدام مرتبط</div></div></div><div class="filters"><input id="v31KbSearch" class="control wide" placeholder="جستجو در راهنماها..." oninput="renderSupportKnowledge()"></div><div class="v31-notice-filter">'+chips+'</div><div id="v31KnowledgeList" class="v31-knowledge-grid"></div></section><div class="support-grid"><section class="card panel"><div class="panel-head"><div><h3>راهنمای سریع</h3><div class="muted" style="font-size:8px;margin-top:3px">پاسخ چند مورد پرتکرار</div></div></div><div class="faq-card"><strong>برای خطای سامانه چه اطلاعاتی ثبت کنم؟</strong><p>عنوان خطا، زمان رخداد، بخش مربوط، شرح کوتاه و در صورت نیاز تصویر خطا را اضافه کنید.</p></div><div class="faq-card"><strong>برای دسترسی به سامانه چه بنویسم؟</strong><p>نام سامانه، سطح دسترسی موردنیاز و دلیل سازمانی نیاز را مشخص کنید.</p></div></section><section class="card panel"><div class="panel-head"><div><h3>تیکت‌های اخیر</h3><div class="muted" style="font-size:8px;margin-top:3px">سوابق خدمات پشتیبانی</div></div><span class="badge gray">نمونه دمو</span></div>'+rows+'</section></div>';
+  };
+
+  // 7/8) App launcher + action-oriented notifications.
+  const APPS=[['dashboard','داشبورد','مرکز وضعیت و کارهای شما',svg.home],['inbox','کارتابل من','کارهای نیازمند اقدام',svg.inbox],['requests','درخواست‌ها','ثبت و پیگیری',svg.req],['approvals','تأییدها','مرکز تصمیم مدیر',svg.check],['attendance','تردد و کارکرد','حضور و ساعت‌زنی','◴'],['docs','اسناد و فرم‌ها','فرم‌ها و مستندات',svg.doc],['support','راهنما و پشتیبانی','دانش سازمانی و تیکت',svg.support],['reports','گزارشات','شاخص‌ها و آمار',svg.chart],['profile','حساب من','اطلاعات سازمانی',svg.user]];
+  window.openAppLauncher=function(){
+    const items=APPS.filter(a=>a[0]!=='approvals'||manager()).map(a=>'<button class="v31-launcher-item" onclick="closeModal();nav(\''+a[0]+'\')"><div class="qicon">'+a[3]+'</div><strong>'+a[1]+'</strong><small>'+a[2]+'</small></button>').join('');
+    const extra=manager()?'<button class="v31-launcher-item" onclick="closeModal();nav(\'people\')"><div class="qicon">'+svg.people+'</div><strong>پرسنل</strong><small>کارکنان و ساختار سازمانی</small></button>':'';
+    openModal('میانبر برنامه‌ها','<div class="v31-launcher-grid">'+items+extra+'</div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">بستن</button></div>');
+  };
+  function noticeLevel(n){const t=text(n?.[1]);if(/فوری|قطعی|اختلال|امنیتی/.test(t))return 'فوری';if(/مهم|بروزرسانی|یادآوری/.test(t))return 'مهم';return 'عادی'}
+  window.notifications=function(){
+    const notes=db.notices||[],st=safeJSON('companyPortalNotificationState',{});const unread=notes.filter((n,i)=>!st[String(i)+'|'+String(n?.[1]||'')]).length;
+    const rows=(localStorage.getItem('v31NoticeFilter')||'all');
+    return '<section class="card panel"><div class="panel-head"><div><h3>مرکز اعلان‌ها</h3><div class="muted" style="font-size:8px;margin-top:3px">اعلان‌های عادی، مهم و فوری با امکان اقدام مستقیم</div></div><div class="action-row"><span class="badge '+(unread?'yellow':'green')+'">'+unread+' خوانده‌نشده</span><button class="btn btn-secondary" onclick="markAllNoticesRead()">همه خوانده شد</button></div></div><div class="v31-notice-filter"><button class="v31-notice-chip '+(rows==='all'?'active':'')+'" onclick="setNoticeFilter(\'all\')">همه</button><button class="v31-notice-chip '+(rows==='unread'?'active':'')+'" onclick="setNoticeFilter(\'unread\')">خوانده‌نشده</button><button class="v31-notice-chip '+(rows==='urgent'?'active':'')+'" onclick="setNoticeFilter(\'urgent\')">فوری</button><button class="v31-notice-chip '+(rows==='important'?'active':'')+'" onclick="setNoticeFilter(\'important\')">مهم</button></div><div class="notif-list">'+notes.map((n,i)=>{const lev=noticeLevel(n),un=!st[String(i)+'|'+String(n?.[1]||'')];const show=rows==='all'||(rows==='unread'&&un)||(rows==='urgent'&&lev==='فوری')||(rows==='important'&&lev==='مهم');if(!show)return '';return '<div class="notif-item '+(un?'unread':'')+'" onclick="markNoticeRead('+i+')"><div class="nicon">'+n[0]+'</div><div><strong>'+esc(n[1])+'</strong><span>'+esc(n[2])+'</span></div><span class="badge '+(NOTICE_LEVELS[lev]==='danger'?'red':NOTICE_LEVELS[lev]==='warn'?'yellow':'gray')+'">'+lev+'</span></div>'}).join('')||'<div class="empty-state"><strong>اعلانی با این فیلتر نیست</strong></div>'+'</div></section>';
+  };
+  window.setNoticeFilter=function(v){localStorage.setItem('v31NoticeFilter',v);render()};
+
+  // 9) Enhance request details without replacing existing Timeline/return workflow.
+  window.details=function(id){
+    if(typeof originalDetails==='function')originalDetails(id);
+    setTimeout(()=>{
+      const r=(db.req||[]).find(x=>x.id===id),modal=document.querySelector('#modal .modal');if(!r||!modal)return;ensureSla(r);
+      if(modal.querySelector('.v31-detail-sla'))return;
+      const block=document.createElement('div');block.className='v31-detail-sla';block.innerHTML='<div class="v31-detail-sla-card"><small>مهلت SLA</small><strong>'+slaHTML(r)+'</strong></div><div class="v31-detail-sla-card"><small>صف سازمانی</small><strong>'+esc(cat(r))+' • '+esc(priority(r))+'</strong></div>'+(r.description?'<div class="v31-detail-sla-card" style="grid-column:1/-1"><small>شرح</small><strong>'+esc(r.description)+'</strong></div>':'');
+      const head=modal.querySelector('.request-detail-head')||modal.querySelector('.detail-grid');if(head)head.insertAdjacentElement('afterend',block);else modal.prepend(block);
+      if(r.formData && Object.keys(r.formData).length){const fd=document.createElement('div');fd.className='panel';fd.style.cssText='margin-top:10px;background:var(--surface-2);border:1px solid var(--line);border-radius:13px;padding:12px';fd.innerHTML='<div class="panel-head"><h3>اطلاعات تخصصی درخواست</h3></div><div class="detail-grid">'+Object.entries(r.formData).map(([k,v])=>'<div class="detail"><small>'+esc(k)+'</small><strong>'+esc(v||'—')+'</strong></div>').join('')+'</div>';block.insertAdjacentElement('afterend',fd)}
+      startSlaTicker();
+    },35);
+  };
+
+  // 10) Global search: keep the existing UI, extend its source set with tasks, tickets, notices and knowledge.
+  window.runGlobalSearch=function(){
+    const q=String(document.getElementById('globalSearchInput')?.value||'').trim().toLowerCase();const rows=[];const add=(kind,label,sub,type,action,icon)=>{if(!q || (label+' '+sub).toLowerCase().includes(q))rows.push({kind,label,sub,type,action,icon})};
+    [['dashboard','داشبورد','نمای کلی سامانه'],['inbox','کارتابل من','موارد نیازمند اقدام'],['requests','درخواست‌ها','ثبت و پیگیری درخواست‌ها'],['attendance','تردد و کارکرد','حضور و ساعت‌زنی'],['processes','فرآیندها','گردش کارهای سازمانی'],['reports','گزارشات','شاخص‌ها و آمار'],['docs','اسناد و فرم‌ها','فرم‌ها و مستندات'],['support','راهنما و پشتیبانی','دانش سازمانی و تیکت'],['notifications','اعلان‌ها','اطلاعیه و یادآوری'],['profile','حساب من','اطلاعات پرسنلی'],['settings','تنظیمات','تم و تجربه کاربری']].forEach(x=>add('page',x[1],x[2],'صفحه','closeGlobalSearch();nav(\''+x[0]+'\')',svg.arrow));
+    (window.__processCatalog||[]).forEach((p,i)=>add('process',p.name,'مالک: '+p.owner,'فرآیند','closeGlobalSearch();openProcess('+i+')',svg.process));
+    (db.req||[]).forEach(r=>{const u=db.users.find(x=>x.id===r.uid);add('request',r.id+' — '+r.title,(u?.name||'')+' · '+r.status+' · '+cat(r),'درخواست','closeGlobalSearch();details(\''+r.id+'\')',svg.req)});
+    (db.tasks||[]).forEach(t=>add('task',t.id+' — '+t.title,(t.req||'')+' · '+t.status,'کار','closeGlobalSearch();nav(\'inbox\')',svg.inbox));
+    (db.users||[]).forEach(u=>add('user',u.name,u.role+' · '+u.unit+' · '+u.employeeId,'پرسنل','closeGlobalSearch();nav(\'people\')',svg.user));
+    (db.notices||[]).forEach((n,i)=>add('notice',n[1],n[2]+' · '+noticeLevel(n),'اعلان','closeGlobalSearch();nav(\'notifications\')',svg.bell));
+    safeJSON('companySupportTickets',[]).forEach(t=>add('ticket',t.id+' — '+t.title,t.category+' · '+t.status,'تیکت','closeGlobalSearch();nav(\'support\')',svg.support));
+    KB.forEach(k=>add('knowledge',k.title,k.cat+' · دانش سازمانی','راهنما','closeGlobalSearch();nav(\'support\')',svg.doc));
+    const meta=document.getElementById('globalSearchMeta'),list=document.getElementById('globalSearchResults');if(!meta||!list)return;meta.textContent=q?(rows.length+' نتیجه برای «'+q+'»'):'جستجو در کل سامانه';if(!rows.length){list.innerHTML='<div class="empty-state"><strong>نتیجه‌ای پیدا نشد</strong><p>نام، شناسه یا عبارت کوتاه‌تری امتحان کنید.</p></div>';return}
+    const groups={page:'دسترسی‌ها',process:'فرآیندها',request:'درخواست‌ها',task:'کارها',user:'پرسنل',notice:'اعلان‌ها',ticket:'تیکت‌ها',knowledge:'راهنما'};let group='';let out='';rows.slice(0,40).forEach(r=>{if(groups[r.kind]!==group){group=groups[r.kind];out+='<div class="search-group-title">'+group+'</div>'}out+='<button class="search-result" onclick="'+r.action+'"><span class="sr-icon">'+r.icon+'</span><span><strong>'+esc(r.label)+'</strong><small>'+esc(r.sub)+'</small></span><span class="sr-type">'+r.type+'</span></button>'});list.innerHTML=out;
+  };
+
+  // App launcher button + dashboard hooks after every render.
+  function injectTopbarLauncher(){
+    const actions=document.querySelector('.top-actions');if(!actions||document.getElementById('v31LauncherBtn'))return;
+    const btn=document.createElement('button');btn.id='v31LauncherBtn';btn.className='icon-btn';btn.setAttribute('aria-label','میانبر برنامه‌ها');btn.title='میانبر برنامه‌ها';btn.innerHTML='▦';btn.addEventListener('click',window.openAppLauncher);const command=actions.querySelector('.icon-btn[onclick*="openCommandPalette"]');if(command)actions.insertBefore(btn,command);else actions.insertBefore(btn,actions.firstChild);
+  }
+  const baseRender=window.render;
+  window.render=function(){const r=baseRender?.apply(this,arguments);requestAnimationFrame(()=>{injectTopbarLauncher();injectDashboard();applyDashboardPrefs();startSlaTicker();if(page==='support')renderSupportKnowledge()});return r};
+  // Extend topbar's notification counts without restyling: existing topbar already uses mark/read state.
+  (db.req||[]).forEach(ensureSla);try{save()}catch(e){}
+  requestAnimationFrame(()=>{injectTopbarLauncher();injectDashboard();applyDashboardPrefs();startSlaTicker()});
+})();
+</script>
+
 </body>
 </html>
