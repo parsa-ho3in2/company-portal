@@ -108,7 +108,7 @@ body{font-family:"Vazirmatn","IRANSansX","Dana","Shabnam",Tahoma,Arial,sans-seri
 .nav-btn.active{background:linear-gradient(90deg,rgba(25,119,255,.96),rgba(17,74,149,.72))!important}.nav-btn.active:before{background:var(--lime)!important}
 /* security code */
 .otp-box{margin-top:13px;padding:12px 13px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,var(--surface-2),var(--surface));box-shadow:0 8px 18px rgba(25,119,255,.04)}
-.otp-line{display:flex;align-items:center;gap:8px}.otp-code{flex:1;font-size:22px;font-weight:950;letter-spacing:6px;color:var(--primary);direction:ltr;text-align:center;background:linear-gradient(90deg,var(--primary),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}.otp-refresh{width:42px;height:42px;border-radius:11px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--primary)}.otp-refresh:hover{background:var(--primary-soft);border-color:rgba(25,119,255,.28)}.otp-meta{font-size:8px;color:var(--muted);margin-top:5px;text-align:center}.security-note{font-size:8px;color:var(--muted);line-height:1.8;margin-top:10px}
+.otp-line{display:flex;align-items:center;gap:8px}.otp-code{flex:1;font-size:22px;font-weight:950;letter-spacing:6px;color:var(--primary);direction:ltr;text-align:center;background:linear-gradient(90deg,var(--primary),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}.otp-refresh{width:auto;min-width:78px;height:42px;padding:0 10px;border-radius:11px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--primary);font-size:9px;font-weight:900;white-space:nowrap}.otp-refresh:hover{background:var(--primary-soft);border-color:rgba(25,119,255,.28)}.otp-refresh:hover{background:var(--primary-soft);border-color:rgba(25,119,255,.28)}.otp-meta{font-size:8px;color:var(--muted);margin-top:5px;text-align:center}.security-note{font-size:8px;color:var(--muted);line-height:1.8;margin-top:10px}
 @keyframes liquidDrift{0%,100%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}33%{transform:translate3d(24px,18px,0) rotate(6deg) scale(1.04)}66%{transform:translate3d(-18px,28px,0) rotate(-7deg) scale(1.08)}}
 
 </style>
@@ -912,6 +912,125 @@ th{font-weight:750!important}
 }
 </style>
 
+
+
+<style id="v33-login-mobile-polish">
+/* V33 — Login polish + palette-aware mobile navigation. No theme replacement; uses existing CSS variables. */
+.login-pane{
+  background:linear-gradient(180deg,var(--surface-2),var(--surface)) !important;
+  position:relative;
+  overflow:auto;
+}
+.login-pane::before{
+  content:"";
+  position:absolute;
+  width:360px;height:360px;
+  left:-170px;top:-190px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--accent-soft) 0%,transparent 68%);
+  pointer-events:none;
+  opacity:.65;
+}
+.login-card{
+  position:relative;
+  width:min(470px,100%);
+  padding:28px 30px 24px !important;
+  border:1px solid color-mix(in srgb,var(--line) 92%,var(--primary) 8%);
+  border-radius:24px;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--surface) 98%,var(--primary-soft) 2%),var(--surface));
+  box-shadow:0 24px 70px color-mix(in srgb,var(--shadow-lg) 72%,transparent);
+}
+.login-card::before{
+  content:"";
+  position:absolute;left:22px;right:22px;top:0;height:3px;
+  border-radius:0 0 10px 10px;
+  background:linear-gradient(90deg,var(--accent-good),var(--primary),var(--accent));
+  opacity:.92;
+}
+.login-card .brand-mark{
+  width:62px;height:62px;border-radius:18px;
+  background:linear-gradient(135deg,var(--primary),var(--accent-good)) !important;
+  box-shadow:0 14px 32px var(--glow),inset 0 1px 0 rgba(255,255,255,.25) !important;
+}
+.login-card h2{letter-spacing:-.35px;margin-top:16px !important}
+.login-card > .muted{max-width:330px;line-height:1.85 !important}
+.login-card .field{margin:16px 0}
+.login-card .control{
+  border-radius:14px;
+  border-color:color-mix(in srgb,var(--line) 88%,var(--primary) 12%);
+  transition:border-color .16s ease,box-shadow .16s ease,background-color .16s ease,transform .16s ease;
+}
+.login-card .control:hover{border-color:color-mix(in srgb,var(--line-strong) 72%,var(--primary) 28%)}
+.login-card .control:focus{
+  border-color:var(--primary) !important;
+  box-shadow:0 0 0 4px var(--glow) !important;
+  transform:translateY(-1px);
+}
+.login-card .login-row{
+  padding:10px 2px 2px;
+}
+.login-card .login-row label{font-weight:650}
+.login-card .btn-primary{
+  min-height:50px;
+  border-radius:14px;
+  box-shadow:0 12px 26px var(--glow);
+}
+.login-card .demo-box{
+  margin-top:16px;
+  background:linear-gradient(145deg,var(--surface-2),var(--accent-soft));
+  border-style:solid;
+  border-color:color-mix(in srgb,var(--line) 86%,var(--primary) 14%);
+}
+.login-card .security-note{padding:2px 2px 0}
+
+/* Keep the mobile bottom navigation tied to the active palette. */
+@media(max-width:680px){
+  .sidebar{
+    background:linear-gradient(180deg,var(--sidebar),var(--sidebar-2)) !important;
+    border-top-color:color-mix(in srgb,var(--line-strong) 32%,transparent) !important;
+    box-shadow:0 -12px 30px color-mix(in srgb,var(--sidebar) 56%,transparent) !important;
+  }
+  .sidebar .nav-btn{
+    color:var(--sidebar-text) !important;
+    background:transparent !important;
+  }
+  .sidebar .nav-btn.active{
+    background:linear-gradient(135deg,
+      color-mix(in srgb,var(--primary) 86%,#000 14%),
+      color-mix(in srgb,var(--accent-2) 82%,#000 18%)) !important;
+    box-shadow:0 8px 18px var(--glow) !important;
+  }
+  .sidebar .nav-btn.active:before{display:none !important}
+  .sidebar .nav-btn:hover{background:color-mix(in srgb,var(--primary-soft) 48%,transparent) !important}
+
+  .login-pane{
+    padding:16px 12px 22px !important;
+    align-items:flex-start !important;
+  }
+  .login-card{
+    width:min(100%,520px);
+    margin:0 auto;
+    padding:24px 18px 20px !important;
+    border-radius:22px;
+    box-shadow:0 18px 48px color-mix(in srgb,var(--shadow-lg) 60%,transparent);
+  }
+  .login-card::before{left:18px;right:18px}
+  .login-card .brand-mark{width:58px;height:58px;border-radius:17px}
+  .login-card h2{font-size:28px !important}
+  .login-card .muted{font-size:11.5px !important}
+}
+
+@media(max-width:380px){
+  .login-card{padding:20px 14px 18px !important}
+  .login-card h2{font-size:25px !important}
+  .login-card .otp-code{font-size:19px !important;letter-spacing:.22em}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .login-card .control{transition:none}
+}
+</style>
+
 </head>
 <body data-v30-build="redblack-mobile-perf">
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
@@ -997,7 +1116,7 @@ function openUser(){openModal('ایجاد کاربر جدید','<form class="for
 function createUser(e){e.preventDefault();const id=Math.max(...db.users.map(x=>x.id))+1,n=document.getElementById('nn').value;db.users.push({id,u:document.getElementById('nu').value,p:document.getElementById('np').value,name:n,role:document.getElementById('nr').value,unit:document.getElementById('nd').value,employeeId:'NEW-'+id,phone:'-',email:'-',manager:'-',location:'-',join:'—',avatar:n.trim()[0]||'ک'});save();closeModal();render();setTimeout(()=>toast('کاربر جدید ایجاد شد'),40)}
 function loginView(){
   if(!loginOtp || Date.now()>otpExpires) refreshOtp();
-  return '<div class="login"><section class="login-showcase"><div class="login-showcase-inner"><span class="eyebrow">● نسخه ۴ • Corporate Flow</span><h1>یک تجربه حرفه‌ای برای تمام امور شرکت</h1><p>رابطی مدرن با تمرکز روی وضوح عملیات، دسترسی سریع و نمایش سازمانی اطلاعات؛ با تجربه مایع، تم‌های قابل انتخاب و تعاملات سریع و کاربردی.</p><div class="showcase-grid"><div class="showcase-card"><div class="sc-icon">'+svg.inbox+'</div><b>کارتابل هوشمند</b><span>کارهای ارجاع‌شده را در یک نمای متمرکز ببینید.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.process+'</div><b>فرآیندهای سازمانی</b><span>ثبت تا تأیید و پیگیری، مرحله‌به‌مرحله.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.people+'</div><b>پروفایل کامل</b><span>اطلاعات شغلی، سازمانی و فعالیت‌های اخیر.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.shield+'</div><b>ورود امن</b><span>ورود آزمایشی با کد امنیتی یک‌بارمصرف.</span></div></div></div></section><section class="login-pane"><div class="login-card"><div class="brand-mark">ش</div><h2>ورود به سامانه</h2><div class="muted" style="font-size:11px">سامانه جامع مدیریت فرآیندهای شرکت</div><form id="loginForm" name="loginForm" class="form" method="post" action="/login" autocomplete="on" onsubmit="event.preventDefault();login()"><div class="field"><label for="lu">نام کاربری</label><input id="lu" name="username" class="control" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="نام کاربری را وارد کنید" required></div><div class="field"><label for="lp">رمز عبور</label><div class="password-wrap"><input id="lp" name="password" class="control" type="password" autocomplete="current-password" placeholder="رمز عبور" required><button type="button" class="password-toggle" id="passwordToggle" onclick="togglePasswordVisibility()" aria-label="نمایش رمز عبور" title="نمایش رمز عبور">◉</button></div></div><div class="otp-box"><div class="otp-line"><div class="otp-code" id="otpCode">' + (loginOtp||'------') + '</div><button class="otp-refresh" type="button" onclick="refreshOtp()" aria-label="تولید کد امنیتی جدید" title="تولید کد جدید">'+svg.refresh+'</button></div><div class="otp-meta" id="otpMeta"></div><input id="loginOtp" class="control" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="کد امنیتی ۶ رقمی" required></div><div class="login-row"><label><input id="rememberMe" type="checkbox" aria-label="مرا به خاطر بسپار"> مرا به خاطر بسپار</label><button class="mini-link" type="button" onclick="refreshOtp()">کد جدید</button></div><button class="btn btn-primary btn-block" style="margin-top:12px" type="submit">ورود امن به سامانه '+svg.arrow+'</button><div id="loginError" class="login-error"></div></form><div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div><div class="security-note">کد نمایش‌داده‌شده مخصوص دموست؛ در نسخه عملیاتی OTP باید سمت سرور تولید و ارسال شود. مرورگر می‌تواند نام کاربری و رمز عبور را در Google Password Manager ذخیره و برای ورود بعدی پیشنهاد کند.</div></div></section></div>'}
+  return '<div class="login"><section class="login-showcase"><div class="login-showcase-inner"><span class="eyebrow">● نسخه ۴ • Corporate Flow</span><h1>یک تجربه حرفه‌ای برای تمام امور شرکت</h1><p>رابطی مدرن با تمرکز روی وضوح عملیات، دسترسی سریع و نمایش سازمانی اطلاعات؛ با تجربه مایع، تم‌های قابل انتخاب و تعاملات سریع و کاربردی.</p><div class="showcase-grid"><div class="showcase-card"><div class="sc-icon">'+svg.inbox+'</div><b>کارتابل هوشمند</b><span>کارهای ارجاع‌شده را در یک نمای متمرکز ببینید.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.process+'</div><b>فرآیندهای سازمانی</b><span>ثبت تا تأیید و پیگیری، مرحله‌به‌مرحله.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.people+'</div><b>پروفایل کامل</b><span>اطلاعات شغلی، سازمانی و فعالیت‌های اخیر.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.shield+'</div><b>ورود امن</b><span>ورود آزمایشی با کد امنیتی یک‌بارمصرف.</span></div></div></div></section><section class="login-pane"><div class="login-card"><div class="brand-mark">ش</div><h2>ورود به سامانه</h2><div class="muted" style="font-size:11px">سامانه جامع مدیریت فرآیندهای شرکت</div><form id="loginForm" name="loginForm" class="form" method="post" action="/login" autocomplete="on" onsubmit="event.preventDefault();login()"><div class="field"><label for="lu">نام کاربری</label><input id="lu" name="username" class="control" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="نام کاربری را وارد کنید" required></div><div class="field"><label for="lp">رمز عبور</label><div class="password-wrap"><input id="lp" name="password" class="control" type="password" autocomplete="current-password" placeholder="رمز عبور" required><button type="button" class="password-toggle" id="passwordToggle" onclick="togglePasswordVisibility()" aria-label="نمایش رمز عبور" title="نمایش رمز عبور">◉</button></div></div><div class="otp-box"><div class="otp-line"><div class="otp-code" id="otpCode">' + (loginOtp||'------') + '</div><button class="otp-refresh" type="button" onclick="refreshOtp()" aria-label="کد مجدد" title="کد مجدد">کد مجدد</button></div><div class="otp-meta" id="otpMeta"></div><input id="loginOtp" class="control" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="کد امنیتی ۶ رقمی" required></div><div class="login-row"><label><input id="rememberMe" type="checkbox" aria-label="مرا به خاطر بسپار"> مرا به خاطر بسپار</label></div><button class="btn btn-primary btn-block" style="margin-top:12px" type="submit">ورود امن به سامانه</button><div id="loginError" class="login-error"></div></form><div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div><div class="security-note">کد نمایش‌داده‌شده مخصوص دموست؛ در نسخه عملیاتی OTP باید سمت سرور تولید و ارسال شود. مرورگر می‌تواند نام کاربری و رمز عبور را در Google Password Manager ذخیره و برای ورود بعدی پیشنهاد کند.</div></div></section></div>'}
 refreshOtp();
 function sidebar(){const items=[['dashboard',svg.home,'داشبورد'],['inbox',svg.inbox,'کارتابل من'],['requests',svg.req,'درخواست‌ها'],...(manager()?[['approvals',svg.check,'تأییدها'],['people',svg.people,'پرسنل'],['processes',svg.process,'فرآیندها'],['reports',svg.chart,'گزارشات']]:[]),['docs',svg.doc,'اسناد و فرم‌ها'],['support',svg.support,'راهنما و پشتیبانی'],['notifications',svg.bell,'اعلان‌ها'],['profile',svg.user,'حساب من'],['settings',svg.settings,'تنظیمات']];return '<aside class="sidebar"><div class="brand"><div class="brand-mark">ش</div><div class="brand-text"><strong>سامانه جامع سازمانی</strong><small>پرتال داخلی شرکت</small></div></div><nav class="nav"><div class="nav-title">منوی اصلی</div>'+items.map(i=>'<button class="nav-btn '+(page===i[0]?'active':'')+'" onclick="nav(\''+i[0]+'\')" aria-label="'+i[2]+'"><span class="nav-icon">'+i[1]+'</span><span>'+i[2]+'</span></button>').join('')+'</nav><div class="side-bottom"><div class="user-mini"><div class="avatar">'+esc(current().avatar)+'</div><div class="mini-info"><strong>'+esc(current().name)+'</strong><span>'+esc(current().role)+'</span></div></div><button class="logout" onclick="logout()">'+svg.logout+' خروج از حساب</button></div></aside>'}
 function topbar(){const c=current();const t=theme();return '<div class="topbar"><div class="title"><h1>'+pageTitle().h+'</h1><p>'+pageTitle().p+'</p></div><div class="top-actions"><div class="search"><span class="magnify">'+svg.search+'</span><input class="control" onkeydown="if(event.key===\'Enter\')toast(\'جستجو برای «\'+this.value+\'» آماده شد\')" placeholder="جستجو در سامانه..." aria-label="جستجوی سامانه"></div><button class="icon-btn" onclick="nav(\'notifications\')" aria-label="اعلان‌ها" title="اعلان‌ها">'+svg.bell+'<span class="notif-dot"></span></button><button class="icon-btn" onclick="toggleTheme()" aria-label="تغییر حالت نمایش" title="'+(t==='dark'?'حالت روشن':'حالت تیره')+'">'+(t==='dark'?svg.sun:svg.moon)+'</button><button class="profile-trigger" onclick="openProfileMenu()" aria-expanded="false"><span class="ptxt"><strong>'+esc(c.name)+'</strong><span>'+esc(c.role)+'</span></span><span class="avatar">'+esc(c.avatar)+'</span><span class="chev">⌄</span></button></div></div><div class="profile-menu" role="menu"><div class="pm-head"><strong>'+esc(c.name)+'</strong><span>'+esc(c.unit)+'</span></div><button class="pm-item" onclick="nav(\'profile\')">'+svg.user+' حساب من</button><button class="pm-item" onclick="nav(\'settings\')">'+svg.settings+' تنظیمات</button><button class="pm-item pm-danger" onclick="logout()">'+svg.logout+' خروج</button></div>'}
