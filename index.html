@@ -3162,5 +3162,163 @@ html[data-a11y-scale="xlarge"] th,html[data-a11y-scale="xlarge"] td{font-size:11
 })();
 </script>
 
+
+<style id="v37-enterprise-features">
+/* V37: enterprise workflow features. Reuses the existing theme variables and visual language. */
+.v37-meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}
+.v37-mini{padding:11px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+.v37-mini small{display:block;color:var(--muted);font-size:8px}.v37-mini strong{display:block;margin-top:4px;font-size:11px}
+.v37-kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:start}
+.v37-kanban-col{background:var(--surface-2);border:1px solid var(--line);border-radius:15px;padding:11px;min-height:260px}
+.v37-kanban-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.v37-kanban-head strong{font-size:10px}
+.v37-kanban-count{min-width:24px;height:24px;display:grid;place-items:center;border-radius:999px;background:var(--surface);font-size:8px;font-weight:800}
+.v37-kanban-card{display:block;width:100%;text-align:right;padding:11px;margin-bottom:8px;border:1px solid var(--line);background:var(--surface);border-radius:12px;cursor:pointer;color:var(--text)}
+.v37-kanban-card:hover{box-shadow:0 10px 24px rgba(36,95,208,.08);transform:translateY(-1px)}
+.v37-kanban-card strong{display:block;font-size:9px}.v37-kanban-card small{display:block;color:var(--muted);font-size:7px;margin-top:4px}
+.v37-board-tabs{display:flex;gap:7px;align-items:center;margin-bottom:11px}.v37-board-tabs button{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:10px;padding:8px 11px;font-size:8px;font-weight:800;cursor:pointer}.v37-board-tabs button.active{background:var(--primary-soft);color:var(--primary);border-color:transparent}
+.v37-calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.v37-calendar-head{padding:8px 5px;text-align:center;color:var(--muted);font-size:8px;font-weight:800}
+.v37-day{min-height:88px;padding:7px;border:1px solid var(--line);border-radius:11px;background:var(--surface);cursor:pointer}.v37-day.muted{opacity:.45}.v37-day.today{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-soft) inset}
+.v37-day-num{font-size:9px;font-weight:900}.v37-event{display:block;margin-top:5px;padding:4px 5px;border-radius:7px;background:var(--primary-soft);color:var(--primary);font-size:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v37-service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.v37-service-card{padding:15px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,var(--surface),var(--surface-2));cursor:pointer;text-align:right}.v37-service-card:hover{box-shadow:0 12px 28px var(--glow);transform:translateY(-2px)}
+.v37-service-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--primary-soft);color:var(--primary);margin-bottom:9px}.v37-service-card strong{display:block;font-size:10px}.v37-service-card p{margin:4px 0 0;color:var(--muted);font-size:8px;line-height:1.8}
+.v37-comment-list,.v37-attach-list,.v37-audit-list{display:grid;gap:8px}.v37-comment,.v37-attach{padding:10px 11px;border:1px solid var(--line);border-radius:11px;background:var(--surface-2)}
+.v37-attach{display:flex;align-items:center;justify-content:space-between;gap:10px}.v37-comment strong,.v37-attach strong{font-size:9px}.v37-comment p{margin:3px 0 0;color:var(--muted);font-size:8px;line-height:1.8}.v37-comment time{display:block;margin-top:4px;color:var(--muted);font-size:7px}
+.v37-request-ops{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.v37-request-ops .v37-panel{box-shadow:none;background:var(--surface-2)}
+.v37-offline{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted);font-size:8px}.v37-offline i{width:7px;height:7px;border-radius:50%;display:block;background:var(--success)}.v37-offline.offline i{background:var(--warning)}
+.v37-notif-action{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}.v37-notif-action button{font-size:7px;padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer}
+.v37-duplicate{margin-top:9px;padding:10px 11px;border:1px solid var(--line);border-radius:12px;background:var(--warning-soft);color:var(--warning);font-size:8px;line-height:1.8}
+.v37-draft-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:8px;background:var(--surface-3);color:var(--muted);font-size:7px}
+@media(max-width:1100px){.v37-service-grid{grid-template-columns:repeat(2,1fr)}.v37-kanban{grid-template-columns:repeat(2,1fr)}.v37-meta-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.v37-service-grid,.v37-kanban,.v37-request-ops{grid-template-columns:1fr}.v37-calendar{gap:4px}.v37-day{min-height:70px;padding:5px}.v37-event{font-size:6px}.v37-meta-grid{grid-template-columns:1fr 1fr}.v37-board-tabs{overflow:auto}.v37-board-tabs button{white-space:nowrap}.v37-offline{display:none}}
+</style>
+
+<script id="v37-enterprise-features-script">
+(function(){
+  'use strict';
+  const KEY={inbox:'v37InboxMode',draft:'v37RequestDraft'};
+  const readJSON=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k)||'null');return v??d}catch(e){return d}};
+  const writeJSON=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+  const s=v=>esc(v==null?'':v);
+  const req=id=>(db.req||[]).find(r=>r.id===id);
+  const user=id=>(db.users||[]).find(u=>u.id===id);
+  const isMgr=()=>typeof manager==='function'&&manager();
+
+  const SLA={
+    'مرخصی':24,'دورکاری':24,'ماموریت اداری':24,'اضافه‌کاری':24,'مساعده':48,'تنخواه':48,'خرید تجهیزات':72,'پاسخ استعلام':48,'قرارداد مالی':120,
+    'تحصیل دارایی':48,'ابطال دارایی':48,'خروج کالا':24,'دسترسی سامانه':8,'پشتیبانی فناوری اطلاعات':8,'تعمیر و نگهداری':48,'گواهی اشتغال':24,'معرفی‌نامه اداری':24,'آموزش':72,'اصلاح تردد':24
+  };
+  const CAT={'مرخصی':'منابع انسانی','دورکاری':'منابع انسانی','ماموریت اداری':'منابع انسانی','اضافه‌کاری':'منابع انسانی','مساعده':'مالی','تنخواه':'مالی','خرید تجهیزات':'تدارکات','قرارداد مالی':'مالی','پاسخ استعلام':'بازرگانی','تحصیل دارایی':'اموال و انبار','ابطال دارایی':'اموال و انبار','خروج کالا':'اموال و انبار','دسترسی سامانه':'فناوری','پشتیبانی فناوری اطلاعات':'فناوری','تعمیر و نگهداری':'خدمات و نگهداری','گواهی اشتغال':'منابع انسانی','معرفی‌نامه اداری':'منابع انسانی','آموزش':'منابع انسانی','اصلاح تردد':'منابع انسانی'};
+  const priority=r=>r?.priority||(['قرارداد مالی','دسترسی سامانه'].includes(r?.type)?'مهم':'عادی');
+  const slaInfo=r=>{const end=(Number(r?.createdAt)||Date.now())+(Number(r?.slaHours)||SLA[r?.type]||48)*3600000;const rem=end-Date.now();const a=Math.abs(rem);const h=Math.floor(a/3600000),m=Math.floor(a%3600000/60000);return {end,rem,overdue:rem<0,text:rem<0?'موعد گذشته':(h?(' '+h+' ساعت'):(' '+Math.max(1,m)+' دقیقه'))}};
+  const ensureMeta=()=>{(db.req||[]).forEach((r,i)=>{if(!r.createdAt)r.createdAt=Date.now()-(i*36e5*30);if(!r.category)r.category=CAT[r.type]||'عمومی';if(!r.priority)r.priority=priority(r);if(!r.slaHours)r.slaHours=SLA[r.type]||48;if(!Array.isArray(r.comments))r.comments=[];if(!Array.isArray(r.attachments))r.attachments=[];if(!Array.isArray(r.audit))r.audit=[];if(!r.currentAssignee){const u=user(r.uid);r.currentAssignee=u?.manager||'مسئول مربوط'}})};
+  ensureMeta(); save();
+  const audit=(r,action,detail)=>{r.audit=Array.isArray(r.audit)?r.audit:[];r.audit.unshift({action,detail,by:current()?.name||'کاربر',time:new Date().toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})});r.audit=r.audit.slice(0,40)};
+
+  /* 1) Preserve the existing smart request form, only add attachments and duplicate hints. */
+  const openReqBase=window.openRequest;
+  window.openRequest=function(preselect){
+    if(typeof openReqBase==='function')openReqBase(preselect);
+    setTimeout(()=>{
+      const form=document.querySelector('#modal form.form'); if(!form||form.dataset.v37==='1')return; form.dataset.v37='1';
+      if(!document.getElementById('v37Attach')){
+        const wrap=document.createElement('div');wrap.className='field full';wrap.innerHTML='<label for="v37Attach">پیوست مدارک <span class="muted">(اختیاری)</span></label><input id="v37Attach" class="control" type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,.xlsx,.zip"><div id="v37AttachStatus" class="request-form-note">حداکثر ۱ مگابایت برای هر فایل در این دمو.</div>';
+        const smart=document.getElementById('v31SmartFields')||document.getElementById('v37SmartFields'); if(smart?.parentNode)smart.parentNode.insertBefore(wrap,smart.nextSibling); else form.querySelector('.modal-actions')?.before(wrap);
+      }
+      const title=document.getElementById('rtitle');
+      const checkDup=()=>{const t=title?.value?.trim()||'',type=document.getElementById('rt')?.value||'';const tokens=new Set(t.toLowerCase().split(/\s+/).filter(x=>x.length>2));const list=(db.req||[]).filter(r=>r.type===type&&tokens.size&&Array.from(tokens).some(x=>(r.title||'').toLowerCase().includes(x))).slice(0,3);let b=document.getElementById('v37DuplicateBox');if(!b){b=document.createElement('div');b.id='v37DuplicateBox';const a=document.getElementById('v37Attach')?.parentNode||form.querySelector('.modal-actions');a?.after(b)}b.className='v37-duplicate';b.innerHTML=list.length?'<strong>درخواست مشابه پیدا شد</strong><br>'+list.map(x=>s(x.id)+' — '+s(x.title)).join('<br>'):'';b.hidden=!list.length};
+      title?.addEventListener('input',checkDup);document.getElementById('rt')?.addEventListener('change',checkDup);checkDup();
+      document.getElementById('v37Attach')?.addEventListener('change',e=>{const fs=[...(e.target.files||[])],bad=fs.filter(f=>f.size>1048576).length,ok=fs.length-bad;const st=document.getElementById('v37AttachStatus');if(st)st.textContent=ok+' فایل آماده پیوست است'+(bad? '؛ '+bad+' فایل بزرگ رد شد':'')});
+      const actions=form.querySelector('.modal-actions');if(actions&&!document.getElementById('v37DraftHint')){const p=document.createElement('span');p.id='v37DraftHint';p.className='v37-draft-pill';p.textContent='پیش‌نویس خودکار فعال است';actions.insertBefore(p,actions.firstChild)}
+    },35);
+  };
+
+  /* Capture request form data BEFORE the existing submit closes the modal. */
+  const submitBase=window.submitRequest;
+  window.submitRequest=function(e){
+    if(e?.preventDefault)e.preventDefault();
+    const before=(db.req||[]).length;
+    const type=document.getElementById('rt')?.value||'';
+    const formData={};
+    document.querySelectorAll('#modal .form input, #modal .form select, #modal .form textarea').forEach(el=>{if(el.id&&el.id!=='rtitle'&&el.id!=='rd'&&el.id!=='rt'&&el.id!=='v37Attach'&&el.id!=='loginOtp')formData[el.closest('.field')?.querySelector('label')?.textContent?.trim()||el.id]=el.value});
+    const title=document.getElementById('rtitle')?.value||'',description=document.getElementById('rd')?.value||'';
+    const files=[...(document.getElementById('v37Attach')?.files||[])].filter(f=>f.size<=1048576);
+    const readFiles=files.map(f=>new Promise(resolve=>{const rd=new FileReader();rd.onload=()=>resolve({name:f.name,size:f.size,type:f.type,data:rd.result});rd.onerror=()=>resolve(null);rd.readAsDataURL(f)}));
+    Promise.all(readFiles).then(att=>{
+      if(typeof submitBase==='function')submitBase(e);
+      const created=(db.req||[]).length>before?db.req[0]:null;
+      if(created){ensureMeta();created.createdAt=Date.now();created.slaHours=SLA[created.type]||48;created.category=CAT[created.type]||'عمومی';created.priority=created.priority||'عادی';created.formData={...(created.formData||{}),...formData};created.description=description;created.attachments=att.filter(Boolean);audit(created,'ثبت درخواست','درخواست با فرم هوشمند ثبت شد.');save();}
+    });
+  };
+
+  /* 2) Kanban inbox */
+  const inboxBase=window.inbox;
+  window.inbox=function(){
+    const mode=localStorage.getItem(KEY.inbox)||'table';
+    const rows=isMgr()?(db.tasks||[]):(db.tasks||[]).filter(t=>t.status==='نیازمند اقدام'||(db.req||[]).some(r=>r.uid===current()?.id&&r.id===t.req));
+    if(mode!=='board'){
+      const html=typeof inboxBase==='function'?inboxBase():'';
+      setTimeout(()=>{},0);return html.replace('<div class="filters">','<div class="v37-board-tabs"><button onclick="setInboxMode(\'board\')">کانبان</button><button class="active" onclick="setInboxMode(\'table\')">جدول</button></div><div class="filters">');
+    }
+    const cols=[['نیازمند اقدام','جدید'],['در حال بررسی','در حال بررسی'],['در انتظار تأیید','در انتظار تأیید'],['انجام شده','انجام شده']].map(([st,label])=>{const list=rows.filter(x=>x.status===st);return '<section class="v37-kanban-col"><div class="v37-kanban-head"><strong>'+s(label)+'</strong><span class="v37-kanban-count">'+list.length+'</span></div>'+(list.length?list.map(t=>'<button class="v37-kanban-card" onclick="details(\''+s(t.req).replace(/'/g,"\\'")+'\')"><strong>'+s(t.title)+'</strong><small>'+s(t.req)+' · '+s(t.due)+'</small></button>').join(''):'<div class="empty">موردی نیست</div>')+'</section>'}).join('');
+    return '<section class="card panel"><div class="panel-head"><div><h3>کارتابل من</h3><div class="muted" style="font-size:8px;margin-top:3px">نمای کانبان برای مرور سریع وضعیت کارها</div></div></div><div class="v37-board-tabs"><button class="active" onclick="setInboxMode(\'board\')">کانبان</button><button onclick="setInboxMode(\'table\')">جدول</button></div><div class="v37-kanban">'+cols+'</div></section>';
+  };
+  window.setInboxMode=v=>{localStorage.setItem(KEY.inbox,v);render()};
+
+  /* 3) Calendar and service catalog */
+  const catalog=[['منابع انسانی',['مرخصی','دورکاری','ماموریت اداری','اضافه‌کاری','گواهی اشتغال','معرفی‌نامه اداری','آموزش','اصلاح تردد']],['مالی',['مساعده','تنخواه','خرید تجهیزات','قرارداد مالی']],['فناوری',['دسترسی سامانه','پشتیبانی فناوری اطلاعات']],['اموال و انبار',['تحصیل دارایی','ابطال دارایی','خروج کالا','تعمیر و نگهداری']],['بازرگانی',['پاسخ استعلام']]];
+  window.serviceCatalogPage=function(){return '<section class="card panel"><div class="panel-head"><div><h3>کاتالوگ خدمات سازمانی</h3><div class="muted" style="font-size:8px;margin-top:3px">سرویس موردنیاز را مستقیم انتخاب کنید.</div></div><button class="btn btn-primary" onclick="openRequest()">'+svg.plus+' ثبت درخواست</button></div></section>'+catalog.map(g=>'<section class="card panel"><div class="panel-head"><h3>'+s(g[0])+'</h3><span class="badge gray">'+g[1].length+' سرویس</span></div><div class="v37-service-grid">'+g[1].map((name,i)=>{const info=(window.__requestCatalog||[]).find(x=>x[0]===name);return '<button class="v37-service-card" onclick="openRequest(\''+name.replace(/'/g,"\\'")+'\')"><div class="v37-service-icon">'+(i%2?svg.doc:svg.req)+'</div><strong>'+s(name)+'</strong><p>'+s(info?.[1]||'ثبت و پیگیری خدمت سازمانی')+'</p></button>'}).join('')+'</div></section>').join('')};
+  window.calendarPage=function(){const now=new Date(),y=now.getFullYear(),m=now.getMonth(),first=new Date(y,m,1),days=new Date(y,m+1,0).getDate(),start=(first.getDay()+1)%7,prev=new Date(y,m,0).getDate();const heads=['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'];const evs=(db.req||[]).map(r=>{const d=new Date(r.createdAt||Date.now());return {d:d.getDate(),m:d.getMonth(),t:r.type+' · '+r.id,id:r.id}});let h=heads.map(x=>'<div class="v37-calendar-head">'+x+'</div>').join('');const total=Math.ceil((start+days)/7)*7;for(let i=0;i<total;i++){const n=i-start+1,prevM=n<1,next=n>days,num=prevM?prev+n:(next?n-days:n),today=!prevM&&!next&&n===now.getDate(),cls=(prevM||next)?' muted':(today?' today':'');const e=!prevM&&!next?evs.filter(x=>x.m===m&&x.d===n).slice(0,3):[];h+='<button class="v37-day'+cls+'" '+(e.length?'onclick="details(\''+e[0].id+'\')"':'')+'><div class="v37-day-num">'+num+'</div>'+e.map(x=>'<span class="v37-event">'+s(x.t)+'</span>').join('')+'</button>'}return '<section class="card panel"><div class="panel-head"><div><h3>تقویم سازمانی</h3><div class="muted" style="font-size:8px;margin-top:3px">موعدها و رویدادهای ثبت‌شده</div></div><span class="badge blue">'+new Intl.DateTimeFormat('fa-IR',{month:'long',year:'numeric'}).format(now)+'</span></div><div class="v37-calendar">'+h+'</div></section>'};
+
+  /* 4) Actionable notifications */
+  const notifBase=window.notifications;
+  window.notifications=function(){const html=typeof notifBase==='function'?notifBase():'';const tmp=document.createElement('div');tmp.innerHTML=html;tmp.querySelectorAll('.notif-item').forEach((el,i)=>{const n=db.notices?.[i];if(!n)return;el.dataset.noticeIndex=i;const t=String(n[1]||'');const action=/تردد|کارکرد/.test(t)?'<button onclick="event.stopPropagation();nav(\'attendance\')">مشاهده تردد</button>':/درخواست|دورکاری|مرخصی|ماموریت/.test(t)?'<button onclick="event.stopPropagation();nav(\'requests\')">مشاهده درخواست‌ها</button>':'<button onclick="event.stopPropagation();markNoticeRead('+i+')">خوانده شد</button>';el.insertAdjacentHTML('beforeend','<div class="v37-notif-action">'+action+'</div>')});return tmp.innerHTML};
+
+  /* 5) Active items / SLA snapshot on dashboard */
+  const dashBase=window.dashboard;
+  window.dashboard=function(){const base=typeof dashBase==='function'?dashBase():'';const u=current();if(!u)return base;const mine=(db.req||[]).filter(r=>r.uid===u.id&&!['تأیید شده','رد شده'].includes(r.status));const openTasks=(db.tasks||[]).filter(t=>t.status==='نیازمند اقدام').length;const near=mine.filter(r=>slaInfo(r).rem>0&&slaInfo(r).rem<12*3600000).length;const returned=mine.filter(r=>r.status==='برگشت برای اصلاح').length;const tix=readJSON('companySupportTickets',[]).filter(t=>t.status!=='انجام شده').length;const actions=[['فعال',mine.length+openTasks,'درخواست‌ها و کارهای باز','nav(\'requests\')'],['موعد نزدیک',near,'موارد با SLA نزدیک','nav(\'requests\')'],['برگشت برای اصلاح',returned,'نیازمند تکمیل','nav(\'requests\')'],['تیکت باز',tix,'خدمات پشتیبانی','nav(\'support\')']];const block='<section class="card panel"><div class="panel-head"><div><h3>موارد فعال من</h3><div class="muted" style="font-size:8px;margin-top:3px">تمرکز روی کارهایی که هنوز بسته نشده‌اند</div></div><span class="badge '+((mine.length+openTasks)?'yellow':'green')+'">'+(mine.length+openTasks)+' مورد</span></div><div class="v31-active-grid">'+actions.map(a=>'<button class="v31-active-card" onclick="'+a[3]+'"><div class="v31-active-icon">'+svg.req+'</div><div><strong>'+s(a[0])+'</strong><small>'+s(a[2])+'</small></div><span class="v31-active-num">'+s(a[1])+'</span></button>').join('')+'</div></section>';return block+base};
+
+  /* 6) Request detail: comments, attachments, assignment, priority and audit */
+  const decideBase=window.decide;
+  window.decide=function(id,status){const r=req(id);if(r)audit(r,'تغییر وضعیت',status);if(typeof decideBase==='function')decideBase(id,status);if(r)save()};
+
+  const detailBase=window.details;
+  function renderExtra(id){const r=req(id),m=document.querySelector('#modal .modal');if(!r||!m)return;ensureMeta();let box=m.querySelector('.v37-extra-box');if(box)box.remove();const ex=document.createElement('div');ex.className='v37-extra-box';const at=(r.attachments||[]).map((a,i)=>'<div class="v37-attach"><div><strong>'+s(a.name)+'</strong><div class="ticket-meta">'+Math.max(1,Math.round((a.size||0)/1024))+' KB</div></div><button class="sm primary" onclick="downloadV37Attachment(\''+id.replace(/'/g,"\\'")+'\','+i+')">دانلود</button></div>').join('')||'<div class="empty">پیوستی ثبت نشده است.</div>';const cm=(r.comments||[]).map(c=>'<div class="v37-comment"><strong>'+s(c.by)+'</strong><p>'+s(c.text)+'</p><time>'+s(c.time)+'</time></div>').join('')||'<div class="empty">گفت‌وگویی ثبت نشده است.</div>';const opts=(db.users||[]).map(u=>'<option value="'+s(u.name)+'" '+(u.name===(r.currentAssignee||'')?'selected':'')+'>'+s(u.name)+' — '+s(u.unit)+'</option>').join('');const sla=slaInfo(r);const management=isMgr()?'<section class="v37-panel" style="margin-top:10px"><div class="panel-head"><div><h3>مدیریت گردش</h3><div class="muted" style="font-size:8px">ارجاع، اولویت و درخواست اطلاعات تکمیلی</div></div></div><div class="formgrid"><div class="field"><label for="v37Assignee">مسئول فعلی</label><select id="v37Assignee" class="control">'+opts+'</select></div><div class="field"><label for="v37Priority">اولویت</label><select id="v37Priority" class="control"><option '+(priority(r)==='عادی'?'selected':'')+'>عادی</option><option '+(priority(r)==='مهم'?'selected':'')+'>مهم</option><option '+(priority(r)==='فوری'?'selected':'')+'>فوری</option></select></div></div><div class="modal-actions"><button class="btn btn-secondary" onclick="saveV37RequestManagement(\''+id.replace(/'/g,"\\'")+'\')">ذخیره</button>'+(r.status==='در انتظار تأیید'?'<button class="btn btn-soft" onclick="requestV37MoreInfo(\''+id.replace(/'/g,"\\'")+'\')">درخواست اطلاعات تکمیلی</button>':'')+'</div></section>':'';ex.innerHTML='<div class="v37-meta-grid"><div class="v37-mini"><small>دسته</small><strong>'+s(r.category||'عمومی')+'</strong></div><div class="v37-mini"><small>اولویت</small><strong>'+badge(priority(r))+'</strong></div><div class="v37-mini"><small>مسئول فعلی</small><strong>'+s(r.currentAssignee||'مسئول مربوط')+'</strong></div><div class="v37-mini"><small>SLA</small><strong>'+badge(sla.overdue?'موعد گذشته':('SLA'+sla.text))+'</strong></div></div><div class="v37-request-ops"><section class="v37-panel"><div class="panel-head"><h3>فایل‌های پیوست</h3></div><div class="v37-attach-list">'+at+'</div><div class="field"><label for="v37DetailAttach">افزودن فایل</label><input id="v37DetailAttach" class="control" type="file" onchange="attachV37File(\''+id.replace(/'/g,"\\'")+'\',event)"></div></section><section class="v37-panel"><div class="panel-head"><h3>گفت‌وگو</h3></div><div class="v37-comment-list">'+cm+'</div><div class="field"><label for="v37Comment">پیام جدید</label><textarea id="v37Comment" class="control" placeholder="توضیح یا پیام خود را بنویسید"></textarea></div><button class="btn btn-soft" onclick="addV37Comment(\''+id.replace(/'/g,"\\'")+'\')">ثبت پیام</button></section></div>'+management+'<section class="v37-panel" style="margin-top:10px"><div class="panel-head"><h3>تاریخچه تغییرات</h3><span class="badge gray">'+(r.audit||[]).length+' رویداد</span></div><div class="v37-audit-list">'+((r.audit||[]).map(a=>'<div class="v37-comment"><strong>'+s(a.action)+'</strong><p>'+s(a.detail)+'</p><time>'+s(a.by)+' · '+s(a.time)+'</time></div>').join('')||'<div class="empty">رویدادی ثبت نشده است.</div>')+'</div></section>';
+    const anchor=m.querySelector('.v31-detail-sla')||m.querySelector('.request-detail-head')||m.querySelector('.detail-grid');if(anchor)anchor.insertAdjacentElement('afterend',ex);else m.appendChild(ex);
+  }
+  window.details=function(id){if(typeof detailBase==='function')detailBase(id);setTimeout(()=>renderExtra(id),45)};
+  window.downloadV37Attachment=function(id,i){const a=req(id)?.attachments?.[i];if(!a?.data)return;const el=document.createElement('a');el.href=a.data;el.download=a.name||'attachment';document.body.appendChild(el);el.click();el.remove()};
+  window.attachV37File=function(id,e){const f=e?.target?.files?.[0];if(!f)return;if(f.size>1048576){toast('فایل بزرگ‌تر از ۱ مگابایت است');return}const rd=new FileReader();rd.onload=()=>{const r=req(id);if(!r)return;r.attachments=Array.isArray(r.attachments)?r.attachments:[];r.attachments.push({name:f.name,size:f.size,type:f.type,data:rd.result});audit(r,'افزودن پیوست',f.name);save();renderExtra(id);toast('پیوست اضافه شد')};rd.readAsDataURL(f)};
+  window.addV37Comment=function(id){const r=req(id),e=document.getElementById('v37Comment');if(!r||!e?.value.trim())return;r.comments=Array.isArray(r.comments)?r.comments:[];r.comments.push({by:current()?.name||'کاربر',text:e.value.trim(),time:new Date().toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})});audit(r,'ثبت پیام','پیام جدید در درخواست ثبت شد.');save();renderExtra(id);toast('پیام ثبت شد')};
+  window.saveV37RequestManagement=function(id){const r=req(id);if(!r)return;const a=document.getElementById('v37Assignee')?.value,p=document.getElementById('v37Priority')?.value;if(a&&a!==r.currentAssignee){r.currentAssignee=a;audit(r,'ارجاع درخواست','مسئول جدید: '+a)}if(p&&p!==r.priority){r.priority=p;audit(r,'تغییر اولویت','اولویت جدید: '+p)}save();renderExtra(id);toast('تنظیمات گردش ذخیره شد')};
+  window.requestV37MoreInfo=function(id){openModal('درخواست اطلاعات تکمیلی','<form class="form" onsubmit="submitV37MoreInfo(event,\''+id.replace(/'/g,"\\'")+'\')"><div class="field"><label for="v37MoreInfo">اطلاعات موردنیاز</label><textarea id="v37MoreInfo" class="control" required placeholder="جزئیات اطلاعات موردنیاز را وارد کنید"></textarea></div><div class="modal-actions"><button type="button" class="btn btn-secondary" onclick="closeModal()">انصراف</button><button class="btn btn-primary">ارسال درخواست</button></div></form>')};
+  window.submitV37MoreInfo=function(e,id){e.preventDefault();const r=req(id),t=document.getElementById('v37MoreInfo')?.value.trim();if(!r||!t)return;r.status='نیازمند اطلاعات تکمیلی';r.stage='تکمیل اطلاعات توسط ثبت‌کننده';r.moreInfo=t;audit(r,'درخواست اطلاعات تکمیلی',t);save();closeModal();render();setTimeout(()=>toast('درخواست اطلاعات تکمیلی ارسال شد'),40)};
+
+  /* 7) Navigation pages */
+  const sb=window.sidebar,pt=window.pageTitle,ct=window.content;
+  window.sidebar=function(){const h=typeof sb==='function'?sb():'';if(!h||h.includes('nav(\'catalog\')'))return h;const extra='<button class="nav-btn '+(page==='catalog'?'active':'')+'" onclick="nav(\'catalog\')" aria-label="کاتالوگ خدمات"><span class="nav-icon">'+svg.doc+'</span><span>کاتالوگ خدمات</span></button><button class="nav-btn '+(page==='calendar'?'active':'')+'" onclick="nav(\'calendar\')" aria-label="تقویم سازمانی"><span class="nav-icon">📅</span><span>تقویم سازمانی</span></button>';return h.replace('</nav>',extra+'</nav>')};
+  window.pageTitle=function(){if(page==='catalog')return {h:'کاتالوگ خدمات',p:'انتخاب سریع سرویس‌ها و فرم‌های سازمانی'};if(page==='calendar')return {h:'تقویم سازمانی',p:'موعدها و رویدادهای مرتبط'};return typeof pt==='function'?pt():{h:'سامانه',p:''}};
+  window.content=function(){if(page==='catalog')return window.serviceCatalogPage();if(page==='calendar')return window.calendarPage();return typeof ct==='function'?ct():''};
+
+  /* 8) Offline state: the draft stays local if connection drops. */
+  const tb=window.topbar;
+  window.topbar=function(){const h=typeof tb==='function'?tb():'';if(!h||h.includes('v37-offline'))return h;return h.replace('</div><div class="profile-menu"','<span class="v37-offline"><i></i>آنلاین</span></div><div class="profile-menu"')};
+  const updateOffline=()=>document.querySelectorAll('.v37-offline').forEach(n=>{n.classList.toggle('offline',!navigator.onLine);n.innerHTML='<i></i>'+(!navigator.onLine?'آفلاین · پیش‌نویس‌ها محفوظ می‌مانند':'آنلاین')});
+  window.addEventListener('online',updateOffline);window.addEventListener('offline',updateOffline);
+  function decorateRequests(){
+    if(page!=='requests')return;
+    const content=document.querySelector('.content');if(!content||content.querySelector('.v37-request-summary'))return;
+    ensureMeta();
+    const mine=(db.req||[]).filter(r=>isMgr()||r.uid===current()?.id);
+    const near=mine.filter(r=>{const x=slaInfo(r);return !x.overdue&&x.rem<12*3600000}).length;
+    const overdue=mine.filter(r=>slaInfo(r).overdue).length;
+    const returned=mine.filter(r=>r.status==='برگشت برای اصلاح').length;
+    const strip=document.createElement('section');strip.className='card panel v37-request-summary';strip.innerHTML='<div class="panel-head"><div><h3>نمای عملیاتی درخواست‌ها</h3><div class="muted" style="font-size:8px;margin-top:3px">اولویت و SLA برای تمرکز سریع روی موارد حساس</div></div></div><div class="v37-meta-grid"><div class="v37-mini"><small>موعد نزدیک</small><strong>'+near+'</strong></div><div class="v37-mini"><small>موعد گذشته</small><strong>'+overdue+'</strong></div><div class="v37-mini"><small>برگشت برای اصلاح</small><strong>'+returned+'</strong></div><div class="v37-mini"><small>کل قابل مشاهده</small><strong>'+mine.length+'</strong></div></div>';
+    content.prepend(strip);
+  }
+  const rr=window.render;window.render=function(){if(typeof rr==='function')rr();setTimeout(()=>{updateOffline();decorateRequests()},0)};
+
+  ensureMeta();save();
+})();
+</script>
 </body>
 </html>

@@ -1,5 +1,1 @@
-نسخه ۳۶
-
-- حذف دکمه «کد مجدد» پایین فرم ورود؛ فقط دکمه کنار کد امنیتی باقی مانده است.
-- حذف آیکن/عنصر خالی داخل دکمه «ورود امن به سامانه» برای رفع بیضی/پیل اضافی.
-- سایر امکانات نسخه ۳۵ حفظ شده‌اند.
+V37 built from V36 without changing the existing theme or visual system. Adds service catalog, organization calendar, kanban inbox, request attachments and duplicate hints, offline-friendly drafts, actionable notifications, SLA/priority metadata, assignment, comments, audit trail, additional-info workflow, and request operations summary. Existing lightning and page/login loaders are preserved. Demo frontend only; production auth/database/security remain server-side work.
