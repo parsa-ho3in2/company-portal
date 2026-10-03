@@ -3320,5 +3320,62 @@ html[data-a11y-scale="xlarge"] th,html[data-a11y-scale="xlarge"] td{font-size:11
   ensureMeta();save();
 })();
 </script>
+
+<style id="v38-ux-layer">
+.v38-today-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.v38-today-card{border:1px solid var(--line);border-radius:13px;background:var(--surface-2);padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:right;cursor:pointer;color:var(--text);transition:.15s ease}.v38-today-card:hover{border-color:color-mix(in srgb,var(--primary) 30%,var(--line));box-shadow:0 9px 22px var(--glow);transform:translateY(-1px)}.v38-today-card strong{display:block;font-size:10px}.v38-today-card small{display:block;color:var(--muted);font-size:8px;margin-top:2px}.v38-today-num{font-size:22px;font-weight:900}.v38-urgency{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.v38-org{display:grid;gap:10px;padding:8px 0}.v38-org-level{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;position:relative}.v38-org-level:before{content:"";position:absolute;top:-6px;left:50%;width:1px;height:8px;background:var(--line-strong);opacity:.8}.v38-org-level:first-child:before{display:none}.v38-org-node{min-width:170px;max-width:220px;padding:12px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,var(--surface),var(--surface-2));box-shadow:var(--shadow);text-align:center;cursor:pointer;color:var(--text);transition:.15s ease}.v38-org-node:hover{border-color:color-mix(in srgb,var(--primary) 30%,var(--line));transform:translateY(-1px)}.v38-org-node .avatar{margin:0 auto 7px;width:40px;height:40px}.v38-org-node strong{display:block;font-size:10px}.v38-org-node small{display:block;color:var(--muted);font-size:8px;margin-top:2px}.v38-org-connector{width:1px;height:10px;background:var(--line-strong);margin:0 auto}
+.v38-fav{position:absolute;top:10px;left:10px;width:28px;height:28px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--muted);display:grid;place-items:center;font-size:13px;z-index:2}.v38-fav.active{color:var(--warning);background:var(--warning-soft);border-color:transparent}.v38-service-card-wrap{position:relative}.v38-service-card-wrap .v37-service-card{width:100%;height:100%}.v38-workbar{display:flex;justify-content:space-between;align-items:center;gap:9px;padding:9px 11px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);margin-top:10px}.v38-workbar strong{font-size:9px}.v38-workbar span{font-size:8px;color:var(--muted)}.v38-action-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.v38-action-row .btn{min-height:38px}.v38-mobile-app-note{margin-top:8px;color:var(--muted);font-size:8px;line-height:1.8}
+@media(max-width:900px){.v38-today-grid{grid-template-columns:1fr}.v38-org-node{min-width:150px}}@media(max-width:560px){.v38-org-level{gap:8px}.v38-org-node{min-width:100%;max-width:none}.v38-workbar{align-items:flex-start;flex-direction:column}}@media(prefers-reduced-motion:reduce){.v38-today-card:hover,.v38-org-node:hover{transform:none}}
+</style>
+<script id="v38-ux-script">
+(function(){
+'use strict';
+const escV=x=>typeof esc==='function'?esc(x):String(x??'');
+const readJ=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k)||'null');return v??d}catch(e){return d}};
+const writeJ=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const nowUser=()=>typeof current==='function'?current():null;
+const reqs=()=>Array.isArray(db?.req)?db.req:[];
+const isMgr=()=>typeof manager==='function'&&manager();
+
+function todayPanel(){
+ const u=nowUser();if(!u)return null;
+ const mine=reqs().filter(r=>isMgr()||r.uid===u.id);
+ const active=mine.filter(r=>!['تأیید شده','رد شده','انجام شده'].includes(r.status));
+ const overdue=active.filter(r=>Number(r.dueAt||0)>0&&Number(r.dueAt)<Date.now());
+ const soon=active.filter(r=>Number(r.dueAt||0)>Date.now()&&Number(r.dueAt)-Date.now()<24*3600000);
+ const returned=active.filter(r=>r.status==='برگشت برای اصلاح');
+ const tasks=(db.tasks||[]).filter(t=>t.status==='نیازمند اقدام').length;
+ const p=document.createElement('section');p.className='card panel';p.id='v38TodayPanel';
+ const cards=[['نیازمند اقدام',active.length+tasks,'درخواست‌ها و کارهای باز'],['موعد نزدیک',soon.length+overdue.length,'امروز و ۲۴ ساعت آینده'],['برگشت برای اصلاح',returned.length,'تکمیل اطلاعات و ارسال مجدد']];
+ p.innerHTML='<div class="panel-head"><div><h3>کارهای امروز من</h3><div class="muted" style="font-size:8px;margin-top:3px">فقط مواردی که نیاز به توجه شما دارند.</div></div><button class="panel-link" type="button" data-go="inbox">مشاهده کارتابل</button></div><div class="v38-today-grid">'+cards.map((c,i)=>'<button class="v38-today-card" type="button" data-go="requests"><div><strong>'+escV(c[0])+'</strong><small>'+escV(c[2])+'</small></div><span class="v38-today-num">'+c[1]+'</span></button>').join('')+'</div><div class="v38-urgency">'+(overdue.length?'<span class="badge red">'+overdue.length+' مورد عقب‌افتاده</span>':'')+(returned.length?'<span class="badge yellow">'+returned.length+' مورد برگشتی</span>':'')+(!overdue.length&&!returned.length?'<span class="badge green">وضعیت امروز عادی است ✓</span>':'')+'</div>';
+ p.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',()=>nav(el.dataset.go)));
+ return p;
+}
+
+window.v38OrgChart=function(){
+ const users=Array.isArray(db?.users)?db.users:[];const top=users.find(u=>/مدیرعامل/.test(u.role||''))||users.find(u=>u.u==='admin')||users[0];const managers=users.filter(u=>u!==top&&/مدیر/.test(u.role||''));const employees=users.filter(u=>u!==top&&!managers.includes(u));
+ const node=u=>'<button class="v38-org-node" type="button" data-person="'+escV(u.id||'')+'"><span class="avatar">'+escV(u.avatar||'•')+'</span><strong>'+escV(u.name)+'</strong><small>'+escV(u.role)+' · '+escV(u.unit)+'</small></button>';
+ const html='<section class="card panel"><div class="panel-head"><div><h3>چارت سازمانی</h3><div class="muted" style="font-size:8px;margin-top:3px">ساختار نمونه بر اساس کاربران سامانه.</div></div><span class="badge gray">'+users.length+' نفر</span></div><div class="v38-org"><div class="v38-org-level">'+(top?node(top):'<div class="empty">مدیریت ارشد ثبت نشده است.</div>')+'</div><div class="v38-org-connector"></div><div class="v38-org-level">'+(managers.length?managers.map(node).join(''):'<div class="empty">مدیر واحد ثبت نشده است.</div>')+'</div><div class="v38-org-connector"></div><div class="v38-org-level">'+(employees.length?employees.map(node).join(''):'<div class="empty">کارمند ثبت نشده است.</div>')+'</div></div></section>';
+ return html;
+};
+
+const oldCat=window.serviceCatalogPage;
+window.serviceCatalogPage=function(){if(typeof oldCat!=='function')return '';const tmp=document.createElement('div');tmp.innerHTML=oldCat();const fav=new Set(readJ('v38ServiceFavorites',[]));tmp.querySelectorAll('.v37-service-card').forEach(btn=>{const name=btn.querySelector('strong')?.textContent?.trim()||'سرویس';const wrap=document.createElement('div');wrap.className='v38-service-card-wrap';btn.parentNode.replaceChild(wrap,btn);wrap.appendChild(btn);const f=document.createElement('button');f.type='button';f.className='v38-fav'+(fav.has(name)?' active':'');f.textContent=fav.has(name)?'★':'☆';f.setAttribute('aria-label',fav.has(name)?'حذف از میانبرهای من':'افزودن سرویس به میانبرهای من');f.addEventListener('click',e=>{e.stopPropagation();const set=new Set(readJ('v38ServiceFavorites',[]));if(set.has(name))set.delete(name);else set.add(name);writeJ('v38ServiceFavorites',[...set]);f.classList.toggle('active',set.has(name));f.textContent=set.has(name)?'★':'☆';toast(set.has(name)?'سرویس به میانبرهای شما اضافه شد':'سرویس از میانبرهای شما حذف شد')});wrap.appendChild(f)});return tmp.innerHTML};
+
+const oldCal=window.calendarPage;
+window.calendarPage=function(){if(typeof oldCal!=='function')return '';const tmp=document.createElement('div');tmp.innerHTML=oldCal();const cal=tmp.querySelector('.v37-calendar');if(!cal)return tmp.innerHTML;const ref=new Date();reqs().forEach(r=>{const due=Number(r.dueAt||0);if(!due)return;const d=new Date(due);if(d.getFullYear()!==ref.getFullYear()||d.getMonth()!==ref.getMonth())return;[...cal.querySelectorAll('.v37-day')].forEach(cell=>{const n=Number(cell.querySelector('.v37-day-num')?.textContent||0);if(n===d.getDate()&&!cell.classList.contains('muted')){const e=document.createElement('span');e.className='v37-event';e.textContent='SLA · '+r.id;e.title='موعد SLA برای '+r.id;e.dataset.reqId=r.id;cell.appendChild(e)}})});return tmp.innerHTML};
+
+const oldDetails=window.details;
+window.details=function(id){if(typeof oldDetails==='function')oldDetails(id);setTimeout(()=>{const r=reqs().find(x=>x.id===id),m=document.querySelector('#modal .modal');if(!r||!m||m.querySelector('.v38-workbar'))return;const next=r.status==='برگشت برای اصلاح'?'اصلاح اطلاعات و ارسال مجدد':r.status==='در انتظار تأیید'?'بررسی و تصمیم‌گیری':r.status==='نیازمند اطلاعات تکمیلی'?'تکمیل اطلاعات درخواستی':'پیگیری مرحله بعد';const b=document.createElement('div');b.className='v38-workbar';b.innerHTML='<div><strong>اقدام بعدی</strong><br><span>'+escV(next)+'</span></div><div class="v38-action-row"><button type="button" class="btn btn-secondary" id="v38CopyId">کپی شناسه</button></div>';const a=m.querySelector('.v31-detail-sla')||m.querySelector('.detail-grid');if(a)a.insertAdjacentElement('afterend',b);else m.prepend(b);m.querySelector('#v38CopyId')?.addEventListener('click',()=>{if(navigator.clipboard?.writeText)navigator.clipboard.writeText(String(id));toast('شناسه درخواست کپی شد')})},60)};
+
+const oldSidebar=window.sidebar;window.sidebar=function(){const h=typeof oldSidebar==='function'?oldSidebar():'';if(!h||h.includes('v38-org-link'))return h;const add='<button class="nav-btn v38-org-link '+(page==='orgchart'?'active':'')+'" onclick="nav(\'orgchart\')" aria-label="چارت سازمانی"><span class="nav-icon">⌬</span><span>چارت سازمانی</span></button>';return h.replace('</nav>',add+'</nav>')};
+const oldTitle=window.pageTitle;window.pageTitle=function(){if(page==='orgchart')return {h:'چارت سازمانی',p:'ساختار واحدها، مدیران و کارکنان'};return typeof oldTitle==='function'?oldTitle():{h:'سامانه',p:''}};
+const oldContent=window.content;window.content=function(){if(page==='orgchart')return window.v38OrgChart();return typeof oldContent==='function'?oldContent():''};
+const oldRender=window.render;window.render=function(){if(typeof oldRender==='function')oldRender();setTimeout(()=>{if(page==='dashboard'&&!document.getElementById('v38TodayPanel')){const p=todayPanel(),hero=document.querySelector('.hero');if(p&&hero)hero.insertAdjacentElement('afterend',p)};document.querySelectorAll('.v38-org-node').forEach(btn=>{if(btn.dataset.v38bound==='1')return;btn.dataset.v38bound='1';btn.addEventListener('click',()=>{const u=(db.users||[]).find(x=>String(x.id)===String(btn.dataset.person));if(u){nav('people');setTimeout(()=>toast('پروفایل '+u.name+' آماده نمایش است'),20)}})});},0)};
+const oldSettings=window.settings;window.settings=function(){const h=typeof oldSettings==='function'?oldSettings():'';if(!h||h.includes('v38PerfControl'))return h;const tmp=document.createElement('div');tmp.innerHTML=h;const sec=document.createElement('section');sec.className='card panel';sec.id='v38PerfControl';const mode=localStorage.getItem('v38PerfMode')||'smart';sec.innerHTML='<div class="panel-head"><div><h3>عملکرد دستگاه</h3><div class="muted" style="font-size:8px;margin-top:3px">کنترل میزان پردازش جلوه‌های غیرضروری، مخصوصاً روی موبایل.</div></div><span class="badge gray">'+(mode==='smart'?'هوشمند':'کامل')+'</span></div><div class="field"><label for="v38PerfSelect">حالت اجرا</label><select id="v38PerfSelect" class="control"><option value="smart" '+(mode==='smart'?'selected':'')+'>هوشمند</option><option value="full" '+(mode==='full'?'selected':'')+'>کامل</option></select></div><div class="v38-mobile-app-note">حالت هوشمند ظاهر رابط را تغییر نمی‌دهد و برای دستگاه‌های کم‌توان، پردازش غیرضروری را کمتر می‌کند.</div>';tmp.appendChild(sec);setTimeout(()=>document.getElementById('v38PerfSelect')?.addEventListener('change',e=>{localStorage.setItem('v38PerfMode',e.target.value);document.documentElement.dataset.perf=e.target.value;toast('حالت عملکرد ذخیره شد')}),0);return tmp.innerHTML};
+
+})();
+</script>
+
 </body>
 </html>
