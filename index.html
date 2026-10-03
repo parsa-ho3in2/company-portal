@@ -1110,6 +1110,63 @@ th{font-weight:750!important}
   text-shadow: none;
 }
 </style>
+
+<style id="v40-dark-text-final">
+/* V40 — final dark-mode readability fix for the calendar / newer white panels. */
+[data-theme="dark"] .v37-calendar,
+[data-theme="dark"] .v37-calendar-head,
+[data-theme="dark"] .v37-day,
+[data-theme="dark"] .v37-day-num {
+  color: var(--text) !important;
+  -webkit-text-fill-color: var(--text) !important;
+}
+[data-theme="dark"] .v37-calendar-head {
+  color: var(--muted) !important;
+  -webkit-text-fill-color: var(--muted) !important;
+}
+[data-theme="dark"] .v37-day {
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+}
+[data-theme="dark"] .v37-day .v37-event,
+[data-theme="dark"] .v37-day .v37-event * {
+  color: var(--primary) !important;
+  -webkit-text-fill-color: var(--primary) !important;
+}
+[data-theme="dark"] .v37-day .v37-event {
+  background: var(--primary-soft) !important;
+}
+
+/* Newer enterprise cards: force actual text-bearing elements to use the active dark palette. */
+[data-theme="dark"] .v38-today-card strong,
+[data-theme="dark"] .v38-org-node strong,
+[data-theme="dark"] .v38-workbar strong,
+[data-theme="dark"] .v37-service-card strong,
+[data-theme="dark"] .v37-kanban-card strong,
+[data-theme="dark"] .v37-comment strong,
+[data-theme="dark"] .v37-attach strong {
+  color: var(--text) !important;
+  -webkit-text-fill-color: var(--text) !important;
+}
+[data-theme="dark"] .v38-today-card small,
+[data-theme="dark"] .v38-org-node small,
+[data-theme="dark"] .v38-workbar span,
+[data-theme="dark"] .v37-service-card p,
+[data-theme="dark"] .v37-kanban-card small,
+[data-theme="dark"] .v37-comment p,
+[data-theme="dark"] .v37-comment time {
+  color: var(--muted) !important;
+  -webkit-text-fill-color: var(--muted) !important;
+}
+[data-theme="dark"] .v37-board-tabs button,
+[data-theme="dark"] .v37-notif-action button,
+[data-theme="dark"] .v37-feedback button,
+[data-theme="dark"] .v38-workbar button,
+[data-theme="dark"] .v38-fav {
+  color: var(--text) !important;
+  -webkit-text-fill-color: var(--text) !important;
+}
+</style>
 </head>
 <body data-v30-build="redblack-mobile-perf">
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
