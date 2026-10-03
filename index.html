@@ -1031,6 +1031,85 @@ th{font-weight:750!important}
 }
 </style>
 
+
+<style id="v39-dark-text-guard">
+/* V39 — dark-mode text guard: keep all newer enterprise panels readable without changing light-theme visuals. */
+[data-theme="dark"] .v38-today-card,
+[data-theme="dark"] .v38-org-node,
+[data-theme="dark"] .v38-fav,
+[data-theme="dark"] .v38-workbar,
+[data-theme="dark"] .v38-service-card-wrap,
+[data-theme="dark"] .v37-service-card,
+[data-theme="dark"] .v37-service-icon,
+[data-theme="dark"] .v37-kanban-card,
+[data-theme="dark"] .v37-calendar-head,
+[data-theme="dark"] .v37-day,
+[data-theme="dark"] .v37-event,
+[data-theme="dark"] .v37-request-ops .v37-panel,
+[data-theme="dark"] .v37-comment,
+[data-theme="dark"] .v37-attach,
+[data-theme="dark"] .v37-duplicate,
+[data-theme="dark"] .v37-draft-pill,
+[data-theme="dark"] .v38-mobile-app-note {
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] .v38-today-card strong,
+[data-theme="dark"] .v38-today-card small,
+[data-theme="dark"] .v38-org-node strong,
+[data-theme="dark"] .v38-org-node small,
+[data-theme="dark"] .v38-workbar strong,
+[data-theme="dark"] .v38-workbar span,
+[data-theme="dark"] .v37-service-card strong,
+[data-theme="dark"] .v37-service-card p,
+[data-theme="dark"] .v37-kanban-card strong,
+[data-theme="dark"] .v37-kanban-card small,
+[data-theme="dark"] .v37-service-state,
+[data-theme="dark"] .v37-service-name,
+[data-theme="dark"] .v37-calendar-head,
+[data-theme="dark"] .v37-day-num,
+[data-theme="dark"] .v37-comment strong,
+[data-theme="dark"] .v37-comment p,
+[data-theme="dark"] .v37-comment time,
+[data-theme="dark"] .v37-attach strong,
+[data-theme="dark"] .v38-mobile-app-note {
+  color: inherit !important;
+}
+
+[data-theme="dark"] .v38-today-card small,
+[data-theme="dark"] .v38-org-node small,
+[data-theme="dark"] .v38-workbar span,
+[data-theme="dark"] .v37-service-card p,
+[data-theme="dark"] .v37-kanban-card small,
+[data-theme="dark"] .v37-comment p,
+[data-theme="dark"] .v37-comment time,
+[data-theme="dark"] .v38-mobile-app-note {
+  color: var(--muted) !important;
+}
+
+/* Native controls inside the newer sections must inherit the active theme too. */
+[data-theme="dark"] .v38-workbar button,
+[data-theme="dark"] .v37-service-card,
+[data-theme="dark"] .v37-kanban-card,
+[data-theme="dark"] .v37-day,
+[data-theme="dark"] .v37-feedback button,
+[data-theme="dark"] .v38-fav {
+  color: var(--text) !important;
+  -webkit-text-fill-color: var(--text);
+}
+
+/* Guard against browser/user-agent black text on buttons and inputs used by the new UI. */
+[data-theme="dark"] .v38-today-card,
+[data-theme="dark"] .v38-org-node,
+[data-theme="dark"] .v38-workbar,
+[data-theme="dark"] .v37-service-card,
+[data-theme="dark"] .v37-kanban-card,
+[data-theme="dark"] .v37-day,
+[data-theme="dark"] .v37-feedback button,
+[data-theme="dark"] .v38-fav {
+  text-shadow: none;
+}
+</style>
 </head>
 <body data-v30-build="redblack-mobile-perf">
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
@@ -3379,3 +3458,4 @@ const oldSettings=window.settings;window.settings=function(){const h=typeof oldS
 
 </body>
 </html>
+

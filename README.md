@@ -1,1 +1,3 @@
-V38 built from V37: today-focus dashboard layer, org chart, service favorites, request next-action workspace bar, SLA markers in calendar, low-power performance mode, and app-like mobile metadata. Existing theme, lightning effects, loaders, and V37 features are preserved.
+V39 — dark mode text readability fix
+
+Built from V38 without changing the visual system or light-theme appearance. Added a scoped dark-mode text guard for the newer V37/V38 enterprise sections so headings, body text, buttons, native controls, organization chart, today's tasks, service catalog, comments, attachments and related UI inherit readable theme colors. Existing loaders, themes, mobile performance, accessibility and lightning background effects are preserved.
