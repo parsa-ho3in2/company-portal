@@ -1168,7 +1168,7 @@ th{font-weight:750!important}
 }
 </style>
 </head>
-<body data-v30-build="redblack-mobile-perf">
+<body data-v41-build="erp-workbench">
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
 <div id="app"></div>
 <script>
@@ -3510,6 +3510,110 @@ const oldContent=window.content;window.content=function(){if(page==='orgchart')r
 const oldRender=window.render;window.render=function(){if(typeof oldRender==='function')oldRender();setTimeout(()=>{if(page==='dashboard'&&!document.getElementById('v38TodayPanel')){const p=todayPanel(),hero=document.querySelector('.hero');if(p&&hero)hero.insertAdjacentElement('afterend',p)};document.querySelectorAll('.v38-org-node').forEach(btn=>{if(btn.dataset.v38bound==='1')return;btn.dataset.v38bound='1';btn.addEventListener('click',()=>{const u=(db.users||[]).find(x=>String(x.id)===String(btn.dataset.person));if(u){nav('people');setTimeout(()=>toast('پروفایل '+u.name+' آماده نمایش است'),20)}})});},0)};
 const oldSettings=window.settings;window.settings=function(){const h=typeof oldSettings==='function'?oldSettings():'';if(!h||h.includes('v38PerfControl'))return h;const tmp=document.createElement('div');tmp.innerHTML=h;const sec=document.createElement('section');sec.className='card panel';sec.id='v38PerfControl';const mode=localStorage.getItem('v38PerfMode')||'smart';sec.innerHTML='<div class="panel-head"><div><h3>عملکرد دستگاه</h3><div class="muted" style="font-size:8px;margin-top:3px">کنترل میزان پردازش جلوه‌های غیرضروری، مخصوصاً روی موبایل.</div></div><span class="badge gray">'+(mode==='smart'?'هوشمند':'کامل')+'</span></div><div class="field"><label for="v38PerfSelect">حالت اجرا</label><select id="v38PerfSelect" class="control"><option value="smart" '+(mode==='smart'?'selected':'')+'>هوشمند</option><option value="full" '+(mode==='full'?'selected':'')+'>کامل</option></select></div><div class="v38-mobile-app-note">حالت هوشمند ظاهر رابط را تغییر نمی‌دهد و برای دستگاه‌های کم‌توان، پردازش غیرضروری را کمتر می‌کند.</div>';tmp.appendChild(sec);setTimeout(()=>document.getElementById('v38PerfSelect')?.addEventListener('change',e=>{localStorage.setItem('v38PerfMode',e.target.value);document.documentElement.dataset.perf=e.target.value;toast('حالت عملکرد ذخیره شد')}),0);return tmp.innerHTML};
 
+})();
+</script>
+
+<style id="v41-workbench-style">
+/* V41 — ERP-style operational workbench for inbox and requests. */
+.v41-workbench{display:grid;gap:12px}
+.v41-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.v41-kpi{padding:12px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,var(--surface),var(--surface-2));min-height:82px}
+.v41-kpi small{display:block;color:var(--muted);font-size:8px}.v41-kpi strong{display:block;margin-top:5px;font-size:22px;letter-spacing:-.4px}.v41-kpi span{display:block;margin-top:2px;color:var(--muted);font-size:7px}
+.v41-toolbar{display:grid;grid-template-columns:auto 1fr auto;gap:9px;align-items:center}
+.v41-tabs,.v41-filters{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.v41-tabs button,.v41-chip{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:10px;padding:8px 10px;font-size:8px;font-weight:800;cursor:pointer}.v41-tabs button.active,.v41-chip.active{background:var(--primary-soft);border-color:transparent;color:var(--primary)}
+.v41-search{min-width:170px;width:100%}.v41-filter-select{min-width:120px}
+.v41-task-table td{vertical-align:middle}.v41-task-main{display:grid;gap:2px}.v41-task-main strong{font-size:9px}.v41-task-main small{color:var(--muted);font-size:7px}
+.v41-priority{display:inline-flex;align-items:center;gap:5px;font-size:7px;font-weight:900}.v41-priority i{width:7px;height:7px;border-radius:50%;display:block;background:var(--muted)}.v41-priority.urgent i{background:var(--danger)}.v41-priority.important i{background:var(--warning)}.v41-priority.normal i{background:var(--success)}
+.v41-sla{font-size:7px;color:var(--muted);white-space:nowrap}.v41-sla.overdue{color:var(--danger);font-weight:900}.v41-actions{display:flex;gap:5px;justify-content:flex-end;flex-wrap:wrap}
+.v41-board{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.v41-board-col{background:var(--surface-2);border:1px solid var(--line);border-radius:15px;padding:10px;min-height:240px}.v41-board-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.v41-board-head strong{font-size:9px}.v41-board-count{min-width:23px;height:23px;display:grid;place-items:center;border-radius:999px;background:var(--surface);font-size:7px;font-weight:900}.v41-board-card{width:100%;text-align:right;padding:10px;margin-bottom:7px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);cursor:pointer}.v41-board-card:hover{border-color:color-mix(in srgb,var(--primary) 35%,var(--line));box-shadow:0 9px 20px var(--glow);transform:translateY(-1px)}.v41-board-card strong{display:block;font-size:8px}.v41-board-card small{display:block;margin-top:4px;color:var(--muted);font-size:7px}
+.v41-empty{padding:18px;text-align:center;color:var(--muted);font-size:8px;border:1px dashed var(--line);border-radius:12px}
+.v41-request-toolbar{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin-bottom:9px}.v41-request-chips{display:flex;gap:6px;flex-wrap:wrap}.v41-request-chip{border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:7px 9px;border-radius:999px;font-size:7px;font-weight:900;cursor:pointer}.v41-request-chip.active{background:var(--primary-soft);color:var(--primary);border-color:transparent}
+.v41-request-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.v41-request-card{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--surface);cursor:pointer;transition:.15s ease}.v41-request-card:hover{box-shadow:0 10px 22px var(--glow);transform:translateY(-1px)}.v41-request-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:9px}.v41-request-card h4{margin:0;font-size:10px}.v41-request-card p{margin:6px 0 0;color:var(--muted);font-size:8px;line-height:1.8}.v41-request-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}.v41-request-footer{display:flex;justify-content:space-between;align-items:center;gap:7px;margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:7px;color:var(--muted)}
+@media(max-width:1050px){.v41-toolbar{grid-template-columns:1fr}.v41-kpis{grid-template-columns:repeat(2,1fr)}.v41-board{grid-template-columns:repeat(2,1fr)}.v41-request-cards{grid-template-columns:1fr}}
+@media(max-width:650px){.v41-kpis{grid-template-columns:1fr 1fr}.v41-board{grid-template-columns:1fr}.v41-request-toolbar{grid-template-columns:1fr}.v41-search{min-width:0}.v41-actions{justify-content:flex-start}}
+@media(prefers-reduced-motion:reduce){.v41-board-card:hover,.v41-request-card:hover{transform:none}}
+[data-theme="dark"] .v41-tabs button,[data-theme="dark"] .v41-chip,[data-theme="dark"] .v41-request-chip,[data-theme="dark"] .v41-board-card,[data-theme="dark"] .v41-request-card{color:var(--text);-webkit-text-fill-color:var(--text)}
+</style>
+
+<script id="v41-workbench-script">
+(function(){
+'use strict';
+const esc41=x=>typeof esc==='function'?esc(x):String(x??'').replace(/[&<>\'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));
+const req41=id=>(db.req||[]).find(r=>String(r.id)===String(id));
+const user41=id=>(db.users||[]).find(u=>String(u.id)===String(id));
+const mgr41=()=>typeof manager==='function'&&manager();
+const safe41=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k)||'null');return v??d}catch(e){return d}};
+const save41=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const pri41=r=>r?.priority||'عادی';
+const cat41=r=>r?.category||({مرخصی:'منابع انسانی',دورکاری:'منابع انسانی',ماموریت:'منابع انسانی',خرید:'تدارکات','پاسخ استعلام':'بازرگانی','قرارداد مالی':'مالی','تحصیل دارایی':'اموال و انبار','ابطال دارایی':'اموال و انبار'}[r?.type]||'عمومی');
+function sla41(r){if(!r)return {text:'—',overdue:false};const end=Number(r.dueAt||0)||((Number(r.createdAt)||Date.now())+(Number(r.slaHours)||48)*3600000);const rem=end-Date.now();const a=Math.abs(rem),h=Math.floor(a/3600000),m=Math.floor(a%3600000/60000);return {end,overdue:rem<0,text:rem<0?('عقب‌افتاده · '+(h||1)+' ساعت'):(h?('حدود '+h+' ساعت مانده'):('حدود '+Math.max(1,m)+' دقیقه مانده'))}};
+function inboxRows41(){
+ const rows=[];const tasks=Array.isArray(db.tasks)?db.tasks:[];
+ const visible=mgr41()?tasks:tasks.filter(t=>t.status==='نیازمند اقدام'||req41(t.req)?.uid===current()?.id);
+ visible.forEach(t=>{const r=req41(t.req);rows.push({id:t.id,title:t.title,req:t.req,due:t.due,status:t.status,priority:pri41(r),category:cat41(r),requester:user41(r?.uid)?.name||'—',virtual:false});});
+ if(mgr41()){
+  (db.req||[]).filter(r=>r.status==='در انتظار تأیید'&&!rows.some(x=>x.req===r.id)).forEach(r=>rows.unshift({id:'APR-'+r.id.replace(/^REQ-/,'') ,title:'تأیید '+r.title,req:r.id,due:'نیازمند تصمیم',status:'در انتظار تأیید',priority:pri41(r),category:cat41(r),requester:user41(r.uid)?.name||'—',virtual:true}));
+ }
+ return rows;
+}
+function match41(row,state){
+ const q=String(state.q||'').trim().toLowerCase();
+ if(q&&!(`${row.id} ${row.title} ${row.req} ${row.requester} ${row.category}`.toLowerCase().includes(q)))return false;
+ if(state.status!=='همه'&&row.status!==state.status)return false;
+ if(state.category!=='همه'&&row.category!==state.category)return false;
+ if(state.priority!=='همه'&&row.priority!==state.priority)return false;
+ if(state.quick==='urgent'&&row.priority!=='فوری')return false;
+ if(state.quick==='due'){const r=req41(row.req);if(!r||sla41(r).overdue===false&&sla41(r).end-Date.now()>24*3600000)return false}
+ if(state.quick==='action'&&!['نیازمند اقدام','در انتظار تأیید','در حال بررسی'].includes(row.status))return false;
+ return true;
+}
+function priorityBadge41(p){const cls=p==='فوری'?'urgent':p==='مهم'?'important':'normal';return '<span class="v41-priority '+cls+'"><i></i>'+esc41(p)+'</span>'}
+function renderInboxRows41(state){
+ const rows=inboxRows41().filter(r=>match41(r,state));
+ const table=rows.length?`<div class="table-wrap"><table class="v41-task-table"><thead><tr><th>شناسه</th><th>شرح کار</th><th>درخواست‌کننده</th><th>دسته</th><th>اولویت</th><th>SLA</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>${rows.map(x=>{const r=req41(x.req),sl=sla41(r),rid=String(x.req).replace(/'/g,"\\'");const tid=String(x.id).replace(/'/g,"\\'");return `<tr><td><b>${esc41(x.id)}</b></td><td><div class="v41-task-main"><strong>${esc41(x.title)}</strong><small>${esc41(x.req)}</small></div></td><td>${esc41(x.requester)}</td><td>${esc41(x.category)}</td><td>${priorityBadge41(x.priority)}</td><td><span class="v41-sla ${sl.overdue?'overdue':''}">${esc41(sl.text)}</span></td><td>${badge(x.status)}</td><td><div class="v41-actions"><button class="sm primary" onclick="details('${rid}')">مشاهده</button>${(x.virtual||x.status==='نیازمند اقدام')?`<button class="sm ok" onclick="v41CompleteTask('${tid}')">${x.virtual?'✓ تأیید':'✓ انجام شد'}</button>`:''}</div></td></tr>`}).join('')}</tbody></table></div>`:'<div class="v41-empty"><strong>موردی با این فیلتر پیدا نشد</strong><br>فیلترها یا عبارت جستجو را تغییر دهید.</div>';
+ return table;
+}
+function renderBoard41(state){
+ const rows=inboxRows41().filter(r=>match41(r,state));
+ const cols=[['نیازمند اقدام','نیازمند اقدام'],['در حال بررسی','در حال بررسی'],['در انتظار تأیید','در انتظار تأیید'],['انجام شده','انجام شده']];
+ return `<div class="v41-board">${cols.map(c=>{const list=rows.filter(x=>x.status===c[0]);return `<section class="v41-board-col"><div class="v41-board-head"><strong>${c[1]}</strong><span class="v41-board-count">${list.length}</span></div>${list.length?list.map(x=>{const rid=String(x.req).replace(/'/g,"\\'");return `<button type="button" class="v41-board-card" onclick="details('${rid}')"><strong>${esc41(x.title)}</strong><small>${esc41(x.req)} · ${esc41(x.requester)} · ${esc41(x.category)}</small><small>${priorityBadge41(x.priority)}</small></button>`}).join(''):'<div class="v41-empty">موردی نیست</div>'}</section>`}).join('')}</div>`;
+}
+window.v41CompleteTask=function(id){const t=(db.tasks||[]).find(x=>String(x.id)===String(id));if(!t){const rid=String(id).replace(/^APR-/,'REQ-');const r=req41(rid);if(r){r.status='تأیید شده';r.stage='پایان فرآیند';if(typeof audit==='function')audit(r,'تأیید درخواست','تأیید از کارتابل انجام شد.');save();render();toast(rid+' تأیید شد')}return}t.status='انجام شده';const r=req41(t.req);if(r&&['در انتظار تأیید','نیازمند اقدام'].includes(r.status)&&mgr41()){r.status='در حال بررسی';r.stage='ادامه فرآیند';}if(r&&typeof audit==='function')audit(r,'تکمیل کارتابل','کار مرتبط از کارتابل به‌عنوان انجام‌شده ثبت شد.');save();render();toast('کار '+id+' انجام‌شده ثبت شد')};
+window.inbox=function(){
+ const saved=safe41('v41InboxFilters',{mode:'table',q:'',status:'همه',category:'همه',priority:'همه',quick:'all'});const rows=inboxRows41();const cats=['همه',...Array.from(new Set(rows.map(x=>x.category).filter(Boolean)))];
+ const statuses=['همه','نیازمند اقدام','در حال بررسی','در انتظار تأیید','انجام شده'];
+ const countAction=rows.filter(x=>['نیازمند اقدام','در انتظار تأیید','در حال بررسی'].includes(x.status)).length;const countUrgent=rows.filter(x=>x.priority==='فوری').length;const overdue=rows.filter(x=>{const r=req41(x.req);return r&&sla41(r).overdue}).length;const done=rows.filter(x=>x.status==='انجام شده').length;
+ const kpis='<div class="v41-kpis"><div class="v41-kpi"><small>کل موارد</small><strong>'+rows.length+'</strong><span>کارتابل جاری شما</span></div><div class="v41-kpi"><small>نیازمند اقدام</small><strong>'+countAction+'</strong><span>برای تصمیم یا پیگیری</span></div><div class="v41-kpi"><small>فوری</small><strong>'+countUrgent+'</strong><span>موارد اولویت‌بالا</span></div><div class="v41-kpi"><small>SLA گذشته</small><strong>'+overdue+'</strong><span>نیازمند رسیدگی سریع</span></div></div>';
+ const filters='<div class="v41-toolbar"><div class="v41-tabs"><button class="'+(saved.mode==='table'?'active':'')+'" onclick="v41SetInboxMode(\'table\')">جدول</button><button class="'+(saved.mode==='board'?'active':'')+'" onclick="v41SetInboxMode(\'board\')">کانبان</button></div><input id="v41InboxSearch" class="control v41-search" value="'+esc41(saved.q)+'" placeholder="جستجوی عنوان، شناسه، فرد یا واحد..."><div class="v41-filters"><button class="v41-chip '+(saved.quick==='all'?'active':'')+'" onclick="v41SetInboxQuick(\'all\')">همه</button><button class="v41-chip '+(saved.quick==='action'?'active':'')+'" onclick="v41SetInboxQuick(\'action\')">نیازمند اقدام</button><button class="v41-chip '+(saved.quick==='urgent'?'active':'')+'" onclick="v41SetInboxQuick(\'urgent\')">فوری</button><button class="v41-chip '+(saved.quick==='due'?'active':'')+'" onclick="v41SetInboxQuick(\'due\')">نزدیک به موعد</button></div></div><div class="filters"><select id="v41Status" class="control v41-filter-select">'+statuses.map(x=>'<option '+(saved.status===x?'selected':'')+'>'+x+'</option>').join('')+'</select><select id="v41Category" class="control v41-filter-select">'+cats.map(x=>'<option '+(saved.category===x?'selected':'')+'>'+esc41(x)+'</option>').join('')+'</select><select id="v41Priority" class="control v41-filter-select">'+['همه','عادی','مهم','فوری'].map(x=>'<option '+(saved.priority===x?'selected':'')+'>'+x+'</option>').join('')+'</select><button class="btn btn-secondary" type="button" onclick="v41ResetInboxFilters()">پاک‌سازی فیلتر</button></div>';
+ const body='<div id="v41InboxBody">'+(saved.mode==='board'?renderBoard41(saved):renderInboxRows41(saved))+'</div>';
+ setTimeout(()=>v41BindInbox(saved),0);
+ return '<div class="v41-workbench"><section class="card panel"><div class="panel-head"><div><h3>کارتابل حرفه‌ای</h3><div class="muted" style="font-size:8px;margin-top:3px">یک نمای عملیاتی برای تمرکز روی کارهای مهم، SLA و اقدام بعدی.</div></div><span class="badge '+(countAction?'yellow':'green')+'">'+countAction+' مورد باز</span></div>'+kpis+filters+'</section><section class="card panel">'+body+'</section><div class="muted" style="font-size:7px">'+done+' مورد در وضعیت انجام‌شده قرار دارد. تنظیمات فیلتر در همین مرورگر ذخیره می‌شود.</div></div>';
+};
+function v41Refresh(state){save41('v41InboxFilters',state);const body=document.getElementById('v41InboxBody');if(!body)return;body.innerHTML=state.mode==='board'?renderBoard41(state):renderInboxRows41(state);document.querySelectorAll('#v41InboxBody button').forEach(b=>b.blur?.())}
+window.v41SetInboxMode=function(mode){const s=safe41('v41InboxFilters',{mode:'table',q:'',status:'همه',category:'همه',priority:'همه',quick:'all'});s.mode=mode;v41Refresh(s);render()};
+window.v41SetInboxQuick=function(quick){const s=safe41('v41InboxFilters',{mode:'table',q:'',status:'همه',category:'همه',priority:'همه',quick:'all'});s.quick=quick;v41Refresh(s);render()};
+window.v41ResetInboxFilters=function(){const s={mode:'table',q:'',status:'همه',category:'همه',priority:'همه',quick:'all'};save41('v41InboxFilters',s);render()};
+function v41BindInbox(state){const q=document.getElementById('v41InboxSearch'),st=document.getElementById('v41Status'),ca=document.getElementById('v41Category'),pr=document.getElementById('v41Priority');const sync=()=>{state={...state,q:q?.value||'',status:st?.value||'همه',category:ca?.value||'همه',priority:pr?.value||'همه'};v41Refresh(state)};q?.addEventListener('input',()=>{clearTimeout(window.__v41t);window.__v41t=setTimeout(sync,120)});[st,ca,pr].forEach(x=>x?.addEventListener('change',sync));}
+const baseReq41=window.requests;
+window.requests=function(){
+ const list=mgr41()?(db.req||[]):(db.req||[]).filter(r=>r.uid===current()?.id);
+ const qs=safe41('v41ReqFilters',{q:'',status:'همه',category:'همه'});
+ const statuses=['همه','در انتظار تأیید','در حال بررسی','تأیید شده','رد شده','برگشت برای اصلاح'];
+ const cats=['همه',...Array.from(new Set(list.map(r=>cat41(r)).filter(Boolean)))];
+ const filtered=list.filter(r=>(qs.status==='همه'||r.status===qs.status)&&(qs.category==='همه'||cat41(r)===qs.category)&&(!qs.q||(`${r.id} ${r.title} ${r.type} ${user41(r.uid)?.name||''}`.toLowerCase().includes(String(qs.q).toLowerCase()))));
+ const chips=statuses.map(x=>`<button type="button" class="v41-request-chip ${qs.status===x?'active':''}" onclick="v41SetReqStatus('${String(x).replace(/'/g,"\\'")}')">${esc41(x)}</button>`).join('');
+ const cards=filtered.map(r=>{const sl=sla41(r),rid=String(r.id).replace(/'/g,"\\'");return `<article class="v41-request-card" onclick="details('${rid}')"><div class="v41-request-card-head"><div><h4>${esc41(r.title)}</h4><div class="muted" style="font-size:7px;margin-top:3px">${esc41(r.id)} · ${esc41(r.type)}</div></div>${badge(r.status)}</div><p>${esc41(r.description||'ثبت شده در سامانه و آماده پیگیری مرحله جاری.')}</p><div class="v41-request-meta"><span class="badge gray">${esc41(cat41(r))}</span>${priorityBadge41(pri41(r))}<span class="badge gray">SLA ${esc41(sl.text)}</span></div><div class="v41-request-footer"><span>${esc41(user41(r.uid)?.name||'')} · ${esc41(r.date||'')}</span><button type="button" class="sm primary" onclick="event.stopPropagation();details('${rid}')">جزئیات</button></div></article>`}).join('')||'<div class="v41-empty"><strong>درخواستی با این فیلتر پیدا نشد</strong><br>عبارت یا وضعیت دیگری را امتحان کنید.</div>';
+ setTimeout(()=>{
+  const input=document.getElementById('v41ReqSearch');
+  const catSel=document.getElementById('v41ReqCategory');
+  input?.addEventListener('input',()=>{clearTimeout(window.__v41reqt);window.__v41reqt=setTimeout(()=>{save41('v41ReqFilters',{...qs,q:input.value});render()},180)});
+  catSel?.addEventListener('change',()=>{save41('v41ReqFilters',{...qs,category:catSel.value});render()});
+ },0);
+ return `<div class="v41-workbench"><section class="card panel"><div class="panel-head"><div><h3>درخواست‌های من${mgr41()?' و تیم':''}</h3><div class="muted" style="font-size:8px;margin-top:3px">نمای کارت‌محور برای پیگیری سریع وضعیت، اولویت و SLA.</div></div><div class="action-row"><span class="badge gray">${filtered.length} مورد</span><button class="btn btn-primary" onclick="openRequest()">${svg.plus} ثبت درخواست</button></div></div><div class="v41-request-toolbar"><input id="v41ReqSearch" class="control" value="${esc41(qs.q)}" placeholder="جستجوی شناسه، عنوان، نوع یا ثبت‌کننده..."><select id="v41ReqCategory" class="control">${cats.map(x=>`<option ${qs.category===x?'selected':''}>${esc41(x)}</option>`).join('')}</select></div><div class="v41-request-chips">${chips}</div></section><section class="card panel"><div id="v41ReqCards" class="v41-request-cards">${cards}</div></section></div>`;
+};
+window.v41SetReqStatus=function(v){const qs={...safe41('v41ReqFilters',{q:'',status:'همه',category:'همه'}),status:v};save41('v41ReqFilters',qs);render()};
+const oldDash41=window.dashboard;
+window.dashboard=function(){const h=typeof oldDash41==='function'?oldDash41():'';return h};
 })();
 </script>
 
