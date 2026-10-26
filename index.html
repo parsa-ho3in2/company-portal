@@ -1168,7 +1168,7 @@ th{font-weight:750!important}
 }
 </style>
 </head>
-<body data-v42-build="workflow-safe-erp">
+<body data-v43-build="role-routed-workflow">
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
 <div id="app"></div>
 <script>
@@ -1252,7 +1252,7 @@ function openUser(){openModal('ایجاد کاربر جدید','<form class="for
 function createUser(e){e.preventDefault();const id=Math.max(...db.users.map(x=>x.id))+1,n=document.getElementById('nn').value;db.users.push({id,u:document.getElementById('nu').value,p:document.getElementById('np').value,name:n,role:document.getElementById('nr').value,unit:document.getElementById('nd').value,employeeId:'NEW-'+id,phone:'-',email:'-',manager:'-',location:'-',join:'—',avatar:n.trim()[0]||'ک'});save();closeModal();render();setTimeout(()=>toast('کاربر جدید ایجاد شد'),40)}
 function loginView(){
   if(!loginOtp || Date.now()>otpExpires) refreshOtp();
-  return '<div class="login"><section class="login-showcase"><div class="login-showcase-inner"><span class="eyebrow">● نسخه ۴۲ • Corporate Flow</span><h1>یک تجربه حرفه‌ای برای تمام امور شرکت</h1><p>رابطی مدرن با تمرکز روی وضوح عملیات، دسترسی سریع و نمایش سازمانی اطلاعات؛ با تجربه مایع، تم‌های قابل انتخاب و تعاملات سریع و کاربردی.</p><div class="showcase-grid"><div class="showcase-card"><div class="sc-icon">'+svg.inbox+'</div><b>کارتابل هوشمند</b><span>کارهای ارجاع‌شده را در یک نمای متمرکز ببینید.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.process+'</div><b>فرآیندهای سازمانی</b><span>ثبت تا تأیید و پیگیری، مرحله‌به‌مرحله.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.people+'</div><b>پروفایل کامل</b><span>اطلاعات شغلی، سازمانی و فعالیت‌های اخیر.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.shield+'</div><b>ورود امن</b><span>ورود آزمایشی با کد امنیتی یک‌بارمصرف.</span></div></div></div></section><section class="login-pane"><div class="login-card"><div class="brand-mark">ش</div><h2>ورود به سامانه</h2><div class="muted" style="font-size:11px">سامانه جامع مدیریت فرآیندهای شرکت</div><form id="loginForm" name="loginForm" class="form" method="post" action="/login" autocomplete="on" onsubmit="event.preventDefault();login()"><div class="field"><label for="lu">نام کاربری</label><input id="lu" name="username" class="control" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="نام کاربری را وارد کنید" required></div><div class="field"><label for="lp">رمز عبور</label><div class="password-wrap"><input id="lp" name="password" class="control" type="password" autocomplete="current-password" placeholder="رمز عبور" required><button type="button" class="password-toggle" id="passwordToggle" onclick="togglePasswordVisibility()" aria-label="نمایش رمز عبور" title="نمایش رمز عبور">◉</button></div></div><div class="otp-box"><div class="otp-line"><div class="otp-code" id="otpCode">' + (loginOtp||'------') + '</div><button class="otp-refresh" type="button" onclick="refreshOtp()" aria-label="کد مجدد" title="کد مجدد">کد مجدد</button></div><div class="otp-meta" id="otpMeta"></div><input id="loginOtp" class="control" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="کد امنیتی ۶ رقمی" required></div><div class="login-row"><label><input id="rememberMe" type="checkbox" aria-label="مرا به خاطر بسپار"> مرا به خاطر بسپار</label></div><button class="btn btn-primary btn-block" style="margin-top:12px" type="submit">ورود امن به سامانه</button><div id="loginError" class="login-error"></div></form><div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div><div class="security-note">کد نمایش‌داده‌شده مخصوص دموست؛ در نسخه عملیاتی OTP باید سمت سرور تولید و ارسال شود. مرورگر می‌تواند نام کاربری و رمز عبور را در Google Password Manager ذخیره و برای ورود بعدی پیشنهاد کند.</div></div></section></div>'}
+  return '<div class="login"><section class="login-showcase"><div class="login-showcase-inner"><span class="eyebrow">● نسخه ۴۳ • Corporate Flow</span><h1>یک تجربه حرفه‌ای برای تمام امور شرکت</h1><p>رابطی مدرن با تمرکز روی وضوح عملیات، دسترسی سریع و نمایش سازمانی اطلاعات؛ با تجربه مایع، تم‌های قابل انتخاب و تعاملات سریع و کاربردی.</p><div class="showcase-grid"><div class="showcase-card"><div class="sc-icon">'+svg.inbox+'</div><b>کارتابل هوشمند</b><span>کارهای ارجاع‌شده را در یک نمای متمرکز ببینید.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.process+'</div><b>فرآیندهای سازمانی</b><span>ثبت تا تأیید و پیگیری، مرحله‌به‌مرحله.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.people+'</div><b>پروفایل کامل</b><span>اطلاعات شغلی، سازمانی و فعالیت‌های اخیر.</span></div><div class="showcase-card"><div class="sc-icon">'+svg.shield+'</div><b>ورود امن</b><span>ورود آزمایشی با کد امنیتی یک‌بارمصرف.</span></div></div></div></section><section class="login-pane"><div class="login-card"><div class="brand-mark">ش</div><h2>ورود به سامانه</h2><div class="muted" style="font-size:11px">سامانه جامع مدیریت فرآیندهای شرکت</div><form id="loginForm" name="loginForm" class="form" method="post" action="/login" autocomplete="on" onsubmit="event.preventDefault();login()"><div class="field"><label for="lu">نام کاربری</label><input id="lu" name="username" class="control" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="نام کاربری را وارد کنید" required></div><div class="field"><label for="lp">رمز عبور</label><div class="password-wrap"><input id="lp" name="password" class="control" type="password" autocomplete="current-password" placeholder="رمز عبور" required><button type="button" class="password-toggle" id="passwordToggle" onclick="togglePasswordVisibility()" aria-label="نمایش رمز عبور" title="نمایش رمز عبور">◉</button></div></div><div class="otp-box"><div class="otp-line"><div class="otp-code" id="otpCode">' + (loginOtp||'------') + '</div><button class="otp-refresh" type="button" onclick="refreshOtp()" aria-label="کد مجدد" title="کد مجدد">کد مجدد</button></div><div class="otp-meta" id="otpMeta"></div><input id="loginOtp" class="control" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="کد امنیتی ۶ رقمی" required></div><div class="login-row"><label><input id="rememberMe" type="checkbox" aria-label="مرا به خاطر بسپار"> مرا به خاطر بسپار</label></div><button class="btn btn-primary btn-block" style="margin-top:12px" type="submit">ورود امن به سامانه</button><div id="loginError" class="login-error"></div></form><div class="demo-box"><b>حساب‌های آزمایشی</b><br>کارمند: <b>employee / 1234</b><br>مدیر: <b>manager / 1234</b><br>مدیر سیستم: <b>admin / 1234</b></div><div class="security-note">کد نمایش‌داده‌شده مخصوص دموست؛ در نسخه عملیاتی OTP باید سمت سرور تولید و ارسال شود. مرورگر می‌تواند نام کاربری و رمز عبور را در Google Password Manager ذخیره و برای ورود بعدی پیشنهاد کند.</div></div></section></div>'}
 refreshOtp();
 function sidebar(){const items=[['dashboard',svg.home,'داشبورد'],['inbox',svg.inbox,'کارتابل من'],['requests',svg.req,'درخواست‌ها'],...(manager()?[['approvals',svg.check,'تأییدها'],['people',svg.people,'پرسنل'],['processes',svg.process,'فرآیندها'],['reports',svg.chart,'گزارشات']]:[]),['docs',svg.doc,'اسناد و فرم‌ها'],['support',svg.support,'راهنما و پشتیبانی'],['notifications',svg.bell,'اعلان‌ها'],['profile',svg.user,'حساب من'],['settings',svg.settings,'تنظیمات']];return '<aside class="sidebar"><div class="brand"><div class="brand-mark">ش</div><div class="brand-text"><strong>سامانه جامع سازمانی</strong><small>پرتال داخلی شرکت</small></div></div><nav class="nav"><div class="nav-title">منوی اصلی</div>'+items.map(i=>'<button class="nav-btn '+(page===i[0]?'active':'')+'" onclick="nav(\''+i[0]+'\')" aria-label="'+i[2]+'"><span class="nav-icon">'+i[1]+'</span><span>'+i[2]+'</span></button>').join('')+'</nav><div class="side-bottom"><div class="user-mini"><div class="avatar">'+esc(current().avatar)+'</div><div class="mini-info"><strong>'+esc(current().name)+'</strong><span>'+esc(current().role)+'</span></div></div><button class="logout" onclick="logout()">'+svg.logout+' خروج از حساب</button></div></aside>'}
 function topbar(){const c=current();const t=theme();return '<div class="topbar"><div class="title"><h1>'+pageTitle().h+'</h1><p>'+pageTitle().p+'</p></div><div class="top-actions"><div class="search"><span class="magnify">'+svg.search+'</span><input class="control" onkeydown="if(event.key===\'Enter\')toast(\'جستجو برای «\'+this.value+\'» آماده شد\')" placeholder="جستجو در سامانه..." aria-label="جستجوی سامانه"></div><button class="icon-btn" onclick="nav(\'notifications\')" aria-label="اعلان‌ها" title="اعلان‌ها">'+svg.bell+'<span class="notif-dot"></span></button><button class="icon-btn" onclick="toggleTheme()" aria-label="تغییر حالت نمایش" title="'+(t==='dark'?'حالت روشن':'حالت تیره')+'">'+(t==='dark'?svg.sun:svg.moon)+'</button><button class="profile-trigger" onclick="openProfileMenu()" aria-expanded="false"><span class="ptxt"><strong>'+esc(c.name)+'</strong><span>'+esc(c.role)+'</span></span><span class="avatar">'+esc(c.avatar)+'</span><span class="chev">⌄</span></button></div></div><div class="profile-menu" role="menu"><div class="pm-head"><strong>'+esc(c.name)+'</strong><span>'+esc(c.unit)+'</span></div><button class="pm-item" onclick="nav(\'profile\')">'+svg.user+' حساب من</button><button class="pm-item" onclick="nav(\'settings\')">'+svg.settings+' تنظیمات</button><button class="pm-item pm-danger" onclick="logout()">'+svg.logout+' خروج</button></div>'}
@@ -3698,6 +3698,205 @@ window.details=function(id){if(typeof detailsBefore42==='function')detailsBefore
 // Stable SLA display: always use an explicit dueAt when present, then the fixed creation time.
 // Also prevent double-clicking a decision during the quick re-render window.
 window.companyPortalBuild='V42';
+})();
+</script>
+
+
+<style id="v43-workflow-routing-style">
+.v43-owner{margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);display:flex;align-items:flex-start;gap:9px;color:var(--text)}
+.v43-owner-icon{width:28px;height:28px;flex:0 0 28px;border-radius:9px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-weight:900}
+.v43-owner strong{display:block;font-size:9px}.v43-owner small{display:block;margin-top:3px;color:var(--muted);font-size:8px;line-height:1.8}
+.v43-owner.warning{border-color:color-mix(in srgb,var(--warning) 35%,var(--line))}.v43-stage-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.v43-stage-pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:99px;padding:5px 8px;font-size:7px;color:var(--muted);background:var(--surface)}
+.v43-approval-intro{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.v43-approval-intro h3{margin:7px 0 3px}.v43-approval-table td{vertical-align:middle}
+.v43-empty{padding:18px;text-align:center;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:9px}
+[data-theme="dark"] .v43-owner,[data-theme="dark"] .v43-stage-pill{color:var(--text);-webkit-text-fill-color:var(--text)}
+[data-theme="dark"] .v43-owner small{color:var(--muted);-webkit-text-fill-color:var(--muted)}
+@media(max-width:600px){.v43-stage-actions>*{flex:1 1 100%}.v43-approval-table .v43-actions{justify-content:flex-start}}
+</style>
+<script id="v43-workflow-routing-script">
+(function(){
+'use strict';
+const baseDecide43=window.decide;
+const baseSubmitRequest43=window.submitRequest;
+const baseReturn43=window.returnForCorrection;
+const baseSubmitReturn43=window.submitReturnForCorrection;
+const baseResubmit43=window.resubmitRequest;
+const baseDetails43=window.details;
+const baseApprovals43=window.approvals;
+const baseSidebar43=window.sidebar;
+const baseContent43=window.content;
+const basePageTitle43=window.pageTitle;
+const req43=id=>(db.req||[]).find(r=>String(r.id)===String(id));
+const user43=id=>(db.users||[]).find(u=>String(u.id)===String(id));
+const actor43=()=>typeof current==='function'?current():null;
+const esc43=x=>typeof esc==='function'?esc(x):String(x??'').replace(/[&<>\'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));
+const norm43=x=>String(x||'').replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[\u200c\u200f\u200e]/g,' ').replace(/[ـ]/g,'').replace(/\s+/g,' ').trim().toLowerCase();
+const has43=(s,needle)=>norm43(s).includes(norm43(needle));
+const stage43=r=>r?.workflowSteps?.[Math.max(0,Number(r.workflowIndex)||0)]||null;
+function managerFallback43(preferAdmin,excludeId){const order=preferAdmin?['admin','manager']:['manager','admin'];return order.map(name=>(db.users||[]).find(u=>u.u===name&&String(u.id)!==String(excludeId))).find(Boolean)||(db.users||[]).find(u=>['manager','admin'].includes(u.u)&&String(u.id)!==String(excludeId))||null}
+function department43(r,label){
+ const s=norm43(label),t=norm43(r?.type);
+ if(s.includes('حقوقی')) return ['حقوقی'];
+ if(s.includes('بازرگانی')||t.includes('استعلام')) return ['بازرگانی'];
+ if(s.includes('برنامه ریزی')||s.includes('برنامهریزی')) return ['برنامه ریزی','برنامهریزی'];
+ if(t.includes('قرارداد مالی')&&(s.includes('قرارداد')||s.includes('پیش نویس')||s.includes('پیشنویس'))&&!s.includes('پرداخت')) return ['حقوقی'];
+ if(s.includes('مالی')||s.includes('پرداخت')) return ['مالی'];
+ if(s.includes('انبار')||t.includes('خروج کالا')) return ['انبار'];
+ if(s.includes('دارایی')||s.includes('اموال')||t.includes('دارایی')) return ['دارایی','اموال'];
+ if(s.includes('منابع انسانی')||['مرخصی','دورکاری','ماموریت'].some(x=>t===norm43(x))) return ['منابع انسانی'];
+ if(s.includes('فناوری')) return ['فناوری اطلاعات','فناوری'];
+ if(t.includes('قرارداد مالی')&&s.includes('قرارداد')) return ['حقوقی','مالی'];
+ return [];
+}
+function resolveStage43(r,index){
+ const step=r?.workflowSteps?.[index], label=String(step?.label||'بررسی مدیر مربوط'), s=norm43(label), requester=user43(r?.uid), users=db.users||[];
+ let found=null;
+ if(s.includes('مدیر مستقیم')||s.includes('مدیر متقاضی')){
+  const managerName=norm43(requester?.manager||'');
+  if(managerName) found=users.find(u=>norm43(u.name)===managerName)||null;
+ }
+ if(!found&&(s.includes('مدیرعامل')||s.includes('مدیر عامل')||s.includes('ceo'))){
+  found=users.find(u=>has43(u.role,'مدیرعامل')||has43(u.name,'مدیرعامل')||has43(u.role,'ceo')||has43(u.name,'ceo'))||null;
+  if(!found)return {user:managerFallback43(true,r?.uid),fallback:true,expected:label,reason:'برای نقش مدیرعامل حسابی با همین سمت در کاربران دمو تعریف نشده؛ موقتاً به حساب مدیر سیستم ارجاع شده است.'};
+ }
+ const depts=department43(r,label);
+ if(!found&&depts.length){
+  let matches=users.filter(u=>String(u.id)!==String(r?.uid)&&depts.some(d=>has43((u.unit||'')+' '+(u.role||''),d)));
+  if(s.includes('کارشناس')) matches=matches.filter(u=>has43(u.role,'کارشناس')||has43(u.role,'مسئول'));
+  else if(s.includes('مدیر')) matches=matches.filter(u=>has43(u.role,'مدیر'));
+  if(matches.length){
+   matches.sort((a,b)=>{
+    const score=u=>(has43(u.role,'مدیر')?4:0)+(has43(u.role,'کارشناس')?2:0)+(has43(u.unit,'مدیریت')?1:0);
+    return score(b)-score(a);
+   }); found=matches[0];
+  }
+ }
+ if(!found){
+  const fb=managerFallback43(s.includes('مدیرعامل')||s.includes('مدیر عامل'),r?.uid);
+  return {user:fb,fallback:true,expected:label,reason:'برای نقش «'+label+'» کاربر متناسبی در داده‌های دمو پیدا نشد؛ این مرحله به حساب جایگزین دمو ارجاع شده است.'};
+ }
+ return {user:found,fallback:false,expected:label,reason:''};
+}
+function stamp43(){return new Date().toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'})}
+function audit43(r,action,detail){r.audit=Array.isArray(r.audit)?r.audit:[];r.audit.unshift({action,detail,by:actor43()?.name||'سامانه',time:stamp43()});r.audit=r.audit.slice(0,60)}
+function closeActiveTasks43(id){db.tasks=Array.isArray(db.tasks)?db.tasks:[];(db.tasks||[]).filter(t=>String(t.req)===String(id)&&t.status==='نیازمند اقدام').forEach(t=>{t.status='انجام شده';t.completedAt=Date.now()})}
+function nextTaskNumber43(){return Math.max(300,...(db.tasks||[]).map(t=>{const m=String(t.id||'').match(/^TSK-(\d+)$/);return m?Number(m[1]):0}))+1}
+function assignStage43(r,forceTask){
+ if(!r||!Array.isArray(r.workflowSteps)||!r.workflowSteps.length)return;
+ const idx=Math.max(0,Math.min(Number(r.workflowIndex)||0,r.workflowSteps.length-1));
+ const info=resolveStage43(r,idx), assignee=info.user;
+ r.currentAssigneeId=assignee?.id??null;r.currentAssignee=assignee?.name||'مسئول نامشخص';r.workflowAssignment={stepIndex:idx,stepLabel:info.expected,assigneeId:r.currentAssigneeId,assigneeName:r.currentAssignee,fallback:!!info.fallback,reason:info.reason||''};
+ if(!Array.isArray(db.tasks))db.tasks=[];
+ const active=db.tasks.filter(t=>String(t.req)===String(r.id)&&t.status==='نیازمند اقدام');
+ const keep=!forceTask&&active.some(t=>String(t.assignedTo)===String(r.currentAssigneeId)&&Number(t.workflowIndex)===idx);
+ if(!keep){closeActiveTasks43(r.id);if(assignee){db.tasks.unshift({id:'TSK-'+nextTaskNumber43(),title:'اقدام: '+(info.expected||r.title),req:r.id,due:'طبق SLA درخواست',dueAt:Number(r.dueAt)||undefined,createdAt:Date.now(),status:'نیازمند اقدام',assignedTo:assignee.id,assignedName:assignee.name,workflowIndex:idx})}}
+ return info;
+}
+function canAct43(r){
+ const u=actor43();if(!u||!r)return false;
+ if(Array.isArray(r.workflowSteps)&&r.workflowSteps.length){
+  if(!r.currentAssigneeId)assignStage43(r,false);
+  return String(r.currentAssigneeId)===String(u.id)&&r.status==='در انتظار تأیید';
+ }
+ return !!(typeof manager==='function'&&manager());
+}
+function assignedWaiting43(u){
+ if(!u)return [];
+ return (db.req||[]).filter(r=>r.status==='در انتظار تأیید'&&(
+  (Array.isArray(r.workflowSteps)&&r.workflowSteps.length&&String(r.currentAssigneeId??r.workflowAssignment?.assigneeId)===String(u.id))||
+  ((!r.workflowSteps||!r.workflowSteps.length)&&typeof manager==='function'&&manager())
+ ));
+}
+function renderApprovals43(){
+ const u=actor43();if(!u)return '<section class="card panel"><div class="v43-empty">برای مشاهده تأییدهای ارجاع‌شده، ابتدا وارد سامانه شوید.</div></section>';
+ const list=assignedWaiting43(u);
+ const fallbackNotice=list.some(r=>r.workflowAssignment?.fallback);
+ const rows=list.map(r=>{
+  const owner=user43(r.currentAssigneeId),requester=user43(r.uid),step=stage43(r);
+  const actions=canAct43(r)?'<div class="v41-actions"><button class="sm ok" onclick="decide(\''+esc43(r.id)+'\',\'تأیید شده\')">✓ تأیید مرحله</button><button class="sm" onclick="returnForCorrection(\''+esc43(r.id)+'\')">↩ اصلاح</button><button class="sm no" onclick="decide(\''+esc43(r.id)+'\',\'رد شده\')">× رد</button><button class="sm primary" onclick="details(\''+esc43(r.id)+'\')">جزئیات</button></div>':'<button class="sm primary" onclick="details(\''+esc43(r.id)+'\')">جزئیات</button>';
+  return '<tr><td><b>'+esc43(r.id)+'</b></td><td>'+esc43(requester?.name||'—')+'</td><td><strong>'+esc43(r.title)+'</strong><small style="display:block;color:var(--muted);margin-top:3px">'+esc43(r.type||'عمومی')+'</small></td><td>'+esc43(step?.label||r.stage||'—')+'</td><td>'+esc43(owner?.unit||owner?.role||'—')+'</td><td>'+esc43(r.date||'—')+'</td><td>'+actions+'</td></tr>'
+ }).join('');
+ return '<section class="card panel"><div class="v43-approval-intro"><div><span class="badge blue">کارتابل تصمیم‌گیری</span><h3>تأییدهای ارجاع‌شده به من</h3><div class="muted" style="font-size:9px">فهرست فقط درخواست‌هایی را نشان می‌دهد که مرحله جاری آن‌ها به حساب فعلی ارجاع شده است.</div></div><span class="badge '+(list.length?'yellow':'green')+'">'+list.length+' مورد در انتظار</span></div>'+(fallbackNotice?'<div class="v43-owner warning"><span class="v43-owner-icon">!</span><div><strong>برخی مراحل بدون نقش واقعی تعریف شده‌اند</strong><small>این کاربران جایگزین، فقط برای تست دمو هستند. نقش‌های واقعی باید در فهرست کاربران و بک‌اند تنظیم شوند.</small></div></div>':'')+'<div style="height:12px"></div>'+(list.length?'<div class="table-wrap"><table class="v43-approval-table"><thead><tr><th>شناسه</th><th>ثبت‌کننده</th><th>درخواست</th><th>مرحله جاری</th><th>واحد مسئول</th><th>تاریخ</th><th>عملیات</th></tr></thead><tbody>'+rows+'</tbody></table></div>':'<div class="v43-empty"><strong>در حال حاضر تأییدی به حساب شما ارجاع نشده است.</strong><br>با ایجاد یک درخواست آزمایشی یا ورود با حساب مسئول مرحله، می‌توانید گردش را بررسی کنید.</div>')+'</section>';
+}
+function normaliseExisting43(){
+ let changed=false;
+ (db.req||[]).forEach(r=>{
+  if(!Array.isArray(r.workflowSteps)||!r.workflowSteps.length||r.status!=='در انتظار تأیید')return;
+  const idx=Math.max(0,Math.min(Number(r.workflowIndex)||0,r.workflowSteps.length-1));
+  if(!r.currentAssigneeId||!r.workflowAssignment||r.workflowAssignment.stepIndex!==idx){assignStage43(r,false);changed=true;return}
+  const ok=(db.tasks||[]).some(t=>String(t.req)===String(r.id)&&t.status==='نیازمند اقدام'&&String(t.assignedTo)===String(r.currentAssigneeId)&&Number(t.workflowIndex)===idx);
+  if(!ok){assignStage43(r,true);changed=true}
+ });
+ if(changed)save();
+}
+window.decide=function(id,status){
+ const r=req43(id);
+ if(!r||!Array.isArray(r.workflowSteps)||!r.workflowSteps.length){if(typeof baseDecide43==='function')return baseDecide43(id,status);return}
+ if(!canAct43(r)){toast('این مرحله به حساب شما ارجاع نشده است');return}
+ if(!['تأیید شده','رد شده'].includes(status)){toast('وضعیت تصمیم معتبر نیست');return}
+ const idx=Math.max(0,Math.min(Number(r.workflowIndex)||0,r.workflowSteps.length-1)),step=r.workflowSteps[idx];
+ if(status==='رد شده'){
+  if(step){step.rejected=true;step.completedBy=actor43()?.name||'کاربر';step.completedAt=stamp43()}
+  r.status='رد شده';r.stage='پایان فرآیند';r.workflowCompletedAt=Date.now();audit43(r,'رد درخواست','درخواست در مرحله «'+(step?.label||'بررسی')+'» رد شد.');closeActiveTasks43(r.id);save();render();setTimeout(()=>toast(r.id+' رد شد'),35);return;
+ }
+ if(step){step.completed=true;step.completedBy=actor43()?.name||'کاربر';step.completedAt=stamp43();delete step.rejected}
+ audit43(r,'تأیید مرحله','مرحله «'+(step?.label||'بررسی')+'» تأیید شد.');closeActiveTasks43(r.id);
+ const next=idx+1;
+ if(next<r.workflowSteps.length){r.workflowIndex=next;r.status='در انتظار تأیید';r.stage=r.workflowSteps[next].label;assignStage43(r,true);audit43(r,'ارجاع مرحله بعد','مرحله بعد به '+r.currentAssignee+' ارجاع شد.' );save();render();setTimeout(()=>toast('مرحله تأیید شد؛ مسئول بعدی: '+r.currentAssignee),35);return}
+ r.workflowIndex=r.workflowSteps.length;r.status='تأیید شده';r.stage='پایان فرآیند';r.workflowCompletedAt=Date.now();r.currentAssigneeId=null;r.currentAssignee='—';r.workflowAssignment=null;audit43(r,'تأیید نهایی','تمام مراحل گردش دمو تکمیل شد.');save();render();setTimeout(()=>toast(r.id+' پس از تکمیل همه مراحل تأیید شد'),35);
+};
+window.submitRequest=function(e){
+ const prior=new Set((db.req||[]).map(r=>String(r.id)));
+ if(typeof baseSubmitRequest43==='function')baseSubmitRequest43.call(this,e);
+ setTimeout(()=>{const r=(db.req||[]).find(x=>!prior.has(String(x.id)));if(!r||!Array.isArray(r.workflowSteps)||!r.workflowSteps.length)return;if(r.status!=='در انتظار تأیید')return;assignStage43(r,true);audit43(r,'تخصیص مرحله اول','مرحله اول به '+r.currentAssignee+' ارجاع شد.');save();if(typeof render==='function')render()},0);
+};
+window.returnForCorrection=function(id){
+ const r=req43(id);if(!r||!Array.isArray(r.workflowSteps)||!r.workflowSteps.length){if(typeof baseReturn43==='function')return baseReturn43(id);return}
+ if(!canAct43(r)){toast('فقط مسئول مرحله جاری می‌تواند درخواست را برای اصلاح برگرداند');return}
+ openModal('برگشت درخواست برای اصلاح','<form class="form" onsubmit="v43SubmitReturn(event,\''+esc43(id)+'\')"><div class="field"><label for="v43ReturnReason">دلیل برگشت برای اصلاح</label><textarea id="v43ReturnReason" class="control" required placeholder="نقص اطلاعات یا مدرک موردنیاز را توضیح دهید"></textarea></div><div class="modal-actions"><button type="button" class="btn btn-secondary" onclick="closeModal()">انصراف</button><button class="btn btn-primary" type="submit">ثبت برگشت برای اصلاح</button></div></form>');
+};
+window.v43SubmitReturn=function(e,id){
+ e.preventDefault();const r=req43(id),reason=document.getElementById('v43ReturnReason')?.value.trim();if(!r||!reason)return;if(!canAct43(r)){toast('این مرحله به حساب شما ارجاع نشده است');return}
+ r.status='برگشت برای اصلاح';r.stage='اصلاح توسط ثبت‌کننده';r.returnReason=reason;r.returnedFromWorkflowIndex=Math.max(0,Number(r.workflowIndex)||0);audit43(r,'برگشت برای اصلاح',reason);closeActiveTasks43(r.id);save();closeModal();render();setTimeout(()=>toast(r.id+' برای اصلاح برگشت داده شد'),35);
+};
+window.submitReturnForCorrection=function(e,id){const r=req43(id);if(r&&Array.isArray(r.workflowSteps)&&r.workflowSteps.length)return window.v43SubmitReturn(e,id);if(typeof baseSubmitReturn43==='function')return baseSubmitReturn43(e,id)};
+window.resubmitRequest=function(id){
+ const r=req43(id);if(!r||!Array.isArray(r.workflowSteps)||!r.workflowSteps.length){if(typeof baseResubmit43==='function')return baseResubmit43(id);return}
+ if(String(r.uid)!==String(actor43()?.id)||r.status!=='برگشت برای اصلاح'){toast('فقط ثبت‌کننده می‌تواند درخواست برگشتی را ارسال مجدد کند');return}
+ const idx=Math.max(0,Math.min(Number(r.returnedFromWorkflowIndex??r.workflowIndex)||0,r.workflowSteps.length-1));r.workflowIndex=idx;r.workflowSteps[idx].completed=false;delete r.workflowSteps[idx].rejected;delete r.workflowSteps[idx].completedBy;delete r.workflowSteps[idx].completedAt;r.status='در انتظار تأیید';r.stage=r.workflowSteps[idx].label;delete r.returnReason;audit43(r,'ارسال مجدد','درخواست اصلاح‌شده به همان مرحله برگشت داده شد.');assignStage43(r,true);save();render();setTimeout(()=>toast('درخواست به همان مرحله مسئول قبلی ارسال شد'),35);
+};
+window.approvals=function(){return renderApprovals43()};
+window.sidebar=function(){
+ let h=typeof baseSidebar43==='function'?baseSidebar43():'';
+ const u=actor43(),need=assignedWaiting43(u).some(r=>Array.isArray(r.workflowSteps)&&r.workflowSteps.length);
+ if(!h||!need||h.includes('v43-approvals-link')||h.includes("nav('approvals')"))return h;
+ const btn='<button class="nav-btn v43-approvals-link '+(page==='approvals'?'active':'')+'" onclick="nav(\'approvals\')" aria-label="تأییدهای ارجاع‌شده"><span class="nav-icon">✓</span><span>تأییدهای ارجاع‌شده</span></button>';
+ return h.replace('</nav>',btn+'</nav>');
+};
+window.pageTitle=function(){if(page==='approvals')return {h:'تأییدهای ارجاع‌شده',p:'اقدام روی مرحله‌ای که به حساب فعلی تخصیص یافته است'};return typeof basePageTitle43==='function'?basePageTitle43():{h:'سامانه',p:''}};
+window.content=function(){if(page==='approvals')return renderApprovals43();return typeof baseContent43==='function'?baseContent43():''};
+window.details=function(id){
+ if(typeof baseDetails43==='function')baseDetails43(id);
+ const immediate43=req43(id),immediateModal43=document.querySelector('#modal .modal');
+ if(immediate43&&Array.isArray(immediate43.workflowSteps)&&immediateModal43){const immediateActions43=immediateModal43.querySelector('.modal-actions');if(immediateActions43)[...immediateActions43.querySelectorAll('button')].forEach(b=>{const t=norm43(b.textContent);if(t.includes('تایید درخواست')||t.includes('تأیید درخواست')||t.includes('رد درخواست')||t.includes('برگشت برای اصلاح'))b.remove()})}
+ setTimeout(()=>{
+  const r=req43(id),m=document.querySelector('#modal .modal');if(!r||!m)return;
+  m.querySelector('.v43-owner')?.remove();m.querySelector('.v43-stage-actions')?.remove();
+  if(!Array.isArray(r.workflowSteps)||!r.workflowSteps.length)return;
+  const owner=user43(r.currentAssigneeId),allowed=canAct43(r),f=r.workflowAssignment?.fallback;
+  const warning=f?'<small class="warning-text">'+esc43(r.workflowAssignment?.reason||'این مرحله به حساب جایگزین دمو تخصیص یافته؛ نقش واقعی باید تعریف شود.')+'</small>':'';
+  const panel='<section class="v43-owner '+(f?'warning':'')+'"><span class="v43-owner-icon">'+(f?'!':'↗')+'</span><div><strong>مسئول مرحله جاری: '+esc43(owner?.name||r.currentAssignee||'تعریف نشده')+'</strong><small>مرحله: '+esc43(stage43(r)?.label||r.stage||'—')+' · '+(allowed?'این مرحله به حساب شما ارجاع شده است.':'این مرحله به حساب شما ارجاع نشده است.')+'</small>'+warning+'</div></section>';
+  const holder=m.querySelector('.v42-workflow')||m.querySelector('.v37-extra-box')||m.querySelector('.request-detail-head')||m.querySelector('.detail-grid');if(holder)holder.insertAdjacentHTML('afterend',panel);else m.insertAdjacentHTML('beforeend',panel);
+  const actions=m.querySelector('.modal-actions');if(actions){
+   [...actions.querySelectorAll('button')].forEach(b=>{const t=norm43(b.textContent);if(t.includes('تایید درخواست')||t.includes('تأیید درخواست')||t.includes('رد درخواست')||t.includes('برگشت برای اصلاح'))b.remove()});
+   if(r.status==='در انتظار تأیید'&&allowed){const action='<div class="v43-stage-actions"><button type="button" class="btn btn-success" onclick="closeModal();decide(\''+esc43(id)+'\',\'تأیید شده\')">✓ تأیید این مرحله</button><button type="button" class="btn btn-secondary" onclick="returnForCorrection(\''+esc43(id)+'\')">↩ برگشت برای اصلاح</button><button type="button" class="btn btn-danger" onclick="closeModal();decide(\''+esc43(id)+'\',\'رد شده\')">× رد درخواست</button></div>';actions.insertAdjacentHTML('beforebegin',action)}
+  }
+ },120);
+};
+// Align pending V42 records with the routed-stage model. This is still browser-local demo data.
+normaliseExisting43();
+window.companyPortalBuild='V43';
 })();
 </script>
 
