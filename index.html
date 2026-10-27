@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap">
-<title>سامانه سازمانی شرکت — نسخه V44</title>
+<title>سامانه سازمانی شرکت — نسخه V44.1</title>
 <style>
 :root{
   --bg:#f4f7fb;--surface:#ffffff;--surface-2:#f7f9fc;--surface-3:#eef3f9;
@@ -1168,7 +1168,7 @@ th{font-weight:750!important}
 }
 </style>
 </head>
-<body data-v43-build="role-routed-workflow">
+<body data-v44-build="appearance-engine-fixed" data-v43-build="role-routed-workflow">
 <a class="skip" href="#main-content">پرش به محتوای اصلی</a>
 <div id="app"></div>
 <script>
@@ -3901,179 +3901,146 @@ window.companyPortalBuild='V43';
 </script>
 
 
-<style id="v44-appearance-system">
-/* V44 appearance engine: display mode and visual surface style are intentionally independent. */
-html[data-display-mode="dim"]{
+<style id="v44-1-appearance-system">
+/* V44.1: functional appearance modes. Higher-specificity selectors ensure palette rules cannot overwrite them. */
+:root[data-display-mode="dim"][data-theme="dark"][data-palette]{
   --bg:#252a33;--surface:#2e343e;--surface-2:#363d48;--surface-3:#414957;
   --text:#f0f3f8;--muted:#bdc5d2;--line:#505967;--line-strong:#687382;
   --sidebar:#20252d;--sidebar-2:#2a303b;--sidebar-text:#f0f3f8;--sidebar-muted:#bcc5d3;
   --shadow:0 12px 32px rgba(0,0,0,.19);--shadow-lg:0 22px 52px rgba(0,0,0,.27);
   color-scheme:dark;
 }
-html[data-display-mode="amoled"]{
+:root[data-display-mode="amoled"][data-theme="dark"][data-palette]{
   --bg:#000;--surface:#050505;--surface-2:#0b0b0b;--surface-3:#121212;
   --text:#f7f7f7;--muted:#bcbcbc;--line:#292929;--line-strong:#464646;
   --sidebar:#000;--sidebar-2:#050505;--sidebar-text:#f7f7f7;--sidebar-muted:#bdbdbd;
   --shadow:0 10px 28px rgba(0,0,0,.5);--shadow-lg:0 18px 44px rgba(0,0,0,.65);
   color-scheme:dark;
 }
-html[data-high-contrast="true"][data-theme="light"]{
-  --bg:#fff;--surface:#fff;--surface-2:#f7f7f7;--surface-3:#ededed;
-  --text:#000;--muted:#262626;--line:#656565;--line-strong:#333;
+:root[data-high-contrast="true"][data-theme="light"]{
+  --text:#000;--muted:#222;--line:#646464;--line-strong:#292929;
   --primary:#003db8;--primary-2:#002c86;--primary-soft:#e8efff;--focus:#005fcc;
   --success:#075f2c;--warning:#744000;--danger:#a00000;
 }
-html[data-high-contrast="true"][data-theme="dark"]{
-  --bg:#000;--surface:#050505;--surface-2:#0b0b0b;--surface-3:#141414;
+:root[data-high-contrast="true"][data-theme="dark"]{
   --text:#fff;--muted:#f0f0f0;--line:#888;--line-strong:#ddd;
   --primary:#a9caff;--primary-2:#d3e3ff;--primary-soft:#152b4a;--focus:#fff;
   --success:#7bffac;--warning:#ffd37a;--danger:#ffaaaa;
 }
-html[data-high-contrast="true"] :is(button,a,input,select,textarea,[tabindex]):focus-visible{
-  outline:3px solid var(--focus)!important;outline-offset:3px!important;
-}
-html[data-high-contrast="true"] :is(.card,.panel,.control,.btn,.nav-btn,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow-step,.v43-owner){border-color:var(--line-strong)!important}
+:root[data-high-contrast="true"] :is(button,a,input,select,textarea,[tabindex]):focus-visible{outline:3px solid var(--focus)!important;outline-offset:3px!important}
+:root[data-high-contrast="true"] :is(.card,.panel,.control,.btn,.nav-btn,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow-step,.v43-owner){border-color:var(--line-strong)!important}
 
-/* Glassmorphism is limited to prominent surfaces; text and form fields stay solid for readability. */
-html[data-visual-style="glass"] :is(.topbar,.sidebar,.card.panel,.modal,.notif-panel,.global-search-box,.command-palette,.profile-menu,.v38-workbar,.v42-workflow){
-  background:color-mix(in srgb,var(--surface) 84%,transparent);
-  border-color:color-mix(in srgb,var(--line) 86%,transparent);
-  -webkit-backdrop-filter:blur(12px) saturate(135%);
-  backdrop-filter:blur(12px) saturate(135%);
-  box-shadow:0 12px 34px color-mix(in srgb,var(--text) 7%,transparent),var(--shadow);
+/* Glass surfaces are visibly translucent; fields remain opaque for text readability. */
+:root[data-visual-style="glass"] :is(.topbar,.sidebar,.card.panel,.card.stat,.modal,.notif-panel,.global-search-box,.command-box,.profile-menu,.v38-workbar,.v42-workflow,.v44-appearance-panel){
+  background:color-mix(in srgb,var(--surface) 78%,transparent)!important;
+  border-color:color-mix(in srgb,var(--line) 86%,transparent)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(140%)!important;
+  backdrop-filter:blur(14px) saturate(140%)!important;
+  box-shadow:0 12px 34px rgba(0,0,0,.13),var(--shadow)!important;
 }
-html[data-visual-style="glass"] :is(.modal-backdrop,.global-search-backdrop){
-  background:color-mix(in srgb,var(--bg) 70%,transparent);
-  -webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
-}
-html[data-visual-style="glass"] :is(.control,input,select,textarea,.v41-board-card,.v41-request-card,.v42-workflow-step){
-  background-color:var(--surface)!important;color:var(--text);
-}
-@supports not (backdrop-filter:blur(1px)){
-  html[data-visual-style="glass"] :is(.topbar,.sidebar,.card.panel,.modal,.notif-panel,.global-search-box,.command-palette,.profile-menu,.v38-workbar,.v42-workflow){background:var(--surface)}
-}
+:root[data-visual-style="glass"] :is(.control,input,select,textarea,.v41-board-card,.v41-request-card,.v42-workflow-step){background-color:var(--surface)!important;color:var(--text)!important}
+:root[data-visual-style="glass"] :is(.modal-backdrop,.global-search-backdrop,.command-backdrop){background:color-mix(in srgb,var(--bg) 72%,transparent)!important;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
 
-/* Neumorphism / soft raised surfaces. Controls keep obvious outlines and focus states. */
-html[data-visual-style="neumorphism"][data-theme="light"] :is(.card.panel,.card.stat,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow,.v42-workflow-step,.v43-owner,.v43-stage-pill){
-  background:var(--surface);border-color:transparent!important;
-  box-shadow:7px 7px 17px rgba(163,177,198,.32),-7px -7px 17px rgba(255,255,255,.86);
+/* Neumorphism: card surfaces get a clearly visible but restrained raised effect. */
+:root[data-visual-style="neumorphism"][data-theme="light"] :is(.card.panel,.card.stat,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow,.v42-workflow-step,.v43-owner,.v43-stage-pill,.v44-appearance-panel){
+  background:var(--surface)!important;border-color:transparent!important;
+  box-shadow:7px 7px 17px rgba(163,177,198,.34),-7px -7px 17px rgba(255,255,255,.9)!important;
 }
-html[data-visual-style="neumorphism"][data-theme="dark"] :is(.card.panel,.card.stat,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow,.v42-workflow-step,.v43-owner,.v43-stage-pill){
-  background:var(--surface);border-color:color-mix(in srgb,var(--line) 60%,transparent)!important;
-  box-shadow:6px 6px 15px rgba(0,0,0,.34),-4px -4px 12px rgba(255,255,255,.025);
+:root[data-visual-style="neumorphism"][data-theme="dark"] :is(.card.panel,.card.stat,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow,.v42-workflow-step,.v43-owner,.v43-stage-pill,.v44-appearance-panel){
+  background:var(--surface)!important;border-color:color-mix(in srgb,var(--line) 55%,transparent)!important;
+  box-shadow:6px 6px 15px rgba(0,0,0,.38),-4px -4px 12px rgba(255,255,255,.035)!important;
 }
-html[data-visual-style="neumorphism"] :is(.btn,.sm,.nav-btn,.icon-btn,.palette-choice,.font-choice,.v41-chip,.v41-tabs button,.v41-request-chip){
-  box-shadow:3px 3px 7px rgba(0,0,0,.08),-2px -2px 6px rgba(255,255,255,.2);
-}
-html[data-visual-style="neumorphism"] :is(.btn,.sm,.nav-btn,.icon-btn,.palette-choice,.font-choice,.v41-chip,.v41-tabs button,.v41-request-chip):active{
-  box-shadow:inset 2px 2px 5px rgba(0,0,0,.13),inset -2px -2px 5px rgba(255,255,255,.12);
-}
+:root[data-visual-style="neumorphism"] :is(.btn,.sm,.nav-btn,.icon-btn,.palette-choice,.font-choice,.v41-chip,.v41-tabs button,.v41-request-chip){box-shadow:3px 3px 7px rgba(0,0,0,.09),-2px -2px 6px rgba(255,255,255,.18)!important}
+:root[data-visual-style="neumorphism"] :is(.btn,.sm,.nav-btn,.icon-btn,.palette-choice,.font-choice,.v41-chip,.v41-tabs button,.v41-request-chip):active{box-shadow:inset 2px 2px 5px rgba(0,0,0,.13),inset -2px -2px 5px rgba(255,255,255,.1)!important}
 
-/* Hybrid: glass on shell/dialogs, restrained soft elevation on work cards. */
-html[data-visual-style="hybrid"] :is(.topbar,.sidebar,.modal,.notif-panel,.global-search-box,.command-palette,.profile-menu){
-  background:color-mix(in srgb,var(--surface) 88%,transparent);
-  -webkit-backdrop-filter:blur(9px) saturate(125%);backdrop-filter:blur(9px) saturate(125%);
-  box-shadow:0 12px 32px rgba(0,0,0,.13),var(--shadow);
-}
-html[data-visual-style="hybrid"][data-theme="light"] :is(.card.panel,.card.stat,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow,.v42-workflow-step,.v43-owner){
-  box-shadow:4px 5px 13px rgba(88,103,126,.12),-3px -3px 10px rgba(255,255,255,.72);
-}
-html[data-visual-style="hybrid"][data-theme="dark"] :is(.card.panel,.card.stat,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow,.v42-workflow-step,.v43-owner){
-  box-shadow:4px 5px 13px rgba(0,0,0,.20),-3px -3px 10px rgba(255,255,255,.018);
-}
+/* Hybrid: glass shell with soft shadows on content panels. */
+:root[data-visual-style="hybrid"] :is(.topbar,.sidebar,.modal,.notif-panel,.global-search-box,.command-box,.profile-menu,.v38-workbar,.v42-workflow){background:color-mix(in srgb,var(--surface) 84%,transparent)!important;-webkit-backdrop-filter:blur(10px) saturate(130%)!important;backdrop-filter:blur(10px) saturate(130%)!important;box-shadow:0 12px 32px rgba(0,0,0,.13),var(--shadow)!important}
+:root[data-visual-style="hybrid"][data-theme="light"] :is(.card.panel,.card.stat,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow,.v42-workflow-step,.v43-owner,.v44-appearance-panel){box-shadow:4px 5px 13px rgba(88,103,126,.15),-3px -3px 10px rgba(255,255,255,.72)!important}
+:root[data-visual-style="hybrid"][data-theme="dark"] :is(.card.panel,.card.stat,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow,.v42-workflow-step,.v43-owner,.v44-appearance-panel){box-shadow:4px 5px 13px rgba(0,0,0,.22),-3px -3px 10px rgba(255,255,255,.025)!important}
 
-/* Keep effects lightweight on small screens and when reduced motion/performance mode is chosen. */
-@media(max-width:700px){
- html[data-visual-style="glass"] :is(.topbar,.sidebar,.card.panel,.modal,.notif-panel,.global-search-box,.profile-menu,.v38-workbar,.v42-workflow){-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
- html[data-visual-style="neumorphism"] :is(.card.panel,.card.stat,.v41-kpi,.v41-board-col,.v41-board-card,.v41-request-card,.v42-workflow,.v42-workflow-step,.v43-owner){box-shadow:3px 3px 8px rgba(0,0,0,.10),-2px -2px 7px rgba(255,255,255,.09)}
-}
-html[data-motion="reduced"][data-visual-style="glass"] :is(.topbar,.sidebar,.card.panel,.modal,.notif-panel,.global-search-box,.command-palette,.profile-menu,.v38-workbar,.v42-workflow){-webkit-backdrop-filter:none;backdrop-filter:none}
-html[data-motion="reduced"][data-visual-style="glass"] :is(.topbar,.sidebar,.card.panel,.modal,.notif-panel,.global-search-box,.command-palette,.profile-menu,.v38-workbar,.v42-workflow){background:var(--surface)}
-html[data-perf="smart"][data-visual-style="glass"] :is(.topbar,.sidebar,.card.panel,.modal,.notif-panel,.global-search-box,.profile-menu,.v38-workbar,.v42-workflow){-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-
-.v44-appearance-panel .v44-appearance-intro{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
-.v44-appearance-panel .v44-appearance-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border-radius:12px;background:var(--primary-soft);color:var(--primary);font-size:19px}
-.v44-appearance-panel .v44-help{font-size:8px;line-height:1.9;color:var(--muted);margin-top:4px}
-.v44-appearance-panel .v44-preview-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}
-.v44-appearance-panel .v44-preview{border:1px solid var(--line);border-radius:11px;padding:8px;background:var(--surface-2);display:flex;align-items:center;gap:7px;min-width:0;font-size:8px;font-weight:800}
-.v44-appearance-panel .v44-preview-dot{display:inline-block;width:16px;height:16px;flex:0 0 16px;border-radius:5px;border:1px solid var(--line)}
-.v44-appearance-panel .v44-preview-dot.light{background:#f5f7fb}.v44-appearance-panel .v44-preview-dot.dark{background:#111827}.v44-appearance-panel .v44-preview-dot.dim{background:#353b46}.v44-appearance-panel .v44-preview-dot.amoled{background:#000}
-.v44-appearance-panel .v44-selected-note{padding:9px 11px;border:1px solid var(--line);border-radius:11px;background:var(--surface-2);font-size:8px;color:var(--muted);line-height:1.9;margin-top:10px}
-@media(max-width:760px){.v44-appearance-panel .v44-preview-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.v44-appearance-panel{margin-bottom:12px;padding:14px;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--text)}
+.v44-appearance-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+.v44-appearance-icon{width:40px;height:40px;flex:0 0 40px;border-radius:12px;display:grid;place-items:center;background:var(--primary-soft);color:var(--primary);font-size:20px}
+.v44-appearance-panel h3{margin:0;font-size:12px}
+.v44-appearance-help{font-size:8px;line-height:1.9;color:var(--muted);margin-top:4px}
+.v44-appearance-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.v44-appearance-controls .field{margin:5px 0}
+.v44-appearance-preview{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-top:11px}
+.v44-mode-chip{display:flex;align-items:center;gap:6px;min-width:0;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--surface-2);font-size:8px;font-weight:800;color:var(--text)}
+.v44-mode-chip i{display:inline-block;width:15px;height:15px;border:1px solid var(--line-strong);border-radius:5px;flex:0 0 15px}
+.v44-mode-chip .light{background:#f5f7fb}.v44-mode-chip .dark{background:#111827}.v44-mode-chip .dim{background:#353b46}.v44-mode-chip .amoled{background:#000}.v44-mode-chip .system{background:linear-gradient(135deg,#f5f7fb 0 50%,#111827 50%)}
+.v44-contrast-button{width:100%;text-align:center;white-space:normal}
+.v44-appearance-note{border-top:1px solid var(--line);margin-top:11px;padding-top:9px;color:var(--muted);font-size:8px;line-height:1.9}
+@media(max-width:760px){.v44-appearance-controls{grid-template-columns:1fr}.v44-appearance-preview{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){:root[data-visual-style="glass"] :is(.topbar,.sidebar,.card.panel,.card.stat,.modal,.notif-panel,.global-search-box,.profile-menu,.v38-workbar,.v42-workflow,.v44-appearance-panel){-webkit-backdrop-filter:blur(7px) saturate(115%)!important;backdrop-filter:blur(7px) saturate(115%)!important}}
+@media(prefers-reduced-motion:reduce){:root[data-visual-style="glass"] :is(.topbar,.sidebar,.card.panel,.card.stat,.modal,.notif-panel,.global-search-box,.profile-menu,.v38-workbar,.v42-workflow,.v44-appearance-panel){-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--surface)!important}}
+@supports not (backdrop-filter:blur(1px)){:root[data-visual-style="glass"] :is(.topbar,.sidebar,.card.panel,.card.stat,.modal,.notif-panel,.global-search-box,.profile-menu,.v38-workbar,.v42-workflow,.v44-appearance-panel){background:var(--surface)!important}}
 </style>
 
-
-<script id="v44-appearance-script">
+<script id="v44-1-appearance-script">
 (function(){
 'use strict';
-const validModesV44=['light','dark','dim','amoled','system'];
-const validStylesV44=['standard','glass','neumorphism','hybrid'];
-const getV44=(key,fallback)=>{try{const v=localStorage.getItem(key);return v===null?fallback:v}catch(e){return fallback}};
-const setV44=(key,value)=>{try{localStorage.setItem(key,String(value));return true}catch(e){return false}};
-function preferredModeV44(){try{return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){return 'light'}}
-function selectedModeV44(){let mode=getV44('companyDisplayMode',getV44('companyTheme','light'));if(!validModesV44.includes(mode))mode='light';return mode}
-function effectiveThemeV44(mode){if(mode==='system')return preferredModeV44();return (mode==='dim'||mode==='amoled')?'dark':mode}
-window.theme=function(){
- const mode=selectedModeV44(),effective=effectiveThemeV44(mode),style=getV44('companyVisualStyle','standard');
- document.documentElement.dataset.theme=effective;
- document.documentElement.dataset.displayMode=mode;
- document.documentElement.dataset.visualStyle=validStylesV44.includes(style)?style:'standard';
- document.documentElement.dataset.highContrast=getV44('companyHighContrastV44','0')==='1'?'true':'false';
- document.documentElement.dataset.palette=getV44('companyPalette','ocean');
- document.documentElement.dataset.font=getV44('companyFont','vazir');
- document.documentElement.dataset.density=getV44('companyDensity','comfortable');
- try{document.documentElement.style.colorScheme=effective==='dark'?'dark':'light'}catch(e){}
- /* Mirror the resolved value for older components that still read companyTheme. */
- if(getV44('companyTheme','')!==effective)setV44('companyTheme',effective);
- return effective;
-};
-window.setDisplayModeV44=function(mode){
- if(!validModesV44.includes(mode))mode='light';
- setV44('companyDisplayMode',mode);setV44('companyTheme',effectiveThemeV44(mode));window.theme();if(typeof window.render==='function')window.render();
- if(typeof window.toast==='function'){const names={light:'روشن',dark:'تیره',dim:'نیمه‌تیره',amoled:'مشکی عمیق',system:'خودکار مطابق سیستم'};window.toast('حالت نمایش: '+names[mode])}
-};
-window.toggleTheme=function(){
- const next=window.theme()==='dark'?'light':'dark';window.setDisplayModeV44(next);
-};
-window.setVisualStyleV44=function(style){
- if(!validStylesV44.includes(style))style='standard';setV44('companyVisualStyle',style);window.theme();if(typeof window.render==='function')window.render();
- if(typeof window.toast==='function'){const names={standard:'استاندارد',glass:'شیشه‌ای (Glassmorphism)',neumorphism:'سایه نرم (Neumorphism)',hybrid:'ترکیبی'};window.toast('سبک ظاهری: '+names[style])}
-};
-window.toggleHighContrastV44=function(){
- const enabled=getV44('companyHighContrastV44','0')!=='1';setV44('companyHighContrastV44',enabled?'1':'0');window.theme();if(typeof window.render==='function')window.render();
- if(typeof window.toast==='function')window.toast(enabled?'کنتراست بالا فعال شد':'کنتراست استاندارد فعال شد');
-};
-/* Replace the older two-option selector, while preserving palette, font, density and performance controls. */
-const oldSettingsV44=window.settings;
+const modes=['light','dark','dim','amoled','system'];
+const styles=['standard','glass','neumorphism','hybrid'];
+const storageGet=(k,d)=>{try{const v=localStorage.getItem(k);return v===null?d:v}catch(e){return d}};
+const storageSet=(k,v)=>{try{localStorage.setItem(k,String(v));return true}catch(e){return false}};
+const osTheme=()=>{try{return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){return 'light'}};
+function chosenMode(){const saved=storageGet('companyDisplayMode',null);const mode=saved===null?storageGet('companyTheme','light'):saved;return modes.includes(mode)?mode:'light'}
+function chosenStyle(){const style=storageGet('companyVisualStyle','standard');return styles.includes(style)?style:'standard'}
+function effectiveMode(mode){return mode==='system'?osTheme():((mode==='dim'||mode==='amoled')?'dark':mode)}
+function applyAppearance(){
+  const root=document.documentElement,mode=chosenMode(),effective=effectiveMode(mode),style=chosenStyle();
+  // Let the preceding theme handler retain its legacy work; this pass owns V44-specific attributes.
+  root.dataset.theme=effective;root.dataset.displayMode=mode;root.dataset.visualStyle=style;
+  root.dataset.highContrast=storageGet('companyHighContrastV44','0')==='1'?'true':'false';
+  root.dataset.palette=storageGet('companyPalette','ocean');root.dataset.font=storageGet('companyFont','vazir');root.dataset.density=storageGet('companyDensity','comfortable');
+  root.dataset.motion=storageGet('companyReduceMotion','0')==='1'?'reduced':'full';root.dataset.perf=storageGet('v38PerfMode','smart');
+  try{root.style.colorScheme=effective==='dark'?'dark':'light'}catch(e){}
+  // Legacy modules still read companyTheme; keep only the resolved light/dark value there.
+  if(storageGet('companyTheme','')!==effective)storageSet('companyTheme',effective);
+  const meta=document.querySelector('meta[name="theme-color"]');if(meta){const colors={light:'#edf2f8',dark:'#0a1020',dim:'#252a33',amoled:'#000000',system:effective==='dark'?'#0a1020':'#edf2f8'};meta.setAttribute('content',colors[mode]||colors[effective]||'#173b7a')}
+  return effective;
+}
+// Preserve the prior theme handler (font/palette metadata etc.) and then apply the new mode consistently.
+const previousTheme=window.theme;
+window.theme=function(){try{if(typeof previousTheme==='function'&&previousTheme!==window.theme)previousTheme.apply(this,arguments)}catch(e){}return applyAppearance()};
+window.applyAppearanceV44=applyAppearance;
+window.setDisplayModeV44=function(mode){if(!modes.includes(mode))mode='light';storageSet('companyDisplayMode',mode);storageSet('companyTheme',effectiveMode(mode));window.theme();if(typeof window.render==='function')window.render();requestAnimationFrame(()=>requestAnimationFrame(applyAppearance));if(typeof window.toast==='function')window.toast('حالت نمایش: '+({light:'روشن',dark:'تیره',dim:'نیمه‌تیره',amoled:'مشکی عمیق',system:'خودکار مطابق سیستم'}[mode]))};
+window.setVisualStyleV44=function(style){if(!styles.includes(style))style='standard';storageSet('companyVisualStyle',style);applyAppearance();if(typeof window.render==='function')window.render();requestAnimationFrame(()=>requestAnimationFrame(applyAppearance));if(typeof window.toast==='function')window.toast('سبک ظاهری: '+({standard:'استاندارد',glass:'شیشه‌ای (Glassmorphism)',neumorphism:'سایه نرم (Neumorphism)',hybrid:'ترکیبی شیشه‌ای + سایه'}[style]))};
+window.toggleHighContrastV44=function(){const enabled=storageGet('companyHighContrastV44','0')!=='1';storageSet('companyHighContrastV44',enabled?'1':'0');applyAppearance();if(typeof window.render==='function')window.render();requestAnimationFrame(applyAppearance);if(typeof window.toast==='function')window.toast(enabled?'کنتراست بالا فعال شد':'کنتراست استاندارد فعال شد')};
+window.toggleTheme=function(){const effective=effectiveMode(chosenMode());window.setDisplayModeV44(effective==='dark'?'light':'dark')};
+
+// Add controls to the existing appearance settings card without depending on fragile HTML-string regexes.
+const oldSettings=window.settings;
 window.settings=function(){
- let html=typeof oldSettingsV44==='function'?oldSettingsV44():'';
- const mode=selectedModeV44(),style=getV44('companyVisualStyle','standard'),hc=getV44('companyHighContrastV44','0')==='1';
- const opt=(value,label,current)=>'<option value="'+value+'" '+(current===value?'selected':'')+'>'+label+'</option>';
- const replacement='<div class="formgrid"><div class="field"><label for="v44DisplayMode">حالت نمایش</label><select id="v44DisplayMode" class="control" onchange="setDisplayModeV44(this.value)">'+opt('light','روشن',mode)+opt('dark','تیره',mode)+opt('dim','نیمه‌تیره (Dim)',mode)+opt('amoled','مشکی عمیق (AMOLED)',mode)+opt('system','خودکار؛ مطابق سیستم',mode)+'</select><div class="v44-help">در حالت خودکار، ظاهر با تنظیم روشن/تیره سیستم‌عامل هماهنگ می‌شود.</div></div><div class="field"><label for="v44VisualStyle">سبک ظاهری</label><select id="v44VisualStyle" class="control" onchange="setVisualStyleV44(this.value)">'+opt('standard','استاندارد',style)+opt('glass','شیشه‌ای (Glassmorphism)',style)+opt('neumorphism','سایه نرم (Neumorphism)',style)+opt('hybrid','ترکیبی شیشه‌ای + سایه',style)+'</select><div class="v44-help">سبک ظاهری از حالت روشن/تیره مستقل است؛ تم رنگی فعلی حفظ می‌شود.</div></div></div><div class="formgrid"><div class="field"><label>کنتراست بالا</label><button type="button" class="control" aria-pressed="'+(hc?'true':'false')+'" onclick="toggleHighContrastV44()">'+(hc?'✓ کنتراست بالا فعال است':'فعال‌سازی کنتراست بالا')+'</button><div class="v44-help">مرزها، نوشته‌ها و فوکوس واضح‌تر می‌شوند.</div></div><div class="field"><label>انیمیشن و حرکت</label>';
- const legacyMode=/\s*<div class="formgrid"><div class="field"><label>حالت نمایش<\/label><select class="control" onchange="localStorage\.setItem\('companyTheme',this\.value\);theme\(\);render\(\)">[\s\S]*?<\/select><\/div><div class="field"><label>انیمیشن<\/label>/;
- if(legacyMode.test(html))html=html.replace(legacyMode,replacement);
- else {
-   /* Safe fallback for a future settings layout: keep existing UI and add an independent appearance panel. */
-   const extra='<section class="card panel v44-appearance-panel"><div class="v44-appearance-intro"><div class="v44-appearance-icon">◐</div><div><h3>حالت نمایش و سبک ظاهری</h3><div class="v44-help">'+replacement+'</div></div></div></section>';
-   html=extra+html;
- }
- const appearanceNote='<div class="v44-preview-row"><div class="v44-preview"><span class="v44-preview-dot light"></span>روشن</div><div class="v44-preview"><span class="v44-preview-dot dark"></span>تیره</div><div class="v44-preview"><span class="v44-preview-dot dim"></span>نیمه‌تیره</div><div class="v44-preview"><span class="v44-preview-dot amoled"></span>مشکی عمیق</div></div><div class="v44-selected-note">'+(style==='glass'?'Glassmorphism فعال است: سطوح منتخب شیشه‌ای و محو هستند.':style==='neumorphism'?'Neumorphism فعال است: کارت‌ها سایه برجسته و نرم دارند.':style==='hybrid'?'سبک ترکیبی فعال است: شیشه برای قاب‌ها و سایه نرم برای کارت‌ها.':'سبک استاندارد فعال است؛ برای جلوه‌های بیشتر، یکی از سبک‌ها را انتخاب کنید.')+' جلوه‌ها در موبایل سبک‌تر می‌شوند تا سرعت و خوانایی حفظ شود.</div>';
- if(html.includes('<section class="card panel v44-appearance-panel">'))html=html.replace('</section>',''+appearanceNote+'</section>');
- else if(html.includes('v44-appearance-panel'))html=html.replace('</section>',''+appearanceNote+'</section>');
- else html=html.replace('<div class="utility-strip">',appearanceNote+'<div class="utility-strip">');
- return html;
+ let html='';try{html=typeof oldSettings==='function'?oldSettings():''}catch(e){html=''}
+ const mode=chosenMode(),style=chosenStyle(),hc=storageGet('companyHighContrastV44','0')==='1';
+ const option=(v,label,selected)=>'<option value="'+v+'" '+(v===selected?'selected':'')+'>'+label+'</option>';
+ const modeField='<div class="field"><label for="v44DisplayMode">حالت نمایش</label><select id="v44DisplayMode" class="control" onchange="setDisplayModeV44(this.value)">'+option('light','روشن',mode)+option('dark','تیره',mode)+option('dim','نیمه‌تیره (Dim)',mode)+option('amoled','مشکی عمیق (AMOLED)',mode)+option('system','خودکار؛ مطابق سیستم',mode)+'</select><div class="v44-appearance-help">حالت خودکار از تنظیم روشن/تیرهٔ دستگاه پیروی می‌کند.</div></div>';
+ const styleField='<div class="field"><label for="v44VisualStyle">سبک ظاهری</label><select id="v44VisualStyle" class="control" onchange="setVisualStyleV44(this.value)">'+option('standard','استاندارد',style)+option('glass','شیشه‌ای (Glassmorphism)',style)+option('neumorphism','سایه نرم (Neumorphism)',style)+option('hybrid','ترکیبی شیشه‌ای + سایه',style)+'</select><div class="v44-appearance-help">حالت ظاهری مستقل از رنگ‌بندی است.</div></div>';
+ const contrastField='<div class="field"><label for="v44ContrastButton">دسترس‌پذیری</label><button id="v44ContrastButton" type="button" class="control v44-contrast-button" aria-pressed="'+(hc?'true':'false')+'" onclick="toggleHighContrastV44()">'+(hc?'✓ کنتراست بالا فعال است':'فعال‌سازی کنتراست بالا')+'</button><div class="v44-appearance-help">مرزها، متن و فوکوس واضح‌تر می‌شوند.</div></div>';
+ const preview='<div class="v44-appearance-preview"><div class="v44-mode-chip"><i class="light"></i>روشن</div><div class="v44-mode-chip"><i class="dark"></i>تیره</div><div class="v44-mode-chip"><i class="dim"></i>نیمه‌تیره</div><div class="v44-mode-chip"><i class="amoled"></i>مشکی عمیق</div><div class="v44-mode-chip"><i class="system"></i>خودکار</div></div>';
+ const note='<div class="v44-appearance-note">'+({standard:'سبک استاندارد فعال است.',glass:'Glassmorphism فعال است: پنل‌های منتخب شیشه‌ای شده‌اند؛ ورودی‌ها برای خوانایی مات می‌مانند.',neumorphism:'Neumorphism فعال است: کارت‌ها سایهٔ برجسته و نرم دارند.',hybrid:'حالت ترکیبی فعال است: شیشه در قاب‌ها و سایهٔ نرم روی کارت‌ها.'}[style])+' تنظیمات روی همین مرورگر ذخیره می‌شود. در موبایل و حالت کاهش حرکت، جلوه‌ها سبک‌ترند.</div>';
+ const panel='<section class="card panel v44-appearance-panel"><div class="v44-appearance-head"><div class="v44-appearance-icon">◐</div><div><h3>حالت نمایش و سبک ظاهری</h3><div class="v44-appearance-help">حالت رنگی، افکت کارت‌ها و کنتراست را مستقل انتخاب کن.</div></div></div><div class="v44-appearance-controls">'+modeField+styleField+contrastField+'</div>'+preview+note+'</section>';
+ try{
+   const temp=document.createElement('div');temp.innerHTML=html;
+   // Remove the legacy two-option theme field so users do not see conflicting settings.
+   const legacy=Array.from(temp.querySelectorAll('select')).find(el=>/companyTheme/.test(el.getAttribute('onchange')||''));
+   if(legacy){const field=legacy.closest('.field');if(field)field.remove()}
+   // Insert new controls at the very top, while preserving palette/font/density/performance cards.
+   temp.insertAdjacentHTML('afterbegin',panel);
+   return temp.innerHTML;
+ }catch(e){return panel+html}
 };
-/* Follow operating-system changes only while Auto/System mode is selected. */
-try{
- const media=window.matchMedia('(prefers-color-scheme: dark)');
- const onSystemChange=()=>{if(selectedModeV44()==='system'){window.theme();if(typeof window.render==='function')window.render()}};
- if(media.addEventListener)media.addEventListener('change',onSystemChange);else if(media.addListener)media.addListener(onSystemChange);
-}catch(e){}
-window.companyPortalBuild='V44';
-window.theme();
+
+// Re-apply after the legacy render chain because older wrappers set palette/font preferences again.
+const oldRender=window.render;
+if(typeof oldRender==='function'){
+ window.render=function(){let out;try{out=oldRender.apply(this,arguments)}finally{applyAppearance();requestAnimationFrame(()=>requestAnimationFrame(applyAppearance))}return out};
+}
+try{const media=window.matchMedia('(prefers-color-scheme: dark)');const onChange=()=>{if(chosenMode()==='system'){applyAppearance();if(typeof window.render==='function')window.render()}};if(media.addEventListener)media.addEventListener('change',onChange);else if(media.addListener)media.addListener(onChange)}catch(e){}
+window.companyPortalBuild='V44.1';applyAppearance();
 })();
 </script>
-
 </body>
 </html>
-
